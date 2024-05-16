@@ -1,0 +1,15 @@
+header {
+    display: flex;
+
+    justify-content: space-between;
+}
+
+#logo_header {
+    width: 35px;
+}
+
+#acc {
+}
+
+#page {
+}
