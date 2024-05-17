@@ -1,0 +1,29 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /SchoolPea/public/
+
+    # Redirige toutes les requetes d' URL vers index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+</IfModule>
+
+Options -Indexes
+
+# Interdit les accès vers les dossiers suivants
+<FilesMatch "(index.php,\.ini,\.htaccess,\.php">
+    Order Allow,Deny
+    Allow from All
+</FilesMatch>
+
+<Directory "/your_project/app">
+    Deny from all
+</Directory>
+
+<Directory "/your_project/core">
+    Deny from all
+</Directory>
+
+<Directory "/your_project/config">
+    Deny from all
+</Directory>
