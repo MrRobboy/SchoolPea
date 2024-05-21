@@ -5,6 +5,7 @@
     # Gestion des erreurs 404
     ErrorDocument 404 /SchoolPea/public/error404.php
     ErrorDocument 403 /SchoolPea/public/error403.php
+
     # Rediriger les requêtes vers le répertoire public
     RewriteCond %{REQUEST_URI} !^/public/
     RewriteRule ^(.*)$ /public/$1 [L]
@@ -16,4 +17,3 @@
     # Rediriger toutes les autres requêtes vers index.php
     RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
 </IfModule>
-
