@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="connexion.css" />
     <title>Connexion | SchoolPéa</title>
 </head>
 
@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="./connexion.js"></script>
     <!--S'active que s'il est dans le body-->
 </body>
 
