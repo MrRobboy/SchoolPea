@@ -26,7 +26,7 @@ class routeur
             $controller = $this->routes[$request]['controller'];
             $method     = $this->routes[$request]['method'];
         } else {
-            include(CONTROLLER.'404.php');
+            include(CONTROLLER.'error404.php');
         }
     }
 }
