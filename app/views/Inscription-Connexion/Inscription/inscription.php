@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="inscription.css" />
     <title>Connexion | SchoolPéa</title>
 </head>
 
 <body>
-    <div class="container Connexion" id="Conteneur">
+    <div class="container Inscription" id="Conteneur">
         <div class="form-container sign-in">
             <form action="../../Accueil (non-connecté)/index.html">
                 <h1>Connexion</h1>
@@ -50,7 +50,7 @@
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="./inscription.js"></script>
     <!--S'active que s'il est dans le body-->
 </body>
 
