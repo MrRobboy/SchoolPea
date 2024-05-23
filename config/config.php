@@ -1,4 +1,5 @@
 <?php
+//**configuration */
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
 
@@ -18,6 +19,7 @@ class MyAutoLoad
         define('VIEW', ROOT . 'app/view/');
         define('CONTROLLER', ROOT . 'app/controller/');
 
+        define('CONFIG', HOST . 'config/');
         define('PUBLIC', HOST . 'public/');
         define('CORE', HOST . 'core/');
 

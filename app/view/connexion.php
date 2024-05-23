@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="FR">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="connexion.css" />
-    <title>Connexion | SchoolPéa</title>
-</head>
-
-<body>
     <div class="container Connexion" id="Conteneur">
         <div class="form-container sign-in">
             <form action="../../Accueil (non-connecté)/index.html">
@@ -50,8 +40,6 @@
             </div>
         </div>
     </div>
-    <script src="./connexion.js"></script>
+    <script src="<?php echo JS; ?>connexion.js"></script>
     <!--S'active que s'il est dans le body-->
-</body>
 
-</html>

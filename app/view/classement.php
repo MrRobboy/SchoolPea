@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="FR">
-
-<head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./Classement.css" />
-    <title>Classement | SchoolPéa</title>
-</head>
 
 <body>
     <header>
@@ -319,6 +311,3 @@
             </tbody>
         </table>
     </div>
-</body>
-
-</html>
