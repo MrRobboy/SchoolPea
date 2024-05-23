@@ -11,8 +11,12 @@ class view
 
     public function render()
     {
+
         $template = $this->template;
 
-        include_once ( VIEW.$template.'.php');
+        ob_start();
+        include(VIEW.$template.'.php');
+        $contentPage = ob_get_clean();
+        include_once ( VIEW.'layout.php');
     }
 }
