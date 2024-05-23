@@ -42,4 +42,3 @@ class MyAutoLoad
 
 // Start l'autoloader
 MyAutoLoad::start();
-?>
