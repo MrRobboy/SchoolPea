@@ -9,7 +9,7 @@
 <body>
     <header>
         <div id="accueil">
-            <a href="#SchoolPea">
+           
                 <img id="logo_header" src="../../public/images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
@@ -48,4 +48,22 @@
             </span>
         </div>
     </header>
+
+    <div>
+<span>
+  <p href="#SchoolPea"> SchoolPéa Titre </p> 
+
+</span>
+
+<span> 
+
+   <p href="#SchoolPea"> 
+
+    <button> Luffy</button> 
+
+</p>
+
+</span>
+
+    </div>
 </body>
