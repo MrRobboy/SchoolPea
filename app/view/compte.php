@@ -9,8 +9,8 @@
 <body>
     <header>
         <div id="accueil">
-           
-                <img id="logo_header" src="../../public/images/SchoolPea.png" />
+
+            <img id="logo_header" src="../../public/images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
@@ -49,21 +49,23 @@
         </div>
     </header>
 
+    <span class="trait" id="SchoolPea"></span>
+
     <div>
-<span>
-  <p href="#SchoolPea"> SchoolPéa Titre </p> 
+        <span>
+            <p href="#SchoolPea"> SchoolPéa Titre </p>
 
-</span>
+        </span>
 
-<span> 
+        <span>
 
-   <p href="#SchoolPea"> 
+            <p href="#SchoolPea">
 
-    <button> Luffy</button> 
+                <button> Luffy</button>
 
-</p>
+            </p>
 
-</span>
+        </span>
 
     </div>
 </body>
