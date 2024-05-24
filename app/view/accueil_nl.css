@@ -1,0 +1,304 @@
+/*---------------------------------------------------Tout ce qu'il y a dans le Header de gauche à droite---------------------------------------------------*/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
+html {
+        scroll-behavior: smooth;
+}
+
+header {
+        flex-direction: row;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        box-shadow: 0 0.5rem 0.5rem rgb(92, 107, 192, 100%);
+        padding: 1rem 0;
+        background-color: #ffffff;
+}
+
+#accueil {
+        /*header -> accueil*/
+        margin: 0 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+}
+
+#accueil a {
+        /*header -> accueil -> a*/
+        font-size: x-large;
+        padding: 0 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: #000;
+}
+
+#logo_header {
+        /*header -> accueil -> logo_header*/
+        width: 45px;
+}
+
+#Pages {
+        /*header -> Pages*/
+        align-items: center;
+        display: flex;
+        padding: 0 1rem;
+        font-weight: 500;
+}
+
+#Pages span {
+        /*header -> Pages -> span*/
+        margin: 0 0.5rem;
+}
+
+#Pages a {
+        color: black;
+        text-decoration: none;
+        padding: 0.2rem 1rem;
+        border: solid 0.1rem #fff;
+}
+
+#Pages a:hover {
+        color: #6b7ad2;
+        background-color: rgb(132, 147, 232, 10%);
+        border-radius: 2rem;
+        padding: 0.2rem 1rem;
+        border: solid 0.1rem #374599;
+}
+
+.lien_header {
+        transition: all 0.5s ease-in-out;
+}
+
+/*---------------------------------------------------accueil_nl---------------------------------------------------*/
+
+#SchoolPea {
+        background-color: transparent;
+        margin-bottom: 10rem;
+        margin-top: 0rem;
+}
+
+body {
+        font-family: "Montserrat";
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+}
+
+body div {
+        justify-content: center;
+}
+
+#shadow_search {
+        box-shadow: -1rem 1rem 1px #374599;
+        border-radius: 2rem;
+}
+
+#Search_section {
+        /*body -> search*/
+        border: solid;
+        border-color: #5c6bc0;
+        border-radius: 2rem;
+        border-width: 0.1rem;
+        padding: 3rem 4rem;
+        box-shadow: 0px 0px 90px rgba(200, 200, 255, 75%);
+}
+
+.aff {
+        /*body -> search -> aff*/
+        display: flex;
+}
+
+#text_search {
+        /*body -> search -> aff -> text_search*/
+        padding: 1.5rem 1rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+}
+
+#text_search * {
+        margin: 0.7rem 0;
+        text-align: center;
+}
+
+#text_search h1 {
+        font-size: 50px;
+}
+
+#logo_aff {
+        /*body -> search -> aff -> logo*/
+        width: 7em;
+        align-items: center;
+        margin: 4rem 2rem;
+}
+
+.but {
+        /*body -> search -> but*/
+        display: flex;
+        justify-content: space-around;
+        margin: 2rem;
+}
+
+.but a {
+        /*body -> search -> but -> boutons*/
+        padding: 0.3rem 2.5rem;
+        border: solid 0.1rem rgb(92, 107, 192);
+        border-radius: 2rem;
+        margin: 0 3.5rem;
+        box-shadow: 0 0.2rem 0.3rem rgb(92, 107, 192);
+        font-weight: 600;
+        color: #6b7ad2;
+        text-decoration: none;
+}
+
+.but a:hover {
+        background-color: rgb(92, 107, 192, 10%);
+        border-color: #374599;
+}
+
+.rec {
+        /*body -> search -> rec*/
+        justify-content: center;
+        display: flex;
+        border: solid #6b7ad2;
+        border-radius: 3rem;
+        text-align: center;
+        margin: 1.5rem 0;
+        padding: 1rem 1rem;
+        color: #374599;
+}
+
+.trait {
+        padding: 0.2rem 20rem;
+        background-color: #6b7ad2;
+        border-radius: 3rem;
+        justify-content: center;
+        margin: 7rem 0;
+}
+
+#Cours_section {
+        /*body -> Cours*/
+        justify-content: space-around;
+}
+
+#Cours_section span {
+        /*body -> Cours -> span*/
+        text-align: center;
+        justify-content: center;
+        display: flex;
+}
+
+#titre_cours {
+        border: solid #5c6bc0;
+        padding: 1rem 8rem;
+        border-radius: 3rem;
+        background-color: #6b7ad2;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: large;
+}
+
+#div_cours {
+        background-color: #5c6bc0;
+        border-radius: 3rem;
+        border: solid 0.2rem #8493e8;
+        margin-top: -2.9rem;
+        padding: 2.5rem 1rem;
+}
+
+#Cours_section div div {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+}
+
+.fenetre span {
+        padding: 5.5rem 3.5rem;
+        background-color: #ffffff;
+        margin: 1rem 0.7rem;
+        border: solid #374599;
+        border-radius: 1.5rem;
+}
+
+.voir_plus {
+        padding: 0.5rem 4rem;
+        background-color: #6b7ad2;
+        color: white;
+        text-decoration: none;
+        border-radius: 2rem;
+        margin: -1.5rem 0 0 0;
+}
+
+#Quizz_section {
+        /*body -> Quizz*/
+        justify-content: space-around;
+}
+
+#Quizz_section span {
+        /*body -> Cours -> span*/
+        text-align: center;
+        justify-content: center;
+        display: flex;
+}
+
+#titre_quizz {
+        border: solid #5c6bc0;
+        padding: 1rem 8rem;
+        border-radius: 3rem;
+        background-color: #6b7ad2;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: larger;
+}
+
+#div_quizz {
+        background-color: #5c6bc0;
+        border-radius: 3rem;
+        margin-top: -2.9rem;
+        padding: 2.5rem 1rem;
+        border: solid 0.2rem #8493e8;
+}
+
+#Quizz_section div div {
+        flex-direction: row;
+        display: flex;
+        justify-content: space-around;
+}
+
+/*---------------------------------------------------Tout ce qu'il y a dans le Footer de gauche à droite---------------------------------------------------*/
+
+footer {
+        background-color: #fff;
+        color: white;
+        font-weight: 500;
+        border-radius: 2.5rem;
+        padding: 1rem;
+        margin-bottom: 3rem;
+        border: 0.1rem solid #5c6bc0;
+        box-shadow: -1rem 1rem 1px #5c6bc0;
+}
+
+.footer {
+        background-color: #5c6bc0;
+        display: flex;
+        flex-direction: row;
+        padding: 1rem;
+        border-radius: 2.5rem;
+}
+
+.footer span {
+        display: flex;
+        flex-direction: column;
+        padding: 0 3rem;
+        text-align: center;
+}
+
+.footer a {
+        margin-top: 1rem;
+        text-decoration: none;
+}

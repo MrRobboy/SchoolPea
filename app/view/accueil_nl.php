@@ -1,4 +1,42 @@
+<!DOCTYPE html>
 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Schoolpéa</title>
+    <link rel="stylesheet" type="text/css" href="./accueil_nl.css" />
+</head>
+
+<body>
+
+    <header>
+        <span id="accueil">
+            <a href="#SchoolPea">
+                <img id="logo_header" src="../../public/images/SchoolPea.png" alt="Logo" />
+            </a>
+            <a href="#SchoolPea">SchoolPéa</a>
+        </span>
+
+        <span id="Pages">
+            <span>
+                <a href="#Explorer_les_cours" class="lien_header">
+                    Explorer les cours
+                </a>
+            </span>
+
+            <span>
+                <a href="./connexion.php" class="lien_header">
+                    Se Connecter
+                </a>
+            </span>
+
+            <span>
+                <a href="./inscription.php" class="lien_header">
+                    S'inscrire
+                </a>
+            </span>
+        </span>
+    </header>
 
     <span class="trait" id="SchoolPea"></span>
 
@@ -14,14 +52,14 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="../../../public/images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="../../public/images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
-                <a href="../Inscription-Connexion/Connexion/index.html">
+                <a href="./connexion.php">
                     Trouver un cours
                 </a>
-                <a href="../Inscription-Connexion/Connexion/index.html">
+                <a href="./connexion.php">
                     Trouver un quizz
                 </a>
             </div>
@@ -52,7 +90,7 @@
             </div>
         </div>
         <span>
-            <a class="voir_plus" href="../Inscription-Connexion/Connexion/index.html">
+            <a class="voir_plus" href="./connexion.php">
                 Voir plus >
             </a>
         </span>
@@ -81,7 +119,7 @@
         </div>
 
         <span>
-            <a class="voir_plus" href="../Inscription-Connexion/Connexion/index.html">
+            <a class="voir_plus" href="./connexion.php">
                 Voir plus >
             </a>
         </span>
@@ -89,3 +127,40 @@
 
     <span class="trait" id="3"></span>
 
+    <footer>
+        <div class="footer">
+            <span class="col1">
+                <h3>
+                    <a href="#SchoolPea" style="
+                                color: white;
+                                text-decoration: none;
+                                font-weight: bolder;
+                            ">
+                        SchoolPéa
+                    </a>
+                </h3>
+            </span>
+
+            <span class="col2">
+                <h4>Schoolpéa</h4>
+                <a>Accueil</a>
+                <a>A propos</a>
+            </span>
+
+            <span class="col3">
+                <h4>Contact</h4>
+                <a>E-mail</a>
+                <a>Linkedin</a>
+                <a>Instagram</a>
+            </span>
+
+            <span class="col4">
+                <h4>Newsletter</h4>
+                <a>Api fetch à Implémenter <br />Input email</a>
+            </span>
+        </div>
+    </footer>
+
+</body>
+
+</html>
