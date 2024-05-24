@@ -43,7 +43,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../../../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>

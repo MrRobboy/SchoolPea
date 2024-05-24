@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Connexion | SchoolPéa</title>
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script src="./script.js"></script>
 </head>
 
 <body>
@@ -43,7 +40,5 @@
             </div>
         </div>
     </div>
+    <script src="./script.js"></script><!--S'active que s'il est dans le body-->
 </body>
-
-</html>
-<!--S'active que s'il est dans le body-->
