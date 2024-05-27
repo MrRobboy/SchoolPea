@@ -44,7 +44,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../..//public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
@@ -52,20 +52,72 @@
     <span class="trait" id="SchoolPea"></span>
 
     <div>
-        <span>
-            <p href="#SchoolPea"> SchoolPéa Titre </p>
+        <span> CL1
+            <img src="../../public/images/SchoolPea.png" alt=""> Titre 
 
         </span>
 
-        <span>
+        <span> L2
 
-            <p href="#SchoolPea">
+            <img src="../../public/images/SchoolPea.png" alt="">
 
-                <button> Luffy</button>
+             <button> Luffy</button>
 
-            </p>
+        
+        </span>
+
+        <Div> L3
+
+        <span>cl 1
+
+    coucou ligne 1
+    coucouc ligne 2
+        </span>
+
+         <span> cl 2
+
+    coucou ligne 3
+    coucouc ligne 4
 
         </span>
+
+        </Div>
+
+        <div> L4
+coucou ligne 1
+coucou ligne 2
+
+        </div>
+
+    <div> L5
+        <button>Luffy</button>
 
     </div>
+
+ <span> CL2
+    Titre 
+    L1
+    ligne1
+    ligne2
+
+    L2
+    ligne1
+    ligne2
+
+    L3
+    ligne1
+    ligne2
+
+ </span>
+    
+<span>
+    <button>luffy </button>
+</span>
+        
+
+</div>
+
+<div></div>
+
+
 </body>
