@@ -114,10 +114,22 @@ coucou ligne 2
     <button>luffy </button>
 </span>
         
+<div>
+L1
+   col1
+   <img src="../../public/images/SchoolPea.png" alt="">
+ col2
+ ligne1
+ ligne2
+L2
+<button>luffy</button>
 
 </div>
 
-<div></div>
+
+</div>
+
+
 
 
 </body>
