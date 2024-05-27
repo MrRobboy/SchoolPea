@@ -8,3 +8,5 @@ $request = $_GET['r ']; //index.php?r...
 
 $routeur = new routeur ($request);
 $routeur->renderController();
+
+include (VIEW.'accueil_nl.php');
