@@ -1,4 +1,9 @@
-<?php
+<?php 
+
+ini_set('display_errors', 'on');
+error_reporting(E_ALL);
+
+require_once '../config/database.php'; 
 // Connexion à la base de données MySQL
 $servername = "localhost";
 $username = "root"; // Utilisateur MySQL
