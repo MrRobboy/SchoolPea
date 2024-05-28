@@ -40,16 +40,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             echo "Connexion réussie";
         } else {
-            echo "Mot de passe incorrect";
+            echo "Mot de passe ou identifiant incorrect";
         }
-    } else {
-        echo "Nom d'utilisateur incorrect";
-    }
+    } 
 
     // Fermer la connexion à la base de données
     $conn->close();
-} else {
-    // Si aucune donnée n'a été envoyée via POST, afficher un message d'erreur
-    echo "Erreur : Aucune donnée reçue.";
 }
+    // Si aucune donnée n'a été envoyée via POST, afficher un message d'erreur
 ?>
