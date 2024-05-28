@@ -1,3 +1,5 @@
+<?php require_once '../FrontEnd/inscription.php'; ?>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -42,3 +44,4 @@
     </div>
     <script src="./script.js"></script><!--S'active que s'il est dans le body-->
 </body>
+
