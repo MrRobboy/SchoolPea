@@ -2,7 +2,7 @@
 // Connexion à la base de données MySQL
 $servername = "localhost";
 $username = "root"; // Utilisateur MySQL
-$password = "";
+$password = "root";
 $dbname = "pa"; // Nom de la base de données
 
 // Vérifier si des données ont été envoyées via POST
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Requête pour insérer les données dans la base de données
-    $sql = "INSERT INTO USER (nom, prenom, mail, login, mdp) VALUES ('$nom', '$prenom', '$mail', '$login', '$mdp_hash')";
+    $sql = "INSERT INTO USER (nom_user, prenom_user, mail, login, mdp) VALUES ('$nom', '$prenom', '$mail', '$login', '$mdp_hash')";
 
     if ($conn->query($sql) === TRUE) {
         // Insertion réussie, maintenant enregistrons cette action dans les logs
