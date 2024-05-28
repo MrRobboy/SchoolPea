@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root"; // Utilisateur MySQL
 $password = "root";
-$dbname = "pa"; // Nom de la base de données
+$dbname = "PA"; // Nom de la base de données
 
 // Vérifier si des données ont été envoyées via POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
