@@ -2,7 +2,7 @@
 
 ini_set('display_errors', 'on');
 error_reporting(E_ALL);
-
+global $dbh
 require_once '../config/database.php'; 
 // Connexion à la base de données MySQL
 $servername = "localhost";
