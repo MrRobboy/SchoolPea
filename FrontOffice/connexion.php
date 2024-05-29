@@ -1,4 +1,4 @@
-<?php require_once '../FrontEnd/connexion.php'; ?>
+<?php require_once '../FrontEnd/inscription.php'; ?>
 
 <head>
     <meta charset="UTF-8" />
@@ -10,7 +10,7 @@
 <body>
     <div class="container Connexion" id="Conteneur">
         <div class="form-container sign-in">
-            <form action="./connexion.php" method="post">
+            <form action="./accueil_nl.php" method="post">
                 <h1>Connexion</h1>
                 <input type="email" id="email" name="email" placeholder="Email" />
                 <input type="password" id="password" name="password" placeholder="Mot de passe" />
@@ -20,7 +20,7 @@
         </div>
 
         <div class="form-container sign-up">
-            <form action="inscription.php" method="post">
+            <form action="./accueil_nl.php" method="post">
                 <h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
                 <input type="text" id="name" name="name" placeholder="Name" />
                 <input type="email" id="email" name="email" placeholder="Email" />

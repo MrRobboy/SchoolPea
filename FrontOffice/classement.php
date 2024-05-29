@@ -9,7 +9,7 @@
     <header>
         <div id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="../../public/images/SchoolPea.png" />
+                <img id="logo_header" src="../Autres/IMG/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
