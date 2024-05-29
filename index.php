@@ -1,4 +1,3 @@
-<?php require_once('C:\Users\mathi\OneDrive\Documents\GitHub\SchoolPea\Includes\config.php');?>
 
 <!DOCTYPE html>
 <html>
@@ -7,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Schoolpéa</title>
-    <link rel="stylesheet" type="text/css" href= <?php require_once STYLES ."accueilNL.css"?> />
+    <link rel="stylesheet" type="text/css" href= "C:\Users\mathi\OneDrive\Documents\GitHub\SchoolPea\Styles\accueilNL.css" />
 </head>
 
 <body>
