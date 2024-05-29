@@ -1,31 +1,46 @@
 <?php
 session_start();
-$bdd = new PDO('mysql: host=localhost; dbname=PA; charset=utf-8;', 'root' , 'root');
-if (isset($_POST['submit']))
-{
-    if(!empty($_POST['name']) and !empty($_POST['email']) and !empty($_POST['password']));
-    {
-        $name = htmlspecialchars($_POST['name']);
-        $email = htmlspecialchars($_POST['email']);
-        $password = sha1($_POST['password']);
-        $insertUser = $bdd->prepare('INSERT INTO USER(nom_user,mail,mdp)VALUES(?,?,?)');
-        $insertUser->execute(array($name,$email,$password));
 
-        $recupUser =$bdd->prepare('SELECT * FROM USER WHERE mail = ? and mdp = ?');
-        $recupUser->execute(array($email,$password));
+// Database connection
+$cbdd = 'ysql:host=localhost;dbname=PA;charset=utf-8';
+$username = 'root';
+$password = 'root';
 
-    
-        if ($recupUser->rowCount() > 0){
-                $_SESSION['mail'] = $email;
-                $_SESSION['mdp'] =  $password;
-                $_SESSION['id'] = $recupUser->fetch()['id'];
-            
-        }
-        
-        
-        else {
+try {
+    $bdd = new PDO($cbdd, $username, $password);
+    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'Erreur de connexion à la base de données : '. $e->getMessage();
+    exit();
+}
+
+if (isset($_POST['submit'])) {
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+
+    if (!empty($name) &&!empty($email) &&!empty($password)) {
+        $name = htmlspecialchars($name);
+        $email = htmlspecialchars($email);
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $insertUser = $bdd->prepare('INSERT INTO USER (nom_user, mail, mdp) VALUES (:name, :email, :password)');
+        $insertUser->execute([':name' => $name, ':email' => $email, ':password' => $password]);
+
+        $recupUser = $bdd->prepare('SELECT * FROM USER WHERE mail = :email AND mdp = :password');
+        $recupUser->execute([':email' => $email, ':password' => $password]);
+
+        if ($recupUser->rowCount() > 0) {
+            $user = $recupUser->fetch();
+            $_SESSION['mail'] = $email;
+            $_SESSION['id'] = $user['id'];
+            // Do not store the password in the session
+            // $_SESSION['mdp'] = $password;
+        } else {
             echo "Veuillez completer tous les champs...";
-            }
+        }
+    } else {
+        echo "Veuillez completer tous les champs...";
     }
 }
 ?>
