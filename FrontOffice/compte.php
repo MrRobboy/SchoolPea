@@ -10,7 +10,7 @@
     <header>
         <div id="accueil">
 
-            <img id="logo_header" src="../../public/images/SchoolPea.png" />
+            <img id="logo_header" src="../Autres/IMG/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
@@ -44,7 +44,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../Autres/IMG/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
@@ -53,81 +53,81 @@
 
     <div>
         <span> CL1
-            <img src="../../public/images/SchoolPea.png" alt=""> Titre 
+            <img src="../Autres/IMG/SchoolPea.png" alt=""> Titre
 
         </span>
 
         <span> L2
 
-            <img src="../../public/images/SchoolPea.png" alt="">
+            <img src="../Autres/IMG/SchoolPea.png" alt="">
 
-             <button> Luffy</button>
+            <button> Luffy</button>
 
-        
+
         </span>
 
         <Div> L3
 
-        <span>cl 1
+            <span>cl 1
 
-    coucou ligne 1
-    coucouc ligne 2
-        </span>
+                coucou ligne 1
+                coucouc ligne 2
+            </span>
 
-         <span> cl 2
+            <span> cl 2
 
-    coucou ligne 3
-    coucouc ligne 4
+                coucou ligne 3
+                coucouc ligne 4
 
-        </span>
+            </span>
 
         </Div>
 
         <div> L4
-coucou ligne 1
-coucou ligne 2
+            coucou ligne 1
+            coucou ligne 2
 
         </div>
 
-    <div> L5
-        <button>Luffy</button>
+        <div> L5
+            <button>Luffy</button>
+
+        </div>
+
+        <span> CL2
+            Titre
+            L1
+            ligne1
+            ligne2
+
+            L2
+            ligne1
+            ligne2
+
+            L3
+            ligne1
+            ligne2
+
+        </span>
+
+        <span>
+            <button>luffy </button>
+        </span>
+
+        <div>
+            L1
+            col1
+            <img src="../Autres/IMG/SchoolPea.png" alt="">
+            col2
+            ligne1
+            ligne2
+            L2
+            <button>luffy</button>
+
+        </div>
+
 
     </div>
-
- <span> CL2
-    Titre 
-    L1
-    ligne1
-    ligne2
-
-    L2
-    ligne1
-    ligne2
-
-    L3
-    ligne1
-    ligne2
-
- </span>
-    
-<span>
-    <button>luffy </button>
-</span>
-        
-<div>
-L1
-   col1
-   <img src="../../public/images/SchoolPea.png" alt="">
- col2
- ligne1
- ligne2
-L2
-<button>luffy</button>
-
-</div>
-
-
-</div>
 
 
 
