@@ -1,5 +1,6 @@
 <?php
-require '../config/database.php';
+require_once('../Includes/config.php');
+require_once  (INCLUDES . 'database.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
