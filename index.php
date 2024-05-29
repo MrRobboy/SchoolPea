@@ -1,4 +1,5 @@
-<?php require_once('../Includes/config.php');?>
+<?php require_once('C:\Users\mathi\OneDrive\Documents\GitHub\SchoolPea\Includes\config.php');?>
+
 <!DOCTYPE html>
 <html>
 
