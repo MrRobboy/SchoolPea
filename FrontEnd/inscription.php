@@ -1,30 +1,23 @@
 <?php
-session_start();
-$bdd = new PDO('mysql: host=localhost; dbname=PA; charset=utf-8;', 'root' , 'root');
-if (isset($_POST['submit']))
-{
-    if(!empty($_POST['name']) and !empty($_POST['email']) and !empty($_POST['password']));
-    {
-        $name = htmlspecialchars($_POST['name']);
-        $email = htmlspecialchars($_POST['email']);
-        $password = sha1($_POST['password']);
-        $insertUser = $bdd->prepare('INSERT INTO USER(nom_user,mail,mdp)VALUES(?,?,?)');
-        $insertUser->execute(array($name,$email,$password));
+require '../config/database.php';
 
-        $recupUser =$bdd->prepare('SELECT * FROM USER WHERE mail = ? and mdp = ?');
-        $recupUser->execute(array($email,$password));
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    
-        if ($recupUser->rowCount() > 0){
-                $_SESSION['mail'] = $email;
-                $_SESSION['mdp'] =  $password;
-                $_SESSION['id'] = $recupUser->fetch()['id'];
-            
-        }
-        
-        
-        else {
-            echo "Veuillez completer tous les champs...";
-            }
+    $sql = "INSERT INTO USER (nom_user, prenom_user, mail, login, mdp, role) VALUES (?, ?, ?, ?, ?, ?)";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("", $name, '', $email, $email, $password, 2); // 2 sera le role par défaut 
+
+    if ($stmt->execute()) {
+        header("Location: ./accueil_nl.php?register=success");
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
+
+    $stmt->close();
+    $conn->close();
 }
+?>
