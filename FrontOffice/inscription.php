@@ -1,5 +1,7 @@
 <?php require_once '../FrontEnd/inscription.php'; ?>
-
+<!DOCTYPE html>
+<html lang="fr">
+    
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -25,7 +27,7 @@
                 <input type="text" id="name" name="name" placeholder="Name" />
                 <input type="email" id="email" name="email" placeholder="Email" />
                 <input type="password" id="password" name="password" placeholder="Mot de passe" />
-                <p> <?php if ( isset($_GET['password']) && $_GET['password'] === '0') { echo('Mauvais mdp'); } ?> </p>
+                <p><?php if (isset($_GET['password']) && $_GET['password'] === '0') { echo('Mauvais mdp'); } ?></p>
                 <button type="submit">Inscription</button>
             </form>
         </div>
@@ -43,6 +45,6 @@
             </div>
         </div>
     </div>
-    <script src="./script.js"></script><!--S'active que s'il est dans le body-->
+    <script src="./script.js"></script>
 </body>
-
+</html>

@@ -3,7 +3,7 @@ session_start();
 $bdd = new PDO('mysql: host=localhost; dbname=PA; charset=utf-8;', 'root' , 'root');
 if (isset($_POST['submit']))
 {
-    if(!empty($_POST['name'])) and !empty($_POST['email'] and !empty($_POST['password']))
+    if(!empty($_POST['name']) and !empty($_POST['email']) and !empty($_POST['password']));
     {
         $name = htmlspecialchars($_POST['name']);
         $email = htmlspecialchars($_POST['email']);
