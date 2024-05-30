@@ -13,7 +13,7 @@
     <header>
         <span id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="/FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_header" src="FrontEnd/Images/SchoolPea.png" alt="Logo" />
             </a>
             <a href="#SchoolPea">SchoolPéa</a>
         </span>
@@ -26,13 +26,13 @@
             </span>
 
             <span>
-                <a href="/FrontEnd/Pages/connexion.php" class="lien_header">
+                <a href="FrontEnd/Pages/connexion.php" class="lien_header">
                     Se Connecter
                 </a>
             </span>
 
             <span>
-                <a href="/FrontEnd/Pages/inscription.php" class="lien_header">
+                <a href="FrontEnd/Pages/inscription.php" class="lien_header">
                     S'inscrire
                 </a>
             </span>
@@ -53,11 +53,11 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="/FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="FrontEnd/Images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
-                <a href="/FrontEnd/Pages/connexion.php">
+                <a href="FrontEnd/Pages/connexion.php">
                     Trouver un cours
                 </a>
                 <a href="/FrontEnd/Pages/connexion.php">
@@ -91,7 +91,7 @@
             </div>
         </div>
         <span>
-            <a class="voir_plus" href="/FrontEnd/Pages/connexion.php">
+            <a class="voir_plus" href="FrontEnd/Pages/connexion.php">
                 Voir plus >
             </a>
         </span>
@@ -120,7 +120,7 @@
         </div>
 
         <span>
-            <a class="voir_plus" href="/FrontEnd/Pages/connexion.php">
+            <a class="voir_plus" href="FrontEnd/Pages/connexion.php">
                 Voir plus >
             </a>
         </span>
