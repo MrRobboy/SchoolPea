@@ -4,19 +4,26 @@ include_once '../Includes/database.php';
 if(isset($_POST['submit'])){
     $name =$_POST['name'];
     $email = $_POST['email'];
-    $password =  password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = $_POST['password'];
 
+    $passwordhasher = password_hash($password, PASSWORD_BCRYPT);
+
+    try {
     $requete = $bdd->prepare("INSERT INTO USER (name, email, password) VALUES (:name, :email, :password)");
     $requete->execute(
         array(
             "name" => $name,
             "email" => $email,
-            "password" =>$password
+            "password" =>$passwordhasher
 
         )
         );
+          // Redirection après l'insertion réussie
         header("Location: ../FrontEnd/Pages/confirmationInscription");
-exit();
-
+        exit();
+    } catch (PDOException $e) {
+        // Affichage de l'erreur PDO
+        echo "Erreur PDO : " . $e->getMessage();
+    }
 }
 ?>
