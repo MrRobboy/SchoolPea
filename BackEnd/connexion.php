@@ -13,7 +13,9 @@ if($email != "" && $password != ""){
     $req = $req->fetch();
     if($req['id'] != false){
         //connecté
-        echo "Content de vous revoir !";
+        setcookie("username", $email, time() + 3600);
+        setcookie("password", time() + 3600);
+        echo "Content de vous revoir ".$_COOKIE['username']. !"";
         header("Location: ../FrontEnd/Pages/compte.php");
         exit();
     }

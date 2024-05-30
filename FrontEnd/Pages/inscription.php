@@ -10,8 +10,8 @@
         <div class="form-container sign-in">
             <form action="../BackEnd/connexion.php" method="post">
                 <h1>Connexion</h1>
-                <input type="email" id="email" name="email" placeholder="Email" />
-                <input type="password" id="password" name="password" placeholder="Mot de passe" />
+                <input type="email" id="email" name="email" placeholder="email" required />
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required />
                 <a href="#">Mot de passe oublié ?</a>
                 <button type="submit" name="submit">Connexion</button>
             </form>
@@ -44,6 +44,7 @@
         </div>
     </div>
     <script src="../../Scripts/script.js"></script>
+    <script src="../Scripts/script.js"></script>
 </body>
 
 </html>
