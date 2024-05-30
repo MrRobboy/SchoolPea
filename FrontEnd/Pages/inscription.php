@@ -8,17 +8,17 @@
 <body>
     <div class="container Inscription" id="Conteneur">
         <div class="form-container sign-in">
-            <form action="./accueilNL.php" method="post">
+            <form action="../BackEnd/connexion.php" method="post">
                 <h1>Connexion</h1>
                 <input type="email" id="email" name="email" placeholder="Email" />
                 <input type="password" id="password" name="password" placeholder="Mot de passe" />
                 <a href="#">Mot de passe oublié ?</a>
-                <button type="submit">Connexion</button>
+                <button type="submit" name="submit">Connexion</button>
             </form>
         </div>
 
         <div class="form-container sign-up">
-            <form action="./accueilNL.php" method="post">
+            <form action="../BackEnd/inscription.php" method="post">
                 <h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
                 <input type="text" id="name" name="name" placeholder="Name" />
                 <input type="email" id="email" name="email" placeholder="Email" />
