@@ -1,51 +1,48 @@
 <!DOCTYPE html>
-<html lang="fr"></html>
+<html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription | SchoolPéa</title>
-    <link rel="stylesheet" type="text/css" href="../Styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/style.css">
 </head>
-
 <body>
     <div class="container Inscription" id="Conteneur">
         <div class="form-container sign-in">
             <form action="../../BackEnd/connexion.php" method="post">
                 <h1>Connexion</h1>
                 <?php
-    if ($badCredentials) {
-        echo('<p class="error">Mauvais identidiants</p>');
-    }
-    ?>
-                <input type="email" id="email" name="email" placeholder="email" required />
-                <input type="password" id="password" name="password" placeholder="Mot de passe" required />
+                    if ($badCredentials) {
+                        echo('<p class="error">Mauvais identifiants</p>');
+                    }
+                ?>
+                <input type="email" id="email" name="email_connexion" placeholder="Email" required>
+                <input type="password" id="password" name="password_connexion" placeholder="Mot de passe" required>
                 <a href="#">Mot de passe oublié ?</a>
-                <button type="submit" name="submit">Connexion</button>
+                <button type="submit" name="submit_connexion">Connexion</button>
             </form>
         </div>
 
         <div class="form-container sign-up">
-        <?php
-            if (isset($_GET['error']) && $_GET['error'] === 1) {
-                echo ('Un champ a mal été saisi');
-            }
-        ?>
+            <?php
+                if (isset($_GET['error']) && $_GET['error'] === '1') {
+                    echo ('<p>Un champ a mal été saisi</p>');
+                }
+            ?>
             <form action="../../BackEnd/inscription.php" method="post">
                 <h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
-                <input type="text" id="name" name="name" placeholder="Name" />
-                <input type="email" id="email" name="email" placeholder="Email" />
-                <input type="password" id="password" name="password" placeholder="Mot de passe" />
-                <p><?php if (isset($_GET['password']) && $_GET['password'] === '0') {
-                        echo ('Mauvais mdp');
-                    } ?></p>
-                <button type="submit">Inscription</button>
+                <input type="text" id="name" name="name" placeholder="Nom" required>
+                <input type="email" id="email" name="email_inscription" placeholder="Email" required>
+                <input type="password" id="password" name="password_inscription" placeholder="Mot de passe" required>
+
+                <button type="submit" name="submit_inscription">Inscription</button>
             </form>
         </div>
 
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
-                    <h1>Te revoila !</h1>
+                    <h1>Te revoilà !</h1>
                     <button class="hidden" id="Connexion">Connexion</button>
                 </div>
                 <div class="toggle-panel toggle-right">
@@ -57,5 +54,4 @@
     </div>
     <script src="../Scripts/script.js"></script>
 </body>
-
 </html>
