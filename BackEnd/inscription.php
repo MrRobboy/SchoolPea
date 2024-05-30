@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
     $email = $_POST['email'];
     $password =  password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $requete = $bdd->prepare("INSERT INTO USER VALUES (0, :name, :email, :password)");
+    $requete = $bdd->prepare("INSERT INTO USER (name, email, password) VALUES (:name, :email, :password)");
     $requete->execute(
         array(
             "name" => $name,
