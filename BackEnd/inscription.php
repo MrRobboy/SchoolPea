@@ -8,7 +8,7 @@ if(isset($_POST['submit'])){
 
     $passwordhasher = password_hash($password, PASSWORD_BCRYPT);
 
-    try {
+    
     $requete = $bdd->prepare("INSERT INTO USER (name, email, password) VALUES (:name, :email, :password)");
     $requete->execute(
         array(
@@ -20,10 +20,6 @@ if(isset($_POST['submit'])){
         );
           // Redirection après l'insertion réussie
         header("Location: ../FrontEnd/Pages/confirmationInscription");
-        exit();
-    } catch (PDOException $e) {
-        // Affichage de l'erreur PDO
-        echo "Erreur PDO : " . $e->getMessage();
-    }
+
 }
 ?>
