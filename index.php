@@ -60,7 +60,7 @@
                 <a href="FrontEnd/Pages/connexion.php">
                     Trouver un cours
                 </a>
-                <a href="/FrontEnd/Pages/connexion.php">
+                <a href="FrontEnd/Pages/connexion.php">
                     Trouver un quizz
                 </a>
             </div>
@@ -151,8 +151,7 @@
             <span class="col3">
                 <h4>Contact</h4>
                 <a href="#">E-mail</a>
-                <a href="#">Linkedin</a>
-                <a href="#">Instagram</a>
+                <a href="https://www.linkedin.com/in/school-pea-73abb5310/">Linkedin</a>
             </span>
 
             <span class="col4">
