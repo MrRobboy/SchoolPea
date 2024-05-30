@@ -1,23 +1,21 @@
 <?php
-require '../config/database.php';
+include_once '../Includes/database.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+if(isset($_POST['submit'])){
+    $name =$_POST['name'];
+    $mail = $_POST['email'];
+    $password =  password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $sql = "INSERT INTO USER (nom_user, prenom_user, mail, login, mdp, role) VALUES (?, ?, ?, ?, ?, ?)";
+    $requete = $bdd->prepare("INSERT INTO  USER VALUES (0, :name, :email, :password) ");
+    $requete->execute(
+        array(
+            "name" => $name,
+            "email" => $email,
+            "password" =>$password
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("", $name, '', $email, $email, $password, 2); // 2 sera le role par défaut 
-
-    if ($stmt->execute()) {
-        header("Location: ./accueil_nl.php?register=success");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    $stmt->close();
-    $conn->close();
+        )
+        );
+        header("Location: ../FrontEnd/Pages/compte.php");
+        exit();
 }
-
+?>

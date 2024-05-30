@@ -1,23 +1,26 @@
 <?php
-require_once('../Includes/config.php');
-require_once  (INCLUDES . 'database.php');
+include_once '../Includes/database.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $name =$_POST['name'];
+    $mail = $_POST['email'];
+    $password =  password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $sql = "SELECT id_user, mdp FROM USER WHERE mail = :email";
-    $stmt = $connection->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $user = $stmt->fetch();
+if($email != "" && $password != ""){
+    // connexion ala bdd
 
-    if ($user && password_verify($password, $user['mdp'])) {
-        session_start();
-        $_SESSION['id_user'] = $user['id_user'];
-        header("Location: ./accueil_nl.php?login=success");
-    } else {
-        header("Location: ./index.php?password=0");
+    $req = $bdd->query("SELECT *FROM USER WHERE email ='$email' AND password='$password'");
+    $req = $req->fetch();
+    if($req['id'] != false){
+        //connecté
+        echo "Content de vous revoir !";
+        header("Location: ../FrontEnd/Pages/compte.php");
+        exit();
     }
+    else {
+        $error = "Email ou Mot de passe Incorrect ...";
+    }
+}
+    
 }
 ?>
