@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Schoolpéa</title>
-    <link rel="stylesheet" type="text/css" href="./accueil_nl.css" />
+    <link rel="stylesheet" type="text/css" href="../../Styles/accueilNL.css" />
 </head>
 
 <body>
@@ -12,7 +12,7 @@
     <header>
         <span id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="../Autres/IMG/SchoolPea.png" alt="Logo" />
+                <img id="logo_header" src="../Images/Schoolpea.png" alt="Logo" />
             </a>
             <a href="#SchoolPea">SchoolPéa</a>
         </span>
@@ -52,7 +52,7 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="../Autres/IMG/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="../Images/Schoolpea.png" alt="Logo" />
             </div>
 
             <div class="but">

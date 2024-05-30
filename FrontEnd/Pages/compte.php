@@ -2,7 +2,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Mon compte</title>
-    <link rel="stylesheet" type="text/css" href="./compte.css" />
+    <link rel="stylesheet" type="text/css" href="../../Styles/compte.css" />
 </head>
 
 
@@ -10,26 +10,26 @@
     <header>
         <div id="accueil">
 
-            <img id="logo_header" src="../Autres/IMG/SchoolPea.png" />
+            <img id="logo_header" src="../Images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
         <div id="Pages">
             <span>
-                <a class="lien_header" href="./index.html"> SchoolPea+ </a>
+                <a class="lien_header" href="./accueilNL.php"> SchoolPea+ </a>
             </span>
             <span>
-                <a class="lien_header" href="./index.html">
+                <a class="lien_header" href="./accueilNL.php">
                     Explorer les Quizzs
                 </a>
             </span>
             <span>
-                <a class="lien_header" href="./index.html">
+                <a class="lien_header" href="./accueilNL.php">
                     Explorer les Cours
                 </a>
             </span>
             <span>
-                <a class="lien_header" href="./index.html">Mes Cours</a>
+                <a class="lien_header" href="./accueilNL.php">Mes Cours</a>
             </span>
 
             <span id="slide_down">
@@ -44,7 +44,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../Autres/IMG/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
@@ -53,13 +53,13 @@
 
     <div>
         <span> CL1
-            <img src="../Autres/IMG/SchoolPea.png" alt=""> Titre
+            <img src="../Images/SchoolPea.png" alt=""> Titre
 
         </span>
 
         <span> L2
 
-            <img src="../Autres/IMG/SchoolPea.png" alt="">
+            <img src="../Images/SchoolPea.png" alt="">
 
             <button> Luffy</button>
 
@@ -117,7 +117,7 @@
         <div>
             L1
             col1
-            <img src="../Autres/IMG/SchoolPea.png" alt="">
+            <img src="../Images/SchoolPea.png" alt="">
             col2
             ligne1
             ligne2

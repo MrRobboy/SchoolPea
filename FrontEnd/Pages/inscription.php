@@ -1,14 +1,14 @@
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Inscription | SchoolPéa</title>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <link rel="stylesheet" type="text/css" href="../../Styles/style.css" />
 </head>
+
 <body>
     <div class="container Inscription" id="Conteneur">
         <div class="form-container sign-in">
-            <form action="./connexion.php" method="post">
+            <form action="./accueilNL.php" method="post">
                 <h1>Connexion</h1>
                 <input type="email" id="email" name="email" placeholder="Email" />
                 <input type="password" id="password" name="password" placeholder="Mot de passe" />
@@ -18,12 +18,14 @@
         </div>
 
         <div class="form-container sign-up">
-            <form action="./inscription.php" method="post">
+            <form action="./accueilNL.php" method="post">
                 <h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
                 <input type="text" id="name" name="name" placeholder="Name" />
                 <input type="email" id="email" name="email" placeholder="Email" />
                 <input type="password" id="password" name="password" placeholder="Mot de passe" />
-                <p><?php if (isset($_GET['password']) && $_GET['password'] === '0') { echo('Mauvais mdp'); } ?></p>
+                <p><?php if (isset($_GET['password']) && $_GET['password'] === '0') {
+                        echo ('Mauvais mdp');
+                    } ?></p>
                 <button type="submit">Inscription</button>
             </form>
         </div>
@@ -41,6 +43,7 @@
             </div>
         </div>
     </div>
-    <script src="./script.js"></script>
+    <script src="../../Scripts/script.js"></script>
 </body>
+
 </html>

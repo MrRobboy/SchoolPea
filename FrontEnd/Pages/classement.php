@@ -2,33 +2,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Classement</title>
-    <link rel="stylesheet" type="text/css" href="./classement.css" />
+    <link rel="stylesheet" type="text/css" href="../../Styles/classement.css" />
 </head>
 
 <body>
     <header>
         <div id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="../Autres/IMG/SchoolPea.png" />
+                <img id="logo_header" src="../Images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
         <div id="Pages">
             <span>
-                <a class="lien_header" href="./index.html"> SchoolPea+ </a>
+                <a class="lien_header" href="accueilNL.php"> SchoolPea+ </a>
             </span>
             <span>
-                <a class="lien_header" href="./index.html">
+                <a class="lien_header" href="accueilNL.php">
                     Explorer les Quizzs
                 </a>
             </span>
             <span>
-                <a class="lien_header" href="./index.html">
+                <a class="lien_header" href="accueilNL.php">
                     Explorer les Cours
                 </a>
             </span>
             <span>
-                <a class="lien_header" href="./index.html">Mes Cours</a>
+                <a class="lien_header" href="accueilNL.php">Mes Cours</a>
             </span>
 
             <span id="slide_down">
@@ -43,7 +43,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
