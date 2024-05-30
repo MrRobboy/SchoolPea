@@ -1,3 +1,12 @@
+<?php
+session_start();
+global $dbh;
+require_once '../Includes/database.php';
+$getUser = 'SELECT * FROM USER WHERE id_user = :id_user';
+$preparedSql = $dbh->prepare($getUser);
+$preparedSql->execute(['id' => $_SESSION['idUser']]);
+$user = $preparedSql->fetch();
+?>
 <!DOCTYPE html>
 <html lang="fr">
 

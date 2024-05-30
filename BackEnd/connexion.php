@@ -1,31 +1,31 @@
 <?php
-include_once '../Includes/database.php';
+global $dbh;
+require_once '../Includes/database.php';
 
-// Dans connexion.php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email']; // Utilisez $email au lieu de $mail pour rester cohérent avec le nom de variable que vous avez utilisé
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+$badCredentials = false;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $password = $_POST['password'];
 
-    if ($email != "" && $password != "") {
-        // connexion à la bdd
-        $req = $bdd->prepare("SELECT * FROM USER WHERE email = :email AND password = :password");
-        $req->execute(array(
-            "email" => $email,
-            "password" => $password
-        ));
-        $req = $req->fetch();
+    $getUserSql = "SELECT * FROM USER WHERE email = :email";
 
-        if ($req['id'] !== false) {
-            //connecté
-            setcookie("username", $email, time() + 3600);
-            setcookie("password", $password, time() + 3600); // Vous pouvez stocker le mot de passe en cookie
-            echo "Content de vous revoir " . $req['email'] . "!";
-            header("Location: ../FrontEnd/Pages/compte.php");
-            exit();
-        } else {
-            $error = "Email ou Mot de passe Incorrect ...";
+    $preparedGetUserSql = $dbh->prepare($getUserSql);
+    $preparedGetUserSql->execute([
+            'email' => $_POST['email']
+    ]);
+
+    $user = $preparedGetUserSql->fetch();
+
+    if ($user) {
+        if (password_verify($password, $user['password'])) {
+            session_start();
+
+            $_SESSION['idUser'] = $user['id_user'];
+            $_SESSION['name'] = $user['name'];
+            
+
+            header('Location: ../FrontEnd/Pages/compte.php');
         }
     }
+    $badCredentials = true;
 }
-
 ?>
