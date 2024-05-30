@@ -6,7 +6,7 @@ if(isset($_POST['submit'])){
     $mail = $_POST['email'];
     $password =  password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-    $requete = $bdd->prepare("INSERT INTO  USER VALUES (0, :name, :email, :password) ");
+    $requete = $bdd->prepare("INSERT INTO  USER VALUES (0, :name , :email  :password,) ");
     $requete->execute(
         array(
             "name" => $name,
@@ -15,7 +15,7 @@ if(isset($_POST['submit'])){
 
         )
         );
-        header("Location: ../FrontEnd/Pages/compte.php");
+        header("Location: ../FrontEnd/Pages/confirmationInscription");
         exit();
 }
 ?>
