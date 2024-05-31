@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <meta charset="UTF-8" />
@@ -126,7 +125,7 @@
         </span>
     </div>
 
-    <spanclass="trait" id="3"></span>
+    <span class="trait" id="3"></span>
 
     <footer>
         <div class="footer">

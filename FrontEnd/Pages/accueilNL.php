@@ -151,7 +151,6 @@
                 <h4>Contact</h4>
                 <a>E-mail</a>
                 <a>Linkedin</a>
-                <a>Instagram</a>
             </span>
 
             <span class="col4">
