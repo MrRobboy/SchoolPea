@@ -15,6 +15,7 @@ $user = $preparedSql->fetch();
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Mon compte</title>
     <link rel="stylesheet" type="text/css" href="../Styles/compte.css" />
+    <script src="../Scripts/script.js"></script>
 </head>
 
 
@@ -22,7 +23,7 @@ $user = $preparedSql->fetch();
     <header>
         <div id="accueil">
 
-            <img id="logo_header" src="../Images/SchoolPea.png" />
+        <img id="logo_header" src="FrontEnd/Images/SchoolPea.png" alt="Logo" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
