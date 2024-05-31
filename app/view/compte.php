@@ -52,77 +52,106 @@
     <span class="trait" id="SchoolPea"></span>
 
     <div>
-        <span> CL1
-            <img src="../../public/images/SchoolPea.png" alt=""> Titre 
-
+        <span> 
+            <img src="../../public/images/SchoolPea.png" alt=""> 
+Informations générales 
         </span>
 
-        <span> L2
+        <span> 
 
             <img src="../../public/images/SchoolPea.png" alt="">
 
-             <button> Luffy</button>
+             <button> Changer de photo</button>
 
         
         </span>
 
-        <Div> L3
+        <Div id="INS"> 
 
-        <span>cl 1
+ 
+    
+    <form action="" method="get" >
+  
+    <label for="name">Nom </label>
+    <input type="text" name="name"  required />
 
-    coucou ligne 1
-    coucouc ligne 2
-        </span>
+    
+    <form action="" method="get" >
+ 
+    <label for="name">Prénom </label>
+    <input type="text" name="name"  required />
 
-         <span> cl 2
+    
+    <form action="" method="get" >
+ 
+    <label for="name">Adresse mail </label>
+    <input type="text" name="name"  required />
+    
 
-    coucou ligne 3
-    coucouc ligne 4
-
-        </span>
+  
 
         </Div>
 
-        <div> L4
-coucou ligne 1
-coucou ligne 2
+    
 
-        </div>
+    
 
-    <div> L5
-        <button>Luffy</button>
+    <div> 
+        <button>Sauvegarder les modifications</button>
 
     </div>
 
- <span> CL2
-    Titre 
-    L1
-    ligne1
-    ligne2
+ <div id="MDP"> 
 
-    L2
-    ligne1
-    ligne2
+ 
+ 
 
-    L3
-    ligne1
-    ligne2
-
- </span>
+    <form action="" method="get">
+ 
+    <label for="name">Changer de mot de passe: </label>
+    <input type="text" name="name"  required />
     
-<span>
-    <button>luffy </button>
-</span>
+
+
+    <form action="" method="get" >
+  
+    <label for="name">Ancien mot de passe </label>
+    <input type="text" name="name" required />
+    
+
+    
+
+    <form action="" method="get" >
+ 
+    <label for="name">Nouveau mot de passe </label>
+    <input type="text" name="name"  required />
+    
         
+  <form action="" method="get" >
+  
+    <label for="name">confirmer Nouveau mot de passe </label>
+    <input type="text" name="name"  required />
+   
+  </div>
+    
+
+ 
+<span>
+    <button>Changer de mot de passe  </button>
+</span>
+
+</P>
+
 <div>
-L1
-   col1
-   <img src="../../public/images/SchoolPea.png" alt="">
- col2
- ligne1
- ligne2
-L2
-<button>luffy</button>
+
+   
+   <img src="../../public/images/SchoolPea.png" alt=""> 
+   <h3>Supprimer votre compte</h3>
+ 
+ Si vous supprimez votre vous en perdez l'accès définitif sans possibilité de le récuperer. Vos données personnelles et vos progrès seront perdus, de meme que tout abonnement en cours.
+ 
+
+<button>Supprimer votre compte</button>
 
 </div>
 
