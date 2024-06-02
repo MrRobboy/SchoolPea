@@ -10,7 +10,7 @@ $options = [
 try {
     $bdd = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connexion Reussie ";
+    echo "Connexion Reussie ";
 
 } catch (PDOException $e) {
     echo "Erreur Connexion" . $e->getMessage();
@@ -57,8 +57,10 @@ if (isset($_POST['submit'])) {
 
     $sql = "
     INSERT INTO USER (name, email, password)
-    VALUES ($name, $email, $passwordHash);
-    ";
+    VALUES (:name, :email, :passwordHash);
+";
+
+    echo 'REUSSITE INJECTION';
 
     $queryStatement = $dbh->prepare($sql);
 
