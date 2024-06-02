@@ -26,13 +26,14 @@
         </div>
 
         <div class="form-container sign-up">
-            <?php
-            if (isset($_GET['error']) && $_GET['password'] === '0') {
-                echo ('<p>Un champ a mal été saisi</p>');
-            }
-            ?>
+
             <form action="../../BackEnd/inscription.php" method="post">
                 <h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
+                <?php
+                if (isset($_GET['error']) && $_GET['password'] === '0') {
+                    echo ('<p>Un champ a mal été saisi</p>');
+                }
+                ?>
                 <input type="text" id="name" name="name" placeholder="Nom" required>
                 <input type="email" id="email" name="email_inscription" placeholder="Email" required>
                 <input type="password" id="password" name="password_inscription" placeholder="Mot de passe" required>
