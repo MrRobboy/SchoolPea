@@ -51,14 +51,16 @@ if (isset($_POST['submit'])) {
     $name = $_POST['name'];
     $email = $_POST['email'];
     $password = $_POST['password'];
+    echo ('INFOS : name ' . $_POST['name'] . 'mail' . $_POST['email'] . 'PWD : ' . $_POST['password']);
 
     // Utilisez password_hash pour hacher le mot de passe
     $passwordHash = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
     $sql = "
     INSERT INTO USER (name, email, password)
-    VALUES ($name, $email, $passwordHash);
+    VALUES (:name, :email, :passwordHash);
     ";
+    echo '<br> REUSSITE INJECTION';
 
     $queryStatement = $dbh->prepare($sql);
 
