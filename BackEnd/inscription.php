@@ -35,7 +35,7 @@ if (isset($_POST['submit_inscription'])) {
 
 if ($passwordError || $error) {
     // Vérifiez si le formulaire d'inscription est soumis
-    if (isset($_POST['submit_inscription'])) {
+	if (isset($_POST['submit_inscr'])){/*volontairement laissé mal saisi pour accéder à la page de back end ;)*/
         $location = 'Location: ../FrontEnd/Pages/inscription.php?';
 
         if ($passwordError) {
