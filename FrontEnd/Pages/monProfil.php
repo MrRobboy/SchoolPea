@@ -1,10 +1,10 @@
 <?php
-session_start(); 
+session_start();
 
 
 if (!isset($_SESSION['user_id'])) {
     echo "Utilisateur non connecté.";
-    exit; 
+    exit;
 }
 
 
@@ -38,7 +38,7 @@ try {
     } else {
         echo "Aucun utilisateur trouvé avec cet ID.";
     }
-} catch(PDOException $e) {
+} catch (PDOException $e) {
     echo "Erreur de connexion à la base de données : " . $e->getMessage();
 }
 
@@ -50,6 +50,7 @@ $conn = null;
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,6 +58,7 @@ $conn = null;
     <!-- Inclure la bibliothèque jsPDF -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
 </head>
+
 <body>
     <h1>Profil Utilisateur</h1>
     <p>Nom: <?php echo $nom; ?></p>
@@ -68,6 +70,7 @@ $conn = null;
     <!-- Bouton pour exporter en PDF -->
     <button onclick="generatePDF()">Exporter en PDF</button>
 </body>
+
 </html>
 
 
@@ -87,5 +90,3 @@ $conn = null;
         doc.save("monProfil.pdf");
     }
 </script>
-
-
