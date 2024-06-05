@@ -35,7 +35,7 @@ if (isset($_POST['submit_inscription'])) {
 
 if ($passwordError || $error) {
     // Vérifiez si le formulaire d'inscription est soumis
-	if (isset($_POST['submit_inscr'])){/*volontairement laissé mal saisi pour accéder à la page de back end ;)*/
+    if (isset($_POST['submit_inscr'])) {/*volontairement laissé mal saisi pour accéder à la page de back end ;)*/
         $location = 'Location: ../FrontEnd/Pages/inscription.php?';
 
         if ($passwordError) {
@@ -55,19 +55,21 @@ if (isset($_POST['submit_inscription'])) {
     // Utilisez password_hash pour hacher le mot de passe
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    echo ('INFOS :<br>Name : ' . $name . '<br>Mail : ' . $email . '<br>Password : ' . $password.'<br>Password Hash : '. $passwordHash);
+    echo ('INFOS :<br>Name : ' . $name . '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);;
 
-    $sql = "
+    $queryStatement = $dbh->prepare('
     INSERT INTO USER (name, email, password)
-    VALUES ($name, $email, $passwordHash);
-    ";
-    echo '<br> REUSSITE INJECTION';
+    VALUES (:name, :email, :password);
+    ');
+    $queryStatement->bindvalue(':name', $name);
+    $queryStatement->bindvalue(':email', $email);
+    $queryStatement->bindvalue(':password', $passwordHash);
 
-    $queryStatement = $dbh->prepare($sql);
+    $requestResult  = $queryStatement->execute();
 
-    $queryStatement->execute(/*[
-        "name" => $name,
-        "email" => $email,
-        "passwordHash" => $passwordHash // Utilisez la variable correcte pour le mot de passe haché
-    ]*/);
+    if (!$requestResult) {
+        echo "ECHEC INJECTION";
+    } else {
+        echo "<br><br> REUSSITE INJECTION";
+    }
 }
