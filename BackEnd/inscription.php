@@ -1,21 +1,17 @@
 <?php
-$host = 'localhost';
-$dbname = 'PA';
-$username = 'root';
-$password = 'root';
 $options = [
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
 ];
 
 try {
-    $bdd = new PDO("mysql:host=$host;dbaname=$dbname", $username, $password);
+    $bdd = new PDO("mysql:host=localhost;dbaname=PA","root","root");
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Connexion Reussie<br> ";
-
 } catch (PDOException $e) {
-    echo "Erreur Connexion" . $e->getMessage();
+	echo "Erreur Connexion " . $e->getMessage();
+	die;
 }
-
+/*
 $error = false;
 $passwordError = false;
 
@@ -35,7 +31,7 @@ if (isset($_POST['submit_inscription'])) {
 
 if ($passwordError || $error) {
     // Vérifiez si le formulaire d'inscription est soumis
-    if (isset($_POST['submit_inscr'])) {/*volontairement laissé mal saisi pour accéder à la page de back end ;)*/
+    if (isset($_POST['submit_inscr'])) {//volontairement laissé mal saisi pour accéder à la page de back end ;)
         $location = 'Location: ../FrontEnd/Pages/inscription.php?';
 
         if ($passwordError) {
@@ -45,31 +41,28 @@ if ($passwordError || $error) {
         header($location);
     }
 }
+ */
 
-// Si le formulaire est soumis et aucune erreur n'est détectée, procédez à l'insertion des données dans la base de données
 if (isset($_POST['submit_inscription'])) {
-    $name = $_POST['name'];
-    $email = $_POST['email_inscription'];
-    $password = $_POST['password_inscription'];
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email_inscription']);
+    $password = htmlspecialchars($_POST['password_inscription']);
 
-    // Utilisez password_hash pour hacher le mot de passe
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    echo ('INFOS :<br>Name : ' . $name . '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);;
+    echo ('INFOS :<br>Name : ' . $name . '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);
 
-    $queryStatement = $dbh->prepare('
-    INSERT INTO USER (name, email, password)
-    VALUES (:name, :email, :password);
-    ');
+    $queryStatement = $bdd->prepare('INSERT INTO USER(name, email, password) VALUES (:name, :email, :password);');
+
     $queryStatement->bindvalue(':name', $name);
     $queryStatement->bindvalue(':email', $email);
     $queryStatement->bindvalue(':password', $passwordHash);
 
-    $requestResult  = $queryStatement->execute();
+    $result = $queryStatement->execute();
 
-    if (!$requestResult) {
-        echo "ECHEC INJECTION";
+    if (isset($result) && !$result) {
+        echo "<br><br>ECHEC INJECTION";
     } else {
-        echo "<br><br> REUSSITE INJECTION";
+	echo "<br><br> REUSSITE INJECTION";
     }
 }
