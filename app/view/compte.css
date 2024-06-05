@@ -98,7 +98,7 @@ header {
 
 .trait {
 	padding: 0.2rem 20rem;
-	background-color: #6b7ad2;
+
 	border-radius: 3rem;
 	justify-content: center;
 	display: flex;
@@ -111,10 +111,75 @@ header {
 	margin-top: 0rem;
 }
 
+#INS,
 #MDP {
-	text-align: left;
+	box-shadow: -1rem 1rem 1px #374599;
+	border-radius: 2rem;
+	display: inline-block;
+	width: 45%;
+	vertical-align: top;
+	box-sizing: border-box;
+	padding: 10px;
+
+	border-radius: 2rem;
+	padding: 0.2rem 1rem;
+	border: solid 0.1rem #374599;
 }
 
 #INS {
-	justify-content: right;
+	float: left;
+}
+
+#MDP {
+	float: right;
+}
+
+form {
+	margin-bottom: 10px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+}
+
+input[type="text"] {
+	width: 100%;
+	padding: 5px;
+}
+
+#SUPP {
+	display: inline-block;
+	width: 45%;
+	vertical-align: top;
+	box-sizing: border-box;
+	padding: 10px;
+	float: left;
+
+	box-shadow: -1rem 1rem 1px #374599;
+	border-radius: 2rem;
+	display: inline-block;
+	width: 45%;
+	vertical-align: top;
+	box-sizing: border-box;
+	padding: 10px;
+
+	border-radius: 2rem;
+	padding: 0.2rem 1rem;
+	border: solid 0.1rem #374599;
+
+	#SUPP img,
+	#SUPP h3 {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+	#SUPP img {
+		max-width: 100px;
+		height: auto;
+	}
+}
+
+#SUPP button {
+	margin-top: auto;
 }

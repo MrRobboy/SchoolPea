@@ -87,7 +87,7 @@ Informations générales
     <label for="name">Adresse mail </label>
     <input type="text" name="name"  required />
     
-
+<button>Sauvegarder les modifications</button>
   
 
         </Div>
@@ -97,7 +97,7 @@ Informations générales
     
 
     <div> 
-        <button>Sauvegarder les modifications</button>
+        
 
     </div>
 
@@ -132,26 +132,25 @@ Informations générales
     <label for="name">confirmer Nouveau mot de passe </label>
     <input type="text" name="name"  required />
    
+
+    <button>Changer de mot de passe  </button>
   </div>
+
+
     
 
  
-<span>
-    <button>Changer de mot de passe  </button>
-</span>
+
 
 </P>
 
-<div>
-
-   
-   <img src="../../public/images/SchoolPea.png" alt=""> 
-   <h3>Supprimer votre compte</h3>
- 
- Si vous supprimez votre vous en perdez l'accès définitif sans possibilité de le récuperer. Vos données personnelles et vos progrès seront perdus, de meme que tout abonnement en cours.
- 
-
-<button>Supprimer votre compte</button>
+<div id="SUPP">
+  <img src="../../public/images/point ex.jpg" alt=""> 
+  <h3>Supprimer votre compte</h3>
+  <p>Si vous supprimez votre compte, vous en perdez l'accès définitif sans possibilité de le récupérer. Vos données personnelles et vos progrès seront perdus, de même que tout abonnement en cours.</p>
+  <button>Supprimer votre compte</button>
+  
+</div>
 
 </div>
 
