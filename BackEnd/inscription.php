@@ -8,9 +8,9 @@ $options = [
 ];
 
 try {
-    $bdd = new PDO("mysql:host=$host;dbname=$dbname", $username, $password, $options);
+    $bdd = new PDO("mysql:host=$host;dbaname=$dbname", $username, $password);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connexion Reussie ";
+    echo "Connexion Reussie<br> ";
 
 } catch (PDOException $e) {
     echo "Erreur Connexion" . $e->getMessage();
