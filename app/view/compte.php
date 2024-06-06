@@ -52,21 +52,25 @@
     <span class="trait" id="SchoolPea"></span>
 
     <div>
-        <span> 
-            <img src="../../public/images/SchoolPea.png" alt=""> 
-Informations générales 
-        </span>
+        
 
-        <span> 
+        <span id="EKI" > 
 
-            <img src="../../public/images/SchoolPea.png" alt="">
+            <img id="SCH1" src="../../public/images/SchoolPea.png" alt="">
 
-             <button> Changer de photo</button>
+             <button id="BUTT2"> Changer de photo</button>
 
         
         </span>
 
         <Div id="INS"> 
+
+
+<span > 
+            <img id="SCH" src="../../public/images/SchoolPea.png" alt=""> 
+<h2>Informations générales </h2>
+        </span>
+
 
  
     
@@ -87,7 +91,7 @@ Informations générales
     <label for="name">Adresse mail </label>
     <input type="text" name="name"  required />
     
-<button>Sauvegarder les modifications</button>
+<button id="BUTT1"> Sauvegarder les modifications</button>
   
 
         </Div>
@@ -145,13 +149,15 @@ Informations générales
 </P>
 
 <div id="SUPP">
-  <img src="../../public/images/point ex.jpg" alt=""> 
+  <img id="EXCL" src="/../public/images/point ex.jpg" alt="Image de point ex" />
+  
   <h3>Supprimer votre compte</h3>
+
   <p>Si vous supprimez votre compte, vous en perdez l'accès définitif sans possibilité de le récupérer. Vos données personnelles et vos progrès seront perdus, de même que tout abonnement en cours.</p>
+
   <button>Supprimer votre compte</button>
   
 </div>
-
 </div>
 
 
