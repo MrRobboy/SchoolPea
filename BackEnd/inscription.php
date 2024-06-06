@@ -52,7 +52,7 @@ if (isset($_POST['submit_inscription'])) {
 
     echo ('INFOS :<br>Name : ' . $name . '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);
 
-    $queryStatement = $bdd->prepare('INSERT INTO USER(name, email, password) VALUES (:name, :email, :password);');
+    $queryStatement = $bdd->prepare('USE PA; INSERT INTO USER(name, email, password) VALUES (:name, :email, :password);');
 
     $queryStatement->bindvalue(':name', $name);
     $queryStatement->bindvalue(':email', $email);
