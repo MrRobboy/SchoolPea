@@ -55,7 +55,7 @@
             </div>
         </div>
     </div>
-    <script src="../Scripts/script.js"></script>
+    <script src="../Scripts/script_Inscr_Conn.js"></script>
 </body>
 
 </html>
