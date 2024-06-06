@@ -59,3 +59,31 @@ function createFirework() {
 
 // Ajouter un écouteur d'événements sur le clic de l'image
 document.getElementById('logo_header').addEventListener('click', easterEgg);
+
+
+///API FETCH 
+
+function searchCourse() {
+    const inputElement = document.getElementById('coursenquizz-search');
+
+    inputElement.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            chercheCoursEtQuizz();
+        }
+    });
+    
+    function chercheCoursEtQuizz() {
+        const searchTerm = document.getElementById('coursenquizz-search').value;
+        // Effectuez une requête SQL pour vérifier si le cours ou le quiz existe dans vos tables COURS et QUIZZ.
+        SELECT *FROM COURS WHERE nom LIKE '%searchTerm%'
+        UNION ALL 
+        SELECT *FROM TEST WHERE nom LIKE '%searchTerm%';
+
+        // Si le cours ou le quiz est trouvé, affichez les détails.
+        // Sinon, affichez un message indiquant que le cours ou le quiz n'a pas été trouvé.
+    }
+
+}
+    
+
+

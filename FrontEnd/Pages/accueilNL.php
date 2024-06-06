@@ -64,7 +64,10 @@
                 </a>
             </div>
 
-            <div class="rec">api fetch à setup</div>
+            <div class="barreDeRecherche">
+            <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ...">
+            <button onclick="chercheCoursEtQuizz()">Rechercher</button>
+                </div>
         </div>
     </div>
 
@@ -74,21 +77,42 @@
         <span>
             <p id="titre_cours">Une large sélection de Cours</p>
         </span>
-        <div id="div_cours">
-            <div class="fenetre">
-                <span id="fen1">Cours_1</span>
-                <span id="fen2">Cours_2</span>
-                <span id="fen3">Cours_3</span>
-                <span id="fen4">Cours_4</span>
-            </div>
+        <div class="fenetre">
+        <?php
+        $options = [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ];
 
-            <div class="fenetre">
-                <span id="fen5">Cours_5</span>
-                <span id="fen6">Cours_6</span>
-                <span id="fen7">Cours_7</span>
-                <span id="fen8">Cours_8</span>
-            </div>
+        try {
+            $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
+            $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            
+            // Récupération des cours depuis la base de données
+            $sql = "SELECT * FROM cours";
+            $stmt = $bdd->query($sql);
+
+            $counter = 0;
+            while ($row = $stmt->fetch()) {
+                if ($counter % 4 == 0 && $counter != 0) {
+                    echo "</div><div class='fenetre'>";
+                }
+                echo "<span id='fen" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
+                $counter++;
+            }
+            
+            if ($counter == 0) {
+                echo "<span>Aucun cours trouvé.</span>";
+            }
+
+        } catch (PDOException $e) {
+            echo "Erreur Connexion : " . $e->getMessage();
+            die;
+        }
+        ?>
         </div>
+    </div>
+
+
         <span>
             <a class="voir_plus" href="./connexion.php">
                 Voir plus >
@@ -104,17 +128,37 @@
         </span>
         <div id="div_quizz">
             <div class="fenetre">
-                <span id="quizz_1"> Quizz_1 </span>
-                <span id="quizz_2"> Quizz_2 </span>
-                <span id="quizz_3"> Quizz_3 </span>
-                <span id="quizz_4"> Quizz_4 </span>
-            </div>
+                <?php
+                $options = [
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                ];
 
-            <div class="fenetre">
-                <span id="quizz_5"> Quizz_5 </span>
-                <span id="quizz_6"> Quizz_6 </span>
-                <span id="quizz_7"> Quizz_7 </span>
-                <span id="quizz_8"> Quizz_8 </span>
+                try {
+                    $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
+                    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    
+                    // Récupération des quizz depuis la base de données
+                    $sql = "SELECT * FROM quizz";
+                    $stmt = $bdd->query($sql);
+
+                    $counter = 0;
+                    while ($row = $stmt->fetch()) {
+                        if ($counter % 4 == 0 && $counter != 0) {
+                            echo "</div><div class='fenetre'>";
+                        }
+                        echo "<span id='quizz_" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
+                        $counter++;
+                    }
+                    
+                    if ($counter == 0) {
+                        echo "<span>Aucun quizz trouvé.</span>";
+                    }
+
+                } catch (PDOException $e) {
+                    echo "Erreur Connexion : " . $e->getMessage();
+                    die;
+                }
+                ?>
             </div>
         </div>
 

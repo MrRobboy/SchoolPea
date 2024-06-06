@@ -110,3 +110,14 @@ header {
         margin-bottom: 6rem;
         margin-top: 0rem;
 }
+
+
+/* Styles pour la barre de recherche */
+.search-bar {
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        padding: 10px;
+        width: 300px;
+        font-size: 16px;
+      }
+      
