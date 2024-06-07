@@ -186,3 +186,7 @@ body {
 .container.Inscription .toggle-right {
 	transform: translateX(-200%);
 }
+
+#BUTT1 {
+	margin-top: auto;
+}

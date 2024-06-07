@@ -111,9 +111,10 @@ header {
 }
 
 #INS {
+	position: fixed;
 	box-shadow: -1rem 1rem 1px #374599;
 	border-radius: 2rem;
-	display: inline-block;
+
 	width: 45%;
 	vertical-align: top;
 	box-sizing: border-box;
@@ -123,16 +124,16 @@ header {
 	padding: 0.2rem 1rem;
 	border: solid 0.1rem #374599;
 
-	position: absolute;
-	left: 0;
+	float: left;
 
-	position: relative;
-	bottom: 0;
+	width: 50%;
+
+	display: block;
 }
 
 #MDP {
 	float: right;
-	display: flex;
+	display: block;
 	flex-direction: column;
 
 	display: flex;
@@ -143,7 +144,7 @@ header {
 	border-radius: 2rem;
 	display: inline-block;
 	width: 25%;
-	vertical-align: top;
+
 	box-sizing: border-box;
 	padding: 10px;
 
@@ -151,7 +152,7 @@ header {
 	padding: 0.2rem 1rem;
 	border: solid 0.1rem #374599;
 
-	margin-bottom: 20px;
+	margin-bottom: 150px;
 	flex-wrap: wrap;
 	justify-content: stretch;
 	align-items: center;
@@ -173,8 +174,14 @@ input[type="text"] {
 }
 
 #SUPP {
+	position: fixed;
 	display: inline-block;
 	width: 40%;
+	margin-top: 10px;
+	position: absolute;
+	bottom: 0;
+	display: inline-block;
+	width: 100%;
 
 	box-sizing: border-box;
 	padding: 10px;
@@ -188,11 +195,6 @@ input[type="text"] {
 	border-radius: 2rem;
 	padding: 0.2rem 1rem;
 	border: solid 0.1rem #374599;
-
-	position: absolute;
-	bottom: 0;
-
-	margin-top: 10px;
 }
 
 #EXCL {
@@ -213,4 +215,8 @@ input[type="text"] {
 #EKI {
 	position: absolute;
 	right: 10;
+}
+
+#INFO1 {
+	text-align: center;
 }

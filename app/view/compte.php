@@ -54,25 +54,26 @@
     <div>
         
 
-        <span id="EKI" > 
-
-            <img id="SCH1" src="../../public/images/SchoolPea.png" alt="">
-
-             <button id="BUTT2"> Changer de photo</button>
-
-        
-        </span>
 
         <Div id="INS"> 
 
+                
 
-<span > 
-            <img id="SCH" src="../../public/images/SchoolPea.png" alt=""> 
-<h2>Informations générales </h2>
-        </span>
+=
+        <div style="display: flex; align-items: center;">
+
+   <img id="SCH" src="../../public/images/Reglage.png" alt=""> 
+
+  <p id="INFO1"> Informations générales</p>
+
+</div
 
 
  
+
+<img id="SCH1" src="../../public/images/Luffy.jpg" alt="">
+
+ <button id="BUTT2"> Changer de photo</button>
     
     <form action="" method="get" >
   
@@ -94,16 +95,14 @@
 <button id="BUTT1"> Sauvegarder les modifications</button>
   
 
+
         </Div>
 
     
 
     
 
-    <div> 
-        
 
-    </div>
 
  <div id="MDP"> 
 
@@ -138,6 +137,7 @@
    
 
     <button>Changer de mot de passe  </button>
+
   </div>
 
 
