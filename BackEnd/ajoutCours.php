@@ -44,6 +44,7 @@ $stmt = $bdd->prepare($sql);
     } catch(PDOException $e) {
         echo "Erreur: " . $e->getMessage();
     }
+
 } else {
     // Redirection vers la page de formulaire si le formulaire n'a pas été soumis
     header("Location: formulaire_cours.php");

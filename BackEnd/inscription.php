@@ -62,6 +62,7 @@ if (isset($_POST['submit_inscription'])) {
 
     if (isset($result) && !$result) {
         echo "<br><br>ECHEC INJECTION";
+        header('Location: ../FrontEnd/Pages/compte.php');
     } else {
 	echo "<br><br> REUSSITE INJECTION";
     
