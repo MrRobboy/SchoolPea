@@ -52,116 +52,87 @@
     <span class="trait" id="SchoolPea"></span>
 
     <div>
-        
-
-
-        <Div id="INS"> 
-
-                
-
-=
-        <div style="display: flex; align-items: center;">
-
-   <img id="SCH" src="../../public/images/Reglage.png" alt=""> 
-
-  <p id="INFO1"> Informations générales</p>
-
-</div
-
-
- 
-
-<img id="SCH1" src="../../public/images/Luffy.jpg" alt="">
-
- <button id="BUTT2"> Changer de photo</button>
-    
-    <form action="" method="get" >
-  
-    <label for="name">Nom </label>
-    <input type="text" name="name"  required />
-
-    
-    <form action="" method="get" >
- 
-    <label for="name">Prénom </label>
-    <input type="text" name="name"  required />
-
-    
-    <form action="" method="get" >
- 
-    <label for="name">Adresse mail </label>
-    <input type="text" name="name"  required />
-    
-<button id="BUTT1"> Sauvegarder les modifications</button>
-  
-
-
-        </Div>
-
-    
-
-    
 
 
 
- <div id="MDP"> 
+        <div id="INS">
+            <div style="display: flex; align-items: center;">
 
- 
- 
+                <img id="SCH" src="../../public/images/Reglage.png" alt="">
 
-    <form action="" method="get">
- 
-    <label for="name">Changer de mot de passe: </label>
-    <input type="text" name="name"  required />
-    
+                <p id="INFO1"> Informations générales</p>
 
+            </div> <img id="SCH1" src="../../public/images/Luffy.jpg" alt="">
 
-    <form action="" method="get" >
-  
-    <label for="name">Ancien mot de passe </label>
-    <input type="text" name="name" required />
-    
+            <button id="BUTT2"> Changer de photo</button>
 
-    
+            <form action="" method="get">
 
-    <form action="" method="get" >
- 
-    <label for="name">Nouveau mot de passe </label>
-    <input type="text" name="name"  required />
-    
-        
-  <form action="" method="get" >
-  
-    <label for="name">confirmer Nouveau mot de passe </label>
-    <input type="text" name="name"  required />
-   
-
-    <button>Changer de mot de passe  </button>
-
-  </div>
+                <label for="name">Nom </label>
+                <input type="text" name="name" required />
 
 
-    
+                <form action="" method="get">
 
- 
-
-
-</P>
-
-<div id="SUPP">
-  <img id="EXCL" src="/../public/images/point ex.jpg" alt="Image de point ex" />
-  
-  <h3>Supprimer votre compte</h3>
-
-  <p>Si vous supprimez votre compte, vous en perdez l'accès définitif sans possibilité de le récupérer. Vos données personnelles et vos progrès seront perdus, de même que tout abonnement en cours.</p>
-
-  <button>Supprimer votre compte</button>
-  
-</div>
-</div>
+                    <label for="name">Prénom </label>
+                    <input type="text" name="name" required />
 
 
-</div>
+                    <form action="" method="get">
+
+                        <label for="name">Adresse mail </label>
+                        <input type="text" name="name" required />
+
+                        <button id="BUTT1"> Sauvegarder les modifications</button>
+
+
+
+        </div>
+
+
+
+
+
+
+
+        <div id="MDP">
+            <form action="" method="get">
+                <label for="name">Changer de mot de passe: </label>
+                <input type="text" name="name" required />
+                <form action="" method="get">
+                    <label for="name">Ancien mot de passe </label>
+                    <input type="text" name="name" required />
+                    <form action="" method="get">
+                        <label for="name">Nouveau mot de passe </label>
+                        <input type="text" name="name" required />
+                        <form action="" method="get">
+                            <label for="name">confirmer Nouveau mot de passe </label>
+                            <input type="text" name="name" required />
+                            <button>Changer de mot de passe </button>
+        </div>
+
+
+
+
+
+
+
+        </P>
+
+        <div id="SUPP">
+            <img id="EXCL" src="/../public/images/point ex.jpg" alt="Image de point ex" />
+
+            <h3>Supprimer votre compte</h3>
+
+            <p>Si vous supprimez votre compte, vous en perdez l'accès définitif sans possibilité de le récupérer. Vos données personnelles et vos progrès seront perdus, de même que tout abonnement en cours.</p>
+
+            <button>Supprimer votre compte</button>
+
+        </div>
+    </div>
+
+
+    </div>
 
 
 
