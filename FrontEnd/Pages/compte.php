@@ -58,11 +58,11 @@
         <div id="INS">
             <div style="display: flex; align-items: center;">
 
-                <img id="SCH" src="../../public/images/Reglage.png" alt="">
+                <img id="SCH" src="../Images/Reglage.png" alt="">
 
                 <p id="INFO1"> Informations générales</p>
 
-            </div> <img id="SCH1" src="../../public/images/Luffy.jpg" alt="">
+            </div> <img id="SCH1" src="../Images/Luffy.jpg" alt="">
 
             <button id="BUTT2"> Changer de photo</button>
 
@@ -120,7 +120,7 @@
         </P>
 
         <div id="SUPP">
-            <img id="EXCL" src="/../public/images/point ex.jpg" alt="Image de point ex" />
+            <img id="EXCL" src="../Images/point_ex.jpg" alt="Image de point_ex" />
 
             <h3>Supprimer votre compte</h3>
 
