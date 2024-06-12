@@ -10,7 +10,7 @@
     <header>
         <div id="accueil">
 
-            <img id="logo_header" src="../../public/images/SchoolPea.png" />
+            <img id="logo_header" src="../Images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
@@ -44,7 +44,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
