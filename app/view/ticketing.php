@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-     <meta charset="UTF-8" />
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Mon compte</title>
-    <link rel="stylesheet" type="text/css" href="./compte.css" />
+    <link rel="stylesheet" type="text/css" href="./ticketing.css" />
 </head>
 
 
@@ -54,57 +55,57 @@
     <span class="trait" id="SchoolPea"></span>
 
     <div id="HELP">
-    <title>Besoin d'aide ? </title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <h1>Comment pouvez-vous nous aider a vous aider ? </h1>
+        <title>Besoin d'aide ? </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        </head>
 
-    <form action="create_ticket.php" method="post">
+        <body>
+            <h1>Comment pouvez-vous nous aider a vous aider ? </h1>
 
-        <label for="subject">Sujet :</label>
+            <form action="create_ticket.php" method="post">
 
-        <input type="text" name="subject" required><br>
+                <label for="subject">Sujet :</label>
 
-        <label for="description">Description :</label>
+                <input type="text" name="subject" required><br>
 
-        <textarea name="description" required></textarea><br>
+                <label for="description">Description :</label>
 
-        <input type="submit" value="Créer un ticket">
-    </form>
+                <textarea name="description" required></textarea><br>
 
-    <h2>Liste des tickets</h2>
-    <?php
-$servername = "localhost";
-$username = "username";
-$password = "password";
-$dbname = "myDB";
+                <input type="submit" value="Créer un ticket">
+            </form>
+
+            <!--<h2>Liste des tickets</h2>
+            < ?php
+            $servername = "localhost";
+            $username = "username";
+            $password = "password";
+            $dbname = "myDB";
 
 
-// creation de connection A FAIRE 
-$conn = new mysqli($servername, $username, $password, $dbname);
+            // creation de connection A FAIRE 
+            $conn = new mysqli($servername, $username, $password, $dbname);
 
-// controle  connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+            // controle  connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
 
-$subject = $_POST['sujet'];
-$description = $_POST['description'];
-$created_at = date('Y-m-d');
+            $subject = $_POST['sujet'];
+            $description = $_POST['description'];
+            $created_at = date('Y-m-d');
 
-$sql = "INSERT INTO tickets (subject, description, created_at) VALUES ('$subject', '$description', '$created_at')";
+            $sql = "INSERT INTO tickets (subject, description, created_at) VALUES ('$subject', '$description', '$created_at')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Ticket envoyé avec succès ";
-} else {
-    echo "Erreur création de ticket: " . $conn->error;
-}
+            if ($conn->query($sql) === TRUE) {
+                echo "Ticket envoyé avec succès ";
+            } else {
+                echo "Erreur création de ticket: " . $conn->error;
+            }
 
-$conn->close();
-?>
-    ?>
+            $conn->close();
+            ?>-->
 
-</body>
+        </body>
 
 </html>
