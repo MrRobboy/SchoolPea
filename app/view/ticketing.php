@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Mon compte</title>
-    <link rel="stylesheet" type="text/css" href="./ticketing.css" />
+    <link rel="stylesheet" type="text/css" href="../../public/css/ticketing.css" />
 </head>
 
 
@@ -57,25 +56,23 @@
     <div id="HELP">
         <title>Besoin d'aide ? </title>
         <link rel="stylesheet" type="text/css" href="style.css">
-        </head>
 
-        <body>
-            <h1>Comment pouvez-vous nous aider a vous aider ? </h1>
+        <h1>Comment pouvez-vous nous aider a vous aider ? </h1>
 
-            <form action="create_ticket.php" method="post">
+        <form action="create_ticket.php" method="post">
 
-                <label for="subject">Sujet :</label>
+            <label for="subject">Sujet :</label>
 
-                <input type="text" name="subject" required><br>
+            <input type="text" name="subject" required><br>
 
-                <label for="description">Description :</label>
+            <label for="description">Description :</label>
 
-                <textarea name="description" required></textarea><br>
+            <textarea name="description" required></textarea><br>
 
-                <input type="submit" value="Créer un ticket">
-            </form>
+            <input type="submit" value="Créer un ticket">
+        </form>
 
-            <!--<h2>Liste des tickets</h2>
+        <!--<h2>Liste des tickets</h2>
             < ?php
             $servername = "localhost";
             $username = "username";
@@ -106,6 +103,6 @@
             $conn->close();
             ?>-->
 
-        </body>
+</body>
 
 </html>
