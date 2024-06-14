@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+
 
 <head>
     <meta charset="UTF-8" />
@@ -13,7 +13,7 @@
     <header>
         <div id="accueil">
 
-            <img id="logo_header" src="../../public/images/SchoolPea.png" />
+            <img id="logo_header" src="../Images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
@@ -47,7 +47,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
@@ -56,27 +56,23 @@
 
     <div id="HELP">
         <title>Besoin d'aide ? </title>
-        <link rel="stylesheet" type="text/css" href="style.css">
-        </head>
+        <h1>Comment pouvez-vous nous aider a vous aider ? </h1>
 
-        <body>
-            <h1>Comment pouvez-vous nous aider a vous aider ? </h1>
+        <form action="create_ticket.php" method="post">
 
-            <form action="create_ticket.php" method="post">
+            <label for="subject">Sujet :</label>
 
-                <label for="subject">Sujet :</label>
+            <input type="text" name="subject" required><br>
 
-                <input type="text" name="subject" required><br>
+            <label for="description">Description :</label>
 
-                <label for="description">Description :</label>
+            <textarea name="description" required></textarea><br>
 
-                <textarea name="description" required></textarea><br>
+            <input type="submit" value="Créer un ticket">
+        </form>
 
-                <input type="submit" value="Créer un ticket">
-            </form>
-
-            <h2>Liste des tickets</h2>
-            <!-- < ?php
+        <!--<h2>Liste des tickets</h2>
+        <?php /*
             $servername = "localhost";
             $username = "username";
             $password = "password";
@@ -103,10 +99,9 @@
                 echo "Erreur création de ticket: " . $conn->error;
             }
 
-            $conn->close();
-            ?>
-            ?> -->
-
-        </body>
+            $conn->close();*/
+        ?>-->
+    </div>
+</body>
 
 </html>
