@@ -1,3 +1,5 @@
+/*--------------------------------------------------------------- HEADER---------------------------------------------------------------*/
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 html {
@@ -12,63 +14,63 @@ header {
 	width: 100%;
 	justify-content: space-between;
 	display: flex;
-	box-shadow: 0 0.5rem 0.5rem rgb(92, 107, 192, 100%);
-	padding: 1rem 0;
+	box-shadow: 0 0.5em 0.5em rgb(92, 107, 192, 100%);
+	padding: 1em 0;
 	background-color: #ffffff;
 }
 
 #accueil {
-	margin: 0 1rem;
+	/*header -> accueil*/
+	margin: 0 1em;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 }
 
 #accueil a {
+	/*header -> accueil -> a*/
 	font-size: x-large;
-	padding: 0 1rem;
+	padding: 0 1em;
 	font-weight: 700;
 	text-decoration: none;
 	color: #000;
 }
 
 #logo_header {
+	/*header -> accueil -> logo_header*/
 	width: 45px;
 }
 
 #Pages {
+	/*header -> Pages*/
 	align-items: center;
 	display: flex;
-	padding: 0 1rem;
+	padding: 0 1em;
 	font-weight: 500;
 }
 
 #Pages span {
-	margin: 0 0.5rem;
+	/*header -> Pages -> span*/
+	margin: 0 0.5em;
 }
 
 #Pages a {
 	color: black;
 	text-decoration: none;
-	padding: 0.2rem 1rem;
-	border: solid 0.1rem transparent;
+	padding: 0.2em 1em;
+	border: solid 0.1em #fff;
 }
 
 #Pages a:hover {
 	color: #6b7ad2;
 	background-color: rgb(132, 147, 232, 10%);
-	border-radius: 2rem;
-	padding: 0.2rem 1rem;
-	border: solid 0.1rem #374599;
-	text-align: center;
+	border-radius: 2em;
+	padding: 0.2em 1em;
+	border: solid 0.1em #374599;
 }
 
 .lien_header {
 	transition: all 0.5s ease-in-out;
-}
-
-#Pages svg {
-	border: none;
 }
 
 #slide_down {
@@ -96,16 +98,25 @@ header {
 	margin: 0.2rem;
 }
 
-.trait {
-	padding: 0.2rem 20rem;
+/*--------------------------------------------------------------- BODY---------------------------------------------------------------*/
 
-	border-radius: 3rem;
-	justify-content: center;
-	display: flex;
-	margin: 7rem 0;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-#SchoolPea {
-	background-color: transparent;
-	width: 45px;
+body {
+	background-color: #c9d6ff;
+	background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
+	font-family: "Montserrat";
+}
+
+#BUTT1 {
+	margin-top: auto;
 }
