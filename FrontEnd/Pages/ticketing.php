@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Mon compte</title>
-    <link rel="stylesheet" type="text/css" href="./compte.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/ticketing.css" />
 </head>
 
 
@@ -13,7 +13,7 @@
     <header>
         <div id="accueil">
 
-            <img id="logo_header" src="../Images/SchoolPea.png" />
+            <img id="logo_header" src="../../public/images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
@@ -47,7 +47,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../../public/images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
@@ -76,7 +76,7 @@
             </form>
 
             <h2>Liste des tickets</h2>
-            <?php
+            <!-- < ?php
             $servername = "localhost";
             $username = "username";
             $password = "password";
@@ -105,7 +105,7 @@
 
             $conn->close();
             ?>
-
+            ?> -->
 
         </body>
 
