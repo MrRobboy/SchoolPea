@@ -41,7 +41,7 @@ if ($passwordError || $error) {
         header($location);
     }
 }
- */
+*/
 
 if (isset($_POST['submit_inscription'])) {
     $name = htmlspecialchars($_POST['name']);

@@ -1,6 +1,6 @@
 <?php
 global $dbh;
-require_once '../Includes/database.php';
+require_once './db.php';
 
 $badCredentials = false;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $preparedGetUserSql = $dbh->prepare($getUserSql);
     $preparedGetUserSql->execute([
-            'email' => $_POST['email']
+        'email' => $_POST['email']
     ]);
 
     $user = $preparedGetUserSql->fetch();
@@ -21,11 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             $_SESSION['idUser'] = $user['id_user'];
             $_SESSION['name'] = $user['name'];
-            
+
 
             header('Location: ../FrontEnd/Pages/compte.php');
         }
     }
     $badCredentials = true;
 }
-?>
