@@ -64,9 +64,9 @@
                 </a>
             </div>
 
-            <div class="barreDeRecherche">
+            <div id="barreDeRecherche">
                 <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ...">
-                <button onclick="chercheCoursEtQuizz()">Rechercher</button>
+                <button onclick="chercheCoursEtQuizz()" id="Submit_Recherche">Rechercher</button>
             </div>
         </div>
     </div>
@@ -161,9 +161,7 @@
         </div>
 
         <span>
-            <a class="voir_plus" href="./connexion.php">
-                Voir plus >
-            </a>
+            <a class="voir_plus" href="./connexion.php">Voir plus ></a>
         </span>
     </div>
 
@@ -173,13 +171,7 @@
         <div class="footer">
             <span class="col1">
                 <h3>
-                    <a href="#SchoolPea" style="
-                                color: white;
-                                text-decoration: none;
-                                font-weight: bolder;
-                            ">
-                        SchoolPéa
-                    </a>
+                    <a href="#SchoolPea" style="color: white; text-decoration: none; font-weight: bolder;">SchoolPéa</a>
                 </h3>
             </span>
 
@@ -197,7 +189,7 @@
 
             <span class="col4">
                 <h4>Newsletter</h4>
-                <a>Api fetch à Implémenter <br />Input email</a>
+                <a>Api fetch à Implémenter<br />Input email</a>
             </span>
         </div>
     </footer>
