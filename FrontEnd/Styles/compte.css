@@ -164,12 +164,12 @@ body {
         font-weight: 700;
 }
 
-#Text_Nom_Prenom_Email {
+.Text_Nom_Prenom_Email {
         margin: 0.3em 1em;
         font-weight: 600;
 }
 
-#Input_Nom_Prenom_Email {
+.Input_Nom_Prenom_Email {
         border-radius: 0.7em;
         border: 0.1em black solid;
         margin: 0.5em 0;
@@ -225,18 +225,24 @@ body {
         background: rgb(255, 255, 255);
 }
 
-#Mdp_modif_div {
+#Titre_Mdp_modif {
+        text-align: center;
+        font-weight: 700;
+        font-size: 150%;
+}
+
+.Mdp_modif_div {
         display: flex;
         flex-direction: column;
         margin: 2em 0;
 }
 
-#Text_Modif_mdp {
+.Text_Modif_mdp {
         margin: 0.1em 0.5em;
         font-weight: 600;
 }
 
-#Input_Mdp_modif_div {
+.Input_Mdp_modif_div {
         width: 100%;
         margin: 0.5em 0;
         height: 1.7em;
@@ -267,4 +273,36 @@ body {
         width: 50%;
         box-shadow: -1em 1em 1px #374699c4;
         background: rgb(255, 255, 255);
+}
+
+#Exclamation {
+        width: 45px;
+        margin-top: 0.5em;
+}
+
+#Delete_Acc {
+        display: flex;
+        flex-direction: column;
+}
+
+#Titre_Delete_Acc {
+        padding: 1em 0 0.5em 1em;
+        font-size: 1.2em;
+        font-weight: 700;
+}
+
+#Text_Delete_Acc {
+        padding: 1em;
+        font-weight: 600;
+}
+
+#But_Delete_Acc {
+        width: 30%;
+        background-color: rgba(255, 0, 0, 0.75);
+        border-radius: 1em;
+        color: white;
+        border: none;
+        height: 25%;
+        font-size: 1em;
+        margin: 1em 0 2em 0;
 }

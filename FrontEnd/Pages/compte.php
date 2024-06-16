@@ -63,19 +63,19 @@
 
             <span id="Modif_Nom_Prenom">
                 <span id="Nom">
-                    <span id="Text_Nom_Prenom_Email">Nom</span>
-                    <input type="text" placeholder="Changer le nom" id="Input_Nom_Prenom_Email">
+                    <span class="Text_Nom_Prenom_Email">Nom</span>
+                    <input type="text" placeholder="Changer le nom" class="Input_Nom_Prenom_Email">
                 </span>
 
                 <span id="Prenom">
-                    <span id="Text_Nom_Prenom_Email">Prénom</span>
-                    <input type="text" placeholder="Changer le prénom" id="Input_Nom_Prenom_Email">
+                    <span class="Text_Nom_Prenom_Email">Prénom</span>
+                    <input type="text" placeholder="Changer le prénom" class="Input_Nom_Prenom_Email">
                 </span>
             </span>
 
             <span id="Email">
-                <span id="Text_Nom_Prenom_Email">Email adresse</span>
-                <input type=" text" placeholder="Changer l'email" id="Input_Nom_Prenom_Email">
+                <span class="Text_Nom_Prenom_Email">Email adresse</span>
+                <input type=" text" placeholder="Changer l'email" class="Input_Nom_Prenom_Email">
             </span>
 
             <span style="margin: 1em 0;">
@@ -84,20 +84,20 @@
         </span>
 
         <span id="Mdp_modif">
-            <h2 style="text-align: center; font-weight: 700; font-size: 150%;"> Changer de <br> Mot de passe </h2>
-            <div id="Mdp_modif_div">
-                <span id="Text_Modif_mdp">Ancien Mot de Passe</span>
-                <input type="text" id="Input_Mdp_modif_div" placeholder="Old Password"></input>
+            <h2 id="Titre_Mdp_modif"> Changer de <br> Mot de passe </h2>
+            <div class="Mdp_modif_div">
+                <span class="Text_Modif_mdp">Ancien Mot de Passe</span>
+                <input type="text" class="Input_Mdp_modif_div" placeholder="Old Password"></input>
             </div>
 
-            <div id="Mdp_modif_div">
-                <span id="Text_Modif_mdp">Nouvau Mot de Passe</span>
-                <input type="text" id="Input_Mdp_modif_div" placeholder="New Password"></input>
+            <div class="Mdp_modif_div">
+                <span class="Text_Modif_mdp">Nouvau Mot de Passe</span>
+                <input type="text" class="Input_Mdp_modif_div" placeholder="New Password"></input>
             </div>
 
-            <div id="Mdp_modif_div">
-                <span id="Text_Modif_mdp">Confirmer le Mot de Passe</span>
-                <input type="text" id="Input_Mdp_modif_div" placeholder="Confirm Password"></input>
+            <div class="Mdp_modif_div">
+                <span class="Text_Modif_mdp">Confirmer le Mot de Passe</span>
+                <input type="text" class="Input_Mdp_modif_div" placeholder="Confirm Password"></input>
             </div>
             <input type="submit" value="Changer de mot de passe" id="Sauvegarde_modif_mdp"></input>
         </span>
@@ -107,17 +107,17 @@
         <div style="padding: 2em;">
             <span style="display: flex; flex-direction: row;">
                 <span>
-                    <img src="../Images/exclamation.svg" style="width: 45px; margin-top: 0.5em;">
+                    <img src="../Images/exclamation.svg" id="Exclamation">
                 </span>
 
-                <span style="display: flex; flex-direction: column;">
-                    <span style="padding: 1em 0 0.5em 1em; font-size: 1.2em; font-weight: 700;">Supprimer votre compte</span>
-                    <span style=" padding: 1em; font-weight: 600;">Si vous supprimez votre compte, vous en perdrez l'accès définitif sans possibilité de le récupérer.<br> Vos données personnelles et vos progrès seront effacés et perdus, de même que tout abonnement en cours.</span>
+                <span id="Delete_Acc">
+                    <span id="Titre_Delete_Acc">Supprimer votre compte</span>
+                    <span id="Text_Delete_Acc">Si vous supprimez votre compte, vous en perdrez l'accès définitif sans possibilité de le récupérer. Vos données personnelles et vos progrès seront effacés et perdus, de même que tout abonnement en cours.</span>
                 </span>
             </span>
 
             <span>
-                <button style="width: 30%; background-color: rgba(255,0,0,0.75); border-radius: 1em; color: white; border: none; height: 25%; font-size: 1em; margin: 1em 0 2em 0;">Supprimer le compte</button>
+                <button id="But_Delete_Acc">Supprimer le compte</button>
             </span>
         </div>
     </div>
