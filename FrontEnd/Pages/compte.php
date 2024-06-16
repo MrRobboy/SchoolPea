@@ -51,73 +51,73 @@
 
     <div id="div1">
         <span id="Info_gen">
-            <span id="1,1,ligne1">
+            <span id="Titre_Info_gen">
                 <img src="../Images/reglage.svg" style="width: 45px;">
-                <h1>Informations Générales</h1>
+                <h1 style="margin-left: 0.5em;">Informations Générales</h1>
             </span>
 
-            <span id="1,1,ligne2">
+            <span id="Modif_Photo">
                 <img src="../Images/Luffy.jpg" id="Photo_profile">
-                <button>Changer l'image</button>
+                <button id="But_Photo">Charger une photo</button>
             </span>
 
-            <span id="1,1,ligne3">
-                <span id="1,1,3,col1">
-                    <span id="1,1,3,1,ligne1">ligne 1</span>
-                    <span id="1,1,3,1,ligne2">ligne 2</span>
+            <span id="Modif_Nom_Prenom">
+                <span id="Nom">
+                    <span id="Text_Nom_Prenom_Email">Nom</span>
+                    <input type="text" placeholder="Changer le nom" id="Input_Nom_Prenom_Email">
                 </span>
 
-                <span id="1,1,3,col2">
-                    <span id="1,1,3,2,ligne1">ligne 1</span>
-                    <span id="1,1,3,2,ligne2">ligne 2</span>
+                <span id="Prenom">
+                    <span id="Text_Nom_Prenom_Email">Prénom</span>
+                    <input type="text" placeholder="Changer le prénom" id="Input_Nom_Prenom_Email">
                 </span>
             </span>
 
-            <span id="1,1,ligne4">
-                <span id="1,1,4,ligne1">ligne 1</span>
-                <span id="1,1,4,ligne2">ligne 2</span>
+            <span id="Email">
+                <span id="Text_Nom_Prenom_Email">Email adresse</span>
+                <input type=" text" placeholder="Changer l'email" id="Input_Nom_Prenom_Email">
             </span>
 
-            <span id="1,1,ligne5">
-                <button>Sauvegarder col1</button>
+            <span style="margin: 1em 0;">
+                <input type="submit" id="Sauvegarde_modif" value="Sauvegarder Les modifications"></input>
             </span>
         </span>
 
         <span id="Mdp_modif">
-            <h2>TITRE</h2>
-            <span id="1,2,ligne1">
-                <span id="1,2,1,ligne1">ligne 1</span>
-                <span id="1,2,1,ligne2">ligne 2</span>
-            </span>
+            <h2 style="text-align: center; font-weight: 700; font-size: 150%;"> Changer de <br> Mot de passe </h2>
+            <div id="Mdp_modif_div">
+                <span id="Text_Modif_mdp">Ancien Mot de Passe</span>
+                <input type="text" id="Input_Mdp_modif_div" placeholder="Old Password"></input>
+            </div>
 
-            <span id="1,2,ligne2">
-                <span id="1,2,2,ligne1">ligne 1</span>
-                <span id="1,2,2,ligne2">ligne 2</span>
-            </span>
+            <div id="Mdp_modif_div">
+                <span id="Text_Modif_mdp">Nouvau Mot de Passe</span>
+                <input type="text" id="Input_Mdp_modif_div" placeholder="New Password"></input>
+            </div>
 
-            <span id="1,2,ligne3">
-                <span id="1,2,3,ligne1">ligne 1</span>
-                <span id="1,2,3,ligne2">ligne 2</span>
-            </span>
-            <button>Sauvegarde col2</button>
+            <div id="Mdp_modif_div">
+                <span id="Text_Modif_mdp">Confirmer le Mot de Passe</span>
+                <input type="text" id="Input_Mdp_modif_div" placeholder="Confirm Password"></input>
+            </div>
+            <input type="submit" value="Changer de mot de passe" id="Sauvegarde_modif_mdp"></input>
         </span>
     </div>
 
     <div id="div2">
         <div style="padding: 2em;">
-            <span id="2,ligne1" style="display: flex; flex-direction: row;">
-                <span id="2,1,col1">
+            <span style="display: flex; flex-direction: row;">
+                <span>
                     <img src="../Images/exclamation.svg" style="width: 45px; margin-top: 0.5em;">
                 </span>
 
-                <span id="2,1,col2" style="display: flex; flex-direction: column;">
+                <span style="display: flex; flex-direction: column;">
                     <span style="padding: 1em 0 0.5em 1em; font-size: 1.2em; font-weight: 700;">Supprimer votre compte</span>
-                    <span style=" padding: 1em;">Si vous supprimez votre compte, vous en perdrez l'accès définitif sans possibilité de le récupérer.<br> Vos données personnelles et vos progrès seront effacés et perdus, de même que tout abonnement en cours.</span>
+                    <span style=" padding: 1em; font-weight: 600;">Si vous supprimez votre compte, vous en perdrez l'accès définitif sans possibilité de le récupérer.<br> Vos données personnelles et vos progrès seront effacés et perdus, de même que tout abonnement en cours.</span>
                 </span>
             </span>
 
-            <span id="2,ligne2">
-                <button>Supprimer le compte</button>
+            <span>
+                <button style="width: 30%; background-color: rgba(255,0,0,0.75); border-radius: 1em; color: white; border: none; height: 25%; font-size: 1em; margin: 1em 0 2em 0;">Supprimer le compte</button>
             </span>
         </div>
     </div>
