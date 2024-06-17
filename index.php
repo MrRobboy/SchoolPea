@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title>SchoolPéa</title>
-    <link rel="stylesheet" type="text/css" href="FrontEnd/Styles/accueilNL.css" />
+    <title>Schoolpéa</title>
+    <link rel="stylesheet" type="text/css" href="./FrontEnd/Styles/accueilNL.css" />
 </head>
 
 <body>
@@ -12,7 +12,7 @@
     <header>
         <span id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_header" src="../Images/Schoolpea.png" alt="Logo" />
             </a>
             <a href="#SchoolPea">SchoolPéa</a>
         </span>
@@ -25,13 +25,13 @@
             </span>
 
             <span>
-                <a href="FrontEnd/Pages/connexion.php" class="lien_header">
+                <a href="./connexion.php" class="lien_header">
                     Se Connecter
                 </a>
             </span>
 
             <span>
-                <a href="FrontEnd/Pages/inscription.php" class="lien_header">
+                <a href="./inscription.php" class="lien_header">
                     S'inscrire
                 </a>
             </span>
@@ -52,19 +52,22 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="../Images/Schoolpea.png" alt="Logo" />
             </div>
 
             <div class="but">
-                <a href="FrontEnd/Pages/connexion.php">
+                <a href="./connexion.php">
                     Trouver un cours
                 </a>
-                <a href="FrontEnd/Pages/connexion.php">
+                <a href="./connexion.php">
                     Trouver un quizz
                 </a>
             </div>
 
-            <div class="rec">api fetch à setup</div>
+            <div id="barreDeRecherche">
+                <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ...">
+                <button onclick="chercheCoursEtQuizz()" id="Submit_Recherche">Rechercher</button>
+            </div>
         </div>
     </div>
 
@@ -74,26 +77,46 @@
         <span>
             <p id="titre_cours">Une large sélection de Cours</p>
         </span>
-        <div id="div_cours">
-            <div class="fenetre">
-                <span id="fen1">Cours_1</span>
-                <span id="fen2">Cours_2</span>
-                <span id="fen3">Cours_3</span>
-                <span id="fen4">Cours_4</span>
-            </div>
+        <div class="fenetre">
+            <?php
+            $options = [
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            ];
 
-            <div class="fenetre">
-                <span id="fen5">Cours_5</span>
-                <span id="fen6">Cours_6</span>
-                <span id="fen7">Cours_7</span>
-                <span id="fen8">Cours_8</span>
-            </div>
+            try {
+                $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
+                $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                // Récupération des cours depuis la base de données
+                $sql = "SELECT * FROM cours";
+                $stmt = $bdd->query($sql);
+
+                $counter = 0;
+                while ($row = $stmt->fetch()) {
+                    if ($counter % 4 == 0 && $counter != 0) {
+                        echo "</div><div class='fenetre'>";
+                    }
+                    echo "<span id='fen" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
+                    $counter++;
+                }
+
+                if ($counter == 0) {
+                    echo "<span>Aucun cours trouvé.</span>";
+                }
+            } catch (PDOException $e) {
+                echo "Erreur Connexion : " . $e->getMessage();
+                die;
+            }
+            ?>
         </div>
-        <span>
-            <a class="voir_plus" href="FrontEnd/Pages/connexion.php">
-                Voir plus >
-            </a>
-        </span>
+    </div>
+
+
+    <span>
+        <a class="voir_plus" href="./connexion.php">
+            Voir plus >
+        </a>
+    </span>
     </div>
 
     <span class="trait" id="2"></span>
@@ -104,24 +127,41 @@
         </span>
         <div id="div_quizz">
             <div class="fenetre">
-                <span id="quizz_1"> Quizz_1 </span>
-                <span id="quizz_2"> Quizz_2 </span>
-                <span id="quizz_3"> Quizz_3 </span>
-                <span id="quizz_4"> Quizz_4 </span>
-            </div>
+                <?php
+                $options = [
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                ];
 
-            <div class="fenetre">
-                <span id="quizz_5"> Quizz_5 </span>
-                <span id="quizz_6"> Quizz_6 </span>
-                <span id="quizz_7"> Quizz_7 </span>
-                <span id="quizz_8"> Quizz_8 </span>
+                try {
+                    $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
+                    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                    // Récupération des quizz depuis la base de données
+                    $sql = "SELECT * FROM quizz";
+                    $stmt = $bdd->query($sql);
+
+                    $counter = 0;
+                    while ($row = $stmt->fetch()) {
+                        if ($counter % 4 == 0 && $counter != 0) {
+                            echo "</div><div class='fenetre'>";
+                        }
+                        echo "<span id='quizz_" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
+                        $counter++;
+                    }
+
+                    if ($counter == 0) {
+                        echo "<span>Aucun quizz trouvé.</span>";
+                    }
+                } catch (PDOException $e) {
+                    echo "Erreur Connexion : " . $e->getMessage();
+                    die;
+                }
+                ?>
             </div>
         </div>
 
         <span>
-            <a class="voir_plus" href="FrontEnd/Pages/connexion.php">
-                Voir plus >
-            </a>
+            <a class="voir_plus" href="./connexion.php">Voir plus ></a>
         </span>
     </div>
 
@@ -131,31 +171,25 @@
         <div class="footer">
             <span class="col1">
                 <h3>
-                    <a href="#SchoolPea" style="
-                                color: white;
-                                text-decoration: none;
-                                font-weight: bolder;
-                            ">
-                        SchoolPéa
-                    </a>
+                    <a href="#SchoolPea" style="color: white; text-decoration: none; font-weight: bolder;">SchoolPéa</a>
                 </h3>
             </span>
 
             <span class="col2">
                 <h4>Schoolpéa</h4>
-                <a href="#">Accueil</a>
-                <a href="#">A propos</a>
+                <a>Accueil</a>
+                <a>A propos</a>
             </span>
 
             <span class="col3">
                 <h4>Contact</h4>
-                <a href="#">E-mail</a>
-                <a href="https://www.linkedin.com/in/school-pea-73abb5310/">Linkedin</a>
+                <a>E-mail</a>
+                <a>Linkedin</a>
             </span>
 
             <span class="col4">
                 <h4>Newsletter</h4>
-                <a>Api fetch à Implémenter <br />Input email</a>
+                <a>Api fetch à Implémenter<br />Input email</a>
             </span>
         </div>
     </footer>
