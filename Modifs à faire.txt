@@ -25,6 +25,9 @@ Quizz :
 Cours :
 	- Voir ses cours
 
+Messagerie :
+	- Faire la messagerie uniquement avec php et css
+	- Faire une table messages où l'on stock tout les messages
 
 BACK OFFICE:
 	- Gérer l'utilisateur -> modif infos (rôles), ban, déban (mail de bannissement), supprimer le compte
