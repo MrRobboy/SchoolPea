@@ -33,7 +33,7 @@ Messagerie :
 Ticketing :
 	- Relier à la base de donnée
 	- Récupérer le titre, le type de problème, le message de description, l'ID de User
-	- Qui a pris en main le ticket, qui a résolu le ticket (via les logs
+	- Qui a pris en main le ticket, qui a résolu le ticket (via les logs)
 
 BACK OFFICE:
 	- Gérer l'utilisateur -> modif infos (rôles), ban, déban (mail de bannissement), supprimer le compte
