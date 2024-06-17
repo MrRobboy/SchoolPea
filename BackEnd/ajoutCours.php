@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die;
     }
     // Préparation de la requête SQL pour insérer le cours
-    $sql = "INSERT INTO cours (nom, niveau, prix, createur, contenu) VALUES (:nom, :niveau, :prix, :createur, :contenu)";
+    $sql = "USE PA; INSERT INTO COURS (nom, niveau, prix, createur, contenu) VALUES (:nom, :niveau, :prix, :createur, :contenu)";
     $stmt = $bdd->prepare($sql);
     try {
 
@@ -46,6 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     // Redirection vers la page de formulaire si le formulaire n'a pas été soumis
-    header("Location: formulaire_cours.php");
-    exit;
+	echo('LA BITE A DUDUDLE');
+	exit;
 }

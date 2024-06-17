@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Créer un cours en ligne</h1>
-    <form action="ajouter_cours.php" method="post">
+    <form action="../../BackEnd/ajoutCours.php" method="post">
         <label for="nom">Nom du cours:</label><br>
         <input type="text" id="nom" name="nom" required><br>
         <label for="niveau">Niveau du cours:</label><br>
@@ -24,4 +24,5 @@
 
     </form>
 </body>
+
 </html>
