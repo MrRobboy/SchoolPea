@@ -10,9 +10,6 @@ Connexion :
 	- Photo de profile dans session (Chemin absolue avec comme nom d'image l'id)
 	- Vérifier s'il est banni Avec la raison du bannissement
 
-Classement :
-	- Affiche le classement général via une boucle
-
 Compte :
 	- Modifier son image
 	- Modifier son mdp, nom, mail...

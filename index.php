@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Changer le header selon s'il est connecté et mettre un accès au back-office s'il est admin! -->
 
 <head>
     <meta charset="UTF-8" />
