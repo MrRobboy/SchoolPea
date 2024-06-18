@@ -1,0 +1,45 @@
+FRONT OFFICE
+Inscription : 
+	- Possibilité d'inscription
+	- Validation par mail (changer la valeur dans la BDD sur la colonne "Validé")
+	- Email en tant qu'ID par defaut
+	- Vérification mot de passe
+
+Connexion :
+	- Possibilité d'accéder à ses pages personnelles via sa session
+	- Photo de profile dans session (Chemin absolue avec comme nom d'image l'id)
+	- Vérifier s'il est banni Avec la raison du bannissement
+
+Classement :
+	- Affiche le classement général via une boucle
+
+Compte :
+	- Modifier son image
+	- Modifier son mdp, nom, mail...
+
+Quizz :
+	- Voir ses quizz
+	- Répondre à ses quizz
+	- Consulter les réponses à ses quizz
+
+Cours :
+	- Voir ses cours
+	- Voir les cours disponibles
+
+Messagerie :
+	- Faire la messagerie uniquement avec php et css
+	- Faire une table messages où l'on stock tout les messages
+
+Ticketing :
+	- Relier à la base de donnée
+	- Récupérer le titre, le type de problème, le message de description, l'ID de User
+	- Qui a pris en main le ticket, qui a résolu le ticket (via les logs)
+
+BACK OFFICE:
+	- Gérer l'utilisateur -> modif infos (rôles), ban, déban (mail de bannissement), supprimer le compte
+	- CAPTCHA -> Ajouter question, Modifier question, Supprimer question
+	- Newsletter -> Envoyer une news à tlm et garder l'historique
+	- Logs -> Affiche toutes les activités avec la date, l'user et l'action
+	- Tickets -> Possibilité de gérer les tickets si t'es modo
+	- Cours -> Ajouter cours, modifier cours, supprimer cours...
+	- Quizz -> Ajouter, modifier, supprimer
