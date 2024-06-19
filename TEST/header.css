@@ -113,3 +113,37 @@ header {
     border-radius: 50%;
     margin: 0 1em;
 }
+
+#slide_down {
+    position: relative;
+    display: inline-block;
+}
+
+#dropdown {
+    display: none;
+    position: absolute;
+    z-index: 1;
+    min-width: 15em;
+    background-color: white;
+    border: #374599 solid 0.1em;
+    text-align: center;
+}
+
+#dropdown a {
+    display: block;
+    margin: 1em;
+    border: 0.1em #374599 solid;
+}
+
+#slide_down:hover #dropdown {
+    display: block;
+    position: absolute;
+}
+
+#Photo_profile {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 1em;
+}

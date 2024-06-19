@@ -13,6 +13,18 @@
     </div>
     <div id="Pages">
 
+<<<<<<< HEAD
+=======
+        <span id="slide_down">
+            <img src="../Images/liste.svg" id="dropbtn">
+            <div id="dropdown">
+                <a class="lien_header">Voir Plus</a>
+                <a class="lien_header">Mon compte</a>
+                <a class="lien_header">Paramètres</a>
+            </div>
+        </span>
+
+>>>>>>> 11a8bc7 (up)
         <span>
             <a class="lien_header" href="accueilNL.php"> SchoolPea+ </a>
         </span>
@@ -30,6 +42,7 @@
             <a class="lien_header" href="accueilNL.php">Mes Cours</a>
         </span>
 
+<<<<<<< HEAD
         <span id="slide_down">
             <img src="../Images/liste.svg" id="dropbtn">
             <div id="dropdown">
@@ -39,6 +52,8 @@
             </div>
         </span>
 
+=======
+>>>>>>> 11a8bc7 (up)
         <span style="margin-left: 1.2rem">
             <img src="../Images/Luffy.jpg" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
         </span>
