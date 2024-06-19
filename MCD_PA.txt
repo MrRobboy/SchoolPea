@@ -1,0 +1,21 @@
+ELEVES : id-élève, nom, prenom, niveau, mail, elo, mot de passe
+EST MEMBRE,1N> CLASSE, 11< ELEVES
+PROFESSEUR : id-prof, nom, prénom, mail, mot de passe
+DONNE COURS, 11< PROFESSEUR, 1N> ECOLE
+
+CLASSE : id-classe, type, numéro classe, année
+APPARTIENT, 1N> ECOLE, 11< CLASSE
+ECOLE : id-école, nom, adresse, directeur, mail, téléphone
+EST DANS, 11< ECOLE, 1N> ORGA
+
+ORGA : id-orga, nom, responsable, téléphone, mail
+ACHETE, 11< ORGA, 1N> ABONNEMENT
+
+ABONNEMENT : id-abonnement, montant, nom, type
+CRÉÉ, 1N< PROFESSEUR, 11> COURS
+COURS : id-cours, nom, niveau, prix
+PARTICIPE, 1N< ELEVES, 1N> CHALLENGES : score
+CHALLENGES : id-challenge, nom, dateD, dateF, desc
+
+TEST: id-test, nom, niveau
+FABRIQUÉ À PARTIR DE, 11< TEST, 1N> COURS
