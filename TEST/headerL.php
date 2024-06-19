@@ -16,16 +16,19 @@
         <span>
             <a class="lien_header" href="accueilNL.php"> SchoolPea+ </a>
         </span>
+
         <span>
             <a class="lien_header" href="accueilNL.php">
                 Explorer les Quizzs
             </a>
         </span>
+
         <span>
             <a class="lien_header" href="accueilNL.php">
                 Explorer les Cours
             </a>
         </span>
+
         <span>
             <a class="lien_header" href="accueilNL.php">Mes Cours</a>
         </span>
