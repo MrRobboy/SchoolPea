@@ -90,8 +90,8 @@ header {
 }
 
 #dropdown a {
-    margin: 1em;
     border: 0.1em #374599 solid;
+    margin: 1em 0.5em;
 }
 
 #dropbtn {
