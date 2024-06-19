@@ -13,7 +13,7 @@ header {
     justify-content: space-between;
     display: flex;
     box-shadow: 0 0.5em 0.5em rgb(92, 107, 192, 100%);
-    padding: 1em 0;
+    padding: 0.7em 0;
     background-color: #ffffff;
 }
 
@@ -68,7 +68,7 @@ header {
 }
 
 .lien_header {
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     display: block;
 }
 
