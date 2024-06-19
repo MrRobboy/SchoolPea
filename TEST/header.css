@@ -69,11 +69,14 @@ header {
 
 .lien_header {
     transition: all 0.5s ease-in-out;
+    display: block;
 }
 
 #slide_down {
     position: relative;
     display: inline-block;
+    height: 100%;
+    align-items: center;
 }
 
 #dropdown {
@@ -87,14 +90,20 @@ header {
 }
 
 #dropdown a {
-    display: block;
     margin: 1em;
     border: 0.1em #374599 solid;
+}
+
+#dropbtn {
+    position: relative;
+    margin: 100% 0;
 }
 
 #slide_down:hover #dropdown {
     display: block;
     position: absolute;
+    left: -150px;
+    top: 4.5em;
 }
 
 #Photo_profile {

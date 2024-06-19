@@ -13,15 +13,6 @@
     </div>
     <div id="Pages">
 
-        <span id="slide_down">
-            <img src="../Images/liste.svg" id="dropbtn">
-            <div id="dropdown">
-                <a class="lien_header">Voir Plus</a>
-                <a class="lien_header">Mon compte</a>
-                <a class="lien_header">Paramètres</a>
-            </div>
-        </span>
-
         <span>
             <a class="lien_header" href="accueilNL.php"> SchoolPea+ </a>
         </span>
@@ -37,6 +28,15 @@
         </span>
         <span>
             <a class="lien_header" href="accueilNL.php">Mes Cours</a>
+        </span>
+
+        <span id="slide_down">
+            <img src="../Images/liste.svg" id="dropbtn">
+            <div id="dropdown">
+                <a class="lien_header">Voir Plus</a>
+                <a class="lien_header">Mon compte</a>
+                <a class="lien_header">Paramètres</a>
+            </div>
         </span>
 
         <span style="margin-left: 1.2rem">
