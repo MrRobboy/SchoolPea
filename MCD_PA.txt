@@ -16,6 +16,7 @@ CRÉÉ, 1N< PROFESSEUR, 11> COURS
 COURS : id-cours, nom, niveau, prix
 PARTICIPE, 1N< ELEVES, 1N> CHALLENGES : score
 CHALLENGES : id-challenge, nom, dateD, dateF, desc
+EST ABONNE, 01< ELEVES, 0N> ABONNEMENT
 
 TEST: id-test, nom, niveau
 FABRIQUÉ À PARTIR DE, 11< TEST, 1N> COURS
