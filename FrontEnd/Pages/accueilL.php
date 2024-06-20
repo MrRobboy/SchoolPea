@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 
 <head>
@@ -19,7 +20,7 @@
 
         <span id="Pages">
             <span>
-                <a href="#Explorer_les_cours" class="lien_header">
+                <a href="explorerLesCours.php" class="lien_header">
                     Explorer les cours
                 </a>
             </span>
@@ -56,10 +57,10 @@
             </div>
 
             <div class="but">
-                <a href="connexion.php">
+                <a href="explorerLesCours.php">
                     Trouver un cours
                 </a>
-                <a href="connexion.php">
+                <a href="explorerLesQuizzs.php">
                     Trouver un quizz
                 </a>
             </div>
@@ -113,7 +114,7 @@
 
 
     <span>
-        <a class="voir_plus" href="./connexion.php">
+        <a class="voir_plus" href="explorerLesCours.php">
             Voir plus >
         </a>
     </span>
@@ -161,7 +162,7 @@
         </div>
 
         <span>
-            <a class="voir_plus" href="connexion.php">Voir plus ></a>
+            <a class="voir_plus" href="explorerLesQuizzs.php">Voir plus ></a>
         </span>
     </div>
 
@@ -197,3 +198,4 @@
 </body>
 
 </html>
+
