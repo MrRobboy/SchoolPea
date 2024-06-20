@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Schoolpéa</title>
-    <link rel="stylesheet" type="text/css" href="./FrontEnd/Styles/accueilNL.css" />
+    <link rel="stylesheet" type="text/css" href="../Styles/accueilNL.css" />
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     <header>
         <span id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="./FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_header" src="../Images/SchoolPea.png" alt="Logo" />
             </a>
             <a href="#SchoolPea">SchoolPéa</a>
         </span>
@@ -26,13 +26,13 @@
             </span>
 
             <span>
-                <a href="./connexion.php" class="lien_header">
+                <a href="connexion.php" class="lien_header">
                     Se Connecter
                 </a>
             </span>
 
             <span>
-                <a href="./inscription.php" class="lien_header">
+                <a href="inscription.php" class="lien_header">
                     S'inscrire
                 </a>
             </span>
@@ -53,14 +53,14 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="./FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="../Images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
-                <a href="./connexion.php">
+                <a href="connexion.php">
                     Trouver un cours
                 </a>
-                <a href="./connexion.php">
+                <a href="connexion.php">
                     Trouver un quizz
                 </a>
             </div>
@@ -162,7 +162,7 @@
         </div>
 
         <span>
-            <a class="voir_plus" href="./connexion.php">Voir plus ></a>
+            <a class="voir_plus" href="connexion.php">Voir plus ></a>
         </span>
     </div>
 
