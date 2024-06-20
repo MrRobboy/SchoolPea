@@ -1,22 +1,27 @@
-ELEVES : id-élève, nom, prenom, niveau, mail, elo, mot de passe
-EST MEMBRE,1N> CLASSE, 11< ELEVES
-PROFESSEUR : id-prof, nom, prénom, mail, mot de passe
+USER : id-user, nom, prenom, niveau, mail, elo, mot de passe, #id_classe>CLASSE>id-classe
+PROFESSEUR : id-prof, nom, prénom, mail, mot de passe, #id-école>ECOLE>id-école
 DONNE COURS, 11< PROFESSEUR, 1N> ECOLE
 
-CLASSE : id-classe, type, numéro classe, année
+CLASSE : id-classe, type, numéro classe, année, #id-école>ECOLE>id-école
 APPARTIENT, 1N> ECOLE, 11< CLASSE
-ECOLE : id-école, nom, adresse, directeur, mail, téléphone
-EST DANS, 11< ECOLE, 1N> ORGA
+ECOLE : id-école, nom, adresse, directeur, mail, téléphone, #id-réseau>RESEAU>id-réseau
+EST DANS, 11< ECOLE, 1N> RESEAU
 
-ORGA : id-orga, nom, responsable, téléphone, mail
-ACHETE, 11< ORGA, 1N> ABONNEMENT
+RESEAU : id-réseau, nom, responsable, téléphone, mail, #id-abonnement>ABONNEMENT>id-abonnement
+ACHETE, 11< RESEAU, 1N> ABONNEMENT
 
 ABONNEMENT : id-abonnement, montant, nom, type
 CRÉÉ, 1N< PROFESSEUR, 11> COURS
-COURS : id-cours, nom, niveau, prix
-PARTICIPE, 1N< ELEVES, 1N> CHALLENGES : score
+COURS : id-cours, nom, niveau, #créateur>PROFESSEUR>id-prof, prix
+PARTICIPE, 1N< USER, 1N> CHALLENGES : score, id chall, id user
 CHALLENGES : id-challenge, nom, dateD, dateF, desc
-EST ABONNE, 01< ELEVES, 0N> ABONNEMENT
 
-TEST: id-test, nom, niveau
-FABRIQUÉ À PARTIR DE, 11< TEST, 1N> COURS
+TEST: id-test, nom, niveau, #id-cours> COURS> id-cours
+FABRIQUÉ À PARTIR DE, 1N< TEST, 1N> COURS
+
+CAPTCHA: id, question, reponse1, reponse2, reponse3, reponse4, reponse5
+NEWSLETTER_HISTORY: id, titre, message, envoyeur, destinataire, date_envoi
+Messages: id, message, envoyeur, destinataire, date_envoi
+
+VERIF_CODE: id, code, date_exp, id_user
+LOGS: id, action, user, date
