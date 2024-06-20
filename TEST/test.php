@@ -11,6 +11,7 @@ if ($x == 5) {
 }
 echo 'Fin des conneries';
 $_SESSION['x'] = $x;
+$six_digit_random_number = random_int(100000, 999999); /*Valeur aléatoire à 6 chiffres*/
 ?>
 <br>
 <a href="./SESSION_TEST.php">TEST1212</a>
