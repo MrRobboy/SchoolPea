@@ -12,7 +12,7 @@
     <header>
         <span id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="../Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_header" src="../../Images/SchoolPea.png" alt="Logo" />
             </a>
             <a href="#SchoolPea">SchoolPéa</a>
         </span>
@@ -52,7 +52,7 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="../Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="../../Images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
