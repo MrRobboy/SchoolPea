@@ -36,6 +36,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $badCredentials = true;
     } else {
         echo "Database connection failed.";
+        exit;
     }
+}
+
+if ($badCredentials) {
+    echo "Invalid email or password.";
 }
 ?>
