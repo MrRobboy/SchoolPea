@@ -1,14 +1,10 @@
 <?php
-global $dbh;
 require_once './db.php';
-
-// Initialize the $dbh variable properly
-$dbh = new PDO($dsn, $username, $password);
 
 $badCredentials = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if the password key exists in the $_POST array
+    // Check if the password and email keys exist in the $_POST array
     if (!isset($_POST['password']) || !isset($_POST['email'])) {
         echo "Email or password not set.";
         exit;
