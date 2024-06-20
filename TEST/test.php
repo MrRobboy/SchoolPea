@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $x = 5;
 if ($x == 5) {
     include_once('./headerL.php');
@@ -10,3 +10,7 @@ if ($x == 5) {
     include_once('headerNL.php');
 }
 echo 'Fin des conneries';
+$_SESSION['x'] = $x;
+?>
+<br>
+<a href="./SESSION_TEST.php">TEST1212</a>
