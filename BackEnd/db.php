@@ -1,14 +1,15 @@
 <?php
+// Database configuration
+$dsn = 'mysql:host=localhost;dbname=PA;charset=utf8mb4';
+$username = 'root';
+$password = 'root';
 
-$options = [
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-];
-
+// Create a new PDO instance
 try {
-    $bdd = new PDO("mysql:host=localhost;dbaname=PA", "root", "root");
-    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connexion Reussie<br> ";
+    $dbh = new PDO($dsn, $username, $password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo "Erreur Connexion " . $e->getMessage();
-    die;
+    echo 'Connection failed: ' . $e->getMessage();
+    exit;
 }
+?>
