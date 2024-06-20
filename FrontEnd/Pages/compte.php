@@ -10,7 +10,7 @@
     <header>
         <div id="accueil">
 
-            <img id="logo_header" src="../Images/SchoolPea.png" />
+            <img id="logo_header" src="../../Images/SchoolPea.png" />
             </a>
             <a href="#SchoolPea"> SchoolPéa </a>
         </div>
@@ -33,7 +33,7 @@
             </span>
 
             <span id="slide_down">
-                <img src="../Images/liste.svg" style="width: 32px;">
+                <img src="../../Images/liste.svg" style="width: 32px;">
                 <div>
                     <a>Voir Plus</a>
                     <a>Mon compte</a>
@@ -42,7 +42,7 @@
             </span>
 
             <span style="margin-left: 1.2rem">
-                <img src="../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
+                <img src="../../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
             </span>
         </div>
     </header>
@@ -52,12 +52,12 @@
     <div id="div1">
         <span id="Info_gen">
             <span id="Titre_Info_gen">
-                <img src="../Images/reglage.svg" style="width: 45px;">
+                <img src="../../Images/reglage.svg" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
             </span>
 
             <span id="Modif_Photo">
-                <img src="../Images/Luffy.jpg" id="Photo_profile">
+                <img src="../../Images/Luffy.jpg" id="Photo_profile">
                 <button id="But_Photo">Charger une photo</button>
             </span>
 
@@ -107,7 +107,7 @@
         <div style="padding: 2em;">
             <span style="display: flex; flex-direction: row;">
                 <span>
-                    <img src="../Images/exclamation.svg" id="Exclamation">
+                    <img src="../../Images/exclamation.svg" id="Exclamation">
                 </span>
 
                 <span id="Delete_Acc">

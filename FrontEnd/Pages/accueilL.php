@@ -10,34 +10,7 @@
 
 <body>
 
-    <header>
-        <span id="accueil">
-            <a href="#SchoolPea">
-                <img id="logo_header" src="../Images/SchoolPea.png" alt="Logo" />
-            </a>
-            <a href="#SchoolPea">SchoolPéa</a>
-        </span>
-
-        <span id="Pages">
-            <span>
-                <a href="explorerLesCours.php" class="lien_header">
-                    Explorer les cours
-                </a>
-            </span>
-
-            <span>
-                <a href="connexion.php" class="lien_header">
-                    Se Connecter
-                </a>
-            </span>
-
-            <span>
-                <a href="inscription.php" class="lien_header">
-                    S'inscrire
-                </a>
-            </span>
-        </span>
-    </header>
+<?php include_once('../../BackEnd/Includes/headerL.php'); ?>
 
     <span class="trait" id="SchoolPea"></span>
 
