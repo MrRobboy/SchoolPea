@@ -16,6 +16,6 @@ $CQs = array(
 // shuffle($CQs); /*Sert pour prendre une question au hasard et le met en 1 er (c'est celui qu'on va afficher).*/
 $question = stripslashes($CQs[0][0]); /*Dans les tableaux on a mis à chaque fois la question en premier, donc on prend le premier indice.*/
 
-echo ('<form method="post" style="margin : 5rem auto; justify-content : center; display : flex; font-size: 1.5rem;" action="./Verif_captcha.php" >' . $question);
+echo ('<form method="post" style="margin : 5rem auto; justify-content : center; display : flex; font-size: 1.5rem;" action="Verif_captcha.php" >' . $question);
 echo ('<input name="textCaptchaAnswer" style="margin : 0 0.5rem; font-size : 1.5rem" type="text" required />');
 echo ('<input type="submit" style ="padding: 0 0.5rem; font-size : 1rem;" value="Submit" name="submit"></form>');

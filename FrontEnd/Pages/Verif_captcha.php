@@ -14,9 +14,9 @@ $CQs = array(
 ); /*A retirer une fois connecté à la BDD*/
 
 if (!empty($_POST['submit'])) {
-    if (verify($_POST['textCaptchaAnswer'], $CQs[0])) header('location: ../Accueil/index.html'); /* Plus qu'à connecter avec la bdd, */
-    else header('location: ./Captcha.php');
-} else header('location: ./Captcha.php');
+    if (verify($_POST['textCaptchaAnswer'], $CQs[0])) header('location:compte.php'); /* Plus qu'à connecter avec la bdd, */
+    else header('location: Captcha.php');
+} else header('location: Captcha.php');
 
 function verify($Answer_user, $Tab_Reponses)
 {
