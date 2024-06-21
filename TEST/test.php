@@ -8,7 +8,7 @@ if ($x >= 5) {
     Require force la présence de ce qui est dans le chemin sinon il n'execute pas le code*/
 } else {
     include_once('./test3.php');
-    include_once('headerNL.php');
+    include_once('./headerNL.php');
 }
 echo 'Fin des conneries';
 $_SESSION['x'] = $x;
