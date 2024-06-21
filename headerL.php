@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="./header.css" />
 </head>
 
-<header <?php if ($_SESSION['x'] == 5) echo 'class="admin"' ?>>
+<header>
     <div id="accueil">
         <a href="#SchoolPea">
             <img id="logo_header" src="./Images/SchoolPea.png" />
