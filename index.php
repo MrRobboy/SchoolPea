@@ -11,7 +11,7 @@
 
 <body>
     <?php
-    include_once('./TEST/headerNL.php');
+    include_once('./headerNL.php');
     ?>
 
     <span class="trait" id="SchoolPea"></span>
