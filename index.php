@@ -5,7 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Schoolpéa</title>
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="/FrontEnd/Styles/accueilNL.css" />
+=======
+    <link rel="stylesheet" type="text/css" href="../FrontEnd/Styles/accueilNL.css" />
+>>>>>>> 077255957982f7dc2b9b0c8581c83e5517ad6711
 </head>
 
 <body>
@@ -13,7 +17,11 @@
     <header>
         <span id="accueil">
             <a href="#SchoolPea">
+<<<<<<< HEAD
                 <img id="logo_header" src="/FrontEnd/Images/SchoolPea.png" alt="Logo" />
+=======
+                <img id="logo_header" src="../Images/SchoolPea.png" alt="Logo" />
+>>>>>>> 077255957982f7dc2b9b0c8581c83e5517ad6711
             </a>
             <a href="#SchoolPea">SchoolPéa</a>
         </span>
@@ -26,13 +34,21 @@
             </span>
 
             <span>
+<<<<<<< HEAD
                 <a href="/FrontEnd/Pages/connexion.php" class="lien_header">
+=======
+                <a href="connexion.php" class="lien_header">
+>>>>>>> 077255957982f7dc2b9b0c8581c83e5517ad6711
                     Se Connecter
                 </a>
             </span>
 
             <span>
+<<<<<<< HEAD
                 <a href="/FrontEnd/Pages/inscription.php" class="lien_header">
+=======
+                <a href="inscription.php" class="lien_header">
+>>>>>>> 077255957982f7dc2b9b0c8581c83e5517ad6711
                     S'inscrire
                 </a>
             </span>
@@ -53,6 +69,7 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
+<<<<<<< HEAD
                 <img id="logo_aff" src="/FrontEnd/Images/SchoolPea.png" alt="Logo" />
             </div>
 
@@ -61,6 +78,16 @@
                     Trouver un cours
                 </a>
                 <a href="/FrontEnd/Pages/connexion.php">
+=======
+                <img id="logo_aff" src="../Images/SchoolPea.png" alt="Logo" />
+            </div>
+
+            <div class="but">
+                <a href="connexion.php">
+                    Trouver un cours
+                </a>
+                <a href="connexion.php">
+>>>>>>> 077255957982f7dc2b9b0c8581c83e5517ad6711
                     Trouver un quizz
                 </a>
             </div>
@@ -162,7 +189,7 @@
         </div>
 
         <span>
-            <a class="voir_plus" href="./connexion.php">Voir plus ></a>
+            <a class="voir_plus" href="connexion.php">Voir plus ></a>
         </span>
     </div>
 
