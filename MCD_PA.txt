@@ -1,4 +1,4 @@
-USER : id-user, nom, prenom, niveau, mail, elo, mot de passe, #id_classe>CLASSE>id-classe
+USER : id-user, nom, prenom, niveau, mail, elo, mot de passe, #id_classe>CLASSE>id-classe, admin_bool
 PROFESSEUR : id-prof, nom, prénom, mail, mot de passe, #id-école>ECOLE>id-école
 DONNE COURS, 11< PROFESSEUR, 1N> ECOLE
 
@@ -12,16 +12,18 @@ ACHETE, 11< RESEAU, 1N> ABONNEMENT
 
 ABONNEMENT : id-abonnement, montant, nom, type
 CRÉÉ, 1N< PROFESSEUR, 11> COURS
-COURS : id-cours, nom, niveau, #créateur>PROFESSEUR>id-prof, prix
+COURS : id-cours, nom, niveau, #créateur>PROFESSEUR>id-prof, prix, path_contenu, path_image_pres
 PARTICIPE, 1N< USER, 1N> CHALLENGES : score, id chall, id user
 CHALLENGES : id-challenge, nom, dateD, dateF, desc
 
-TEST: id-test, nom, niveau, #id-cours> COURS> id-cours
-FABRIQUÉ À PARTIR DE, 1N< TEST, 1N> COURS
+QUIZZ: id-quizz, nom, niveau, #id-cours> COURS> id-cours, path_img_pres, path_content
+FABRIQUÉ À PARTIR DE, 11< QUIZZ, 0N> COURS
 
-CAPTCHA: id, question, reponse1, reponse2, reponse3, reponse4, reponse5
-NEWSLETTER_HISTORY: id, titre, message, envoyeur, destinataire, date_envoi
-Messages: id, message, envoyeur, destinataire, date_envoi
+CAPTCHA: id, question, reponse1, reponse2, reponse3, reponse4, reponse5 
+NEWSLETTER_HISTORY: id, titre, message, envoyeur, destinataire, date_envoi, #envoyeur>USER>id-user
+MESSAGES, 0N< USER, 0N> USER : id_message, message, date_envoi
 
-VERIF_CODE: id, code, date_exp, id_user
-LOGS: id, action, user, date
+VERIF_CODE: id, code, date_exp, #user>USER>id-user
+LOGS: id, action, #user>USER>id-user, date
+TICKET: id_ticket, message, titre, type, #id_admin>USER>id-user, date
+FAIRE, 0N< USER, 11> TICKET
