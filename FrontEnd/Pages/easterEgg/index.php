@@ -29,6 +29,6 @@
         <h1>Pong</h1>
         <canvas></canvas>
         <p>Tu es le joueur de gauche ! Utilise les Flèches HAUT et BAS pour bouger !</p>
-        <script src="./script"></script>
+        <script src="./script.js"></script>
     </body>
 </html>
