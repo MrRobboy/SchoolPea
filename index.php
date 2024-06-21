@@ -13,7 +13,7 @@
     <header>
         <span id="accueil">
             <a href="#SchoolPea">
-                <img id="logo_header" src="/FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_header" src="./Images/SchoolPea.png" alt="Logo" />
             </a>
             <a href="#SchoolPea">SchoolPéa</a>
         </span>
@@ -26,7 +26,7 @@
             </span>
 
             <span>
-                <a href="/FrontEnd/Pages/connexion.php" class="lien_header">
+                <a href="./Connexion/connexion.php" class="lien_header">
                     Se Connecter
                 </a>
             </span>
@@ -53,7 +53,7 @@
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="/FrontEnd/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="./Images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
@@ -80,34 +80,34 @@
         </span>
         <div class="fenetre">
             <?php
-            $options = [
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ];
+            // $options = [
+            //     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+            // ];
 
-            try {
-                $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
-                $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // try {
+            //     $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
+            //     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                // Récupération des cours depuis la base de données
-                $sql = "SELECT * FROM cours";
-                $stmt = $bdd->query($sql);
+            //     // Récupération des cours depuis la base de données
+            //     $sql = "SELECT * FROM cours";
+            //     $stmt = $bdd->query($sql);
 
-                $counter = 0;
-                while ($row = $stmt->fetch()) {
-                    if ($counter % 4 == 0 && $counter != 0) {
-                        echo "</div><div class='fenetre'>";
-                    }
-                    echo "<span id='fen" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
-                    $counter++;
-                }
+            //     $counter = 0;
+            //     while ($row = $stmt->fetch()) {
+            //         if ($counter % 4 == 0 && $counter != 0) {
+            //             echo "</div><div class='fenetre'>";
+            //         }
+            //         echo "<span id='fen" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
+            //         $counter++;
+            //     }
 
-                if ($counter == 0) {
-                    echo "<span>Aucun cours trouvé.</span>";
-                }
-            } catch (PDOException $e) {
-                echo "Erreur Connexion : " . $e->getMessage();
-                die;
-            }
+            //     if ($counter == 0) {
+            //         echo "<span>Aucun cours trouvé.</span>";
+            //     }
+            // } catch (PDOException $e) {
+            //     echo "Erreur Connexion : " . $e->getMessage();
+            //     die;
+            // }
             ?>
         </div>
     </div>
@@ -129,34 +129,34 @@
         <div id="div_quizz">
             <div class="fenetre">
                 <?php
-                $options = [
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-                ];
+                // $options = [
+                //     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                // ];
 
-                try {
-                    $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
-                    $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                // try {
+                //     $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
+                //     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                    // Récupération des quizz depuis la base de données
-                    $sql = "SELECT * FROM quizz";
-                    $stmt = $bdd->query($sql);
+                //     // Récupération des quizz depuis la base de données
+                //     $sql = "SELECT * FROM quizz";
+                //     $stmt = $bdd->query($sql);
 
-                    $counter = 0;
-                    while ($row = $stmt->fetch()) {
-                        if ($counter % 4 == 0 && $counter != 0) {
-                            echo "</div><div class='fenetre'>";
-                        }
-                        echo "<span id='quizz_" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
-                        $counter++;
-                    }
+                //     $counter = 0;
+                //     while ($row = $stmt->fetch()) {
+                //         if ($counter % 4 == 0 && $counter != 0) {
+                //             echo "</div><div class='fenetre'>";
+                //         }
+                //         echo "<span id='quizz_" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
+                //         $counter++;
+                //     }
 
-                    if ($counter == 0) {
-                        echo "<span>Aucun quizz trouvé.</span>";
-                    }
-                } catch (PDOException $e) {
-                    echo "Erreur Connexion : " . $e->getMessage();
-                    die;
-                }
+                //     if ($counter == 0) {
+                //         echo "<span>Aucun quizz trouvé.</span>";
+                //     }
+                // } catch (PDOException $e) {
+                //     echo "Erreur Connexion : " . $e->getMessage();
+                //     die;
+                // }
                 ?>
             </div>
         </div>
