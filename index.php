@@ -5,39 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Schoolpéa</title>
-    <link rel="stylesheet" type="text/css" href="/FrontEnd/Styles/accueilNL.css" />
+    <link rel="stylesheet" type="text/css" href="./TEST/header.css" />
+    <link rel="stylesheet" type="text/css" href="./FrontEnd/Styles/accueilNL.css">
 </head>
 
 <body>
-
-    <header>
-        <span id="accueil">
-            <a href="#SchoolPea">
-                <img id="logo_header" src="./Images/SchoolPea.png" alt="Logo" />
-            </a>
-            <a href="#SchoolPea">SchoolPéa</a>
-        </span>
-
-        <span id="Pages">
-            <span>
-                <a href="#Explorer_les_cours" class="lien_header">
-                    Explorer les cours
-                </a>
-            </span>
-
-            <span>
-                <a href="./Connexion/connexion.php" class="lien_header">
-                    Se Connecter
-                </a>
-            </span>
-
-            <span>
-                <a href="/FrontEnd/Pages/inscription.php" class="lien_header">
-                    S'inscrire
-                </a>
-            </span>
-        </span>
-    </header>
+    <?php
+    include_once('./TEST/headerNL.php');
+    ?>
 
     <span class="trait" id="SchoolPea"></span>
 
@@ -118,7 +93,6 @@
             Voir plus >
         </a>
     </span>
-    </div>
 
     <span class="trait" id="2"></span>
 
@@ -194,7 +168,6 @@
             </span>
         </div>
     </footer>
-
 </body>
 
 </html>
