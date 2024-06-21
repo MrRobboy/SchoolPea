@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['start'] = time();
 $x = 4;
 if ($x == 5) {
     include_once('./headerL.php');
