@@ -17,6 +17,10 @@ header {
     background-color: #ffffff;
 }
 
+header.admin {
+    box-shadow: 0 0.5em 0.5em rgb(55, 156, 68);
+}
+
 #accueil {
     /*header -> accueil*/
     margin: 0 1em;
@@ -112,6 +116,7 @@ header {
     object-fit: cover;
     border-radius: 50%;
     margin: 0 1em;
+<<<<<<< HEAD
 }
 
 #slide_down {
@@ -147,3 +152,6 @@ header {
     border-radius: 50%;
     margin: 1em;
 }
+=======
+}
+>>>>>>> 26d77c8ccefe8d8b1b5406b7420c4f09ece3d093
