@@ -7,7 +7,7 @@
 <header>
     <div id="accueil">
         <a href="#SchoolPea">
-            <img id="logo_header" src="./Images/SchoolPea.png" />
+            <img id="logo_header" src="SchoolPea/Images/SchoolPea.png" />
         </a>
         <a href="#SchoolPea"> SchoolPéa </a>
     </div>
@@ -34,7 +34,7 @@
         </span>
 
         <span id="slide_down">
-            <img src="../Images/liste.svg" id="dropbtn">
+            <img src="./Images/liste.svg" id="dropbtn">
             <div id="dropdown">
                 <a class="lien_header">Voir Plus</a>
                 <a class="lien_header">Mon compte</a>
