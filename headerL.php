@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
@@ -11,7 +7,7 @@ session_start();
 <header <?php if ($_SESSION['x'] == 5) echo 'class="admin"' ?>>
     <div id="accueil">
         <a href="#SchoolPea">
-            <img id="logo_header" src="../Images/SchoolPea.png" />
+            <img id="logo_header" src="./Images/SchoolPea.png" />
         </a>
         <a href="#SchoolPea"> SchoolPéa </a>
     </div>
@@ -47,7 +43,7 @@ session_start();
         </span>
 
         <span style="margin-left: 1.2rem">
-            <img src="../Images/Luffy.jpg" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+            <img src="./Images/Luffy.jpg" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
         </span>
     </div>
 </header>
