@@ -95,7 +95,7 @@ session_start();
 
 
     <span>
-        <a class="voir_plus" href="./connexion.php">
+        <a class="voir_plus" href="./Connexion/connexion.php">
             Voir plus >
         </a>
     </span>
@@ -142,7 +142,7 @@ session_start();
         </div>
 
         <span>
-            <a class="voir_plus" href="connexion.php">Voir plus ></a>
+            <a class="voir_plus" href="./Connexion/connexion.php">Voir plus ></a>
         </span>
     </div>
 
