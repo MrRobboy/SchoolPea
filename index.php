@@ -15,9 +15,9 @@ session_start();
 <body>
     <?php
     if (isset($_SESSION['id'])) {
-        include_once('./headerL.php');
+        include_once('https://schoolpea.com/headerL.php');
     } else {
-        include_once('./headerNL.php');
+        include_once('https://schoolpea.com/headerNL.php');
     }
     ?>
 
@@ -35,14 +35,14 @@ session_start();
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="https://schoolpea.com/Images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
-                <a href="/FrontEnd/Pages/connexion.php">
+                <a href="https://schoolpea.com/Cours/">
                     Trouver un cours
                 </a>
-                <a href="/FrontEnd/Pages/connexion.php">
+                <a href="https://schoolpea.com/Quizzs/">
                     Trouver un quizz
                 </a>
             </div>
@@ -96,7 +96,7 @@ session_start();
 
 
     <span>
-        <a class="voir_plus" href="./Connexion/connexion.php">
+        <a class="voir_plus" href="https://schoolpea.com/Connexion/">
             Voir plus >
         </a>
     </span>
@@ -143,7 +143,7 @@ session_start();
         </div>
 
         <span>
-            <a class="voir_plus" href="./Connexion/connexion.php">Voir plus ></a>
+            <a class="voir_plus" href="https://schoolpea.com/Connexion/">Voir plus ></a>
         </span>
     </div>
 

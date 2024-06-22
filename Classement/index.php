@@ -6,25 +6,18 @@ session_start();
 <html lang="fr">
 
 <head>
-<<<<<<< HEAD
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <title>Classement</title>
-	<link rel="stylesheet" type="text/css" href="./classement.css" />
-=======
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 	<title>Classement</title>
-	<link rel="stylesheet" type="text/css" href="SchoolPea/Classement/classement.css" />
->>>>>>> ff5b0c5083d15611508dae6b47321db0f78dd6d3
+	<link rel="stylesheet" type="text/css" href="./classement.css" />
 </head>
 
 <body>
 	<?php
 	if (isset($_SESSION['id'])) {
-		include_once('./headerL.php');
+		include_once('https://schoolpea.com/headerL.php');
 	} else {
-		include_once('./headerNL.php');
+		include_once('https://schoolpea.com/headerNL.php');
 	}
 	?>
 

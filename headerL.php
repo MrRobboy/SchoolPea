@@ -1,36 +1,40 @@
+<?php
+session_start();
+?>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./header.css" />
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
 </head>
 
 <header>
     <div id="accueil">
         <a href="#SchoolPea">
-            <img id="logo_header" src="./Images/SchoolPea.png" />
+            <img id="logo_header" src="https://schoolpea.com/Images/SchoolPea.png" />
         </a>
         <a href="#SchoolPea"> SchoolPéa </a>
     </div>
-    <div id="Pages">
 
+    <div id="Pages">
         <span>
-            <a class="lien_header" href="./SchoolPea+/index.php"> SchoolPea+ </a>
+            <a class="lien_header" href="https://schoolpea.com/SchoolPea+/"> SchoolPea+ </a>
         </span>
 
         <span>
-            <a class="lien_header" href="./Quizzs/index.php">
+            <a class="lien_header" href="https://schoolpea.com/Quizzs/">
                 Explorer les Quizzs
             </a>
         </span>
 
         <span>
-            <a class="lien_header" href="./Cours/index.php">
+            <a class="lien_header" href="https://schoolpea.com/Cours/">
                 Explorer les Cours
             </a>
         </span>
 
         <span id="slide_down">
-            <img src="./Images/liste.svg" id="dropbtn">
+            <img src="https://schoolpea.com/Images/liste.svg" id="dropbtn">
             <div id="dropdown">
                 <a class="lien_header">Voir Plus</a>
                 <a class="lien_header">Mon compte</a>
@@ -39,7 +43,7 @@
         </span>
 
         <span style="margin-left: 1.2rem">
-            <img src="./Images/Luffy.jpg" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+            <img src="https://schoolpea.com/Images/Luffy.jpg" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
         </span>
     </div>
 </header>
