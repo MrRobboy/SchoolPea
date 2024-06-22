@@ -1,7 +1,3 @@
-<?php
-/*Changer le header selon s'il est connecté ou non. Afficher le classement en utilisant les données dans la BDD. (Créer des profils fake pour tester !)*/
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -14,11 +10,14 @@ session_start();
 
 <body>
 	<?php
+	session_start();
+	$path = $_SERVER['DOCUMENT_ROOT'];
 	if (isset($_SESSION['id'])) {
-		include_once('https://schoolpea.com/headerL.php');
+		$path .= '/headerL.php';
 	} else {
-		include_once('https://schoolpea.com/headerNL.php');
+		$path .= '/headerNL.php';
 	}
+	include_once($path);
 	?>
 
 	<span class="trait" id="SchoolPea"></span>
