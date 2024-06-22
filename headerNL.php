@@ -7,26 +7,26 @@
 <header>
     <span id="accueil">
         <a href="#SchoolPea">
-            <img id="logo_header" src="../Images/Schoolpea.png" alt="Logo" />
+            <img id="logo_header" src="./Images/Schoolpea.png" alt="Logo" />
         </a>
         <a href="#SchoolPea">SchoolPéa</a>
     </span>
 
     <span id="Pages">
         <span>
-            <a href="#Explorer_les_cours" class="lien_header">
+            <a href="./SchoolPea+/" class="lien_header">
                 SchoolPea+
             </a>
         </span>
 
         <span>
-            <a href="../Classement/index.php" class="lien_header">
+            <a href="./Classement/index.php" class="lien_header">
                 Classement
             </a>
         </span>
 
         <span>
-            <a href="../Connexion/connexion.php" class="lien_header">
+            <a href="./Connexion/connexion.php" class="lien_header">
                 Se connecter
             </a>
         </span>

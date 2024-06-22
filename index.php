@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <!-- Changer le header selon s'il est connecté et mettre un accès au back-office s'il est admin! -->
 
@@ -5,13 +8,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Schoolpéa</title>
-    <link rel="stylesheet" type="text/css" href="./header.css" />
     <link rel="stylesheet" type="text/css" href="./FrontEnd/Styles/accueilNL.css">
 </head>
 
 <body>
     <?php
-    include_once('./headerL.php');
+    if (isset($_SESSION['id'])) {
+        include_once('./headerL.php');
+    } else {
+        include_once('./headerNL.php');
+    }
     ?>
 
     <span class="trait" id="SchoolPea"></span>
