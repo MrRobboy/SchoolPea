@@ -11,26 +11,22 @@
         </a>
         <a href="#SchoolPea"> SchoolPéa </a>
     </div>
-    <div id="Pages">
 
+    <div id="Pages">
         <span>
-            <a class="lien_header" href="accueilNL.php"> SchoolPea+ </a>
+            <a class="lien_header" href="../SchoolPea+/index.php"> SchoolPea+ </a>
         </span>
 
         <span>
-            <a class="lien_header" href="accueilNL.php">
+            <a class="lien_header" href="../Quizzs/index.php">
                 Explorer les Quizzs
             </a>
         </span>
 
         <span>
-            <a class="lien_header" href="accueilNL.php">
+            <a class="lien_header" href="../Cours/index.php">
                 Explorer les Cours
             </a>
-        </span>
-
-        <span>
-            <a class="lien_header" href="accueilNL.php">Mes Cours</a>
         </span>
 
         <span id="slide_down">

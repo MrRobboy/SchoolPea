@@ -7,7 +7,7 @@
 <header>
     <span id="accueil">
         <a href="#SchoolPea">
-            <img id="logo_header" src="../Images/SchoolPea.png" alt="Logo" />
+            <img id="logo_header" src="./Images/SchoolPea.png" alt="Logo" />
         </a>
         <a href="#SchoolPea">SchoolPéa</a>
     </span>
