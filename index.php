@@ -33,6 +33,7 @@ session_start();
                     <h6 style="font-weight: 500; font-size: 18px">
                         Jouons pour apprendre,<br />
                         Gagnons pour réussir !
+                        <?php echo ($_SERVER['DOCUMENT_ROOT']); ?>
                     </h6>
                 </span>
                 <img id="logo_aff" src="https://schoolpea.com/Images/SchoolPea.png" alt="Logo" />
