@@ -25,18 +25,11 @@ session_start();
         <span class="trait" id="SchoolPea"></span>
 
         <div id="classement">
-                <h1 style="padding: 2.5rem 0; font-weight: bolder; font-size: 40px">
-                        Classement Général !
-                </h1>
+                <h1 style="padding: 2.5rem 0; font-weight: bolder; font-size: 40px">Classement Général !</h1>
                 <table>
                         <thead>
                                 <tr>
-                                        <th style="
-                                padding: 0 0.5rem;
-                                border-right-color: white;
-                            ">
-                                                Rang
-                                        </th>
+                                        <th style="padding: 0 0.5rem; border-right-color: white;">Rang</th>
                                         <th style="padding: 0 7rem">Nom</th>
                                         <th style="padding: 0 5rem">Prenom</th>
                                         <th style="padding: 0 3rem">Elo</th>
@@ -45,11 +38,7 @@ session_start();
                                 </tr>
                         </thead>
                         <tbody>
-                                <tr style="
-                            font-size: 20px;
-                            font-weight: 700;
-                            text-transform: uppercase;
-                        ">
+                                <tr style="font-size: 20px;font-weight: 700;text-transform: uppercase;">
                                         <td style="border-left: none; padding: 1rem">#1</td>
                                         <td colspan="2">Salut</td>
                                         <td colspan="2">Coucou</td>
