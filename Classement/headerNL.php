@@ -1,13 +1,13 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="./header.css" />
+    <link rel="stylesheet" type="text/css" href="Classement/header.css" />
 </head>
 
 <header>
     <span id="accueil">
         <a href="#SchoolPea">
-            <img id="logo_header" src="../Images/SchoolPea.png" alt="Logo" />
+            <img id="logo_header" src="/Images/SchoolPea.png" alt="Logo" />
         </a>
         <a href="#SchoolPea">SchoolPéa</a>
     </span>

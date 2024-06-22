@@ -34,7 +34,7 @@ session_start();
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="./Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="/Images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
@@ -57,7 +57,7 @@ session_start();
 
     <div id="Cours_section">
         <span>
-            <p id="titre_cours">Une large sélection de Cours</p>
+            <p id="titre_cours">Nos Cours les plus populaires</p>
         </span>
         <div class="fenetre">
             <?php
@@ -104,7 +104,7 @@ session_start();
 
     <div id="Quizz_section">
         <span>
-            <p id="titre_quizz">Autant de Cours que de Quizzs !</p>
+            <p id="titre_quizz">Nos Quizzs les plus sollicités !</p>
         </span>
         <div id="div_quizz">
             <div class="fenetre">
