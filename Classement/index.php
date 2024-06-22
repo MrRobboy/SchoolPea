@@ -16,9 +16,9 @@ session_start();
 <body>
         <?php
         if (isset($_SESSION['id'])) {
-                include_once('../headerL.php');
+                include_once('./headerL.php');
         } else {
-                include_once('../headerNL.php');
+                include_once('./headerNL.php');
         }
         ?>
 
