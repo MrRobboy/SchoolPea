@@ -2,13 +2,14 @@
 session_start();
 ?>
 <!DOCTYPE html>
+<html lang="fr">
 <!-- Changer le header selon s'il est connecté et mettre un accès au back-office s'il est admin! -->
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Schoolpéa</title>
-    <link rel="stylesheet" type="text/css" href="./FrontEnd/Styles/accueilNL.css">
+    <link rel="stylesheet" type="text/css" href="SchoolPea/style.css">
 </head>
 
 <body>
