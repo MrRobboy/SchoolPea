@@ -14,11 +14,13 @@ session_start();
 
 <body>
     <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
     if (isset($_SESSION['id'])) {
-        include_once('https://schoolpea.com/headerL.php');
+        $path .= '/headerL.php';
     } else {
-        include_once('https://schoolpea.com/headerNL.php');
+        $path .= '/headerNL.php';
     }
+    include_once($path);
     ?>
 
     <span class="trait" id="SchoolPea"></span>
@@ -33,7 +35,6 @@ session_start();
                     <h6 style="font-weight: 500; font-size: 18px">
                         Jouons pour apprendre,<br />
                         Gagnons pour réussir !
-                        <?php echo ($_SERVER['DOCUMENT_ROOT']); ?>
                     </h6>
                 </span>
                 <img id="logo_aff" src="https://schoolpea.com/Images/SchoolPea.png" alt="Logo" />
