@@ -34,7 +34,7 @@ session_start();
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="./Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" src="/Images/SchoolPea.png" alt="Logo" />
             </div>
 
             <div class="but">
