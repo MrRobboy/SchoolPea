@@ -7,14 +7,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = $_POST['nom'];
     $niveau = $_POST['niveau'];
     $prix = $_POST['prix'];
-    
+
     // Récupération de l'ID du créateur (professeur) à partir de la session
     if (!isset($_SESSION['id_utilisateur'])) {
         echo "Erreur: Impossible de récupérer l'ID du professeur depuis la session.";
         exit;
     }
     $createur = $_SESSION['id_utilisateur']; // Utilisation directe de l'ID du professeur depuis la session
-    
+
     // Gestion de l'upload de l'image
     $uploadDir = 'uploads/images/';
     $uploadFile = $uploadDir . basename($_FILES['courseImage']['name']);
