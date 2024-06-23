@@ -56,6 +56,7 @@ session_start();
                 <a class="lien_header" href="https://schoolpea.com/Tickets/">Tickets</a>
                 <a class="lien_header" href="https://schoolpea.com/">Front Office</a>
                 <a class="lien_header" href="https://schoolpea.com/Compte/">Paramètres</a>
+                <a class="lien_header" href="https://schoolpea.com/Compte/">Déconnexion</a>
             </div>
         </span>
 
