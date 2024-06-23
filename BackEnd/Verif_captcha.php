@@ -21,4 +21,5 @@ if (!empty($_POST['submit'])) {
         $_SESSION['erreur'] = 'erreur';
         header('location: captcha.php');
     }
-} else header('location: captcha.php');
+} 
+// else header('location: captcha.php');
