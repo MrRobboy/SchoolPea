@@ -1,14 +1,19 @@
-/* Reset de base */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Styles généraux */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: "Montserrat", sans-serif;
 }
 
 header {
@@ -28,7 +33,8 @@ main {
 }
 
 h1,
-h2 {
+h2,
+h3 {
     margin-bottom: 10px;
 }
 
@@ -94,4 +100,23 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #555;
+}
+
+/* Animation pour l'élément .elo-modification */
+.elo-modification {
+    animation: elo-change 2s linear;
+}
+
+@keyframes elo-change {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
 }
