@@ -16,11 +16,11 @@
             <form id="courseForm" action="ajout_cours.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="courseName">Nom du Cours :</label>
-                    <input type="text" id="courseName" name="nom" required>
+                    <input type="text" id="courseName" name="nom" class="preview-field" required>
                 </div>
                 <div class="form-group">
                     <label for="courseLevel">Niveau :</label>
-                    <select id="courseLevel" name="niveau" required>
+                    <select id="courseLevel" name="niveau" class="preview-field" required>
                         <option value="Débutant">Débutant</option>
                         <option value="Intermédiaire">Intermédiaire</option>
                         <option value="Avancé">Avancé</option>
@@ -28,19 +28,20 @@
                 </div>
                 <div class="form-group">
                     <label for="coursePrice">Prix :</label>
-                    <input type="number" id="coursePrice" name="prix" required>
+                    <input type="number" id="coursePrice" name="prix" class="preview-field" required>
                 </div>
                 <div class="form-group">
                     <label for="courseCreator">Créateur :</label>
-                    <input type="text" id="courseCreator" name="createur" required>
+                    <input type="text" id="courseCreator" name="createur" class="preview-field" required>
                 </div>
                 <div class="sections" id="sections">
                     <div class="form-group">
                         <h3>Section 1</h3>
                         <label for="sectionTitle1">Titre :</label>
-                        <input type="text" id="sectionTitle1" name="sectionTitle[]" required>
+                        <input type="text" id="sectionTitle1" name="sectionTitle[]" class="preview-field" required>
                         <label for="sectionContent1">Contenu :</label>
-                        <textarea id="sectionContent1" name="sectionContent[]" rows="4" required></textarea>
+                        <textarea id="sectionContent1" name="sectionContent[]" rows="4" class="preview-field"
+                            required></textarea>
                     </div>
                 </div>
                 <button type="button" onclick="addSection()">Ajouter une Section</button>
