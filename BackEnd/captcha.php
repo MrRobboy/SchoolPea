@@ -1,6 +1,7 @@
 <?php
 session_start();
 echo $_SESSION['email'];
+echo $_SESSION['erreur'];
 if (isset($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
     include('./erreur.js');
 }
