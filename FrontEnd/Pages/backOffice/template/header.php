@@ -14,13 +14,53 @@ session_start();
     <header>
         <nav>
             <ul>
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="users/index.php">Utilisateurs</a></li>
-                <li><a href="content/index.php">Contenu</a></li>
-                <li><a href="logs/index.php">Logs</a></li>
                 <li><a href="roles/index.php">Rôles</a></li>
                 <li><a href="logout.php">Déconnexion</a></li>
             </ul>
         </nav>
     </header>
-    <main>
+</body>
+
+<header class="admin">
+    <div id="accueil">
+        <a href="#SchoolPea">
+            <img id="logo_header" src="https://schoolpea.com/Images/SchoolPea.png" />
+        </a>
+        <a href="#SchoolPea"> SchoolPéa </a>
+    </div>
+
+    <div id="Pages">
+        <span>
+            <a class="lien_header" href="Utilisateurs.php"> Utilisateurs</a>
+        </span>
+
+        <span>
+            <a class="lien_header" href="Logs.php">Logs</a>
+        </span>
+
+        <span>
+            <a class="lien_header" href="Captcha">Captcha</a>
+        </span>
+
+        <span>
+            <a class="lien_header" href="Captcha">Paramètres</a>
+        </span>
+
+        <span>
+            <a class="lien_header" href="https://schoolpea.com/">Front Office</a>
+        </span>
+
+        <span id="slide_down">
+            <img src="https://schoolpea.com/Images/listeA.svg" id="dropbtn">
+            <div id="dropdown">
+                <a class="lien_header" href="https://schoolpea.com/Tickets/">Tickets</a>
+                <a class="lien_header" href="https://schoolpea.com/">Front Office</a>
+                <a class="lien_header" href="https://schoolpea.com/Compte/">Paramètres</a>
+            </div>
+        </span>
+
+        <span style="margin-left: 1.2rem">
+            <img src="<?php echo ($_SERVER['DOCUMENT_ROOT'] . $_SESSION['pp_path']); ?>" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+        </span>
+    </div>
+</header>
