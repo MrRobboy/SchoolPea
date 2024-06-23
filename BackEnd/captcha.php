@@ -1,7 +1,7 @@
 <?php
 session_start();
 echo $_SESSION['email'];
-if (!empty($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
+if (!isset($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
     echo '<script>alert("Mauvaise réponse")</script>';
 }
 include('db.php');
@@ -10,7 +10,6 @@ $questions = $request->fetchAll();
 $request = $dbh->query('SELECT count(id) FROM CAPTCHA;');
 $max = $request->fetchAll();
 $x = random_int(0, $max[0][0] - 1);
-echo ('question n°: ' . $x);
 $_SESSION['x'] = $x;
 $question = $questions[$x]['question'];
 
