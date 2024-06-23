@@ -44,8 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Exemple de connexion à la base de données (à adapter selon votre configuration)
         $servername = "localhost";
         $username = "root";
-        $password = "mot_de_passe";
-        $dbname = "nom_de_la_base_de_donnees";
+        $password = "root";
+        $dbname = "PA";
 
         try {
             $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
