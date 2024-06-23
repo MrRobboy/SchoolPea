@@ -1,5 +1,4 @@
 <?php
-// Database configuration
 $dsn = 'mysql:host=localhost;dbname=PA;charset=utf8mb4';
 $username = 'root';
 $password = 'root';
@@ -12,4 +11,3 @@ try {
     echo 'Connection failed: ' . $e->getMessage();
     exit;
 }
-?>
