@@ -14,11 +14,33 @@
         <h1>Créer un Nouveau Cours</h1>
         <div class="form-preview-wrapper">
             <form id="courseForm" action="ajoutCours.php" method="POST" enctype="multipart/form-data">
-                <!-- Vos champs de formulaire ici -->
+                <label for="courseTitle">Titre du Cours:</label>
+                <input type="text" id="courseTitle" name="courseTitle" required>
+
+                <label for="courseDescription">Description:</label>
+                <textarea id="courseDescription" name="courseDescription" required></textarea>
+
+                <label for="courseInstructor">Instructeur:</label>
+                <input type="text" id="courseInstructor" name="courseInstructor" required>
+
+                <label for="courseImage">Image du Cours:</label>
+                <input type="file" id="courseImage" name="courseImage" accept="image/*" required>
+
+                <label for="courseDate">Date de Début:</label>
+                <input type="date" id="courseDate" name="courseDate" required>
+
+                <button type="submit">Créer le Cours</button>
             </form>
             <div id="coursePreview" class="preview">
                 <h2>Prévisualisation du Cours</h2>
-                <div id="previewContent"></div>
+                <div id="previewContent">
+                    <p><strong>Titre:</strong> <span id="previewTitle"></span></p>
+                    <p><strong>Description:</strong> <span id="previewDescription"></span></p>
+                    <p><strong>Instructeur:</strong> <span id="previewInstructor"></span></p>
+                    <p><strong>Date de Début:</strong> <span id="previewDate"></span></p>
+                    <div><strong>Image:</strong> <img id="previewImage" src=""
+                            alt="Prévisualisation de l'image du cours" style="display:none;" /></div>
+                </div>
             </div>
         </div>
     </div>
