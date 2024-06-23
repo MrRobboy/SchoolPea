@@ -2,6 +2,10 @@
 session_start();
 include('db.php');
 unset($_SESSION['erreur']);
+unset($_SESSION['x']);
+unset($_SESSION['email']);
+unset($_SESSION['mail_envoyee']);
+unset($_SESSION['verif']);
 /*
 $error = false;
 $passwordError = false;
