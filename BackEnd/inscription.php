@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('db.php');
+unset($_SESSION['erreur']);
 /*
 $error = false;
 $passwordError = false;

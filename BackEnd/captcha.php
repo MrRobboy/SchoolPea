@@ -1,15 +1,15 @@
 <?php
 session_start();
 echo $_SESSION['email'];
-if (isset($_POST['erreur']) && $_POST['erreur'] == 'erreur') {
-    echo '<script>alert("Mauvaise réponse");</script>';
+if (!empty($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
+    echo '<script>alert("Mauvaise réponse")</script>';
 }
 include('db.php');
 $request = $dbh->query('SELECT question FROM CAPTCHA;');
 $questions = $request->fetchAll();
 $request = $dbh->query('SELECT count(id) FROM CAPTCHA;');
 $max = $request->fetchAll();
-$x = random_int(1, $max[0][0]);
+$x = random_int(0, $max[0][0] - 1);
 $_SESSION['x'] = $x;
 $question = $questions[$x]['question'];
 
