@@ -44,23 +44,23 @@ if (isset($_POST['submit_inscription'])) {
     $emails = $queryVerification->fetchAll();
     echo ($emails[0][0]);
 
-    // if (in_array($email, $emails)) {
-    //     $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
+    if ($email != $emails[0][0]) {
+        $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
-    //     $queryStatement->bindvalue(':firstname', $firstname);
-    //     $queryStatement->bindvalue(':lastname', $lastname);
-    //     $queryStatement->bindvalue(':email', $email);
-    //     $queryStatement->bindvalue(':password', $passwordHash);
+        $queryStatement->bindvalue(':firstname', $firstname);
+        $queryStatement->bindvalue(':lastname', $lastname);
+        $queryStatement->bindvalue(':email', $email);
+        $queryStatement->bindvalue(':password', $passwordHash);
 
-    //     $result = $queryStatement->execute();
-    // } else {
-    //     echo 'ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
-    // }
+        $result = $queryStatement->execute();
+    } else {
+        echo 'ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
+    }
 
-    // if (isset($result) && !$result) {
-    //     echo "<br><br>ECHEC INJECTION";
-    // } else {
-    //     $_SESSION['email'] = $_POST['email_inscription'];
-    //     header('Location: ./captcha.php');
-    // }
+    if (!$result) {
+        echo "<br><br>ECHEC INJECTION";
+    } else {
+        $_SESSION['email'] = $_POST['email_inscription'];
+        header('Location: ./captcha.php');
+    }
 }
