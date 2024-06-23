@@ -40,7 +40,7 @@ if (isset($_POST['submit_inscription'])) {
     $password = htmlspecialchars($_POST['password_inscription']);
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $queryVerification = $dbh->query('SELECT * FROM USER where email=' . $email . ';');
+    $queryVerification = $dbh->query('USE PA; SELECT * FROM USER where email=' . $email . ';');
     $queryVerification->bindvalue(':email', $email);
     $emails = $queryVerification->fetchAll();
     echo '<pre>';
@@ -48,7 +48,7 @@ if (isset($_POST['submit_inscription'])) {
     echo '</pre>';
 
     // if (in_array($email, $emails)) {
-    //     $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
+    //     $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
     //     $queryStatement->bindvalue(':firstname', $firstname);
     //     $queryStatement->bindvalue(':lastname', $lastname);
