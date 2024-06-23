@@ -1,4 +1,3 @@
-
 <?php
 $dsn = 'mysql:host=localhost;dbname=PA;charset=utf8mb4';
 $username = 'root';
@@ -14,10 +13,10 @@ try {
     exit;
 }
 
-
 // Requête SQL pour récupérer le classement des utilisateurs par Elo et moyenne
-$sql = "SELECT Nom, Prenom, Elo, Moyenne FROM USER ORDER BY Elo DESC, Moyenne DESC";
-$result = $conn->query($sql);
+$sql = "SELECT firstname AS Nom, lastname AS Prenom, elo AS Elo, 0 AS Moyenne FROM USER ORDER BY elo DESC";
+$result = $dbh->query($sql);
+
 ?>
 
 <!DOCTYPE html>
@@ -29,21 +28,19 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-		<?php
-	session_start();
-	$path = $_SERVER['DOCUMENT_ROOT'];
-	if (isset($_SESSION['id'])) {
-		if ($_SESSION['admin'])
-			$path .= '/headerA.php';
-		else
-			$path .= '/headerL.php';
-	} else {
-		$path .= '/headerNL.php';
-	}
-	include_once($path);
-?><!-- header -->
-
-
+    <?php
+    session_start();
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['id'])) {
+        if ($_SESSION['admin'])
+            $path .= '/headerA.php';
+        else
+            $path .= '/headerL.php';
+    } else {
+        $path .= '/headerNL.php';
+    }
+    include_once($path);
+    ?><!-- header -->
 
     <h1>Classement des Utilisateurs</h1>
     <table>
@@ -58,13 +55,13 @@ $result = $conn->query($sql);
         </thead>
         <tbody>
             <?php
-            if ($result->num_rows > 0) {
+            if ($result->rowCount() > 0) {
                 $counter = 1;
-                while ($row = $result->fetch_assoc()) {
+                while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
                     echo "<td>" . $counter . "</td>";
-                    echo "<td>" . $row['Nom'] . "</td>";
-                    echo "<td>" . $row['Prenom'] . "</td>";
+                    echo "<td>" . htmlspecialchars($row['Nom']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['Prenom']) . "</td>";
                     echo "<td>" . $row['Elo'] . "</td>";
                     echo "<td>" . $row['Moyenne'] . "</td>";
                     echo "</tr>";
@@ -81,5 +78,5 @@ $result = $conn->query($sql);
 
 <?php
 // Fermer la connexion à la base de données
-$conn->close();
+$dbh = null;
 ?>
