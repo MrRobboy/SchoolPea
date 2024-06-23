@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('db.php');
 /*
 $error = false;
@@ -39,22 +40,29 @@ if (isset($_POST['submit_inscription'])) {
     $password = htmlspecialchars($_POST['password_inscription']);
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    $queryVerification = $dbh->prepare('SELECT email FROM USER;');
+    $emails = $queryVerification->fetchAll();
+    echo '<pre>';
+    print_r($emails);
+    echo '</pre>';
 
-    echo ('INFOS :<br>Firstname : ' . $firstname . '<br>Lastname : ' . $lastname .  '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);
+    // if (in_array($email, $emails)) {
+    //     $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
-    $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
+    //     $queryStatement->bindvalue(':firstname', $firstname);
+    //     $queryStatement->bindvalue(':lastname', $lastname);
+    //     $queryStatement->bindvalue(':email', $email);
+    //     $queryStatement->bindvalue(':password', $passwordHash);
 
-    $queryStatement->bindvalue(':firstname', $firstname);
-    $queryStatement->bindvalue(':lastname', $lastname);
-    $queryStatement->bindvalue(':email', $email);
-    $queryStatement->bindvalue(':password', $passwordHash);
+    //     $result = $queryStatement->execute();
+    // } else {
+    //     echo 'ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
+    // }
 
-    $result = $queryStatement->execute();
-
-    if (isset($result) && !$result) {
-        echo "<br><br>ECHEC INJECTION";
-    } else {
-        echo "<br><br> REUSSITE INJECTION";
-        // header('Location: ../FrontEnd/Pages/captcha.php');
-    }
+    // if (isset($result) && !$result) {
+    //     echo "<br><br>ECHEC INJECTION";
+    // } else {
+    //     $_SESSION['email'] = $_POST['email_inscription'];
+    //     header('Location: ../FrontEnd/Pages/captcha.php');
+    // }
 }
