@@ -23,22 +23,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Vérifier et télécharger l'image de présentation
         $upload_dir = 'uploads/'; // Répertoire où stocker les images
-        $file_img_pres = $_FILES['file_img_pres'];
+        $path_img_pres = $_FILES['path_img_pres'];
 
         // Vérifier si un fichier a été téléchargé
-        if ($file_img_pres['error'] === UPLOAD_ERR_OK) {
-            $file_name = basename($file_img_pres['name']);
+        if ($path_img_pres['error'] === UPLOAD_ERR_OK) {
+            $file_name = basename($path_img_pres['name']);
             $upload_path = $upload_dir . $file_name;
 
             // Déplacer le fichier téléchargé vers le répertoire d'uploads
-            if (move_uploaded_file($file_img_pres['tmp_name'], $upload_path)) {
+            if (move_uploaded_file($path_img_pres['tmp_name'], $upload_path)) {
                 // Image téléchargée avec succès, utiliser $upload_path dans votre base de données
                 $path_img_pres = $upload_path;
             } else {
                 die("Erreur lors du téléchargement de l'image.");
             }
         } else {
-            die("Erreur: " . $file_img_pres['error']);
+            die("Erreur: " . $path_img_pres['error']);
         }
 
         // Insérer le quiz dans la table `quizzes`
