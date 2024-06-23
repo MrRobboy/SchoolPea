@@ -9,7 +9,7 @@ $request = $dbh->query('SELECT question FROM CAPTCHA;');
 $questions = $request->fetchAll();
 $request = $dbh->query('SELECT count(id) FROM CAPTCHA;');
 $max = $request->fetchAll();
-$x = random_int(0, $max[0][0] - 1);
+$x = random_int(1, $max[0][0] - 1);
 $_SESSION['x'] = $x;
 $question = $questions[$x]['question'];
 
