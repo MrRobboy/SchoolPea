@@ -9,15 +9,17 @@
 
 body {
         font-family: "Montserrat", sans-serif;
-        background: linear-gradient(180deg, rgba(92, 107, 192, 1) 0%, rgba(255, 255, 255, 1) 100%);
+        background: linear-gradient(to right, #e2e2e2, #c9d6ff);
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #c9d6ff;
         flex-direction: column;
         padding-top: 80px;
         /* Pour éviter que le contenu soit caché sous le header fixe */
         margin: 0;
 }
+
 
 header {
         position: fixed;
@@ -77,49 +79,51 @@ header {
         background-color: #6b7ad2;
 }
 
-/* Style du tableau de classement */
+/* Arrondir les coins du tableau de classement */
 #classement {
-        max-width: 800px;
-        /* Limite la largeur du tableau pour une meilleure lisibilité */
+        max-width: 1000px;
+        /* Augmenter la largeur maximale du tableau */
+        width: 90%;
+        /* Utiliser 90% de la largeur disponible */
         margin: 2rem auto;
-        /* Centre le tableau horizontalement avec un espace autour */
+        /* Centrer le tableau horizontalement avec un espacement autour */
         border-radius: 1rem;
+        /* Coins arrondis du tableau */
         overflow: hidden;
-        /* Cache tout contenu dépassant les limites du tableau */
+        /* Cacher tout contenu dépassant */
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        /* Ombre douce pour un effet de profondeur */
+        /* Ombre douce pour l'effet de profondeur */
         background-color: #ffffff;
+        /* Fond blanc pour le tableau */
+        border: 1px solid #d1d1d1;
+        /* Bordure légère autour du tableau */
 }
 
-table {
-        width: 100%;
-        /* Tableau occupe toute la largeur disponible */
-        border-collapse: collapse;
-        /* Fusionne les bordures des cellules */
-}
-
+/* Augmenter la taille du texte dans les cellules du tableau */
 table th,
 table td {
-        padding: 0.8rem;
-        /* Espacement interne des cellules */
-        text-align: center;
-        /* Centrage du contenu */
-        border-bottom: 1px solid #e0e0e0;
-        /* Bordure basse des lignes */
+        padding: 1rem;
+        /* Espacement interne plus grand */
+        font-size: 1rem;
+        /* Taille du texte légèrement augmentée */
 }
 
+/* Agrandir la police et espacement du texte dans l'en-tête du tableau */
 thead th {
-        background-color: #6b7ad2;
-        color: #ffffff;
+        padding: 1.2rem;
+        /* Espacement interne plus grand pour l'en-tête */
+        font-size: 1.1rem;
+        /* Taille de la police légèrement augmentée */
 }
 
+/* Style des lignes paires et survol des lignes dans le tableau */
 tbody tr:nth-child(even) {
         background-color: #f5f5f5;
         /* Couleur de fond des lignes paires */
 }
 
 tbody tr:hover {
-        background-color: #f0f0f0;
+        background-color: #e0e0e0;
         /* Couleur de fond au survol */
 }
 
