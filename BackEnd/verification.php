@@ -60,4 +60,4 @@ $verificationCode = generateRandomCode();
 sendVerificationEmail($_SESSION['email'], $verificationCode);
 $_SESSION['verif'] = $verificationCode;
 $_SESSION['mail_envoyee'] = 'oui';
-// header('Location: ' . $_SERVER['HTTP_REFERER']);
+header('Location: ./message_verification.php');
