@@ -42,7 +42,7 @@ if (isset($_POST['submit_inscription'])) {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $queryVerification = $dbh->query('USE PA; SELECT * FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
-    echo ($queryVerification);
+    echo ($queryVerification->execute());
 
     // if (in_array($email, $emails)) {
     //     $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
