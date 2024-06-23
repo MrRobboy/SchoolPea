@@ -1,0 +1,1 @@
+<?php /* On vérifiera avec ce code si les logins de l'utilisateur sont correct et lui setup la $_SESSION['id']=id_user*/
