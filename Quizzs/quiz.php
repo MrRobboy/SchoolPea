@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 $id_quizz = $_GET['id'];
 
 // Récupérer les informations du quizz depuis la base de données
-$stmt = $pdo->prepare("SELECT nom FROM QUIZZ WHERE id_quizz = ?");
+$stmt = $dbh->prepare("SELECT nom FROM QUIZZ WHERE id_quizz = ?");
 $stmt->execute([$id_quizz]);
 $quizz = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -19,7 +19,7 @@ if (!$quizz) {
 }
 
 // Récupérer les questions du quizz
-$stmt_questions = $pdo->prepare("SELECT id_question, question_text FROM QUESTIONS WHERE id_quizz = ?");
+$stmt_questions = $dbh->prepare("SELECT id_question, question_text FROM QUESTIONS WHERE id_quizz = ?");
 $stmt_questions->execute([$id_quizz]);
 $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -42,7 +42,7 @@ $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
                     <h2><?php echo $question['question_text']; ?></h2>
                     <?php
                     // Récupérer les choix pour chaque question
-                    $stmt_choices = $pdo->prepare("SELECT id_choix, choix_text FROM CHOIX WHERE id_question = ?");
+                    $stmt_choices = $dbh->prepare("SELECT id_choix, choix_text FROM CHOIX WHERE id_question = ?");
                     $stmt_choices->execute([$question['id_question']]);
                     $choices = $stmt_choices->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($choices as $choice):

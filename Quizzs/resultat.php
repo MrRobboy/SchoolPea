@@ -10,7 +10,7 @@ $id_quizz = $_GET['id_quizz'];
 $score = $_GET['score'];
 
 // Récupérer les informations du quizz depuis la base de données
-$stmt_quizz = $pdo->prepare("SELECT nom FROM QUIZZ WHERE id_quizz = ?");
+$stmt_quizz = $dbh->prepare("SELECT nom FROM QUIZZ WHERE id_quizz = ?");
 $stmt_quizz->execute([$id_quizz]);
 $quizz = $stmt_quizz->fetch(PDO::FETCH_ASSOC);
 
@@ -25,7 +25,7 @@ if (isset($_SESSION['id_user'])) {
     $id_user = $_SESSION['id_user'];
 
     // Récupérer l'elo actuel de l'utilisateur
-    $stmt_elo = $pdo->prepare("SELECT elo FROM USER WHERE id_user = ?");
+    $stmt_elo = $dbh->prepare("SELECT elo FROM USER WHERE id_user = ?");
     $stmt_elo->execute([$id_user]);
     $row = $stmt_elo->fetch(PDO::FETCH_ASSOC);
     $elo_actuel = $row['elo'];
@@ -42,7 +42,7 @@ if (isset($_SESSION['id_user'])) {
     $nouvel_elo = $elo_actuel + $elo_modification;
 
     // Mettre à jour l'elo de l'utilisateur dans la base de données
-    $stmt_update_elo = $pdo->prepare("UPDATE USER SET elo = ? WHERE id_user = ?");
+    $stmt_update_elo = $dbh->prepare("UPDATE USER SET elo = ? WHERE id_user = ?");
     $stmt_update_elo->execute([$nouvel_elo, $id_user]);
 }
 

@@ -26,7 +26,7 @@ foreach ($_POST as $key => $value) {
 // Calculer le score de l'utilisateur
 $score = 0;
 foreach ($answers as $id_question => $id_choix) {
-    $stmt = $pdo->prepare("SELECT is_correct FROM CHOIX WHERE id_choix = ?");
+    $stmt = $dbh->prepare("SELECT is_correct FROM CHOIX WHERE id_choix = ?");
     $stmt->execute([$id_choix]);
     $choice = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -43,7 +43,7 @@ if (isset($_SESSION['id_user'])) {
     $id_user = $_SESSION['id_user'];
 
     // Insérer le score dans la table des participations ou une table dédiée
-    $stmt_insert_score = $pdo->prepare("INSERT INTO PARTICIPATION_QUIZZ (id_quizz, id_user, score) VALUES (?, ?, ?)");
+    $stmt_insert_score = $dbh->prepare("INSERT INTO PARTICIPATION_QUIZZ (id_quizz, id_user, score) VALUES (?, ?, ?)");
     $stmt_insert_score->execute([$id_quizz, $id_user, $score]);
 }
 
