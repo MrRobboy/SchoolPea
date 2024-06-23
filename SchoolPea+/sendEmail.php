@@ -11,7 +11,7 @@ function sendWelcomeEmail($recipientEmail) {
         // Server settings
         $mail->SMTPDebug = 0;
         $mail->isSMTP();
-        $mail->Host = 'smtp.office365.com'; // Serveur SMTP (exemple avec Outlook)
+        $mail->Host = 'smtp.office365.com'; // Serveur SMTP (exmple avec Outlook)
         $mail->SMTPAuth = true;
         $mail->Username = 'schoolpea@outlook.fr'; // Adresse e-mail
         $mail->Password = 'BienvenueEnLangageCLuffyNikaAroufGangstaXavierDupontDeLigones.exe'; // Mot de passe
