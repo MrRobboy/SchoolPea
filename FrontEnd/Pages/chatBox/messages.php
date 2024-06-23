@@ -40,6 +40,7 @@ if (isset($_SESSION['user'])) {
                     echo "Données manquantes pour afficher le message.";
                 }
             }
+            
         } else {
             echo "Aucun message trouvé.";
         }
