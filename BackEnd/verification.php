@@ -4,7 +4,8 @@
 require 'vendor/autoload.php';
 
 // Fonction pour générer un code de vérification aléatoire
-function generateRandomCode($length = 6) {
+function generateRandomCode($length = 6)
+{
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $code = '';
     $max = strlen($characters) - 1;
@@ -15,7 +16,8 @@ function generateRandomCode($length = 6) {
 }
 
 // Fonction pour envoyer un e-mail de vérification d'inscription
-function sendVerificationEmail($email, $verificationCode) {
+function sendVerificationEmail($email, $verificationCode)
+{
     // Configurer PHPMailer
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->isSMTP();
@@ -38,7 +40,7 @@ function sendVerificationEmail($email, $verificationCode) {
     $mail->Body = 'Votre code de vérification est : ' . $verificationCode;
 
     // Envoyer l'e-mail
-    if($mail->send()) {
+    if ($mail->send()) {
         // Succès
         return true;
     } else {
@@ -46,7 +48,8 @@ function sendVerificationEmail($email, $verificationCode) {
         return false;
     }
 }
-
+echo ('Bonjour');
+sendVerificationEmail('mr.elattar.hicham@gmail.com', '123456');
 // Vérifier si le formulaire d'inscription a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer l'e-mail de l'utilisateur depuis le formulaire
@@ -56,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $verificationCode = generateRandomCode();
 
     // Envoyer l'e-mail de vérification d'inscription
-    if(sendVerificationEmail($email, $verificationCode)) {
+    if (sendVerificationEmail($email, $verificationCode)) {
         // L'e-mail a été envoyé avec succès
         echo 'Un e-mail de vérification a été envoyé à ' . $email . '. Veuillez vérifier votre boîte de réception.';
     } else {
@@ -64,5 +67,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo 'Une erreur s\'est produite lors de l\'envoi de l\'e-mail de vérification. Veuillez réessayer plus tard.';
     }
 }
-
-?>
