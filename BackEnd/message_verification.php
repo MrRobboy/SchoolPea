@@ -1,9 +1,8 @@
 <?php
 session_start();
-include('verification.php');
-$verificationCode = generateRandomCode();
-$_SESSION['verif'] = $verificationCode;
-sendVerificationEmail($_SESSION['email'], $verificationCode);
+if (empty($_SESSION['mail_envoyee'])) {
+        header('Location: ./verification.php');
+}
 ?>
 
 <!DOCTYPE html>
