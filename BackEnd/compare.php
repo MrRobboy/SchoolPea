@@ -1,5 +1,6 @@
 <?php
 session_start();
+echo $_SESSION['email'];
 include('db.php');
 echo ($_POST['code'] . '<br>' . $_SESSION['verif']);
 if (isset($_POST['submit'])) {
