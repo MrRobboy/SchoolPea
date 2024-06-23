@@ -57,7 +57,8 @@ function sendVerificationEmail($email, $verificationCode)
 
 echo ('Bonjour');
 $verificationCode = generateRandomCode();
-sendVerificationEmail('baoudjryad@gmail.com', 'BOUGE TON CUL ET VIENS EN VOCAL!!!!!!!!!!');
+$_SESSION['verif'] = $verificationCode;
+sendVerificationEmail($_SESSION['email'], 'Voici votre code : ' . $verificationCode);
 // Vérifier si le formulaire d'inscription a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer l'e-mail de l'utilisateur depuis le formulaire
