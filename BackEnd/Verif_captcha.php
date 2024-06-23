@@ -1,6 +1,6 @@
 <?php
 include('db.php');
-$request = $dbh->query('SELECT reponse1, reponse2, reponse3, reponse4, reponse5 FROM CAPTCHA where id=' . $_POST['x'] . ';');
+$request = $dbh->query('SELECT reponse1, reponse2, reponse3, reponse4, reponse5 FROM CAPTCHA where id=' . $_SESSION['x'] . ';');
 $reponses = $request->fetchAll();
 
 if (!empty($_POST['submit'])) {
