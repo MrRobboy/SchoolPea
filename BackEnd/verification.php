@@ -36,7 +36,7 @@ function sendVerificationEmail($email, $verificationCode)
     $mail->Port = 587;
 
     // Expéditeur
-    $mail->setFrom('schoolpea@outlook.fr', 'SchoolPea');
+    $mail->setFrom('ne-pas-repondre@schoolpea.com', 'SchoolPea');
 
     // Destinataire
     $mail->addAddress($email);
