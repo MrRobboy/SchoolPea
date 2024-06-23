@@ -2,7 +2,7 @@
 require_once('db.php');
 
 // Récupérer la liste des quizz depuis la base de données
-$stmt = $pdo->query("SELECT id_quizz, nom, path_img_pres FROM QUIZZ");
+$stmt = $dbh->query("SELECT id_quizz, nom, path_img_pres FROM QUIZZ");
 $quizzes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
