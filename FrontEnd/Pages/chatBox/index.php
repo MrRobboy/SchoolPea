@@ -1,54 +1,60 @@
+<?php
+session_start();
+
+if (isset($_SESSION['user'])) {
+    // Si l'utilisateur est déjà connecté, le rediriger vers la page du chat
+    header("location:chat.php");
+    exit;
+}
+
+require_once 'connexion_bdd.php';
+
+$error = '';
+
+if (isset($_POST['button_connexion'])) {
+    // Vérification des champs du formulaire
+    if (!empty($_POST['email']) && !empty($_POST['mdp'])) {
+        $email = $_POST['email'];
+        $mdp = $_POST['mdp'];
+
+        // Requête préparée pour récupérer l'utilisateur par son email
+        $stmt = $pdo->prepare("SELECT * FROM USER WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        if ($user && password_verify($mdp, $user['password'])) {
+            // Si le mot de passe correspond, connecter l'utilisateur
+            $_SESSION['user'] = $user['email'];
+            header("location:chat.php");
+            exit;
+        } else {
+            $error = "Identifiants incorrects !";
+        }
+    } else {
+        $error = "Veuillez remplir tous les champs !";
+    }
+}
+?>
+
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messagerie</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Connexion | Chat</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Messagerie</h1>
-        <div class="chatbox">
-            <?php
-            // Affichage des messages entre deux utilisateurs
-            require_once 'config.php';
-
-            // Exemple : utilisateur 1 et utilisateur 2
-            $user1_id = 1;
-            $user2_id = 2;
-
-            // Récupération des messages entre ces deux utilisateurs
-            $query = "SELECT * FROM messages 
-                      WHERE (sender_id = :user1_id AND receiver_id = :user2_id)
-                      OR (sender_id = :user2_id AND receiver_id = :user1_id)
-                      ORDER BY created_at ASC";
-            $stmt = $conn->prepare($query);
-            $stmt->bindParam(':user1_id', $user1_id);
-            $stmt->bindParam(':user2_id', $user2_id);
-            $stmt->execute();
-
-            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                $username = htmlspecialchars($row['username']);
-                $message = htmlspecialchars($row['message']);
-                $created_at = htmlspecialchars($row['created_at']);
-
-                echo "<div class='message'>";
-                echo "<span class='username'>$username:</span>";
-                echo "<span class='message-text'>$message</span>";
-                echo "<span class='timestamp'>$created_at</span>";
-                echo "</div>";
-            }
-            ?>
-        </div>
-        
-        <form action="process.php" method="post" class="message-form">
-            <input type="hidden" name="sender_id" value="<?php echo $user1_id; ?>">
-            <input type="hidden" name="receiver_id" value="<?php echo $user2_id; ?>">
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
+    <form action="" method="POST" class="form_connexion_inscription">
+        <h1>CONNEXION</h1>
+        <p class="message_error"><?php echo $error; ?></p>
+        <label>Adresse Mail</label>
+        <input type="email" name="email" required>
+        <label>Mot de passe</label>
+        <input type="password" name="mdp" required>
+        <input type="submit" value="Connexion" name="button_connexion">
+        <p class="link">Vous n'avez pas encore de compte ? <a href="inscription.php">S'inscrire</a></p>
+    </form>
 </body>
 </html>
