@@ -1,10 +1,11 @@
 <?php
 session_start();
+echo $_SESSION['email'];
 include('db.php');
 echo ($_POST['code'] . '<br>' . $_SESSION['verif']);
 if (isset($_POST['submit'])) {
         if ($_POST['code'] == $_SESSION['verif']) {
-                $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(Validé) VALUES (true);');
+                $queryStatement = $dbh->prepare('INSERT INTO USER(Validé) VALUES (1) where email =' . $_SESSION['email'] . ';');
                 $result = $queryStatement->execute();
                 echo ('code reussi !!');
                 // header('location: captcha.php');
