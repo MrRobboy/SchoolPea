@@ -2,7 +2,7 @@
 session_start();
 include('db.php');
 echo ($_POST['code'] . '<br>' . $_SESSION['verif']);
-if (!isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
         if ($_POST['code'] == $_SESSION['verif']) {
                 $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(Validé) VALUES (true);');
                 $result = $queryStatement->execute();
