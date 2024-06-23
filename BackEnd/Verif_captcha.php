@@ -24,5 +24,7 @@ function verify($Answer_user, $Tab_Reponses)
     for ($index = 1; $index <= 5; $index++) $Tab_Answers[$index] = stripslashes($Tab_Reponses[0]['reponse' . $index]);
     $result = false;
     foreach ($Tab_Answers as $TA) if (strcasecmp(trim($Answer_user), trim($TA)) == 0) $result = true;
+    if ($result) echo ('REUSSITE');
+    else echo ('ECHEC');
     return $result;
 }
