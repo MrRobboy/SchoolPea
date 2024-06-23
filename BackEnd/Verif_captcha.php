@@ -25,6 +25,9 @@ function verify($Answer_user, $Tab_Reponses)
     $result = false;
     foreach ($Tab_Answers as $TA) if (strcasecmp(trim($Answer_user), trim($TA)) == 0) $result = true;
     if ($result) echo ('REUSSITE');
-    else echo ('<br>resultat : ECHEC<br>');
+    else echo ('resultat : ECHEC<br>');
+    echo ('<pre>');
+    print_r($Tab_Answers);
+    echo ('</pre>');
     return $result;
 }
