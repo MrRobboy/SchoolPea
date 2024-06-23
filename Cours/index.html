@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Ajout de Cours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        input[type="file"] {
+            margin-top: 5px;
+        }
+        .sections {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Créer un Nouveau Cours</h1>
+    <form id="courseForm">
+        <div class="form-group">
+            <label for="courseName">Nom du Cours :</label>
+            <input type="text" id="courseName" name="courseName" required>
+        </div>
+        <div class="form-group">
+            <label for="courseLevel">Niveau :</label>
+            <select id="courseLevel" name="courseLevel" required>
+                <option value="Débutant">Débutant</option>
+                <option value="Intermédiaire">Intermédiaire</option>
+                <option value="Avancé">Avancé</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="coursePrice">Prix :</label>
+            <input type="number" id="coursePrice" name="coursePrice" required>
+        </div>
+        <div class="form-group">
+            <label for="courseCreator">Créateur :</label>
+            <input type="text" id="courseCreator" name="courseCreator" required>
+        </div>
+        <div class="sections" id="sections">
+            <div class="form-group">
+                <h3>Section 1</h3>
+                <label for="sectionTitle1">Titre :</label>
+                <input type="text" id="sectionTitle1" name="sectionTitle[]" required>
+                <label for="sectionContent1">Contenu :</label>
+                <textarea id="sectionContent1" name="sectionContent[]" rows="4" required></textarea>
+            </div>
+        </div>
+        <button type="button" onclick="addSection()">Ajouter une Section</button>
+        <div class="form-group">
+            <label for="courseImage">Image :</label>
+            <input type="file" id="courseImage" name="courseImage" accept="image/*" required>
+        </div>
+        <button type="submit">Créer le Cours</button>
+    </form>
+
+    <h2>Prévisualisation du Cours</h2>
+    <div id="coursePreview"></div>
+
+    <script>
+        let sectionCount = 1;
+
+        function addSection() {
+            sectionCount++;
+            const sectionsDiv = document.getElementById('sections');
+            const sectionHTML = `
+                <div class="form-group">
+                    <h3>Section ${sectionCount}</h3>
+                    <label for="sectionTitle${sectionCount}">Titre :</label>
+                    <input type="text" id="sectionTitle${sectionCount}" name="sectionTitle[]" required>
+                    <label for="sectionContent${sectionCount}">Contenu :</label>
+                    <textarea id="sectionContent${sectionCount}" name="sectionContent[]" rows="4" required></textarea>
+                </div>
+            `;
+            sectionsDiv.insertAdjacentHTML('beforeend', sectionHTML);
+        }
+
+        document.getElementById('courseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+
+            const courseName = formData.get('courseName');
+            const courseLevel = formData.get('courseLevel');
+            const coursePrice = formData.get('coursePrice');
+            const courseCreator = formData.get('courseCreator');
+            const sectionTitles = formData.getAll('sectionTitle[]');
+            const sectionContents = formData.getAll('sectionContent[]');
+            const courseImage = formData.get('courseImage');
+
+            let courseContent = '<h2>Sommaire</h2><ul>';
+            sectionTitles.forEach((title, index) => {
+                courseContent += `<li><a href="#section${index + 1}">${title}</a></li>`;
+            });
+            courseContent += '</ul>';
+
+            sectionTitles.forEach((title, index) => {
+                courseContent += `<h2 id="section${index + 1}">${title}</h2>`;
+                courseContent += `<p>${sectionContents[index]}</p>`;
+            });
+
+            const coursePreview = document.getElementById('coursePreview');
+            coursePreview.innerHTML = `
+                <h1>${courseName}</h1>
+                <p><strong>Niveau :</strong> ${courseLevel}</p>
+                <p><strong>Prix :</strong> ${coursePrice}€</p>
+                <p><strong>Créateur :</strong> ${courseCreator}</p>
+                ${courseContent}
+            `;
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                coursePreview.innerHTML += `<img src="${event.target.result}" alt="Image du cours" style="max-width: 100%;">`;
+            }
+            reader.readAsDataURL(courseImage);
+        });
+    </script>
+</body>
+</html>
