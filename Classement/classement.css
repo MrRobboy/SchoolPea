@@ -7,7 +7,7 @@
 
 body {
         font-family: "Montserrat", sans-serif;
-        background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+        background: linear-gradient(to bottom, #e2e2e2, #c9d6ff);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -15,6 +15,8 @@ body {
         padding-top: 80px;
         /* Pour éviter que le contenu soit caché sous le header fixe */
         margin: 0;
+        min-height: 100vh;
+        /* Hauteur minimum de la page pour assurer le dégradé complet */
 }
 
 header {
@@ -75,14 +77,30 @@ header {
         background-color: #6b7ad2;
 }
 
-/* Style du tableau de classement */
-#table-container {
+/* Style du contenu principal */
+#content {
         width: 80%;
         /* Utilisation de 80% de la largeur disponible */
         max-width: 1200px;
-        /* Limite la largeur maximale du conteneur */
+        /* Limite la largeur maximale du contenu */
         margin: 2rem auto;
-        /* Centre le tableau horizontalement avec un espacement autour */
+        /* Centre le contenu horizontalement avec un espacement autour */
+        background-color: rgba(255, 255, 255, 0.9);
+        /* Fond blanc semi-transparent */
+        border-radius: 1rem;
+        /* Coins arrondis du contenu */
+        padding: 1.5rem;
+        /* Espacement interne */
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+        /* Ombre douce pour l'effet de profondeur */
+}
+
+/* Style du tableau de classement */
+#table-container {
+        width: 100%;
+        /* Tableau occupe toute la largeur disponible */
+        overflow: hidden;
+        /* Cacher tout contenu dépassant les limites du tableau */
 }
 
 #classement {
@@ -92,20 +110,12 @@ header {
         /* Fusionne les bordures des cellules */
         border-radius: 1rem;
         /* Coins arrondis du tableau */
-        overflow: hidden;
-        /* Cacher tout contenu dépassant les limites du tableau */
-        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-        /* Ombre douce pour l'effet de profondeur */
-        background-color: #ffffff;
-        /* Fond blanc pour le tableau */
-        border: 1px solid #d1d1d1;
-        /* Bordure légère autour du tableau */
 }
 
 table th,
 table td {
         padding: 1rem;
-        /* Espacement interne plus grand */
+        /* Espacement interne */
         font-size: 1rem;
         /* Taille du texte dans les cellules */
         text-align: center;
@@ -135,8 +145,8 @@ tbody tr:hover {
 
 /* Media query pour ajuster le style sur les petits écrans */
 @media (max-width: 600px) {
-        #table-container {
+        #content {
                 width: 90%;
-                /* Réduire la largeur du conteneur sur les petits écrans */
+                /* Réduire la largeur du contenu sur les petits écrans */
         }
 }
