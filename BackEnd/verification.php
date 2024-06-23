@@ -1,7 +1,12 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 // Inclure les dépendances de PHPMailer
 require 'vendor/autoload.php';
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 // Fonction pour générer un code de vérification aléatoire
 function generateRandomCode($length = 6)
@@ -19,7 +24,8 @@ function generateRandomCode($length = 6)
 function sendVerificationEmail($email, $verificationCode)
 {
     // Configurer PHPMailer
-    $mail = new PHPMailer\PHPMailer\PHPMailer();
+    $mail = new PHPMailer(true);
+    $mail->SMTPDebug = 2;
     $mail->isSMTP();
     $mail->Host = 'smtp.office365.com'; // Serveur SMTP (exemple avec Outlook)
     $mail->SMTPAuth = true;
@@ -48,6 +54,7 @@ function sendVerificationEmail($email, $verificationCode)
         return false;
     }
 }
+
 echo ('Bonjour');
 sendVerificationEmail('mr.elattar.hicham@gmail.com', '123456');
 // Vérifier si le formulaire d'inscription a été soumis
