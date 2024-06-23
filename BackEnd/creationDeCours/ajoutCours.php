@@ -1,14 +1,14 @@
 <?php
-// Démarrer la session si ce n'est pas déjà fait
 session_start();
 
-// Vérifier si l'utilisateur est connecté et récupérer id_user depuis la session
+// Vérifier si id_user est défini dans la session
 if (!isset($_SESSION['id_user'])) {
-    echo "Erreur: Utilisateur non authentifié.";
+    // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+    header('Location: ../FrontEnd/Pages/connexion.php');
     exit;
 }
 
-$id_user = $_SESSION['id_user'];
+// Maintenant, $_SESSION['id_user'] est disponible pour être utilisé ici
 
 // Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -16,6 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = $_POST['nom'] ?? '';
     $niveau = $_POST['niveau'] ?? '';
     $prix = $_POST['prix'] ?? '';
+    $id_user = $_SESSION['id_user']; // Utilisation de id_user depuis la session
     $uploadFile = ''; // à définir après la gestion de l'upload
 
     // Gestion de l'upload de l'image
@@ -28,14 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Connexion à la base de données
-    $servername = "localhost";
-    $username = "root";
-    $password = "root";
-    $dbname = "PA"; // Nom de votre base de données
-
+    // Connexion à la base de données et insertion du cours
     try {
-        $bdd = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root");
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Préparation de la requête SQL pour insérer le cours avec l'image

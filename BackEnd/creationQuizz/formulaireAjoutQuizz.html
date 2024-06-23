@@ -1,0 +1,86 @@
+<!-- create_quiz.html -->
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Créer un Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Créer un Quiz</h1>
+        </header>
+        <main>
+            <div class="form-preview-wrapper">
+                <form method="post" action="ajoutQuizz.php" enctype="multipart/form-data" id="quizForm">
+                    <p>
+                        <label>Nom du Quiz</label>
+                        <input type="text" name="nom_quizz" required>
+                    </p>
+                    <p>
+                        <label>Image de présentation (chemin vers l'image)</label>
+                        <input type="text" name="path_img_pres" required>
+                    </p>
+                    <p>
+                        <label>Nombre total de questions</label>
+                        <input type="number" name="total_questions" min="1" required>
+                    </p>
+                    <hr>
+                    <div v-for="(question, index) in questions" :key="index">
+                        <div class="question">
+                            <h3>Question {{ index + 1 }}</h3>
+                            <p>
+                                <label>Texte de la question</label>
+                                <input type="text" :name="'question_' + (index + 1)" v-model="question.question_text"
+                                    required>
+                            </p>
+                            <p>
+                                <label>Choix de Réponses (séparés par des virgules)</label>
+                                <input type="text" :name="'choix_' + (index + 1)" v-model="question.choix_text"
+                                    required>
+                            </p>
+                            <p>
+                                <label>Réponses correctes (numéros des choix corrects séparés par des virgules)</label>
+                                <input type="text" :name="'correct_choix_' + (index + 1)"
+                                    v-model="question.correct_choix_text" required>
+                            </p>
+                        </div>
+                        <hr>
+                    </div>
+                    <p>
+                        <input type="submit" name="submit" value="Ajouter le Quiz">
+                    </p>
+                </form>
+                <div class="preview">
+                    <h2>Prévisualisation du Quiz</h2>
+                    <div id="quizPreview">
+                        <p v-if="!quiz.nom">Nom du Quiz</p>
+                        <h3>{{ quiz.nom }}</h3>
+                        <img v-if="quiz.path_img_pres" :src="quiz.path_img_pres" alt="Image de présentation">
+                        <p v-else>Image de présentation</p>
+                        <div v-for="(question, index) in questions" :key="index">
+                            <h4>Question {{ index + 1 }}</h4>
+                            <p>{{ question.question_text }}</p>
+                            <ul>
+                                <li v-for="(choix, idx) in question.choix" :key="idx">
+                                    {{ choix }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2024 SchoolPea. Tous droits réservés.</p>
+        </footer>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
