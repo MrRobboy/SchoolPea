@@ -18,7 +18,6 @@ $sql = "SELECT firstname AS Nom, lastname AS Prenom, elo AS Elo, 0 AS Moyenne FR
 $result = $dbh->query($sql);
 
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -42,42 +41,43 @@ $result = $dbh->query($sql);
     include_once($path);
     ?><!-- header -->
 
-    <h1>Classement des Utilisateurs</h1>
-    <div id="table-container">
-        <table id="classement">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>Elo</th>
-                    <th>Moyenne</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                if ($result->rowCount() > 0) {
-                    $counter = 1;
-                    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>";
-                        echo "<td>" . $counter . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Nom']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Prenom']) . "</td>";
-                        echo "<td>" . $row['Elo'] . "</td>";
-                        echo "<td>" . $row['Moyenne'] . "</td>";
-                        echo "</tr>";
-                        $counter++;
+    <div id="content">
+        <h1>Classement des Utilisateurs</h1>
+        <div id="table-container">
+            <table id="classement">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Elo</th>
+                        <th>Moyenne</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    if ($result->rowCount() > 0) {
+                        $counter = 1;
+                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<tr>";
+                            echo "<td>" . $counter . "</td>";
+                            echo "<td>" . htmlspecialchars($row['Nom']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['Prenom']) . "</td>";
+                            echo "<td>" . $row['Elo'] . "</td>";
+                            echo "<td>" . $row['Moyenne'] . "</td>";
+                            echo "</tr>";
+                            $counter++;
+                        }
+                    } else {
+                        echo "<tr><td colspan='5'>Aucun utilisateur trouvé</td></tr>";
                     }
-                } else {
-                    echo "<tr><td colspan='5'>Aucun utilisateur trouvé</td></tr>";
-                }
-                ?>
-            </tbody>
-        </table>
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
-
 
 <?php
 // Fermer la connexion à la base de données
