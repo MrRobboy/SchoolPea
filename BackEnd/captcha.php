@@ -10,6 +10,7 @@ $questions = $request->fetchAll();
 $request = $dbh->query('SELECT count(id) FROM CAPTCHA;');
 $max = $request->fetchAll();
 $x = random_int(0, $max[0][0] - 1);
+echo ('question n°: ' . $x);
 $_SESSION['x'] = $x;
 $question = $questions[$x]['question'];
 

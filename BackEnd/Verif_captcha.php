@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('db.php');
+echo ('question n° :' . $_SESSION['x']);
 $request = $dbh->query('SELECT reponse1, reponse2, reponse3, reponse4, reponse5 FROM CAPTCHA where id=' . $_SESSION['x'] . ';');
 $reponses = $request->fetchAll();
 
