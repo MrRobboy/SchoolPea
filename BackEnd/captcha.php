@@ -1,4 +1,6 @@
 <?php
+session_start();
+echo $_SESSION['email'];
 
 $CQs = array(
     array("Qui a découvert l'Amérique ? ", "Christophe Colomb", "Cristophe Colomb", "Colomb", "C.Colomb", "C Colomb"),
