@@ -1,16 +1,5 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=PA;charset=utf8mb4';
-$username = 'root';
-$password = 'root';
-
-// Create a new PDO instance
-try {
-    $dbh = new PDO($dsn, $username, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-    exit;
-}
+include('db.php');
 /*
 $error = false;
 $passwordError = false;
@@ -53,7 +42,7 @@ if (isset($_POST['submit_inscription'])) {
 
     echo ('INFOS :<br>Firstname : ' . $firstname . '<br>Lastname : ' . $lastname .  '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);
 
-    $queryStatement = $bdd->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
+    $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
     $queryStatement->bindvalue(':firstname', $firstname);
     $queryStatement->bindvalue(':lastname', $lastname);
