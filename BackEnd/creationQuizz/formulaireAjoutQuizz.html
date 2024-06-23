@@ -6,8 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Créer un Quiz</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -17,67 +16,44 @@
         </header>
         <main>
             <div class="form-preview-wrapper">
-                <form method="post" action="ajoutQuizz.php" enctype="multipart/form-data" id="quizForm">
+                <form method="post" action="process_quiz.php" enctype="multipart/form-data">
                     <p>
-                        <label>Nom du Quiz</label>
-                        <input type="text" name="nom_quizz" required>
+                        <label for="nom_quizz">Nom du Quiz</label>
+                        <input type="text" id="nom_quizz" name="nom_quizz" required>
                     </p>
                     <p>
-                        <label>Image de présentation (chemin vers l'image)</label>
-                        <input type="text" name="path_img_pres" required>
+                        <label for="path_img_pres">Image de présentation (URL)</label>
+                        <input type="text" id="path_img_pres" name="path_img_pres" required>
                     </p>
                     <p>
-                        <label>Nombre total de questions</label>
-                        <input type="number" name="total_questions" min="1" required>
+                        <label for="file_img_pres">Image de présentation (téléchargement)</label>
+                        <input type="file" id="file_img_pres" name="file_img_pres" accept="image/*" required>
                     </p>
-                    <hr>
-                    <div v-for="(question, index) in questions" :key="index">
-                        <div class="question">
-                            <h3>Question {{ index + 1 }}</h3>
-                            <p>
-                                <label>Texte de la question</label>
-                                <input type="text" :name="'question_' + (index + 1)" v-model="question.question_text"
-                                    required>
-                            </p>
-                            <p>
-                                <label>Choix de Réponses (séparés par des virgules)</label>
-                                <input type="text" :name="'choix_' + (index + 1)" v-model="question.choix_text"
-                                    required>
-                            </p>
-                            <p>
-                                <label>Réponses correctes (numéros des choix corrects séparés par des virgules)</label>
-                                <input type="text" :name="'correct_choix_' + (index + 1)"
-                                    v-model="question.correct_choix_text" required>
-                            </p>
-                        </div>
-                        <hr>
+                    <p>
+                        <label for="total_questions">Nombre total de questions</label>
+                        <input type="number" id="total_questions" name="total_questions" min="1" required>
+                    </p>
+                    <div id="questionsContainer">
+                        <!-- Zone pour ajouter dynamiquement les questions -->
                     </div>
                     <p>
-                        <input type="submit" name="submit" value="Ajouter le Quiz">
+                        <button type="button" onclick="addQuestion()">Ajouter une question</button>
+                    </p>
+                    <hr>
+                    <p>
+                        <input type="submit" name="submit" value="Créer le Quiz">
                     </p>
                 </form>
                 <div class="preview">
                     <h2>Prévisualisation du Quiz</h2>
                     <div id="quizPreview">
-                        <p v-if="!quiz.nom">Nom du Quiz</p>
-                        <h3>{{ quiz.nom }}</h3>
-                        <img v-if="quiz.path_img_pres" :src="quiz.path_img_pres" alt="Image de présentation">
-                        <p v-else>Image de présentation</p>
-                        <div v-for="(question, index) in questions" :key="index">
-                            <h4>Question {{ index + 1 }}</h4>
-                            <p>{{ question.question_text }}</p>
-                            <ul>
-                                <li v-for="(choix, idx) in question.choix" :key="idx">
-                                    {{ choix }}
-                                </li>
-                            </ul>
-                        </div>
+                        <!-- Zone pour prévisualiser le quiz -->
                     </div>
                 </div>
             </div>
         </main>
         <footer>
-            <p>&copy; 2024 SchoolPea. Tous droits réservés.</p>
+            <p>&copy; 2024 PHP Quizzer. Tous droits réservés.</p>
         </footer>
     </div>
     <script src="js/script.js"></script>
