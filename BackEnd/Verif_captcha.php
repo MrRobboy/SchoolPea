@@ -7,12 +7,16 @@ $reponses = $request->fetchAll();
 if (!empty($_POST['submit'])) {
     if (!verify($_POST['textCaptchaAnswer'], $reponses)) {
         $_SESSION['erreur'] = 'erreur';
-        header('location: captcha.php');
+        echo ($_POST['textCaptchaAnswer'] . '<br>' . $_SESSION['erreur']);
+        // header('location: captcha.php');
     } else {
+        echo ($_POST['textCaptchaAnswer'] . '<br>' . $_SESSION['erreur']);
         unset($_SESSION['erreur']);
-        header('location: ./message_verification.php');
+        echo ($_POST['textCaptchaAnswer'] . '<br>' . $_SESSION['erreur']);
+        // header('location: ./message_verification.php');
     }
-} else header('location: captcha.php');
+}
+// else header('location: captcha.php');
 
 function verify($Answer_user, $Tab_Reponses)
 {
