@@ -9,7 +9,7 @@ if (!isset($_GET['id'])) {
 $id_quizz = $_GET['id'];
 
 // Récupérer les informations du quizz depuis la base de données
-$stmt = $pdo->prepare("SELECT nom FROM QUIZZ WHERE id_quizz = ?");
+$stmt = $dbh->prepare("SELECT nom FROM QUIZZ WHERE id_quizz = ?");
 $stmt->execute([$id_quizz]);
 $quizz = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -22,7 +22,7 @@ if (!$quizz) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['question_text'])) {
     $question_text = $_POST['question_text'];
 
-    $stmt = $pdo->prepare("INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)");
+    $stmt = $dbh->prepare("INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)");
     $stmt->execute([$id_quizz, $question_text]);
 
     // Redirection vers la gestion des questions après ajout
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['question_text'])) {
 }
 
 // Récupérer les questions du quizz
-$stmt_questions = $pdo->prepare("SELECT id_question, question_text FROM QUESTIONS WHERE id_quizz = ?");
+$stmt_questions = $dbh->prepare("SELECT id_question, question_text FROM QUESTIONS WHERE id_quizz = ?");
 $stmt_questions->execute([$id_quizz]);
 $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
 ?>

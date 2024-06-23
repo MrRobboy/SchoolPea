@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $path_content = $_POST['path_content'];
     $temps_limit = $_POST['temps_limit'];
 
-    $stmt = $pdo->prepare("INSERT INTO QUIZZ (nom, id_cours, path_img_pres, path_content, temps_limit) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $dbh->prepare("INSERT INTO QUIZZ (nom, id_cours, path_img_pres, path_content, temps_limit) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([$nom, $id_cours, $path_img_pres, $path_content, $temps_limit]);
 
     // Redirection vers la page d'accueil après création du quizz
