@@ -22,7 +22,7 @@ if (empty($_SESSION['mail_envoyee'])) {
                                 <p>Un code de validation à saisir vous a été envoyé à l'adresse suivante :</p>
                                 <p style="font-size: 20px; font-weight: 00;"><?php echo $_SESSION['email']; ?></p>
                                 <input type="text" name="code" required>
-                                <button type="submit">Valider</button>
+                                <button type="submit" name="submit">Valider</button>
                         </form>
                 </div>
         </div>
