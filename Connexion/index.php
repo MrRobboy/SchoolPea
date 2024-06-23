@@ -34,7 +34,8 @@
                     echo ('<p>Un champ a mal été saisi</p>');
                 }
                 ?>
-                <input type="text" id="name" name="name" placeholder="Nom" required>
+                <input type="text" name="lastname" placeholder="Nom" required>
+                <input type="text" name="firstname" placeholder="Prenom" required>
                 <input type="email" id="email" name="email_inscription" placeholder="Email" required>
                 <input type="password" id="password" name="password_inscription" placeholder="Mot de passe" required>
 
