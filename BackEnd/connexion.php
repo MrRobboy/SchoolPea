@@ -1,5 +1,14 @@
 <?php
 require_once './db.php';
+/* A SETUP !
+
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include_once($path);
+$request = $dbh->query('SELECT * FROM USER WHERE email = :email;');
+$queryStatement->bindvalue(':email', $_SESSION['email']);
+$infos = $request->fetchAll();
+$_SESSION['path_pp'] = $infos[0]['path_pp']; */
 
 $badCredentials = false;
 
@@ -43,4 +52,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($badCredentials) {
     echo "Invalid email or password.";
 }
-?>
