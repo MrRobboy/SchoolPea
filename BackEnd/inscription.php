@@ -40,7 +40,7 @@ if (isset($_POST['submit_inscription'])) {
     $password = htmlspecialchars($_POST['password_inscription']);
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $queryVerification = $dbh->query('SELECT email FROM USER;');
+    $queryVerification = $dbh->query('SELECT * FROM USER;');
     $emails = $queryVerification->fetchAll();
     echo '<pre>';
     print_r($emails);
