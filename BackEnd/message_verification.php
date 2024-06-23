@@ -22,7 +22,7 @@ sendVerificationEmail($_SESSION['email'], $verificationCode);
                                 <h1>Mail à valider !</h1>
                                 <p>Un code de validation à saisir vous a été envoyé à l'adresse suivante :</p>
                                 <p style="font-size: 20px; font-weight: 00;"><?php echo $_SESSION['email']; ?></p>
-                                <input type="number" name="code" min="100000" max="999999" required>
+                                <input type="text" name="code" required>
                                 <button type="submit">Valider</button>
                         </form>
                 </div>
