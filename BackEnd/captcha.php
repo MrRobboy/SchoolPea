@@ -1,7 +1,7 @@
 <?php
 session_start();
 echo $_SESSION['email'];
-if (isset($_POST['erreur']) && $_POST['erreur'] == 'erreur') {
+if (isset($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
     echo '<script>alert("Mauvaise réponse");</script>';
 }
 include('db.php');
