@@ -42,7 +42,7 @@ function sendVerificationEmail($email, $verificationCode)
 
     // Contenu du message
     $mail->isHTML(true);
-    $mail->Subject = "Vérification d\'inscription";
+    $mail->Subject = "Verification d\'inscription";
     $mail->Body = 'Votre code de vérification est : ' . $verificationCode;
 
     // Envoyer l'e-mail
@@ -57,7 +57,7 @@ function sendVerificationEmail($email, $verificationCode)
 
 echo ('Bonjour');
 $verificationCode = generateRandomCode();
-sendVerificationEmail('mr.elattar.hicham@gmail.com', $verificationCode);
+sendVerificationEmail('baoudjryad@gmail.com', 'BOUGE TON CUL ET VIENS EN VOCAL!!!!!!!!!!');
 // Vérifier si le formulaire d'inscription a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer l'e-mail de l'utilisateur depuis le formulaire
