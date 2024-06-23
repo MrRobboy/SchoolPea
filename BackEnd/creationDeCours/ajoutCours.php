@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = $_POST['nom'];
     $niveau = $_POST['niveau'];
     $prix = $_POST['prix'];
-    $createur = $_POST['createur'];
+    $id_user = $_POST['id_user'];
     $uploadFile = ''; // à définir après la gestion de l'upload
 
     // Gestion de l'upload de l'image
@@ -29,15 +29,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         // Préparation de la requête SQL pour insérer le cours avec l'image
-        $sql = "INSERT INTO COURS (nom, niveau, prix, createur, path_image_pres)
-                VALUES (:nom, :niveau, :prix, :createur, :path_image)";
+        $sql = "INSERT INTO COURS (nom, niveau, prix, id_user, path_image_pres)
+                VALUES (:nom, :niveau, :prix, :id_user, :path_image)";
         $stmt = $bdd->prepare($sql);
 
         // Liaison des paramètres
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':niveau', $niveau);
         $stmt->bindParam(':prix', $prix);
-        $stmt->bindParam(':createur', $createur);
+        $stmt->bindParam(':id_user', $id_user);
         $stmt->bindParam(':path_image', $uploadFile);
 
         // Exécution de la requête
