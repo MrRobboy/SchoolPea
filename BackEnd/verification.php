@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -52,27 +53,5 @@ function sendVerificationEmail($email, $verificationCode)
     } else {
         // Échec
         return false;
-    }
-}
-
-echo ('Bonjour');
-$verificationCode = generateRandomCode();
-$_SESSION['verif'] = $verificationCode;
-sendVerificationEmail($_SESSION['email'], 'Voici votre code : ' . $verificationCode);
-// Vérifier si le formulaire d'inscription a été soumis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupérer l'e-mail de l'utilisateur depuis le formulaire
-    $email = $_POST['email'];
-
-    // Générer un code de vérification aléatoire
-    $verificationCode = generateRandomCode();
-
-    // Envoyer l'e-mail de vérification d'inscription
-    if (sendVerificationEmail($email, $verificationCode)) {
-        // L'e-mail a été envoyé avec succès
-        echo 'Un e-mail de vérification a été envoyé à ' . $email . '. Veuillez vérifier votre boîte de réception.';
-    } else {
-        // Une erreur s'est produite lors de l'envoi de l'e-mail
-        echo 'Une erreur s\'est produite lors de l\'envoi de l\'e-mail de vérification. Veuillez réessayer plus tard.';
     }
 }
