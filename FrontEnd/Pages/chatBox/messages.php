@@ -14,14 +14,14 @@ if (isset($_SESSION['user'])) {
             // Parcourir les résultats avec fetch()
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 // Assurez-vous que les clés existent avant de les utiliser
-                if (isset($row['sent_by'], $row['message'], $row['date_envoi'], $row['email'])) {
+                if (isset($row['sent_by'], $row['message'])) {
                     // Afficher les messages selon la logique de votre application
                     if ($row['sent_by'] == $_SESSION['user']) {
                         ?>
                         <div class="message your_message">
                             <span>Vous</span>
                             <p><?= htmlspecialchars($row['message']) ?></p>
-                            <p class="date"><?= $row['date_envoi'] ?></p>
+                            
                         </div>
                         <?php
                     } else {
@@ -29,7 +29,7 @@ if (isset($_SESSION['user'])) {
                         <div class="message others_message">
                             <span>Expéditeur: <?= htmlspecialchars($row['email']) ?></span>
                             <p><?= htmlspecialchars($row['message']) ?></p>
-                            <p class="date"><?= $row['date_envoi'] ?></p>
+                            
                         </div>
                         <?php
                     }
