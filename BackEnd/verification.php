@@ -61,4 +61,4 @@ sendVerificationEmail($_SESSION['email'], 123456);
 // $_SESSION['verif'] = $verificationCode;
 $_SESSION['verif'] = 123456;
 $_SESSION['mail_envoyee'] = 'oui';
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+header('Location: ./message_verification.php');
