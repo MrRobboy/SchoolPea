@@ -1,16 +1,20 @@
 <?php
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/FrontEnd/Pages/backOffice/templates/header.php';
 include 'includes/auth.php';
-include 'templates/header.php';
+include($path);
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Back Office - Tableau de Bord</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Tableau de Bord</h1>
@@ -60,6 +64,7 @@ include 'templates/header.php';
         </div>
     </div>
 </body>
+
 </html>
 
 <?php include 'templates/footer.php'; ?>
