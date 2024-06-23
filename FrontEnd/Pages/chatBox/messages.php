@@ -6,7 +6,7 @@ require_once "connexion_bdd.php";
 
 if (isset($_SESSION['user'])) {
     // Requête pour récupérer les messages
-    $stmt = $pdo->query("SELECT * FROM messages ORDER BY id_message DESC");
+    $stmt = $pdo->query("SELECT * FROM MESSAGE ORDER BY id_message DESC");
 
     if ($stmt->rowCount() == 0) {
         echo "Messagerie vide";
