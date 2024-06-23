@@ -21,8 +21,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $path_img_pres = $_POST['path_img_pres'];
         $total_questions = $_POST['total_questions'];
 
+        // Vérifier et télécharger l'image de présentation
+        $upload_dir = 'uploads/'; // Répertoire où stocker les images
+        $file_img_pres = $_FILES['file_img_pres'];
+
+        // Vérifier si un fichier a été téléchargé
+        if ($file_img_pres['error'] === UPLOAD_ERR_OK) {
+            $file_name = basename($file_img_pres['name']);
+            $upload_path = $upload_dir . $file_name;
+
+            // Déplacer le fichier téléchargé vers le répertoire d'uploads
+            if (move_uploaded_file($file_img_pres['tmp_name'], $upload_path)) {
+                // Image téléchargée avec succès, utiliser $upload_path dans votre base de données
+                $path_img_pres = $upload_path;
+            } else {
+                die("Erreur lors du téléchargement de l'image.");
+            }
+        } else {
+            die("Erreur: " . $file_img_pres['error']);
+        }
+
         // Insérer le quiz dans la table `quizzes`
-        $query = "INSERT INTO QUIZZ (nom, path_img_pres) VALUES (:nom_quizz, :path_img_pres)";
+        $query = "INSERT INTO quizzes (nom, path_img_pres) VALUES (:nom_quizz, :path_img_pres)";
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':nom_quizz', $nom_quizz, PDO::PARAM_STR);
         $stmt->bindParam(':path_img_pres', $path_img_pres, PDO::PARAM_STR);
@@ -32,28 +52,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Insérer chaque question avec ses réponses dans la base de données
         for ($i = 1; $i <= $total_questions; $i++) {
             $question_text = $_POST['question_' . $i];
-            $choix_text = $_POST['choix_' . $i];
-            $correct_choix_text = $_POST['correct_choix_' . $i];
+            $choices_text = $_POST['choices_' . $i];
+            $correct_choices_text = $_POST['correct_choices_' . $i];
 
             // Diviser les choix et les réponses correctes en tableaux
-            $choix = explode(",", $choix_text);
-            $correct_choix = explode(",", $correct_choix_text);
+            $choices = explode(",", $choices_text);
+            $correct_choices = explode(",", $correct_choices_text);
 
             // Insérer la question dans la table `questions`
-            $query = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (:quiz_id, :question_text)";
+            $query = "INSERT INTO questions (id_quizz, question_text) VALUES (:quiz_id, :question_text)";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':quiz_id', $quiz_id, PDO::PARAM_INT);
             $stmt->bindParam(':question_text', $question_text, PDO::PARAM_STR);
             $stmt->execute();
             $question_id = $pdo->lastInsertId();
 
-            // Insérer les choix dans la table `choix`
-            foreach ($choix as $key => $choix_text) {
-                $is_correct = (in_array($key + 1, $correct_choix)) ? 1 : 0; // $key + 1 car les clés commencent à 0
-                $query = "INSERT INTO CHOIX (id_question, choix_text, is_correct) VALUES (:question_id, :choix_text, :is_correct)";
+            // Insérer les choix dans la table `choices`
+            foreach ($choices as $key => $choice_text) {
+                $is_correct = (in_array($key + 1, $correct_choices)) ? 1 : 0; // $key + 1 car les clés commencent à 0
+                $query = "INSERT INTO choices (id_question, choice_text, is_correct) VALUES (:question_id, :choice_text, :is_correct)";
                 $stmt = $pdo->prepare($query);
                 $stmt->bindParam(':question_id', $question_id, PDO::PARAM_INT);
-                $stmt->bindParam(':choix_text', $choix_text, PDO::PARAM_STR);
+                $stmt->bindParam(':choice_text', $choice_text, PDO::PARAM_STR);
                 $stmt->bindParam(':is_correct', $is_correct, PDO::PARAM_INT);
                 $stmt->execute();
             }
@@ -68,43 +88,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Créer un Quiz</title>
+    <title>Confirmation</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="container">
     <header>
-        <h1>Créer un Quiz</h1>
+        <h1>Confirmation</h1>
     </header>
     <main>
-        <div class="form-preview-wrapper">
-            <?php if (isset($msg)): ?>
-                <p><?= $msg ?></p>
-            <?php endif; ?>
-            <div class="preview">
-                <h2>Prévisualisation du Quiz</h2>
-                <div id="quizPreview">
-                    <p v-if="!quiz.nom">Nom du Quiz</p>
-                    <h3>{{ quiz.nom }}</h3>
-                    <img v-if="quiz.path_img_pres" :src="quiz.path_img_pres" alt="Image de présentation">
-                    <p v-else>Image de présentation</p>
-                    <div v-for="(question, index) in questions" :key="index">
-                        <h4>Question {{ index + 1 }}</h4>
-                        <p>{{ question.question_text }}</p>
-                        <ul>
-                            <li v-for="(choix, idx) in question.choix" :key="idx">
-                                {{ choix }}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php if (isset($msg)): ?>
+            <p><?= $msg ?></p>
+        <?php endif; ?>
     </main>
     <footer>
         <p>&copy; 2024 PHP Quizzer. Tous droits réservés.</p>
     </footer>
 </div>
-<script src="js/script.js"></script>
 </body>
 </html>
