@@ -12,23 +12,29 @@ if (isset($_SESSION['user'])) {
         echo "Messagerie vide";
     } else {
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            // Afficher les messages selon la logique de votre application
-            if ($row['email'] == $_SESSION['user']) {
-                ?>
-                <div class="message your_message">
-                    <span>Vous</span>
-                    <p><?= htmlspecialchars($row['msg']) ?></p>
-                    <p class="date"><?= $row['date'] ?></p>
-                </div>
-                <?php
+            // Assurez-vous que les clés existent avant de les utiliser
+            if (isset($row['sent_by'], $row['message'], $row['date_envoi'])) {
+                // Afficher les messages selon la logique de votre application
+                if ($row['sent_by'] == $_SESSION['user']) {
+                    ?>
+                    <div class="message your_message">
+                        <span>Vous</span>
+                        <p><?= htmlspecialchars($row['message']) ?></p>
+                        <p class="date"><?= $row['date_envoi'] ?></p>
+                    </div>
+                    <?php
+                } else {
+                    ?>
+                    <div class="message others_message">
+                        <span>Expéditeur: <?= htmlspecialchars($row['sent_by']) ?></span>
+                        <p><?= htmlspecialchars($row['message']) ?></p>
+                        <p class="date"><?= $row['date_envoi'] ?></p>
+                    </div>
+                    <?php
+                }
             } else {
-                ?>
-                <div class="message others_message">
-                    <span><?= htmlspecialchars($row['email']) ?></span>
-                    <p><?= htmlspecialchars($row['msg']) ?></p>
-                    <p class="date"><?= $row['date'] ?></p>
-                </div>
-                <?php
+                // Gérer le cas où une clé nécessaire n'est pas définie
+                echo "Données manquantes pour afficher le message.";
             }
         }
     }
