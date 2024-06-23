@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $pdo->prepare('SELECT * FROM USR WHERE email = ?');
+    $stmt = $pdo->prepare('SELECT * FROM USER WHERE email = ?');
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
