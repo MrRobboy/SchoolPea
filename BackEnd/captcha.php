@@ -2,7 +2,11 @@
 session_start();
 echo $_SESSION['email'];
 if (isset($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
-    echo '<script>alert("Mauvaise réponse");</script>';
+?>
+    <script>
+        alert("Mauvaise réponse");
+    </script>
+<?php
 }
 include('db.php');
 $request = $dbh->query('SELECT question FROM CAPTCHA;');
