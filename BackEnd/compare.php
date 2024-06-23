@@ -9,6 +9,11 @@ if (isset($_POST['submit'])) {
 		$queryStatement = $dbh->prepare('USE PA; UPDATE USER SET validation_mail=1 WHERE email =:email;');
 		$queryStatement->bindvalue(':email', $_SESSION['email']);
 		$result = $queryStatement->execute();
+		$queryStatement = $dbh->query('SELECT id FROM USER WHERE email=:email;');
+		$queryStatement->bindvalue(':email', $_SESSION['email']);
+		$result = $queryStatement->fetchAll();
+		$_SESSION['id'] = $result[0]['id'];
+		echo $_SESSION['id'];
 		// header('location: captcha.php');
 	} else {
 		echo ('<br>code echoué :(');
