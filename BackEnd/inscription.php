@@ -1,7 +1,6 @@
 <?php
 session_start();
 include('db.php');
-// $_SESSION['erreur'] = 'mhhhh';
 unset($_SESSION['erreur']);
 /*
 $error = false;
