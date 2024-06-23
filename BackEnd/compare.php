@@ -6,7 +6,7 @@ echo ($_POST['code'] . '<br>' . $_SESSION['verif']);
 if (isset($_POST['submit'])) {
         if ($_POST['code'] == $_SESSION['verif']) {
                 echo ('<br>code reussi !!');
-                $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(Validé) VALUES (1) where email =' . $_SESSION['email'] . ';');
+                $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(validation_mail) VALUES (1) where email =' . $_SESSION['email'] . ';');
                 $result = $queryStatement->execute();
                 // header('location: captcha.php');
         } else {
