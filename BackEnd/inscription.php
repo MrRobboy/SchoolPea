@@ -43,6 +43,7 @@ if (isset($_POST['submit_inscription'])) {
     $queryVerification = $dbh->query('SELECT email FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
     echo ($emails[0][0]);
+    $result = false;
 
     if ($email != $emails[0][0]) {
         $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
@@ -54,7 +55,7 @@ if (isset($_POST['submit_inscription'])) {
 
         $result = $queryStatement->execute();
     } else {
-        echo 'ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
+        echo '<br>ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
     }
 
     if (!$result) {
