@@ -4,9 +4,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 // Inclure les dépendances de PHPMailer
 require 'vendor/autoload.php';
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
+require 'vendor/phpmailer/src/Exception.php';
+require 'vendor/phpmailer/src/PHPMailer.php';
+require 'vendor/phpmailer/src/SMTP.php';
 
 // Fonction pour générer un code de vérification aléatoire
 function generateRandomCode($length = 6)
@@ -42,7 +42,7 @@ function sendVerificationEmail($email, $verificationCode)
 
     // Contenu du message
     $mail->isHTML(true);
-    $mail->Subject = 'Vérification d\'inscription';
+    $mail->Subject = 'Verification d\'inscription';
     $mail->Body = 'Votre code de vérification est : ' . $verificationCode;
 
     // Envoyer l'e-mail
@@ -56,7 +56,8 @@ function sendVerificationEmail($email, $verificationCode)
 }
 
 echo ('Bonjour');
-sendVerificationEmail('mr.elattar.hicham@gmail.com', '123456');
+$verificationCode = generateRandomCode();
+sendVerificationEmail('baoudjryad@gmail.com', 'BOUGE TON CUL ET VIENS EN VOCAL!!!!!!!!!!');
 // Vérifier si le formulaire d'inscription a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer l'e-mail de l'utilisateur depuis le formulaire
