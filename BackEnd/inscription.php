@@ -42,7 +42,7 @@ if (isset($_POST['submit_inscription'])) {
 
     echo ('INFOS :<br>Firstname : ' . $firstname . '<br>Lastname : ' . $lastname .  '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);
 
-    $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
+    $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
     $queryStatement->bindvalue(':firstname', $firstname);
     $queryStatement->bindvalue(':lastname', $lastname);

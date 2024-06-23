@@ -36,9 +36,8 @@
                 ?>
                 <input type="text" name="lastname" placeholder="Nom" required>
                 <input type="text" name="firstname" placeholder="Prenom" required>
-                <input type="email" id="email" name="email_inscription" placeholder="Email" required>
-                <input type="password" id="password" name="password_inscription" placeholder="Mot de passe" required>
-
+                <input type="email" name="email_inscription" placeholder="Email" required>
+                <input type="password" name="password_inscription" placeholder="Mot de passe" required>
                 <button type="submit" name="submit_inscription">Inscription</button>
             </form>
         </div>
