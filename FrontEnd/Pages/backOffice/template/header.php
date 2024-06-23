@@ -53,7 +53,7 @@ session_start();
         <span id="slide_down">
             <img src="https://schoolpea.com/Images/listeA.svg" id="dropbtn">
             <div id="dropdown">
-                <a class="lien_header" href="https://schoolpea.com/">Tickets</a>
+                <a class="lien_header" href="https://schoolpea.com/Tickets/">Tickets</a>
                 <a class="lien_header" href="https://schoolpea.com/">Front Office</a>
                 <a class="lien_header" href="https://schoolpea.com/Compte/">Paramètres</a>
             </div>
