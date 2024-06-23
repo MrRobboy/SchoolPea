@@ -6,10 +6,11 @@ $reponses = $request->fetchAll();
 
 if (!empty($_POST['submit'])) {
     if (verify($_POST['textCaptchaAnswer'], $reponses)) {
+        unset($_SESSION['erreur']);
         header('location: ./message_verification.php');
     } else {
-        echo 'ERREUR CAPTCHA';
-        // header('location: captcha.php');
+        $_SESSION['erreur'] == 'erreur';
+        header('location: captcha.php');
     }
 } else header('location: captcha.php');
 
