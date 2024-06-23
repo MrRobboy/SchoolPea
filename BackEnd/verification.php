@@ -56,7 +56,8 @@ function sendVerificationEmail($email, $verificationCode)
     }
 }
 
-sendVerificationEmail($_SESSION['email'], generateRandomCode());
+$verificationCode = generateRandomCode();
+sendVerificationEmail($_SESSION['email'], $verificationCode);
 $_SESSION['verif'] = $verificationCode;
 $_SESSION['mail_envoyee'] = 'oui';
 // header('Location: ' . $_SERVER['HTTP_REFERER']);
