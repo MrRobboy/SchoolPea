@@ -51,7 +51,7 @@ if (isset($_POST['submit_inscription'])) {
 
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
-    echo ('INFOS :<br>Name : ' . $name . '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);
+    echo ('INFOS :<br>Firstname : ' . $firstname . '<br>Lastname : ' . $lastname .  '<br>Mail : ' . $email . '<br>Password : ' . $password . '<br>Password Hash : ' . $passwordHash);
 
     $queryStatement = $bdd->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
