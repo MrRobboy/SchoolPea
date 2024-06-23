@@ -12,5 +12,8 @@ if (!empty($_POST['submit'])) {
                 echo ('code echoué :(');
                 // header('location: ./message_verification.php');
         }
-} else echo ('ERREUR SUBMIT');
-// header('location: ' . $_SERVER['DOCUMENT_ROOT']);
+} else {
+        echo ('ERREUR SUBMIT');
+        // header('location: ' . $_SERVER['DOCUMENT_ROOT']);
+        echo ($_POST['submit']);
+}
