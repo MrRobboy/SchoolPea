@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!empty($_SESSION['mail_envoyee']) && $_SESSION['mail_envoyee'] == 'oui') {
+	echo '<script>alert("Votre mail a bien été enregisté")</script>';
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
