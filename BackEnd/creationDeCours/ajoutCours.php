@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // Préparation de la requête SQL pour insérer le cours avec l'image
-            $sql = "INSERT INTO cours (nom, niveau, prix, createur, path_image_pres)
+            $sql = "INSERT INTO COURS (nom, niveau, prix, createur, path_image_pres)
                     VALUES (:nom, :niveau, :prix, :createur, :path_image)";
             $stmt = $bdd->prepare($sql);
 
