@@ -7,7 +7,7 @@ require_once "connexion_bdd.php";
 if (isset($_SESSION['user'])) {
     try {
         // Préparation de la requête SQL pour récupérer les messages avec les détails de l'utilisateur
-        $stmt = $pdo->query("SELECT m.*, u.email FROM MESSAGE m JOIN USER u ON m.sent_by = u.id_user ORDER BY m.id_message DESC");
+        $stmt = $pdo->query("SELECT * FROM MESSAGE ORDER BY id_message DESC");
 
         // Vérification si des résultats sont retournés
         if ($stmt) {
