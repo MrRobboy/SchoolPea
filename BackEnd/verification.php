@@ -30,7 +30,7 @@ function sendVerificationEmail($email, $verificationCode)
     $mail->isSMTP();
     $mail->Host = 'smtp.office365.com'; // Serveur SMTP (exemple avec Outlook)
     $mail->SMTPAuth = true;
-    $mail->Username = 'ne-pas-repondre@schoolpea.com'; // Adresse e-mail
+    $mail->Username = 'schoolpea@outlook.fr'; // Adresse e-mail
     $mail->Password = 'BienvenueEnLangageCLuffyNikaAroufGangstaXavierDupontDeLigones.exe'; // Mot de passe
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
