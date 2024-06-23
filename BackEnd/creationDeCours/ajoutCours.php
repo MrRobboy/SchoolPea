@@ -1,11 +1,21 @@
 <?php
+// Démarrer la session si ce n'est pas déjà fait
+session_start();
+
+// Vérifier si l'utilisateur est connecté et récupérer id_user depuis la session
+if (!isset($_SESSION['id_user'])) {
+    echo "Erreur: Utilisateur non authentifié.";
+    exit;
+}
+
+$id_user = $_SESSION['id_user'];
+
 // Vérification si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupération des données du formulaire
-    $nom = $_POST['nom'];
-    $niveau = $_POST['niveau'];
-    $prix = $_POST['prix'];
-    $id_user = $_POST['id_user'];
+    $nom = $_POST['nom'] ?? '';
+    $niveau = $_POST['niveau'] ?? '';
+    $prix = $_POST['prix'] ?? '';
     $uploadFile = ''; // à définir après la gestion de l'upload
 
     // Gestion de l'upload de l'image
