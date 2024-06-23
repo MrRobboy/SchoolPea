@@ -11,7 +11,7 @@ $request = $dbh->query('SELECT count(id) FROM CAPTCHA;');
 $max = $request->fetchAll();
 $x = random_int(1, $max[0][0]);
 $_SESSION['x'] = $x;
-$question = $questions[$x]['question'];
+$question = $questions[$max[0][0]]['question'];
 
 echo ('<form method="post" style="margin : 5rem auto; justify-content : center; display : flex; font-size: 1.5rem;" action="./Verif_captcha.php" >' . $question);
 echo ('<input name="textCaptchaAnswer" style="margin : 0 0.5rem; font-size : 1.5rem" type="text" required />');
