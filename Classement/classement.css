@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
-
 /* Réinitialisation des styles et style général */
 * {
         margin: 0;
@@ -13,13 +11,11 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #c9d6ff;
         flex-direction: column;
         padding-top: 80px;
         /* Pour éviter que le contenu soit caché sous le header fixe */
         margin: 0;
 }
-
 
 header {
         position: fixed;
@@ -79,18 +75,18 @@ header {
         background-color: #6b7ad2;
 }
 
-/* Arrondir les coins du tableau de classement */
+/* Style du tableau de classement */
 #classement {
-        max-width: 1000px;
-        /* Augmenter la largeur maximale du tableau */
         width: 90%;
-        /* Utiliser 90% de la largeur disponible */
+        /* Utilisation de 90% de la largeur disponible */
+        max-width: 1200px;
+        /* Limite la largeur maximale du tableau */
         margin: 2rem auto;
-        /* Centrer le tableau horizontalement avec un espacement autour */
+        /* Centre le tableau horizontalement avec un espacement autour */
         border-radius: 1rem;
         /* Coins arrondis du tableau */
         overflow: hidden;
-        /* Cacher tout contenu dépassant */
+        /* Cacher tout contenu dépassant les limites du tableau */
         box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
         /* Ombre douce pour l'effet de profondeur */
         background-color: #ffffff;
@@ -99,24 +95,34 @@ header {
         /* Bordure légère autour du tableau */
 }
 
-/* Augmenter la taille du texte dans les cellules du tableau */
+table {
+        width: 100%;
+        /* Tableau occupe toute la largeur disponible */
+        border-collapse: collapse;
+        /* Fusionne les bordures des cellules */
+}
+
 table th,
 table td {
         padding: 1rem;
         /* Espacement interne plus grand */
         font-size: 1rem;
-        /* Taille du texte légèrement augmentée */
+        /* Taille du texte dans les cellules */
+        text-align: center;
+        /* Centrage du contenu */
+        border-bottom: 1px solid #e0e0e0;
+        /* Bordure basse des lignes */
 }
 
-/* Agrandir la police et espacement du texte dans l'en-tête du tableau */
 thead th {
-        padding: 1.2rem;
+        background-color: #6b7ad2;
+        color: #ffffff;
+        padding: 1.5rem;
         /* Espacement interne plus grand pour l'en-tête */
         font-size: 1.1rem;
-        /* Taille de la police légèrement augmentée */
+        /* Taille de la police dans l'en-tête */
 }
 
-/* Style des lignes paires et survol des lignes dans le tableau */
 tbody tr:nth-child(even) {
         background-color: #f5f5f5;
         /* Couleur de fond des lignes paires */
