@@ -14,8 +14,9 @@ try {
 }
 
 // Requête SQL pour récupérer le classement des utilisateurs par Elo et moyenne
-$sql = "SELECT Nom, Prenom, Elo, Moyenne FROM USER ORDER BY Elo DESC, Moyenne DESC";
+$sql = "SELECT firstname AS Nom, lastname AS Prenom, elo AS Elo, 0 AS Moyenne FROM USER ORDER BY elo DESC";
 $result = $dbh->query($sql);
+
 ?>
 
 <!DOCTYPE html>
