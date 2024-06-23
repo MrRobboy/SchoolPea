@@ -76,13 +76,20 @@ header {
 }
 
 /* Style du tableau de classement */
-#classement {
-        width: 90%;
-        /* Utilisation de 90% de la largeur disponible */
+#table-container {
+        width: 80%;
+        /* Utilisation de 80% de la largeur disponible */
         max-width: 1200px;
-        /* Limite la largeur maximale du tableau */
+        /* Limite la largeur maximale du conteneur */
         margin: 2rem auto;
         /* Centre le tableau horizontalement avec un espacement autour */
+}
+
+#classement {
+        width: 100%;
+        /* Tableau occupe toute la largeur disponible */
+        border-collapse: collapse;
+        /* Fusionne les bordures des cellules */
         border-radius: 1rem;
         /* Coins arrondis du tableau */
         overflow: hidden;
@@ -93,13 +100,6 @@ header {
         /* Fond blanc pour le tableau */
         border: 1px solid #d1d1d1;
         /* Bordure légère autour du tableau */
-}
-
-table {
-        width: 100%;
-        /* Tableau occupe toute la largeur disponible */
-        border-collapse: collapse;
-        /* Fusionne les bordures des cellules */
 }
 
 table th,
@@ -135,7 +135,8 @@ tbody tr:hover {
 
 /* Media query pour ajuster le style sur les petits écrans */
 @media (max-width: 600px) {
-        #classement {
-                margin: 1rem;
+        #table-container {
+                width: 90%;
+                /* Réduire la largeur du conteneur sur les petits écrans */
         }
 }
