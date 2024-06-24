@@ -21,6 +21,12 @@
             <a class="lien_header" href="https://schoolpea.com/SchoolPea+/"> SchoolPea+ </a>
         </span>
 
+        <span>
+            <a href="https://schoolpea.com/Classement/" class="lien_header">
+                Classement
+            </a>
+        </span>
+
         <span class="link">
             <a class="lien_header" href="https://schoolpea.com/Quizzs/">
                 Explorer les Quizzs
