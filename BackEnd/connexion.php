@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email_connexion'];
 
     // Prepare the SQL statement
-    $getUserSql = $dbh->query("USE PA; SELECT * FROM USER WHERE email = :email");
+    $getUserSql = "USE PA; SELECT * FROM USER WHERE email = :email";
 
     $preparedGetUserSql = $dbh->query($getUserSql);
     $preparedGetUserSql->bindvalue(':email', $email);
