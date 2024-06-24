@@ -38,6 +38,12 @@ header.admin {
     color: #000;
 }
 
+#lien_img {
+    padding: 0 1em;
+    text-decoration: none;
+    color: #000;
+}
+
 #logo_header {
     /*header -> accueil -> logo_header*/
     width: 45px;
