@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $preparedGetUserSql = $dbh->query($getUserSql);
     $preparedGetUserSql->bindvalue(':email', $email);
-    $preparedGetUserSql->fetchAll();
+    $user = $preparedGetUserSql->fetchAll();
+    echo ('<pre>' . print_r($user) . '</pre>');
     if (!empty($user) && $user[0]['validation_mail'] == true) {
         if (password_verify($password, $user[0]['password'])) {
             $_SESSION['id_user'] = htmlspecialchars($user[0]['id_user']);
