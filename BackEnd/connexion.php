@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user = $preparedGetUserSql->fetch();
 
         if ($user) {
-            if (password_verify($password, $user['password'])) {
+            if (password_verify($password, $user[0]['password'])) {
                 $_SESSION['idUser'] = $user[0]['id_user'];
                 $_SESSION['firstname'] = $user[0]['firstname'];
                 $_SESSION['lastname'] = $user[0]['lastname'];
