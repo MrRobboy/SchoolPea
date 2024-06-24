@@ -39,18 +39,18 @@ session_start();
             <span id="Modif_Nom_Prenom">
                 <span id="Nom">
                     <span class="Text_Nom_Prenom_Email">Nom</span>
-                    <input type="text" placeholder="Changer le nom" class="Input_Nom_Prenom_Email">
+                    <input type="text" value="<?php echo ($_SESSION['lastname']); ?>" class="Input_Nom_Prenom_Email">
                 </span>
 
                 <span id="Prenom">
                     <span class="Text_Nom_Prenom_Email">Prénom</span>
-                    <input type="text" placeholder="Changer le prénom" class="Input_Nom_Prenom_Email">
+                    <input type="text" value="<?php echo ($_SESSION['firststname']); ?>" class="Input_Nom_Prenom_Email">
                 </span>
             </span>
 
             <span id="Email">
                 <span class="Text_Nom_Prenom_Email">Email adresse</span>
-                <input type=" text" placeholder="Changer l'email" class="Input_Nom_Prenom_Email">
+                <input type=" text" value="<?php echo ($_SESSION['email']); ?>" class="Input_Nom_Prenom_Email">
             </span>
 
             <span style="margin: 1em 0;">
