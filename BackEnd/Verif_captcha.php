@@ -7,7 +7,7 @@ $request = $dbh->query('SELECT reponse1, reponse2, reponse3, reponse4, reponse5 
 $reponses = $request->fetchAll();
 
 if (!empty($_POST['submit'])) {
-    if (!verify($_POST['textCaptchaAnswer'], $reponses)) {
+    if (!verify(htmlspecialchars($_POST['textCaptchaAnswer']), $reponses)) {
         $_SESSION['erreur'] = 'erreur';
         header('location: captcha.php');
     } else {
