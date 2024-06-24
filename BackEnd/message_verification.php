@@ -11,7 +11,7 @@ if (empty($_SESSION['mail_envoyee'])) {
 <head>
 	<title>En attente de validation</title>
 	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="./styles.css">
+	<link rel="stylesheet" type="text/css" href="./back.css">
 </head>
 
 <body>
