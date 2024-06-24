@@ -8,20 +8,18 @@ session_start();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Mon compte</title>
-    <link rel="stylesheet" type="text/css" href="./compte.css" />
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Compte/compte.css" />
 </head>
-
 
 <body>
     <?php
-    if (!empty($_SESSION['path_pp'])) {
-        $path = $_SERVER['DOCUMENT_ROOT'];
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
         $path .= '/headerL.php';
-        include($path);
     } else {
         header('Location: https://schoolpea.com/Connexion');
     }
-
+    include_once($path);
     ?>
 
     <div id="div1">
