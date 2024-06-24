@@ -1,6 +1,6 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= 'BackEnd/db.php';
+$path .= '/BackEnd/db.php';
 include($path);
 
 $sql = "SELECT firstname AS Nom, lastname AS Prenom, elo AS Elo, 0 AS Moyenne FROM USER ORDER BY elo DESC";
@@ -20,13 +20,13 @@ $result = $dbh->query($sql);
 <body>
     <?php
     session_start();
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    // if (isset($_SESSION['mail_valide'])) {
-    //     $path .= '/headerL.php';
-    // } else {
-    //     $path .= '/headerNL.php';
-    // }
-    include_once($path);
+    // $path = $_SERVER['DOCUMENT_ROOT'];
+    // // if (isset($_SESSION['mail_valide'])) {
+    // //     $path .= '/headerL.php';
+    // // } else {
+    // //     $path .= '/headerNL.php';
+    // // }
+    // include_once($path);
     ?>
 
     <div id="content">
