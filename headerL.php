@@ -43,7 +43,7 @@
             </div>
         </span>
 
-        <span style="margin-left: 1rem">
+        <span style="margin-left: 0rem">
             <a href="/Compte">
                 <img src="https://schoolpea.com/<?php echo  $_SESSION['path_pp']; ?>" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
             </a>
