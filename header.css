@@ -124,8 +124,9 @@ header.admin {
 
 .trait {
     padding: 0.2em 20em;
-    background-color: transparent;
     border-radius: 3em;
     justify-content: center;
-    margin: 0em 0em 10em 0em;
+    background-color: transparent;
+    margin-bottom: 10em;
+    margin-top: 0em;
 }
