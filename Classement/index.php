@@ -39,7 +39,7 @@ $result = $dbh->query($sql);
                         <th style="padding: 0 7rem">Nom</th>
                         <th style="padding: 0 5rem">Prenom</th>
                         <th style="padding: 0 3rem">Elo</th>
-                        <th style="padding: 0 3rem; border-right-color: #6b7ad2;">Moyenne</th>
+                        <th style="padding: 0 3rem; border-right-color: none;">Moyenne</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@ $result = $dbh->query($sql);
                             echo '<td>' . htmlspecialchars($row['Nom']) . '</td>';
                             echo '<td>' . htmlspecialchars($row['Prenom']) . '</td>';
                             echo '<td>' . $row['Elo'] . '</td>';
-                            echo '<td>' . $row['Moyenne'] . '</td>';
+                            echo '<td style="border-right-color: none">' . $row['Moyenne'] . '</td>';
                             echo '</tr>';
                             $counter++;
                         }
