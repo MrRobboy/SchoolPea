@@ -75,8 +75,11 @@ table td {
     text-align: center;
     /* Centrage du contenu */
     border-bottom: 0.3rem solid #6b7ad2;
-    border-right: 0.3rem solid #6b7ad2;
     /* Bordure basse des lignes */
+}
+
+table td.not_right {
+    border-right: 0.3rem solid #6b7ad2;
 }
 
 thead th {

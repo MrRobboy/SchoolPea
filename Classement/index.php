@@ -48,11 +48,11 @@ $result = $dbh->query($sql);
                         $counter = 1;
                         while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                             echo '<tr>';
-                            echo '<td>' . $counter . '</td>';
-                            echo '<td>' . htmlspecialchars($row['Nom']) . '</td>';
-                            echo '<td>' . htmlspecialchars($row['Prenom']) . '</td>';
-                            echo '<td>' . $row['Elo'] . '</td>';
-                            echo '<td style="border-right-color: none">' . $row['Moyenne'] . '</td>';
+                            echo '<td class="not_right">' . $counter . '</td>';
+                            echo '<td class="not_right">' . htmlspecialchars($row['Nom']) . '</td>';
+                            echo '<td class="not_right">' . htmlspecialchars($row['Prenom']) . '</td>';
+                            echo '<td class="not_right">' . $row['Elo'] . '</td>';
+                            echo '<td>' . $row['Moyenne'] . '</td>';
                             echo '</tr>';
                             $counter++;
                         }
