@@ -55,8 +55,8 @@ body {
 }
 
 #PP {
-    width: 6em;
-    height: 6em;
+    width: 7em;
+    height: 7em;
     object-fit: cover;
     border-radius: 50px;
     margin: 1em;
@@ -163,6 +163,10 @@ body {
     border: 0.1em black solid;
     background-color: lightgray;
     padding: 0 1em;
+}
+
+.Input_Mdp_modif_div:focus {
+    background-color: white;
 }
 
 #Sauvegarde_modif_mdp {
