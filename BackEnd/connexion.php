@@ -15,10 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = htmlspecialchars($_POST['email_connexion']);
 
     $requestDB = 'USE PA; SELECT * FROM USER WHERE email ="' . $email . '";';
-    echo $requestDB;
+    echo $requestDB . '<br>';
     $UserInfo = $dbh->query($requestDB);
     $user = $UserInfo->fetchAll();
-    echo ('<pre>' . print_r($user) . '</pre>');
+    echo ('<pre>' . print_r($user[0]) . '</pre>');
     if (!empty($user) && $user[0]['validation_mail'] == true) {
         if (password_verify($password, $user[0]['password'])) {
             $_SESSION['id_user'] = htmlspecialchars($user[0]['id_user']);
