@@ -1,48 +1,37 @@
 <?php
 session_start();
-require_once './db.php';
-/* A SETUP !
-$request = $dbh->query('SELECT * FROM USER WHERE email = :email;');
-$queryStatement->bindvalue(':email', $_SESSION['email']);
-$infos = $request->fetchAll();
-$_SESSION['path_pp'] = $infos[0]['path_pp']; */
-
 $badCredentials = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Check if the password and email keys exist in the $_POST array
-    if (!isset($_POST['password_connexion']) || !isset($_POST['email_connexion'])) {
-        echo "Email or password not set.";
-        exit;
-    }
+	// Check if the password and email keys exist in the $_POST array
+	if (!isset($_POST['password_connexion']) || !isset($_POST['email_connexion'])) {
+		header('Location: ' . $_SERVER['HTTP_REFERER']);
+	}
+} else header('Location: ' . $_SERVER['HTTP_REFERER']);
 
-    $password = $_POST['password_connexion'];
-    $email = $_POST['email_connexion'];
+$pass = htmlspecialchars($_POST['password_connexion']);
+$email = htmlspecialchars($_POST['email_connexion']);
 
-    // Prepare the SQL statement
-    $getUserSql = "USE PA; SELECT * FROM USER WHERE email = :email";
+include('db.php');
+$requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
+$UserInfo = $dbh->query($requestDB);
+$user = $UserInfo->fetchAll();
 
-    if ($dbh) {
-        $preparedGetUserSql = $dbh->prepare($getUserSql);
-        $preparedGetUserSql->execute(['email' => $email]);
-        $user = $preparedGetUserSql->fetch();
+if (!empty($user) && $user[0]['validation_mail'] == 1) {
+	echo 'test1<br>';
+	if (password_verify($pass, $user[0]['password'])) {
+		$_SESSION['id_user'] = htmlspecialchars($user[0]['id_user']);
+		$_SESSION['email'] = htmlspecialchars($user[0]['email']);
+		$_SESSION['firstname'] = htmlspecialchars($user[0]['firstname']);
+		$_SESSION['lastname'] = htmlspecialchars($user[0]['lastname']);
+		$_SESSION['path_pp'] = htmlspecialchars($user[0]['path_pp']);
+		$_SESSION['elo'] = htmlspecialchars($user[0]['elo']);
+		$_SESSION['role'] = htmlspecialchars($user[0]['role']);
+		$_SESSION['validation_mail'] = htmlspecialchars($user[0]['validation_mail']);
+		header('Location: https://schoolpea.com');
+	} else $badCredentials = true;
+} else echo ('Mail non validé !!!!');
 
-        if ($user) {
-            if (password_verify($password, $user[0]['password'])) {
-                $_SESSION['idUser'] = $user[0]['id_user'];
-                $_SESSION['firstname'] = $user[0]['firstname'];
-                $_SESSION['lastname'] = $user[0]['lastname'];
-                header('Location: https://schoolpea.com');
-                exit;
-            }
-        }
-        $badCredentials = true;
-    } else {
-        echo "Database connection failed.";
-        exit;
-    }
-}
-
-if ($badCredentials) {
-    echo "Invalid email or password.";
+if ($badCredentials == true) {
+	echo "Invalid email or password.";
 }

@@ -1,5 +1,5 @@
 <?php
-session_start();
+// session_start();
 ?>
 
 <head>
@@ -8,7 +8,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
 </head>
 
-<header>
+<header <?php if ($_SESSION['role'] == 'admin') echo 'class="admin"'; ?>>
     <div id="accueil">
         <a href="#SchoolPea">
             <img id="logo_header" src="https://schoolpea.com/Images/SchoolPea.png" />
@@ -39,11 +39,14 @@ session_start();
                 <a class="lien_header">Voir Plus</a>
                 <a class="lien_header">Mon compte</a>
                 <a class="lien_header">Paramètres</a>
+                <a class="lien_header" style="background-color:red; color: white;" href="/BackEnd/logout.php">Déconnexion</a>
             </div>
         </span>
 
-        <span style="margin-left: 1.2rem">
-            <img src="<?php echo $_SERVER['DOCUMENT_ROOT'];/*echo ($_SERVER['DOCUMENT_ROOT'] . $_SESSION['path_pp']);*/ ?>/Images/PP_TEST.jpg" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+        <span style="margin-left: 0rem">
+            <a href="/Compte">
+                <img src="https://schoolpea.com/<?php echo  $_SESSION['path_pp']; ?>" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+            </a>
         </span>
     </div>
 </header>
