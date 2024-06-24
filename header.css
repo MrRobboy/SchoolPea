@@ -76,6 +76,7 @@ header.admin {
     height: 100%;
     align-items: center;
     margin-right: 3em;
+    margin-left: 1.5em;
 }
 
 #dropdown {
