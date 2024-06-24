@@ -44,7 +44,7 @@ session_start();
 
                 <span id="Prenom">
                     <span class="Text_Nom_Prenom_Email">Prénom</span>
-                    <input type="text" value="<?php echo ($_SESSION['firststname']); ?>" class="Input_Nom_Prenom_Email">
+                    <input type="text" value="<?php echo ($_SESSION['firstname']); ?>" class="Input_Nom_Prenom_Email">
                 </span>
             </span>
 
