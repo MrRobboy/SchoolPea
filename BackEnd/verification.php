@@ -12,7 +12,7 @@ require 'vendor/phpmailer/src/SMTP.php';
 // Fonction pour générer un code de vérification aléatoire
 function generateRandomCode($length = 6)
 {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $characters = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
     $code = '';
     $max = strlen($characters) - 1;
     for ($i = 0; $i < $length; $i++) {
