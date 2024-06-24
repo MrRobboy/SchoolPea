@@ -7,52 +7,20 @@
 
 
 <body>
-    <header>
-        <div id="accueil">
-
-            <img id="logo_header" src="../../Images/SchoolPea.png" />
-            </a>
-            <a href="#SchoolPea"> SchoolPéa </a>
-        </div>
-        <div id="Pages">
-            <span>
-                <a class="lien_header" href="./index.html"> SchoolPea+ </a>
-            </span>
-            <span>
-                <a class="lien_header" href="./index.html">
-                    Explorer les Quizzs
-                </a>
-            </span>
-            <span>
-                <a class="lien_header" href="./index.html">
-                    Explorer les Cours
-                </a>
-            </span>
-            <span>
-                <a class="lien_header" href="./index.html">Mes Cours</a>
-            </span>
-
-            <span id="slide_down">
-                <img src="../../Images/liste.svg" style="width: 32px;">
-                <div>
-                    <a>Voir Plus</a>
-                    <a>Mon compte</a>
-                    <a>Paramètres</a>
-                </div>
-            </span>
-
-            <span style="margin-left: 1.2rem">
-                <img src="../../Images/PP_TEST.jpg" style="width: 45px; border-radius: 50%" />
-            </span>
-        </div>
-    </header>
-
-    <span class="trait"></span>
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
+        $path .= '/headerL.php';
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+    }
+    include_once($path);
+    ?>
 
     <div id="div1">
         <span id="Info_gen">
             <span id="Titre_Info_gen">
-                <img src="../../Images/reglage.svg" style="width: 45px;">
+                <img src="<?php echo ($_SERVER['DOCUMENT_ROOT'] . $_SESSION['path_pp']); ?>" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
             </span>
 
