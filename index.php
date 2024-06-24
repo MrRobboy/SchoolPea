@@ -23,8 +23,6 @@ session_start();
     include_once($path);
     ?>
 
-    <span class="trait" id="SchoolPea"></span>
-
     <div id="shadow_search">
         <div id="Search_section">
             <div class="aff">
