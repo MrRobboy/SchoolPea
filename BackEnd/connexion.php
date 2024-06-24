@@ -19,7 +19,8 @@ $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
 echo ('<pre>');
 print_r($user);
-echo '</pre>';
+echo '</pre><br>';
+echo $user[0]['validation_mail'];
 if (!empty($user) && $user[0]['validation_mail'] == 1) {
 	if (password_verify($password, $user[0]['password'])) {
 		$_SESSION['id_user'] = htmlspecialchars($user[0]['id_user']);
