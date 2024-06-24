@@ -35,8 +35,6 @@ body {
     /* Fond blanc semi-transparent */
     border-radius: 3rem;
     /* Coins arrondis du contenu */
-    padding: 1.5rem;
-    /* Espacement interne */
     box-shadow: -1rem 1rem 1px #5c6bc0;
     /* Ombre douce pour l'effet de profondeur */
     text-align: center;
@@ -47,7 +45,6 @@ body {
     width: 100%;
     /* Tableau occupe toute la largeur disponible */
     overflow: hidden;
-    border-radius: 2em;
     border: transparent;
     /* Cacher tout contenu dépassant les limites du tableau */
 }
