@@ -23,6 +23,10 @@ body {
     /* Hauteur minimum de la page pour assurer le dégradé complet */
 }
 
+h1 {
+    padding-bottom: 2em;
+}
+
 /* Style du contenu principal */
 #content {
     width: 80%;
