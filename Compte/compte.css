@@ -84,12 +84,12 @@ body {
     height: 2em;
     padding: 0 1em;
     background-color: lightgray;
-    font-weight: 600;
+    font-weight: 400;
 }
 
-.Input_Nom_Prenom_Email:hover {
+.Input_Nom_Prenom_Email:active {
     background-color: white;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 #Modif_Nom_Prenom {
