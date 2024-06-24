@@ -61,7 +61,13 @@ body {
     /* Coins arrondis du tableau */
 }
 
-table th,
+table th {
+    padding: 0 1rem;
+    border-right: solid 0.3rem white;
+    background-color: #6b7ad2;
+    color: white;
+}
+
 table td {
     padding: 1rem;
     /* Espacement interne */
@@ -69,7 +75,8 @@ table td {
     /* Taille du texte dans les cellules */
     text-align: center;
     /* Centrage du contenu */
-    border: 1px solid red;
+    border-bottom: 0.3rem solid #6b7ad2;
+    border-right: 0.3rem solid #6b7ad2;
     /* Bordure basse des lignes */
 }
 
