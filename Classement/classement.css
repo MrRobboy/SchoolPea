@@ -75,6 +75,7 @@ table td {
     text-align: center;
     /* Centrage du contenu */
     border-bottom: 0.3rem solid #6b7ad2;
+    border-right: none;
     /* Bordure basse des lignes */
 }
 
