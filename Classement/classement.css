@@ -48,6 +48,7 @@ body {
     /* Tableau occupe toute la largeur disponible */
     overflow: hidden;
     border-radius: 2em;
+    border: transparent;
     /* Cacher tout contenu dépassant les limites du tableau */
 }
 
