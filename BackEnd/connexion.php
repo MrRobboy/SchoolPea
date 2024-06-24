@@ -19,6 +19,7 @@ $user = $UserInfo->fetchAll();
 
 if (!empty($user) && $user[0]['validation_mail'] == 1) {
 	echo 'test1<br>';
+	echo $pass;
 	if (password_verify($pass, $user[0]['pass'])) {
 		$_SESSION['id_user'] = htmlspecialchars($user[0]['id_user']);
 		$_SESSION['email'] = htmlspecialchars($user[0]['email']);
