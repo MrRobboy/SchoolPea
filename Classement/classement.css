@@ -69,7 +69,7 @@ table td {
     /* Taille du texte dans les cellules */
     text-align: center;
     /* Centrage du contenu */
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid red;
     border: solid 0.1em black;
     /* Bordure basse des lignes */
 }
