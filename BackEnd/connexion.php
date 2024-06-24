@@ -32,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['idUser'] = $user[0]['id_user'];
                 $_SESSION['firstname'] = $user[0]['firstname'];
                 $_SESSION['lastname'] = $user[0]['lastname'];
-
                 header('Location: https://schoolpea.com');
                 exit;
             }
