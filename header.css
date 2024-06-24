@@ -53,8 +53,11 @@ header.admin {
     /*header -> Pages*/
     align-items: center;
     display: flex;
-    padding: 0 1em;
     font-weight: 500;
+}
+
+#Pages.link {
+    padding: 0 1em;
 }
 
 #Pages span {

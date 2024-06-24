@@ -17,17 +17,17 @@
     </div>
 
     <div id="Pages">
-        <span>
+        <span class="link">
             <a class="lien_header" href="https://schoolpea.com/SchoolPea+/"> SchoolPea+ </a>
         </span>
 
-        <span>
+        <span class="link">
             <a class="lien_header" href="https://schoolpea.com/Quizzs/">
                 Explorer les Quizzs
             </a>
         </span>
 
-        <span>
+        <span class="link">
             <a class="lien_header" href="https://schoolpea.com/Cours/">
                 Explorer les Cours
             </a>
