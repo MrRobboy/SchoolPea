@@ -123,3 +123,7 @@ header.admin {
     border-radius: 50%;
     margin: 0 1em;
 }
+
+#Photo_profile:hover {
+    cursor: pointer;
+}
