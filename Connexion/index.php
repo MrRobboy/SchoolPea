@@ -3,6 +3,7 @@ session_start();
 if (!empty($_SESSION['mail_envoyee']) && $_SESSION['mail_envoyee'] == 'oui') {
 	echo '<script>alert("Votre mail a bien été enregisté")</script>';
 }
+unset($_SESSION['mail_envoyee']);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -20,9 +21,9 @@ if (!empty($_SESSION['mail_envoyee']) && $_SESSION['mail_envoyee'] == 'oui') {
 			<form action="../../BackEnd/connexion.php" method="post">
 				<h1>Connexion</h1>
 				<?php
-				if (isset($badCredentials) && $badCredentials) {
+				/*if (isset($badCredentials) && $badCredentials) {
 					echo ('<p class="error">Mauvais identifiants</p>');
-				}
+				}*/
 				?>
 				<input type="email" id="email" name="email_connexion" placeholder="Email" required>
 				<input type="password" id="password" name="password_connexion" placeholder="Mot de passe" required>
@@ -34,10 +35,10 @@ if (!empty($_SESSION['mail_envoyee']) && $_SESSION['mail_envoyee'] == 'oui') {
 		<div class="form-container sign-up">
 			<form action="../../BackEnd/inscription.php" method="post">
 				<h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
-				<?php
+				<?php /*
 				if (isset($_GET['error']) && $_GET['password'] === '0') {
 					echo ('<p>Un champ a mal été saisi</p>');
-				}
+				}*/
 				?>
 				<input type="text" name="lastname" placeholder="Nom" required>
 				<input type="text" name="firstname" placeholder="Prenom" required>
