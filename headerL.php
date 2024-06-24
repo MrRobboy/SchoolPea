@@ -39,7 +39,7 @@
                 <a class="lien_header">Voir Plus</a>
                 <a class="lien_header">Mon compte</a>
                 <a class="lien_header">Paramètres</a>
-                <a class="lien_header" href="<?php echo $_SERVER['DOCUMENT_ROOT'] ?>/BackEnd/logout.php">Déconnexion</a>
+                <a class="lien_header" href="/BackEnd/logout.php">Déconnexion</a>
             </div>
         </span>
 
