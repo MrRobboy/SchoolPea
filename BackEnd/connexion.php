@@ -1,7 +1,5 @@
 <?php
 session_start();
-include('./db.php');
-
 $badCredentials = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -14,10 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $password = htmlspecialchars($_POST['password_connexion']);
 $email = htmlspecialchars($_POST['email_connexion']);
 
-$requestDB = 'USE PA; SELECT * FROM USER;';
+include('db.php');
+$requestDB = 'SELECT * FROM USER;';
 echo $requestDB . '<br>';
 $UserInfo = $dbh->query($requestDB);
-$user = $UserInfo->fetch();
+$user = $UserInfo->fetchAll();
 echo ('<pre>');
 print_r($user);
 echo '</pre>';
@@ -33,8 +32,7 @@ if (!empty($user) && $user[0]['validation_mail'] == true) {
 		$_SESSION['validation_mail'] = htmlspecialchars($user[0]['validation_mail']);
 		// header('Location: https://schoolpea.com');
 		exit;
-	}
-	$badCredentials = true;
+	} else $badCredentials = true;
 } else echo ('Mail non validé !!!!');
 
 if ($badCredentials) {
