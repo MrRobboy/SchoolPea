@@ -34,7 +34,7 @@ $result = $dbh->query($sql);
         <div id="table-container">
             <table id="classement">
                 <thead>
-                    <tr style="border: none;">
+                    <tr>
                         <th>Rang</th>
                         <th>Nom</th>
                         <th>Prénom</th>
