@@ -40,7 +40,7 @@ if (isset($_POST['submit_inscription'])) {
     $email = htmlspecialchars($_POST['email_inscription']);
     $password = htmlspecialchars($_POST['password_inscription']);
 
-    require('db.php');
+    include('db.php');
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $queryVerification = $dbh->query('USE PA; SELECT email FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
