@@ -45,8 +45,8 @@
             <img src="https://schoolpea.com/Images/liste.svg" id="dropbtn">
             <div id="dropdown">
                 <?php if ($_SESSION['role'] == 'admin') echo '<a class="lien_header" href="schoolpea.com/BackOffice">Back Office</a>'; ?>
-                <a class="lien_header" href="schoolpea.com/Compte/">Mon compte</a>
-                <a class="lien_header" href="schoolpea.com/Ticket/">Faire un ticket</a>
+                <a class="lien_header" href="Compte/">Mon compte</a>
+                <a class="lien_header" href="Ticket/">Faire un ticket</a>
                 <a class="lien_header" style="background-color:red; color: white;" href="/BackEnd/logout.php">Déconnexion</a>
             </div>
         </span>
