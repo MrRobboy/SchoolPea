@@ -27,9 +27,9 @@ $question = $questions[$x]['question'];
     <div class="container">
         <div>
             <form method="post" action="./Verif_captcha.php">
-                <h1><?php echo ($question); ?></h1>
+                <h2><?php echo ($question); ?></h2>
                 <input name="textCaptchaAnswer" type="text" required />
-                <input type="submit" value="Submit" name="submit">
+                <button type="submit" name="submit">Valider</button>
             </form>
         </div>
     </div>
