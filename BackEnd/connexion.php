@@ -17,7 +17,7 @@ $email = htmlspecialchars($_POST['email_connexion']);
 $requestDB = 'USE PA; SELECT * FROM USER;';
 echo $requestDB . '<br>';
 $UserInfo = $dbh->query($requestDB);
-$user = $UserInfo->fetchAll();
+$user = $UserInfo->fetch();
 echo ('<pre>');
 print_r($user);
 echo '</pre>';
