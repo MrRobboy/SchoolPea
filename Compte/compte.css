@@ -60,6 +60,7 @@ body {
     object-fit: cover;
     border-radius: 50px;
     margin: 1em;
+    border: solid 0.2em black;
 }
 
 #But_Photo {
