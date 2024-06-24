@@ -20,13 +20,13 @@ $result = $dbh->query($sql);
 <body>
     <?php
     session_start();
-    // $path = $_SERVER['DOCUMENT_ROOT'];
-    // // if (isset($_SESSION['mail_valide'])) {
-    // //     $path .= '/headerL.php';
-    // // } else {
-    // //     $path .= '/headerNL.php';
-    // // }
-    // include_once($path);
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
+        $path .= '/headerL.php';
+    } else {
+        $path .= '/headerNL.php';
+    }
+    include_once($path);
     ?>
 
     <div id="content">
