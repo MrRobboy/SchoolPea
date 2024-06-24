@@ -13,7 +13,7 @@ $password = htmlspecialchars($_POST['password_connexion']);
 $email = htmlspecialchars($_POST['email_connexion']);
 
 include('db.php');
-$requestDB = 'SELECT * FROM USER;';
+$requestDB = 'SELECT * FROM USER where email =' . $email . ';';
 echo $requestDB . '<br>';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
