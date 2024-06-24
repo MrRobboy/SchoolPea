@@ -35,6 +35,7 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
 		$_SESSION['role'] = htmlspecialchars($user[0]['role']);
 		$_SESSION['validation_mail'] = htmlspecialchars($user[0]['validation_mail']);
 		// header('Location: https://schoolpea.com');
+		echo ('<br>TEST2');
 	} else $badCredentials = true;
 } else echo ('Mail non validé !!!!');
 
