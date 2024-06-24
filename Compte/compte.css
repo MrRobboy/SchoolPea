@@ -54,7 +54,7 @@ body {
     display: flex;
 }
 
-#Photo_profile {
+#PP {
     width: 5em;
     height: 5em;
     object-fit: cover;

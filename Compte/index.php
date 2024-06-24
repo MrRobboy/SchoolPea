@@ -32,7 +32,7 @@ session_start();
             </span>
 
             <span id="Modif_Photo">
-                <img src="https://schoolpea.com/<?php echo $_SESSION['path_pp']; ?>" id="Photo_profile">
+                <img src="https://schoolpea.com/<?php echo $_SESSION['path_pp']; ?>" id="PP">
                 <button id="But_Photo">Charger une photo</button>
             </span>
 
