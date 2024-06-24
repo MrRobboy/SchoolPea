@@ -19,7 +19,7 @@ session_start();
     } else {
         header('Location: https://schoolpea.com/Connexion');
     }
-    include_once($path);
+    include($path);
     ?>
 
     <span class="trait" id="SchoolPea"></span>

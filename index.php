@@ -19,7 +19,7 @@ session_start();
 	} else {
 		$path .= '/headerNL.php';
 	}
-	include_once($path);
+	include($path);
 	?>
 
 	<span class="trait" id="SchoolPea"></span>

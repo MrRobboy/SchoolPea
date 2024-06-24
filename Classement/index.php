@@ -25,7 +25,7 @@ $result = $dbh->query($sql);
     } else {
         $path .= '/headerNL.php';
     }
-    include_once($path);
+    include($path);
     ?>
 
     <div id="content">
