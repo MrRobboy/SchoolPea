@@ -131,7 +131,6 @@ body {
 #Info_gen {
     flex-direction: column;
     display: flex;
-    border: solid 1px black;
     margin: 0 1em 0em 0em;
     width: 75%;
     padding: 2em;
@@ -220,7 +219,6 @@ body {
 /*Bloc 2 Mot de passe*/
 
 #Mdp_modif {
-    border: solid 1px black;
     margin: 0em 0 0 1em;
     padding: 2em;
     border-radius: 3em;
@@ -269,7 +267,6 @@ body {
 /*Bloc 3 Delete account*/
 
 #div2 {
-    border: solid 1px black;
     margin: 5em 0em 5em 0em;
     border-radius: 3em;
     display: flex;
