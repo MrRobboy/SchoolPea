@@ -14,9 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = htmlspecialchars($_POST['password_connexion']);
     $email = htmlspecialchars($_POST['email_connexion']);
 
-    $requestDB = 'USE PA; SELECT * FROM USER WHERE email =' . $email . ';';
-    echo $requestDB;
-    $UserInfo = $dbh->query($requestDB);
+    $UserInfo = $dbh->query('USE PA; SELECT * FROM USER WHERE email ="' . $email . '";');
     $user = $UserInfo->fetchAll();
     echo ('<pre>' . print_r($user) . '</pre>');
     if (!empty($user) && $user[0]['validation_mail'] == true) {
