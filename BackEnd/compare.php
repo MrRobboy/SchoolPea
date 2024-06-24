@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 		$queryStatement = $dbh->prepare('USE PA; UPDATE USER SET validation_mail=1 WHERE email =:email;');
 		$queryStatement->bindvalue(':email', $_SESSION['email']);
 		$result = $queryStatement->execute();
-		$_SESSION['validation_mail'] = true;
+		$_SESSION['mail_valide'] = true;
 		header('location: https://schoolpea.com/Connexion');
 	} else {
 		echo ('<br>code echoué :(');

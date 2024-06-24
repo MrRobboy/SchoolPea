@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!empty($_SESSION['validation_mail']) && $_SESSION['validation_mail'] == true) {
+if (!empty($_SESSION['mail_valide']) && $_SESSION['mail_valide'] == true) {
 	echo '<script>alert("Votre mail a bien été enregisté")</script>';
 }
 session_unset();
