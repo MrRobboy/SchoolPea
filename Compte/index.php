@@ -22,7 +22,7 @@ session_start();
     include_once($path);
     ?>
 
-    <span class="trait" id="SchoolPea"></span>
+    <!-- <span class="trait" id="SchoolPea"></span> -->
 
     <div id="div1">
         <span id="Info_gen">
