@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('db.php');
+require('db.php');
 session_unset();
 /*
 $error = false;
@@ -47,7 +47,7 @@ if (isset($_POST['submit_inscription'])) {
     $result = false;
 
     if ($email != $emails[0][0]) {
-        $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
+        $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
         $queryStatement->bindvalue(':firstname', $firstname);
         $queryStatement->bindvalue(':lastname', $lastname);
