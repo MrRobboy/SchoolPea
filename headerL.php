@@ -41,7 +41,7 @@
             </a>
         </span>
 
-        <span id="slide_down">
+        <span id="slide_down" class="link">
             <img src="https://schoolpea.com/Images/liste.svg" id="dropbtn">
             <div id="dropdown">
                 <?php if ($_SESSION['role'] == 'admin') echo '<a class="lien_header" href="schoolpea.com/BackOffice">Back Office</a>'; ?>
@@ -51,8 +51,8 @@
             </div>
         </span>
 
-        <span style="margin-left: 0rem; cursor: pointer;">
-            <img src="https://schoolpea.com/<?php echo  $_SESSION['path_pp']; ?>" id="Photo_profile" onclick="location.replace('/Compte');" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+        <span style="margin-left: 0rem; cursor: pointer;" class="link">
+            <img src="https://schoolpea.com/<?php echo  $_SESSION['path_pp']; ?>" id="Photo_profile" onclick="location.replace('/Compte');" />
         </span>
     </div>
 </header>
