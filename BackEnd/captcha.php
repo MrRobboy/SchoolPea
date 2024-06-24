@@ -20,14 +20,19 @@ $question = $questions[$x]['question'];
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./style.css">
+    <title>Captcha</title>
 </head>
 
 <body>
-    <form method="post" action="./Verif_captcha.php" class="container">
-        <h1><?php echo ($question); ?></h1>
-        <input name="textCaptchaAnswer" type="text" required />
-        <input type="submit" value="Submit" name="submit">
-    </form>
+    <div class="container">
+        <div>
+            <form method="post" action="./Verif_captcha.php">
+                <h1><?php echo ($question); ?></h1>
+                <input name="textCaptchaAnswer" type="text" required />
+                <input type="submit" value="Submit" name="submit">
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
