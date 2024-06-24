@@ -54,5 +54,3 @@
         </span>
     </div>
 </header>
-
-<span class="trait" id="SchoolPea"></span>

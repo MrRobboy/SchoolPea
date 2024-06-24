@@ -5,7 +5,6 @@ include($path);
 
 $sql = "SELECT firstname AS Nom, lastname AS Prenom, elo AS Elo, 0 AS Moyenne FROM USER ORDER BY elo DESC";
 $result = $dbh->query($sql);
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
