@@ -35,11 +35,11 @@ $result = $dbh->query($sql);
             <table id="classement">
                 <thead>
                     <tr>
-                        <th style="padding: 0 0.5rem">Rang</th>
-                        <th style="padding: 0 7rem">Nom</th>
-                        <th style="padding: 0 5rem">Prenom</th>
-                        <th style="padding: 0 3rem">Elo</th>
-                        <th style="padding: 0 3rem;border-right: 0.1rem solid #6b7ad2;">Moyenne</th>
+                        <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">Rang</th>
+                        <th style="padding: 0 7rem;border-right: solid 0.3rem white;">Nom</th>
+                        <th style="padding: 0 5rem;border-right: solid 0.3rem white;">Prenom</th>
+                        <th style="padding: 0 3rem;border-right: solid 0.3rem white;">Elo</th>
+                        <th style="padding: 0 3rem;border-right: none;">Moyenne</th>
                     </tr>
                 </thead>
                 <tbody>
