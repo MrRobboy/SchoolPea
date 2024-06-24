@@ -63,7 +63,7 @@ header.admin {
     border: solid 0.1em #fff;
 }
 
-#Pages a:hover {
+#Pages.lien_header:hover {
     color: #6b7ad2;
     background-color: rgb(132, 147, 232, 10%);
     border-radius: 2em;
