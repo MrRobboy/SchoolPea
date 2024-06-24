@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" /> -->
 </head>
 
 <header <?php if ($_SESSION['role'] == 'admin') echo 'class="admin"'; ?>>

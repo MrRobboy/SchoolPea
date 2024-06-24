@@ -4,7 +4,6 @@ html {
     scroll-behavior: smooth;
 }
 
-/*
 header {
     flex-direction: row;
     position: fixed;
@@ -40,7 +39,6 @@ header.admin {
 #logo_header {
     width: 45px;
 }
-*/
 
 #Pages {
     align-items: center;
