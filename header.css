@@ -21,7 +21,6 @@ header.admin {
     box-shadow: 0 0.5em 0.5em rgb(55, 156, 68);
 }
 
-
 #accueil {
     margin: 0 1em;
     display: flex;
@@ -41,7 +40,6 @@ header.admin {
     width: 45px;
 }
 
-/*
 #Pages {
     align-items: center;
     display: flex;
@@ -52,6 +50,7 @@ header.admin {
     padding: 0 1em;
     margin: 0 0.5em;
 }
+
 
 #Pages.lien_header {
     color: black;
@@ -67,6 +66,8 @@ header.admin {
     padding: 0.2em 1em;
     border: solid 0.1em #374599;
 }
+
+/*
 
 .lien_header {
     transition: all 0.3s ease-in-out;
