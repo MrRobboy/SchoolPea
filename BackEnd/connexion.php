@@ -9,13 +9,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 } else header('Location: ' . $_SERVER['HTTP_REFERER']);
 
-$password = htmlspecialchars($_POST['password_connexion']);
+$pass = htmlspecialchars($_POST['password_connexion']);
 $email = htmlspecialchars($_POST['email_connexion']);
 
 include('db.php');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 echo $requestDB . '<br>';
-echo $password;
+echo $pass;
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
 echo ('<pre>');
