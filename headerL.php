@@ -10,10 +10,10 @@
 
 <header <?php if ($_SESSION['role'] == 'admin') echo 'class="admin"'; ?>>
     <div id="accueil">
-        <a href="#SchoolPea">
+        <a href="https://schoolpea.com/#SchoolPea">
             <img id="logo_header" src="https://schoolpea.com/Images/SchoolPea.png" />
         </a>
-        <a href="#SchoolPea"> SchoolPéa </a>
+        <a href="https://schoolpea.com#SchoolPea"> SchoolPéa </a>
     </div>
 
     <div id="Pages">

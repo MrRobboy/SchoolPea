@@ -6,10 +6,10 @@
 
 <header>
     <span id="accueil">
-        <a href="#SchoolPea">
+        <a href="https://schoolpea.com/#SchoolPea">
             <img id="logo_header" src="https://schoolpea.com/Images/SchoolPea.png" alt="Logo" />
         </a>
-        <a href="#SchoolPea">SchoolPéa</a>
+        <a href="https://schoolpea.com/#SchoolPea">SchoolPéa</a>
     </span>
 
     <span id="Pages">
