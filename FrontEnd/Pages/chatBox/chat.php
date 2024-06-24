@@ -32,13 +32,15 @@ if (isset($_POST['send'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat | <?= $user ?></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="chat.css">
 </head>
+
 <body>
     <div class="chat">
         <div class="button-email">
@@ -46,7 +48,7 @@ if (isset($_POST['send'])) {
             <a href="deconnexion.php" class="Deconnexion_btn">Déconnexion</a>
         </div>
         <div class="messages_box">Chargement...</div>
-        
+
         <!-- Formulaire d'envoi de message -->
         <form action="" class="send_message" method="POST">
             <textarea name="message" cols="30" rows="2" placeholder="Votre message" required></textarea>
@@ -69,4 +71,5 @@ if (isset($_POST['send'])) {
         }, 500); // Actualiser le chat toutes les 500 ms
     </script>
 </body>
+
 </html>

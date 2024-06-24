@@ -18,7 +18,7 @@ $question = $questions[$x]['question'];
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="stylesheet" type="text/css" href="./back.css">
     <title>Captcha</title>
 </head>
 

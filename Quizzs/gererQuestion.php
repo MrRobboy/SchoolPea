@@ -38,11 +38,13 @@ $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Gérer les Questions - <?php echo $quizz['nom']; ?></title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="./quizz.css">
 </head>
+
 <body>
     <header>
         <h1>Gérer les Questions - <?php echo $quizz['nom']; ?></h1>
@@ -51,7 +53,7 @@ $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
         <section class="questions">
             <h2>Questions</h2>
             <ul>
-                <?php foreach ($questions as $question): ?>
+                <?php foreach ($questions as $question) : ?>
                     <li><?php echo $question['question_text']; ?></li>
                 <?php endforeach; ?>
             </ul>
@@ -66,4 +68,5 @@ $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
         </section>
     </main>
 </body>
+
 </html>

@@ -47,13 +47,15 @@ if (isset($_POST['button_inscription'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription | Chat</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="chat.css">
 </head>
+
 <body>
     <form action="" method="POST" class="form_connexion_inscription">
         <h1>INSCRIPTION</h1>
@@ -68,4 +70,5 @@ if (isset($_POST['button_inscription'])) {
         <p class="link">Vous avez déjà un compte ? <a href="index.php">Se connecter</a></p>
     </form>
 </body>
+
 </html>
