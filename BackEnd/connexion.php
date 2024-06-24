@@ -33,7 +33,7 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
 		$_SESSION['path_pp'] = htmlspecialchars($user[0]['path_pp']);
 		$_SESSION['elo'] = htmlspecialchars($user[0]['elo']);
 		$_SESSION['role'] = htmlspecialchars($user[0]['role']);
-		$_SESSION['validation_mail'] = htmlspecialchars($user[0]['validation_mail']);
+		$_SESSION['mail_valide'] = htmlspecialchars($user[0]['validation_mail']);
 		header('Location: https://schoolpea.com');
 	} else $badCredentials = true;
 } else echo ('Mail non validé !!!!');
