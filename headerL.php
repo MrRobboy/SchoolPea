@@ -18,10 +18,12 @@
 
     <div id="Pages">
         <span class="link">
-            <a class="lien_header" href="https://schoolpea.com/SchoolPea+/"> SchoolPea+ </a>
+            <a class="lien_header" href="https://schoolpea.com/SchoolPea+/">
+                SchoolPea+
+            </a>
         </span>
 
-        <span>
+        <span class="link">
             <a href="https://schoolpea.com/Classement/" class="lien_header">
                 Classement
             </a>
