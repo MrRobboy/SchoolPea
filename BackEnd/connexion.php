@@ -17,7 +17,9 @@ $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
 
-echo '<pre>' . print_r($user) . '</pre>';
+echo '<pre>';
+print_r($user);
+echo '</pre>';
 
 if (!empty($user) && $user[0]['validation_mail'] == 1) {
 	echo 'test1<br>';
