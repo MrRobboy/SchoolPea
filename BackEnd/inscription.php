@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('db.php');
+
 session_unset();
 /*
 $error = false;
@@ -40,6 +40,7 @@ if (isset($_POST['submit_inscription'])) {
     $email = htmlspecialchars($_POST['email_inscription']);
     $password = htmlspecialchars($_POST['password_inscription']);
 
+    require('db.php');
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $queryVerification = $dbh->query('SELECT email FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
