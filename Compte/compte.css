@@ -229,8 +229,13 @@ body {
     background-color: rgba(255, 0, 0, 0.75);
     border-radius: 1em;
     color: white;
-    border: none;
+    border: transparent 0.2em solid;
     font-size: 1em;
     margin: 1em 0 2em 0;
     padding: 1em 2em;
+    transition: all 0.3s ease-in-out;
+}
+
+#But_Delete_Acc:hover {
+    border: black 0.2em solid;
 }
