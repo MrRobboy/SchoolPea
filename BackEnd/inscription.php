@@ -42,6 +42,7 @@ if (isset($_POST['submit_inscription'])) {
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     $queryVerification = $dbh->query('USE PA; SELECT email FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
+    echo '<pre>' . print_r($emails) . '</pre>';
     echo ($emails[0][0]);
     $result = false;
 
