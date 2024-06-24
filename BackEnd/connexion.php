@@ -14,12 +14,9 @@ $email = htmlspecialchars($_POST['email_connexion']);
 
 include('db.php');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
-echo $requestDB . '<br>';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
-echo ('<pre>');
-print_r($user);
-echo '</pre><br>';
+
 if (!empty($user) && $user[0]['validation_mail'] == 1) {
 	echo 'test1<br>';
 	if (password_verify($pass, $user[0]['password'])) {
@@ -31,9 +28,7 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
 		$_SESSION['elo'] = htmlspecialchars($user[0]['elo']);
 		$_SESSION['role'] = htmlspecialchars($user[0]['role']);
 		$_SESSION['validation_mail'] = htmlspecialchars($user[0]['validation_mail']);
-		// header('Location: https://schoolpea.com');
-		echo ('Test2<br>');
-		exit;
+		header('Location: https://schoolpea.com');
 	} else $badCredentials = true;
 } else echo ('Mail non validé !!!!');
 
