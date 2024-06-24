@@ -25,7 +25,7 @@ session_start();
     <span class="trait" id="SchoolPea"></span>
 
     <div id="div1">
-        <span id="Info_gen">
+        <form method="post" id="Info_gen">
             <span id="Titre_Info_gen">
                 <img src="https://schoolpea.com/Images/reglage.svg" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
@@ -56,9 +56,9 @@ session_start();
             <span style="margin: 1em 0;">
                 <input type="submit" id="Sauvegarde_modif" value="Sauvegarder Les modifications"></input>
             </span>
-        </span>
+        </form>
 
-        <span id="Mdp_modif">
+        <form id="Mdp_modif" method="post">
             <h2 id="Titre_Mdp_modif"> Changer de <br> Mot de passe </h2>
             <div class="Mdp_modif_div">
                 <span class="Text_Modif_mdp">Ancien Mot de Passe</span>
@@ -75,7 +75,7 @@ session_start();
                 <input type="password" class="Input_Mdp_modif_div" placeholder="Confirm Password"></input>
             </div>
             <input type="submit" value="Changer de mot de passe" id="Sauvegarde_modif_mdp"></input>
-        </span>
+        </form>
     </div>
 
     <div id="div2">
