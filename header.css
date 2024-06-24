@@ -58,10 +58,6 @@ header.admin {
 
 #Pages.link {
     padding: 0 1em;
-}
-
-#Pages span {
-    /*header -> Pages -> span*/
     margin: 0 0.5em;
 }
 
