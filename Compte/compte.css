@@ -238,4 +238,5 @@ body {
 
 #But_Delete_Acc:hover {
     border: black 0.2em solid;
+    background-color: rgba(255, 0, 0, 0.5);
 }
