@@ -41,7 +41,7 @@
             </a>
         </span>
 
-        <span id="slide_down" class="link">
+        <span id="slide_down">
             <img src="https://schoolpea.com/Images/liste.svg" id="dropbtn">
             <div id="dropdown">
                 <?php if ($_SESSION['role'] == 'admin') echo '<a class="lien_header" href="schoolpea.com/BackOffice">Back Office</a>'; ?>
