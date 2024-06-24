@@ -62,17 +62,17 @@ session_start();
             <h2 id="Titre_Mdp_modif"> Changer de <br> Mot de passe </h2>
             <div class="Mdp_modif_div">
                 <span class="Text_Modif_mdp">Ancien Mot de Passe</span>
-                <input type="text" class="Input_Mdp_modif_div" placeholder="Old Password" hidden></input>
+                <input type="password" class="Input_Mdp_modif_div" placeholder="Old Password"></input>
             </div>
 
             <div class="Mdp_modif_div">
                 <span class="Text_Modif_mdp">Nouvau Mot de Passe</span>
-                <input type="text" class="Input_Mdp_modif_div" placeholder="New Password" hidden></input>
+                <input type="password" class="Input_Mdp_modif_div" placeholder="New Password"></input>
             </div>
 
             <div class="Mdp_modif_div">
                 <span class="Text_Modif_mdp">Confirmer le Mot de Passe</span>
-                <input type="text" class="Input_Mdp_modif_div" placeholder="Confirm Password" hidden></input>
+                <input type="password" class="Input_Mdp_modif_div" placeholder="Confirm Password"></input>
             </div>
             <input type="submit" value="Changer de mot de passe" id="Sauvegarde_modif_mdp"></input>
         </span>
