@@ -15,7 +15,7 @@ session_start();
 <body>
     <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
-    if (isset($_SESSION['email'])) {
+    if (isset($_SESSION['mail_valide'])) {
         $path .= '/headerL.php';
     } else {
         $path .= '/headerNL.php';
