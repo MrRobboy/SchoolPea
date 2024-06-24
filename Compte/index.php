@@ -12,14 +12,13 @@ session_start();
 
 <body>
     <?php
-
-    $path = $_SERVER['DOCUMENT_ROOT'];
-    if (!empty($_SESSION['path_pp'])) {
-        $path .= '/headerL.php';
-    } else {
-        header('Location: https://schoolpea.com/Connexion');
-    }
-    include_once($path);
+    // $path = $_SERVER['DOCUMENT_ROOT'];
+    // if (!empty($_SESSION['path_pp'])) {
+    //     $path .= '/headerL.php';
+    // } else {
+    //     header('Location: https://schoolpea.com/Connexion');
+    // }
+    // include_once($path);
     ?>
 
     <!-- <span class="trait" id="SchoolPea"></span> -->
