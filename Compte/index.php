@@ -27,7 +27,7 @@ session_start();
     <div id="div1">
         <span id="Info_gen">
             <span id="Titre_Info_gen">
-                <img src="<?php echo ($_SERVER['DOCUMENT_ROOT'] . $_SESSION['path_pp']); ?>" style="width: 45px;">
+                <img src="<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/Images/reglages.svg" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
             </span>
 
