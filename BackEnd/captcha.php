@@ -14,15 +14,20 @@ $x = random_int(0, $max[0][0] - 1);
 $_SESSION['x'] = $x;
 $question = $questions[$x]['question'];
 ?>
+<!DOCTYPE html>
+<html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 
 <body>
     <form method="post" action="./Verif_captcha.php" class="container">
         <h1><?php echo ($question); ?></h1>
-        <input name="textCaptchaAnswer" style="margin : 0 0.5rem; font-size : 1.5rem" type="text" required />
-        <input type="submit" style="padding: 0 0.5rem; font-size : 1rem;" value="Submit" name="submit">
+        <input name="textCaptchaAnswer" type="text" required />
+        <input type="submit" value="Submit" name="submit">
     </form>
 </body>
+
+</html>
