@@ -46,20 +46,19 @@ header.admin {
     font-weight: 500;
 }
 
-#Pages.link {
+#Pages .link {
     padding: 0 1em;
     margin: 0 0.5em;
 }
 
-
-#Pages.lien_header {
+#Pages a {
     color: black;
     text-decoration: none;
     padding: 0.2em 1em;
     border: solid 0.1em #fff;
 }
 
-#Pages.lien_header:hover {
+#Pages a:hover {
     color: #6b7ad2;
     background-color: rgb(132, 147, 232, 10%);
     border-radius: 2em;
