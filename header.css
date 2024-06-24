@@ -4,7 +4,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* header {
+header {
     flex-direction: row;
     position: fixed;
     top: 0;
@@ -15,78 +15,70 @@ html {
     box-shadow: 0 0.5em 0.5em rgb(92, 107, 192, 100%);
     padding: 0.7em 0;
     background-color: #ffffff;
-} */
+}
 
-/* header.admin {
+header.admin {
     box-shadow: 0 0.5em 0.5em rgb(55, 156, 68);
-} */
+}
 
-/* #accueil {
-    /*header -> accueil
+#accueil {
     margin: 0 1em;
     display: flex;
     align-items: center;
     justify-content: space-around;
-} */
+}
 
-/* #accueil a {
-    //header -> accueil -> a
+#accueil a {
     font-size: x-large;
     padding: 0 1em;
     font-weight: 700;
     text-decoration: none;
     color: #000;
-} */
+}
 
-/* #lien_img {
-    padding: 0 1em;
-    text-decoration: none;
-    color: #000;
-} */
-
-/* #logo_header {
+#logo_header {
     width: 45px;
-} */
+}
 
-/* #Pages {
+#Pages {
     align-items: center;
     display: flex;
     font-weight: 500;
-} */
+}
 
-/* #Pages.link {
+#Pages.link {
     padding: 0 1em;
     margin: 0 0.5em;
-} */
+}
 
-/* #Pages.lien_header {
+#Pages.lien_header {
     color: black;
     text-decoration: none;
     padding: 0.2em 1em;
     border: solid 0.1em #fff;
-} */
+}
 
-/* #Pages.lien_header:hover {
+#Pages.lien_header:hover {
     color: #6b7ad2;
     background-color: rgb(132, 147, 232, 10%);
     border-radius: 2em;
     padding: 0.2em 1em;
     border: solid 0.1em #374599;
-} */
+}
 
-/* .lien_header {
+.lien_header {
     transition: all 0.3s ease-in-out;
     display: block;
-} */
+}
 
-/* #slide_down {
+#slide_down {
     position: relative;
     display: inline-block;
     height: 100%;
     align-items: center;
-} */
+}
 
-/* #dropdown {
+#dropdown {
     display: none;
     position: absolute;
     z-index: 1;
@@ -94,31 +86,31 @@ html {
     background-color: white;
     border: #374599 solid 0.1em;
     text-align: center;
-} */
+}
 
-/* #dropdown a {
+#dropdown a {
     border: 0.1em #374599 solid;
     margin: 1em 0.5em;
-} */
+}
 
-/* #dropbtn {
+#dropbtn {
     position: relative;
     margin: 65% 0;
-} */
+}
 
-/* #slide_down:hover #dropdown {
+#slide_down:hover #dropdown {
     display: block;
     position: absolute;
     left: -150px;
     top: 3.5em;
-} */
+}
 
-/* #Photo_profile {
+#Photo_profile {
     width: 50px;
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
-} */
+}
 
 .trait {
     padding: 0.2em 20em;
