@@ -13,17 +13,17 @@
     </span>
 
     <span id="Pages">
-        <span>
+        <span class="link">
             <a href="https://schoolpea.com/SchoolPea+/" class="lien_header">
                 SchoolPea+
             </a>
         </span>
 
-        <span>
+        <span class="link">
             <a href="https://schoolpea.com/Classement/" class="lien_header">
                 Classement
             </a>
-        </span>
+        </span class="link">
 
         <span>
             <a href="https://schoolpea.com/Connexion/" class="lien_header">
