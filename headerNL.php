@@ -32,5 +32,3 @@
         </span>
     </span>
 </header>
-
-<span class="trait" id="SchoolPea"></span>
