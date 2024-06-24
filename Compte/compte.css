@@ -118,7 +118,7 @@ body {
     background-color: rgba(92, 107, 192, 0.75);
     color: white;
     border-color: transparent;
-    font-size: 110%;
+    font-size: 1em;
 }
 
 /*Bloc 2 Mot de passe*/
@@ -165,7 +165,7 @@ body {
     background-color: rgba(92, 107, 192, 0.75);
     color: white;
     border-color: transparent;
-    font-size: 110%;
+    font-size: 1em;
 }
 
 /*Bloc 3 Delete account*/
