@@ -11,13 +11,13 @@ $badCredentials = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if the password and email keys exist in the $_POST array
-    if (!isset($_POST['password']) || !isset($_POST['email'])) {
+    if (!isset($_POST['password_connexion']) || !isset($_POST['email_connexion'])) {
         echo "Email or password not set.";
         exit;
     }
 
-    $password = $_POST['password'];
-    $email = $_POST['email'];
+    $password = $_POST['password_connexion'];
+    $email = $_POST['email_connexion'];
 
     // Prepare the SQL statement
     $getUserSql = "USE PA; SELECT * FROM USER WHERE email = :email";
@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($dbh) {
         $preparedGetUserSql = $dbh->prepare($getUserSql);
         $preparedGetUserSql->execute(['email' => $email]);
-
         $user = $preparedGetUserSql->fetch();
 
         if ($user) {
@@ -34,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['firstname'] = $user[0]['firstname'];
                 $_SESSION['lastname'] = $user[0]['lastname'];
 
-                header('Location: ../FrontEnd/Pages/accueilL.php');
+                header('Location: https://schoolpea.com');
                 exit;
             }
         }
