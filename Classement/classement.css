@@ -47,8 +47,7 @@ body {
     width: 100%;
     /* Tableau occupe toute la largeur disponible */
     overflow: hidden;
-    border: solid 0.2em black;
-    border-radius: 3em;
+    border-radius: 2em;
     /* Cacher tout contenu dépassant les limites du tableau */
 }
 
