@@ -202,12 +202,12 @@ body {
 }
 
 #But_Delete_Acc {
-    width: 30%;
+    width: 6em;
     background-color: rgba(255, 0, 0, 0.75);
     border-radius: 1em;
     color: white;
     border: none;
-    height: 25%;
+    height: 3em;
     font-size: 1em;
     margin: 1em 0 2em 0;
 }
