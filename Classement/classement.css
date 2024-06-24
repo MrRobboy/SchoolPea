@@ -7,7 +7,11 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: linear-gradient(to bottom, #e2e2e2, #c9d6ff);
+    background: linear-gradient(
+        180deg,
+        rgba(92, 107, 192, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,12 +33,13 @@ body {
     /* Centre le contenu horizontalement avec un espacement autour */
     background-color: rgba(255, 255, 255, 0.9);
     /* Fond blanc semi-transparent */
-    border-radius: 1rem;
+    border-radius: 3rem;
     /* Coins arrondis du contenu */
     padding: 1.5rem;
     /* Espacement interne */
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: -1rem 1rem 1px #5c6bc0;
     /* Ombre douce pour l'effet de profondeur */
+    text-align: center;
 }
 
 /* Style du tableau de classement */
