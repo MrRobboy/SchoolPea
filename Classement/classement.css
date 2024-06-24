@@ -47,7 +47,8 @@ body {
     width: 100%;
     /* Tableau occupe toute la largeur disponible */
     overflow: hidden;
-    border: solid 0.1em black;
+    border: solid 0.2em black;
+    border-radius: 3em;
     /* Cacher tout contenu dépassant les limites du tableau */
 }
 
@@ -69,6 +70,7 @@ table td {
     text-align: center;
     /* Centrage du contenu */
     border-bottom: 1px solid #e0e0e0;
+    border: solid 0.1em black;
     /* Bordure basse des lignes */
 }
 
