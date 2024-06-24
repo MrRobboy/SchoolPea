@@ -1,6 +1,5 @@
 <?php
 session_start();
-echo $_SESSION['email'];
 if (!empty($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
     echo '<script>alert("Mauvaise réponse")</script>';
 }
