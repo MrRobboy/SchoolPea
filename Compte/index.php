@@ -21,12 +21,12 @@ session_start();
     // include_once($path);
     ?>
 
-    <!-- <span class="trait" id="SchoolPea"></span> -->
+    <span class="trait" id="SchoolPea"></span>
 
     <div id="div1">
         <span id="Info_gen">
             <span id="Titre_Info_gen">
-                <img src="https://schoolpea.com/Images/reglages.svg" style="width: 45px;">
+                <img src="https://schoolpea.com/Images/reglage.svg" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
             </span>
 
