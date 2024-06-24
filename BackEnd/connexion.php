@@ -15,11 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = htmlspecialchars($_POST['password_connexion']);
     $email = htmlspecialchars($_POST['email_connexion']);
 
-    // Prepare the SQL statement
-    $getUserSql = 'SELECT * FROM USER WHERE email =' . $email . ';';
-
-    $preparedGetUserSql = $dbh->query($getUserSql);
-    $user = $preparedGetUserSql->fetchAll();
+    $UserInfo = $dbh->query('USE PA; SELECT * FROM USER WHERE email =' . $email . ';');
+    $user = $UserInfo->fetchAll();
     echo ('<pre>' . print_r($user) . '</pre>');
     if (!empty($user) && $user[0]['validation_mail'] == true) {
         if (password_verify($password, $user[0]['password'])) {
