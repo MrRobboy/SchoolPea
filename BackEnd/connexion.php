@@ -10,12 +10,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "Email or password not set.";
         exit;
     }
-    echo ('mail valide');
 
     $password = htmlspecialchars($_POST['password_connexion']);
     $email = htmlspecialchars($_POST['email_connexion']);
 
-    $UserInfo = $dbh->query('USE PA; SELECT * FROM USER WHERE email =' . $email . ';');
+    $requestDB = 'USE PA; SELECT * FROM USER WHERE email =' . $email . ';';
+    echo $requestDB;
+    $UserInfo = $dbh->query($requestDB);
     $user = $UserInfo->fetchAll();
     echo ('<pre>' . print_r($user) . '</pre>');
     if (!empty($user) && $user[0]['validation_mail'] == true) {
