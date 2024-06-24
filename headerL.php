@@ -51,7 +51,7 @@
             </div>
         </span>
 
-        <span style="margin-left: 0rem; cursor: pointer;" class="link">
+        <span style="margin-left: 0rem; cursor: pointer;">
             <img src="https://schoolpea.com/<?php echo  $_SESSION['path_pp']; ?>" id="Photo_profile" onclick="location.replace('/Compte');" />
         </span>
     </div>
