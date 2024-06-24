@@ -87,7 +87,7 @@ body {
     font-weight: 400;
 }
 
-.Input_Nom_Prenom_Email:active {
+.Input_Nom_Prenom_Email:focus {
     background-color: white;
     font-weight: 600;
 }
