@@ -21,6 +21,22 @@ header.admin {
     box-shadow: 0 0.5em 0.5em rgb(55, 156, 68);
 }
 
+
+#accueil {
+    margin: 0 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#accueil a {
+    font-size: x-large;
+    padding: 0 1em;
+    font-weight: 700;
+    text-decoration: none;
+    color: #000;
+}
+
 #logo_header {
     width: 45px;
 }
