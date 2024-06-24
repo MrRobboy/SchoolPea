@@ -12,11 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo ('mail valide');
 
-    $password = $_POST['password_connexion'];
-    $email = $_POST['email_connexion'];
+    $password = htmlspecialchars($_POST['password_connexion']);
+    $email = htmlspecialchars($_POST['email_connexion']);
 
     // Prepare the SQL statement
-    $getUserSql = 'USE PA; SELECT * FROM USER WHERE email =' . $email . ';';
+    $getUserSql = 'SELECT * FROM USER WHERE email =' . $email . ';';
 
     $preparedGetUserSql = $dbh->query($getUserSql);
     $user = $preparedGetUserSql->fetchAll();
