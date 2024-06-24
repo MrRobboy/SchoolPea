@@ -42,9 +42,9 @@
         <span id="slide_down">
             <img src="https://schoolpea.com/Images/liste.svg" id="dropbtn">
             <div id="dropdown">
-                <a class="lien_header">Voir Plus</a>
-                <a class="lien_header">Mon compte</a>
-                <a class="lien_header">Paramètres</a>
+                <?php if ($_SESSION['role'] == 'admin') echo '<a class="lien_header">Voir Plus</a>'; ?>
+                <a class="lien_header" href="schoolpea.com/Compte/">Mon compte</a>
+                <a class="lien_header" href="schoolpea.com/Ticket/">Faire un ticket</a>
                 <a class="lien_header" style="background-color:red; color: white;" href="/BackEnd/logout.php">Déconnexion</a>
             </div>
         </span>
