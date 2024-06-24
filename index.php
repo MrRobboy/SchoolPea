@@ -16,10 +16,7 @@ session_start();
     <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
     if (isset($_SESSION['email'])) {
-        if ($_SESSION['role'] == 'admin')
-            $path .= '/headerA.php';
-        else
-            $path .= '/headerL.php';
+        $path .= '/headerL.php';
     } else {
         $path .= '/headerNL.php';
     }
