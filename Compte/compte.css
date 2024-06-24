@@ -127,12 +127,12 @@ body {
     border-color: transparent;
     font-size: 1em;
     font-weight: 700;
+    transition: all 0.3s ease-in-out;
 }
 
 #Sauvegarde_modif:hover {
     background-color: rgba(92, 107, 192, 1);
     border: black 0.2em solid;
-    transition: all 0.3s ease-in-out;
 }
 
 /*Bloc 2 Mot de passe*/
