@@ -121,3 +121,11 @@ header.admin {
     object-fit: cover;
     border-radius: 50%;
 }
+
+.trait {
+    padding: 0.2rem 20rem;
+    background-color: #6b7ad2;
+    border-radius: 3rem;
+    justify-content: center;
+    margin: 1rem 0;
+}
