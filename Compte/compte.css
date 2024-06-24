@@ -130,6 +130,7 @@ body {
     width: 25%;
     box-shadow: -1em 1em 1px #374699c4;
     background: rgb(255, 255, 255);
+    overflow: none;
 }
 
 #Titre_Mdp_modif {
