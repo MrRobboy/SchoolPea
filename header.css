@@ -122,4 +122,5 @@ header.admin {
     object-fit: cover;
     border-radius: 50%;
     margin: 0 1em;
+    cursor: pointer;
 }
