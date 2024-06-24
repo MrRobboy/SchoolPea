@@ -27,12 +27,12 @@ session_start();
     <div id="div1">
         <span id="Info_gen">
             <span id="Titre_Info_gen">
-                <img src="<?php echo $_SERVER['DOCUMENT_ROOT']; ?>/Images/reglages.svg" style="width: 45px;">
+                <img src="https://schoolpea.com/Images/reglages.svg" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
             </span>
 
             <span id="Modif_Photo">
-                <img src="../../Images/Luffy.jpg" id="Photo_profile">
+                <img src="https://schoolpea.com/<?php echo $_SESSION['path_pp']; ?>" id="Photo_profile">
                 <button id="But_Photo">Charger une photo</button>
             </span>
 
