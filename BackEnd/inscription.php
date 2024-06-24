@@ -36,11 +36,11 @@ if (isset($_POST['submit_inscription'])) {
     $firstname = htmlspecialchars($_POST['firstname']);
     $lastname = htmlspecialchars($_POST['lastname']);
     $email = htmlspecialchars($_POST['email_inscription']);
-    $password = htmlspecialchars($_POST['password_inscription']);
+    $pass = htmlspecialchars($_POST['password_inscription']);
 
     include('db.php');
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $queryVerification = $dbh->query('SELECT email FROM USER where email="' . $email . '";');
+    $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
+    $queryVerification = $dbh->query('USE PA;SELECT email FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
     echo '<pre>' . print_r($emails) . '</pre>';
     echo ($emails[0][0]);
