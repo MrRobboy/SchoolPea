@@ -8,18 +8,20 @@ $quizzes = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Liste des Quizz</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="./quizz.css">
 </head>
+
 <body>
     <header>
         <h1>Liste des Quizz</h1>
     </header>
     <main>
         <div class="quizzes">
-            <?php foreach ($quizzes as $quiz): ?>
+            <?php foreach ($quizzes as $quiz) : ?>
                 <div class="quiz">
                     <img src="<?php echo $quiz['path_img_pres']; ?>" alt="Image de présentation">
                     <h2><?php echo $quiz['nom']; ?></h2>
@@ -29,4 +31,5 @@ $quizzes = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </main>
 </body>
+
 </html>

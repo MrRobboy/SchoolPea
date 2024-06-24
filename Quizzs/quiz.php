@@ -26,18 +26,20 @@ $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Quizz - <?php echo $quizz['nom']; ?></title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="./quizz.css">
 </head>
+
 <body>
     <header>
         <h1>Quizz - <?php echo $quizz['nom']; ?></h1>
     </header>
     <main>
         <form action="resultatQuizz.php" method="post">
-            <?php foreach ($questions as $question): ?>
+            <?php foreach ($questions as $question) : ?>
                 <section class="question">
                     <h2><?php echo $question['question_text']; ?></h2>
                     <?php
@@ -45,7 +47,7 @@ $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
                     $stmt_choices = $dbh->prepare("SELECT id_choix, choix_text FROM CHOIX WHERE id_question = ?");
                     $stmt_choices->execute([$question['id_question']]);
                     $choices = $stmt_choices->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($choices as $choice):
+                    foreach ($choices as $choice) :
                     ?>
                         <label>
                             <input type="radio" name="choix_<?php echo $question['id_question']; ?>" value="<?php echo $choice['id_choix']; ?>">
@@ -59,4 +61,5 @@ $questions = $stmt_questions->fetchAll(PDO::FETCH_ASSOC);
         </form>
     </main>
 </body>
+
 </html>

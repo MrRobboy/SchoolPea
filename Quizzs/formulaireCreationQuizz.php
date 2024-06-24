@@ -51,11 +51,13 @@ $cours = $stmt_cours->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Créer un Quizz</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="./quizz.css">
 </head>
+
 <body>
     <header>
         <h1>Créer un Quizz</h1>
@@ -64,11 +66,11 @@ $cours = $stmt_cours->fetchAll(PDO::FETCH_ASSOC);
         <form action="" method="post">
             <label>Nom du Quizz</label>
             <input type="text" name="nom" required>
-            
+
             <label>Sélectionner un Cours</label>
             <select name="id_cours" required>
                 <option value="">Choisir un cours</option>
-                <?php foreach ($cours as $cours_item): ?>
+                <?php foreach ($cours as $cours_item) : ?>
                     <option value="<?php echo $cours_item['id_cours']; ?>"><?php echo $cours_item['nom_cours']; ?></option>
                 <?php endforeach; ?>
             </select>
@@ -135,4 +137,5 @@ $cours = $stmt_cours->fetchAll(PDO::FETCH_ASSOC);
         });
     </script>
 </body>
+
 </html>
