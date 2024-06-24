@@ -4,6 +4,15 @@ html {
     scroll-behavior: smooth;
 }
 
+.trait {
+    padding: 0.2em 20em;
+    border-radius: 3em;
+    justify-content: center;
+    background-color: transparent;
+    margin-bottom: 10em;
+    margin-top: 0em;
+}
+
 /*--------------------------Header------------------------*/
 body {
     font-family: "Montserrat";
