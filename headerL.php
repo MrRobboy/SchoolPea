@@ -43,8 +43,10 @@
             </div>
         </span>
 
-        <span style="margin-left: 1.2rem">
-            <img src="https://schoolpea.com/<?php echo  $_SESSION['path_pp']; ?>" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+        <span style="margin-left: 1rem">
+            <a href="/Compte">
+                <img src="https://schoolpea.com/<?php echo  $_SESSION['path_pp']; ?>" id="Photo_profile" /> <!-- Aller chercher la photo de profile lié à l'utilisateur -->
+            </a>
         </span>
     </div>
 </header>
