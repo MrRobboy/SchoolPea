@@ -42,13 +42,13 @@ if (isset($_POST['submit_inscription'])) {
 
     require('db.php');
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
-    $queryVerification = $dbh->query('SELECT email FROM USER where email="' . $email . '";');
+    $queryVerification = $dbh->query('USE PA; SELECT email FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
     echo ($emails[0][0]);
     $result = false;
 
     if ($email != $emails[0][0]) {
-        $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
+        $queryStatement = $dbh->prepare('USE PA; INSERT INTO USER(firstname, lastname, email, password) VALUES (:firstname, :lastname, :email, :password);');
 
         $queryStatement->bindvalue(':firstname', $firstname);
         $queryStatement->bindvalue(':lastname', $lastname);
