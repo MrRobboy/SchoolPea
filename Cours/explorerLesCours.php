@@ -31,12 +31,12 @@ $cours = $query->fetchAll(PDO::FETCH_ASSOC);
     </form>
     <div class="cours">
         <?php if (count($cours) > 0) : ?>
-            <?php foreach ($cours as $cours) : ?>
+            <?php foreach ($cours as $coursItem) : ?>
                 <div class="cours">
-                    <img src="uploads/<?= htmlspecialchars($cours['image']) ?>" alt="<?= htmlspecialchars($cours['nom']) ?>">
-                    <h2><a href="cours.php?id=<?= htmlspecialchars($cours['id']) ?>"><?= htmlspecialchars($cours['nom']) ?></a></h2>
-                    <p>Niveau : <?= htmlspecialchars($cours['niveau']) ?></p>
-                    <p>Prix : <?= $cours['prix'] == 0 ? 'Gratuit' : htmlspecialchars($cours['prix']) . ' €' ?></p>
+                    <img src="uploads/<?= htmlspecialchars($coursItem['image']) ?>" alt="<?= htmlspecialchars($coursItem['nom']) ?>">
+                    <h2><a href="cours.php?id=<?= htmlspecialchars($coursItem['id']) ?>"><?= htmlspecialchars($coursItem['nom']) ?></a></h2>
+                    <p>Niveau : <?= htmlspecialchars($coursItem['niveau']) ?></p>
+                    <p>Prix : <?= $coursItem['prix'] == 0 ? 'Gratuit' : htmlspecialchars($coursItem['prix']) . ' €' ?></p>
                 </div>
             <?php endforeach; ?>
         <?php else : ?>
