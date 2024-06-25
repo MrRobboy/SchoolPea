@@ -2,7 +2,7 @@
 session_start();
 require_once 'db.php';
 
-$id_cours = $_GET['id'];
+$id_cours = $_GET['id_cours'];
 $query = $db->prepare("SELECT * FROM COURS WHERE id = ?");
 $query->execute([$id_cours]);
 $cours = $query->fetch(PDO::FETCH_ASSOC);
