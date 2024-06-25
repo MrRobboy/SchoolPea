@@ -6,7 +6,7 @@ include($path);
 
 if (!$_SESSION['role'] == "admin") {
     $chemin = $_SERVER['DOCUMENT_ROOT'];
-    header('Location: ' . $chemin);
+    header('Location: /');
 }
 ?>
 
