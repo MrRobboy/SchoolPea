@@ -6,10 +6,10 @@ require_once 'db.php';
 $search = '';
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
-    $query = $db->prepare("SELECT * FROM cours WHERE nom LIKE ? OR niveau LIKE ?");
+    $query = $db->prepare("SELECT * FROM COURS WHERE nom LIKE ? OR niveau LIKE ?");
     $query->execute(['%' . $search . '%', '%' . $search . '%']);
 } else {
-    $query = $db->query("SELECT * FROM cours");
+    $query = $db->query("SELECT * FROM COURS");
 }
 $cours = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
