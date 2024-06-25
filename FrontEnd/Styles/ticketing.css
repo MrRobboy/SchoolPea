@@ -120,3 +120,19 @@ body {
 #BUTT1 {
 	margin-top: auto;
 }
+
+#HELP {
+	flex-direction: column;
+	display: flex;
+	border: solid 1px black;
+	margin: 0 1em 0em 0em;
+	width: 75%;
+	padding: 2em;
+	border-radius: 3em;
+	box-shadow: -1em 1em 1px #374699c4;
+	background: rgb(255, 255, 255);
+}
+
+#SUJ {
+	margin: auto;
+}

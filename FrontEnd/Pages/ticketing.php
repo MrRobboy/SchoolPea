@@ -62,15 +62,19 @@
 
             <label for="subject">Sujet :</label>
 
-            <input type="text" name="subject" required><br>
+            <input type="text" name="subject" required id="SUJ"><br>
+            
 
             <label for="description">Description :</label>
 
             <textarea name="description" required></textarea><br>
 
+    
+
             <input type="submit" value="Créer un ticket">
         </form>
 
+        </span>
         <!--<h2>Liste des tickets</h2>
         <?php /*
             $servername = "localhost";
