@@ -55,6 +55,13 @@ if (isset($_POST['submit_inscription'])) {
         $queryStatement->bindvalue(':password', $passwordHash);
 
         $result = $queryStatement->execute();
+        $message = $firstname . ' ' . $lastname . ' a créer son compte, en attente de validation de mail';
+
+        $queryStatement = $dbh->prepare('INSERT INTO LOGS(id_user, action, timestamp) VALUES ((SELECT id_user FROM USER where email=":email"),:message,STR_TO_DATE(":time","%h:%i%s - %dd/%mm/%yyyy");');
+        $queryStatement->bindvalue(':email', $email);
+        $queryStatement->bindvalue(':message', $message);
+        $queryStatement->bindvalue(':time', date('H:i:s d/m/Y', time()));
+        $queryStatement->execute();
     } else {
         echo '<br>ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
     }
