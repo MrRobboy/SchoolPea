@@ -1,11 +1,11 @@
 <?php
 session_start();
-require_once 'db.php';
+require_once 'includes/db.php';
 
 $id_cours = $_GET['id'];
 $query = $db->prepare("SELECT * FROM COURS WHERE id = ?");
 $query->execute([$id_cours]);
-$course = $query->fetch(PDO::FETCH_ASSOC);
+$cours = $query->fetch(PDO::FETCH_ASSOC);
 
 $sections_query = $db->prepare("SELECT * FROM sections WHERE id_cours = ?");
 $sections_query->execute([$id_cours]);
@@ -15,28 +15,30 @@ if (isset($_POST['like'])) {
     $stmt = $db->prepare("INSERT INTO LIKES (id_user, id_cours) VALUES (?, ?)");
     $stmt->execute([$_SESSION['id_user'], $id_cours]);
     header("Location: mesCours.php");
+    exit();
 }
 
 if (isset($_POST['download'])) {
-    require_once 'tcpdf/tcpdf.php';
+    // Include the TCPDF library
+    require_once '../BackEnd/vendor/autoload.php'; // Assuming TCPDF is installed via Composer
 
-    $pdf = new TCPDF();
+    $pdf = new TCPDF(); // Use the full namespace if installed via Composer
     $pdf->AddPage();
 
-    $html = '<h1>' . $course['name'] . '</h1>';
-    $html .= '<img src="uploads/' . $course['image'] . '" alt="' . $course['name'] . '">';
-    $html .= '<p>Niveau : ' . $course['level'] . '</p>';
-    $html .= '<p>Prix : ' . ($course['price'] == 0 ? 'Gratuit' : $course['price'] . ' €') . '</p>';
+    $html = '<h1>' . htmlspecialchars($cours['name']) . '</h1>';
+    $html .= '<img src="uploads/' . htmlspecialchars($cours['image']) . '" alt="' . htmlspecialchars($cours['name']) . '">';
+    $html .= '<p>Niveau : ' . htmlspecialchars($cours['level']) . '</p>';
+    $html .= '<p>Prix : ' . ($cours['price'] == 0 ? 'Gratuit' : htmlspecialchars($cours['price']) . ' €') . '</p>';
     $html .= '<h2>Sommaire</h2>';
     $html .= '<ul>';
     foreach ($sections as $section) {
-        $html .= '<li>' . $section['title'] . '</li>';
+        $html .= '<li>' . htmlspecialchars($section['title']) . '</li>';
     }
     $html .= '</ul>';
 
     foreach ($sections as $section) {
-        $html .= '<h3>' . $section['title'] . '</h3>';
-        $html .= '<p>' . $section['content'] . '</p>';
+        $html .= '<h3>' . htmlspecialchars($section['title']) . '</h3>';
+        $html .= '<p>' . nl2br(htmlspecialchars($section['content'])) . '</p>';
     }
 
     $pdf->writeHTML($html, true, false, true, false, '');
@@ -47,25 +49,27 @@ if (isset($_POST['download'])) {
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($course['name']) ?></title>
+    <title><?= htmlspecialchars($cours['name']) ?></title>
     <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
-    <h1><?= htmlspecialchars($course['name']) ?></h1>
-    <img src="uploads/<?= htmlspecialchars($course['image']) ?>" alt="<?= htmlspecialchars($course['name']) ?>">
-    <p>Niveau : <?= htmlspecialchars($course['level']) ?></p>
-    <p>Prix : <?= $course['price'] == 0 ? 'Gratuit' : htmlspecialchars($course['price']) . ' €' ?></p>
+    <h1><?= htmlspecialchars($cours['name']) ?></h1>
+    <img src="uploads/<?= htmlspecialchars($cours['image']) ?>" alt="<?= htmlspecialchars($cours['name']) ?>">
+    <p>Niveau : <?= htmlspecialchars($cours['level']) ?></p>
+    <p>Prix : <?= $cours['price'] == 0 ? 'Gratuit' : htmlspecialchars($cours['price']) . ' €' ?></p>
 
     <h2>Sommaire</h2>
     <ul>
-        <?php foreach ($sections as $section): ?>
+        <?php foreach ($sections as $section) : ?>
             <li><a href="#section-<?= htmlspecialchars($section['id']) ?>"><?= htmlspecialchars($section['title']) ?></a></li>
         <?php endforeach; ?>
     </ul>
 
-    <?php foreach ($sections as $section): ?>
+    <?php foreach ($sections as $section) : ?>
         <h3 id="section-<?= htmlspecialchars($section['id']) ?>"><?= htmlspecialchars($section['title']) ?></h3>
         <p><?= nl2br(htmlspecialchars($section['content'])) ?></p>
     <?php endforeach; ?>
@@ -75,4 +79,5 @@ if (isset($_POST['download'])) {
         <button type="submit" name="download">Télécharger en PDF</button>
     </form>
 </body>
+
 </html>

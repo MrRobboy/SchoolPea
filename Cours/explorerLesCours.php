@@ -6,12 +6,12 @@ require_once 'db.php';
 $search = '';
 if (isset($_GET['search'])) {
     $search = $_GET['search'];
-    $query = $db->prepare("SELECT * FROM COURS WHERE nom LIKE ? OR niveau LIKE ?");
+    $query = $db->prepare("SELECT * FROM cours WHERE nom LIKE ? OR niveau LIKE ?");
     $query->execute(['%' . $search . '%', '%' . $search . '%']);
 } else {
-    $query = $db->query("SELECT * FROM COURS");
+    $query = $db->query("SELECT * FROM cours");
 }
-$COURS = $query->fetchAll(PDO::FETCH_ASSOC);
+$cours = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,7 +23,7 @@ $COURS = $query->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <h1>Explorer les cours</h1>
     <!-- Formulaire de recherche -->
-    <form method="get" action="explorerLesCours.php">
+    <form method="get" action="explorerLescours.php">
         <input type="text" nom="search" placeholder="Rechercher des cours" value="<?= htmlspecialchars($search) ?>">
         <button type="submit">Rechercher</button>
     </form>
