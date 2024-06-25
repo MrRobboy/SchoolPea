@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Mon compte</title>
-    <link rel="stylesheet" type="text/css" href="../Styles/ticketing.css" />
+    <link rel="stylesheet" type="text/css" href="./ticketing.css" />
 </head>
 
 
@@ -63,13 +63,13 @@
             <label for="subject">Sujet :</label>
 
             <input type="text" name="subject" required id="SUJ"><br>
-            
+
 
             <label for="description">Description :</label>
 
             <textarea name="description" required></textarea><br>
 
-    
+
 
             <input type="submit" value="Créer un ticket">
         </form>
