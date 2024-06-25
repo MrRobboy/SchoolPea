@@ -43,7 +43,7 @@
         document.getElementById('search-input').addEventListener('input', function () {
             const query = this.value;
             if (query.length > 2) {
-                fetch(`/search?query=${query}`)
+                fetch(`/search.php?query=${query}`)
                     .then(response => response.json())
                     .then(data => {
                         const resultsContainer = document.getElementById('results');
@@ -62,7 +62,7 @@
             if (event.key === 'Enter') {
                 event.preventDefault();
                 const query = this.value;
-                window.location.href = `/search-results?query=${query}`;
+                window.location.href = `/search-results.php?query=${query}`;
             }
         });
     </script>
