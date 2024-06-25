@@ -1,7 +1,7 @@
 <?php
+session_start();
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= '/FrontEnd/Pages/backOffice/templates/header.php';
-include 'includes/auth.php';
+$path .= '/BackEnd/db.php';
 include($path);
 ?>
 
@@ -66,5 +66,3 @@ include($path);
 </body>
 
 </html>
-
-<?php include 'templates/footer.php'; ?>
