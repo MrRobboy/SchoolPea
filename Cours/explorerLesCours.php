@@ -33,7 +33,11 @@ $cours = $query->fetchAll(PDO::FETCH_ASSOC);
         <?php if (count($cours) > 0) : ?>
             <?php foreach ($cours as $coursItem) : ?>
                 <div class="cours">
-                    <img src="uploads/<?= htmlspecialchars($coursItem['image']) ?>" alt="<?= htmlspecialchars($coursItem['nom']) ?>">
+                    <?php if (!empty($coursItem['image']) && file_exists('uploads/' . $coursItem['image'])) : ?>
+                        <img src="uploads/<?= htmlspecialchars($coursItem['image']) ?>" alt="<?= htmlspecialchars($coursItem['nom']) ?>">
+                    <?php else : ?>
+                        <img src="placeholder.jpg" alt="Image non disponible">
+                    <?php endif; ?>
                     <h2><a href="cours.php?id=<?= htmlspecialchars($coursItem['id']) ?>"><?= htmlspecialchars($coursItem['nom']) ?></a></h2>
                     <p>Niveau : <?= htmlspecialchars($coursItem['niveau']) ?></p>
                     <p>Prix : <?= $coursItem['prix'] == 0 ? 'Gratuit' : htmlspecialchars($coursItem['prix']) . ' €' ?></p>

@@ -1,13 +1,13 @@
 <?php
 session_start();
-require_once 'includes/db.php';
+require_once 'db.php';
 
 $id_cours = $_GET['id'];
 $query = $db->prepare("SELECT * FROM COURS WHERE id = ?");
 $query->execute([$id_cours]);
 $cours = $query->fetch(PDO::FETCH_ASSOC);
 
-$sections_query = $db->prepare("SELECT * FROM sections WHERE id_cours = ?");
+$sections_query = $db->prepare("SELECT * FROM SECTIONS WHERE id_cours = ?");
 $sections_query->execute([$id_cours]);
 $sections = $sections_query->fetchAll(PDO::FETCH_ASSOC);
 
