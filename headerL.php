@@ -46,7 +46,7 @@
             <div id="dropdown">
                 <?php if ($_SESSION['role'] == 'admin') echo '<a class="lien_header" href="schoolpea.com/BackOffice">Back Office</a>'; ?>
                 <a class="lien_header" href="https://schoolpea.com/Compte/">Mon compte</a>
-                <a class="lien_header" href="https://schoolpea.com/Ticket/">Faire un ticket</a>
+                <a class="lien_header" href="https://schoolpea.com/Tickets/">Faire un ticket</a>
                 <a class="lien_header" style="background-color:red; color: white;" href="https://schoolpea.com/BackEnd/logout.php">Déconnexion</a>
             </div>
         </span>
