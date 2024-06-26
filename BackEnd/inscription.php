@@ -59,7 +59,6 @@ if (isset($_POST['submit_inscription'])) {
         $queryStatement = $dbh->prepare('INSERT INTO LOGS(id_user, action) VALUES ((SELECT id_USER FROM USER where email=":email"),:message;');
         $queryStatement->bindvalue(':email', $email);
         $queryStatement->bindvalue(':message', $message);
-        $queryStatement->bindvalue(':time', date('H:i:s d/m/Y', time()));
         $queryStatement->execute();
     } else {
         echo '<br>ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
