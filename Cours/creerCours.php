@@ -20,6 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
         if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
+            // Vérifier si l'utilisateur existe dans la table USER
+            $stmt = $conn->prepare("SELECT id_USER FROM USER WHERE id_USER = :id_user");
+            $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
+            $stmt->execute();
+
+            if ($stmt->rowCount() == 0) {
+                echo "Utilisateur non trouvé dans la base de données USER.";
+                exit(); // Arrêter l'exécution si l'utilisateur n'existe pas
+            }
+
             // Insertion des données principales du cours dans la table COURS
             $sql = "INSERT INTO COURS (nom, niveau, id_USER, path_image_pres, description)
                     VALUES (:nom, :niveau, :id_user, :target_file, :description)";
@@ -91,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn = null; // Fermer la connexion PDO
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
