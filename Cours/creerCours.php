@@ -20,35 +20,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (move_uploaded_file($_FILES['image_pres']['tmp_name'], $upload_file)) {
         $path_image_pres = $upload_file;
 
-        $sql = "INSERT INTO COURS (nom, niveau, prix, id_user, path_image_pres) VALUES ('$nom', '$niveau', $prix, $id_user, '$path_image_pres')";
-        if ($conn->query($sql) === TRUE) {
-            $id_cours = $conn->insert_id;
+        // Utilisation de PDO pour sécuriser les requêtes
+        $sql = "INSERT INTO COURS (nom, niveau, prix, id_user, path_image_pres) VALUES (?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$nom, $niveau, $prix, $id_user, $path_image_pres]);
 
-            for ($i = 0; $i < count($_POST['section']); $i++) {
-                $titre_section = $_POST['section'][$i]['titre'];
-                $sql_section = "INSERT INTO SECTION (id_cours, titre) VALUES ($id_cours, '$titre_section')";
-                if ($conn->query($sql_section) === TRUE) {
-                    $id_section = $conn->insert_id;
+        $id_COURS = $conn->lastInsertId();
 
-                    for ($j = 0; $j < count($_POST['section'][$i]['titre']); $j++) {
-                        $titre = $_POST['section'][$i]['titre'][$j]['titre'];
-                        $sql_titre = "INSERT INTO TITRE (id_section, titre) VALUES ($id_section, '$titre')";
-                        if ($conn->query($sql_titre) === TRUE) {
-                            $id_titre = $conn->insert_id;
+        for ($i = 0; $i < count($_POST['section']); $i++) {
+            $titre_section = $_POST['section'][$i]['titre'];
+            $sql_section = "INSERT INTO SECTION (id_COURS, titre) VALUES (?, ?)";
+            $stmt_section = $conn->prepare($sql_section);
+            $stmt_section->execute([$id_COURS, $titre_section]);
 
-                            for ($k = 0; $k < count($_POST['section'][$i]['titre'][$j]['paragraphe']); $k++) {
-                                $paragraphe = $_POST['section'][$i]['titre'][$j]['paragraphe'][$k];
-                                $sql_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES ($id_titre, '$paragraphe')";
-                                $conn->query($sql_paragraphe);
-                            }
-                        }
-                    }
+            $id_section = $conn->lastInsertId();
+
+            for ($j = 0; $j < count($_POST['section'][$i]['titre']); $j++) {
+                $titre = $_POST['section'][$i]['titre'][$j]['titre'];
+                $sql_titre = "INSERT INTO TITRE (id_section, titre) VALUES (?, ?)";
+                $stmt_titre = $conn->prepare($sql_titre);
+                $stmt_titre->execute([$id_section, $titre]);
+
+                $id_titre = $conn->lastInsertId();
+
+                for ($k = 0; $k < count($_POST['section'][$i]['titre'][$j]['paragraphe']); $k++) {
+                    $paragraphe = $_POST['section'][$i]['titre'][$j]['paragraphe'][$k];
+                    $sql_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES (?, ?)";
+                    $stmt_paragraphe = $conn->prepare($sql_paragraphe);
+                    $stmt_paragraphe->execute([$id_titre, $paragraphe]);
                 }
             }
-            echo "Cours créé avec succès.";
-        } else {
-            echo "Erreur : " . $sql . "<br>" . $conn->error;
         }
+        echo "Cours créé avec succès.";
     } else {
         echo "Erreur lors du téléchargement de l'image.";
     }
