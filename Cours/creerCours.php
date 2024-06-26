@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nom = $_POST['nom'];
     $niveau = $_POST['niveau'];
     $prix = $_POST['prix'];
-    $id_user = 1; // Exemple : récupérer l'ID utilisateur connecté
+    $id_USER = 1; // Exemple : récupérer l'ID utilisateur connecté
 
     $upload_dir = 'images/';
     
@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $path_image_pres = $upload_file;
 
         // Utilisation de PDO pour sécuriser les requêtes
-        $sql = "INSERT INTO COURS (nom, niveau, prix, id_user, path_image_pres) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO COURS (nom, niveau, prix, id_USER, path_image_pres) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$nom, $niveau, $prix, $id_user, $path_image_pres]);
+        $stmt->execute([$nom, $niveau, $prix, $id_USER, $path_image_pres]);
 
         $id_COURS = $conn->lastInsertId();
 
