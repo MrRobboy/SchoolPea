@@ -7,7 +7,7 @@ if (!empty($_SESSION['erreur']) && $_SESSION['erreur'] == 'erreur') {
 include('db.php');
 $request = $dbh->query('SELECT question FROM CAPTCHA;');
 $questions = $request->fetchAll();
-$request = $dbh->query('SELECT count(id) FROM CAPTCHA;');
+$request = $dbh->query('SELECT count(id_CAPTCHA) FROM CAPTCHA;');
 $max = $request->fetchAll();
 $x = random_int(0, $max[0][0] - 1);
 $_SESSION['x'] = $x;
