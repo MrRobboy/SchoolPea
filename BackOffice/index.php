@@ -64,7 +64,7 @@ include($auth);
                     <p>Ajouter, modifier ou supprimer des quizz</p>
                 </a>
             </div>
-            <div class="dashboard-item" style="background-color: red;">
+            <div class="front-office">
                 <a href="https://schoolpea.com/">
                     <h2 style=" color: white;">Front-Office</h2>
                     <p style=" color: white;">Retourner à la page d'accueil</p>
