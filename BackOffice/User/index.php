@@ -9,7 +9,7 @@ $path .= '/BackEnd/db.php';
 include($path);
 
 $stmt = $dbh->query("SELECT * FROM USER");
-$logs = $stmt->fetchAll();
+$users = $stmt->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
