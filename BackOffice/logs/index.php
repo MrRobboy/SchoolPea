@@ -9,6 +9,9 @@ include($auth);
 
 $stmt = $dbh->query("USE PA; SELECT * FROM LOGS");
 $logs = $stmt->fetchAll();
+echo ('<pre>');
+echo $logs;
+echo ('</pre>');
 ?>
 
 <div class="container" style="margin: auto;">
@@ -16,7 +19,7 @@ $logs = $stmt->fetchAll();
     <table>
         <thead>
             <tr>
-                <th>ID</th>
+                <th>ID_LOGS</th>
                 <th>ID_Utilisateur</th>
                 <th>Action</th>
                 <th>Date</th>
