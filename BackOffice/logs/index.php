@@ -20,7 +20,7 @@ $logs = $stmt->fetchAll();
 </head>
 
 <body>
-    <div id="content" style="margin: auto;">
+    <div id="content">
         <h1>Visualisation des Logs</h1>
         <div id="table-classement">
             <table id="classement">
