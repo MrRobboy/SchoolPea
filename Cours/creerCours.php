@@ -70,15 +70,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         foreach ($section['titres'] as $titre) {
                             $titre_titre = $titre['titre'];
 
-                            // Insertion du titre dans la table TITRE
-                            $sql = "INSERT INTO TITRE (id_section, titre)
-                                    VALUES (:section_id, :titre_titre)";
-                            $stmt = $dbh->prepare($sql);
-                            $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
-                            $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
-                            $stmt->execute();
-                            $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
+                          // Insertion du titre dans la table TITRE
+                        $sql = "INSERT INTO TITRE (id_section, titre) VALUES (:section_id, :titre_titre)";
+                        $stmt = $dbh->prepare($sql);
+                        $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
+                        $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
 
+                        try {
+                        $stmt->execute();
+                        $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
+                        } catch (PDOException $e) {
+                        // Log or echo the error message for debugging
+                        echo "Erreur lors de l'insertion dans la table TITRE : " . $e->getMessage();
+                        // Example of logging the error
+                        // error_log("Erreur PDO : " . $e->getMessage(), 0);
+                        }
                             // Insertion des paragraphes
                             if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
                                 foreach ($titre['paragraphes'] as $paragraphe) {
