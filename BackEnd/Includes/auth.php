@@ -1,4 +1,7 @@
 <?php
 if ($_SESSION['role'] != "admin") {
-    header('Location: https://schoolpea.com');
+    echo ('<pre>');
+    print_r($_SESSION);
+    echo ('</pre>');
+    // header('Location: https://schoolpea.com');
 }
