@@ -19,7 +19,7 @@ echo ('</pre>');
 <head>
     <meta charset="UTF-8">
     <title> LOGS </title>
-    <link rel="stylesheet" type="text/css" href="./classement.css">
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Classement/classement.css">
 </head>
 
 <body>
