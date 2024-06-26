@@ -40,8 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
                 $stmt->bindValue(':target_file', $target_file, PDO::PARAM_STR);
                 $stmt->bindValue(':description', $description, PDO::PARAM_STR);
-                $stmt->execute();
-                $cours_id = $conn->lastInsertId(); // Récupération de l'ID du cours inséré
+                $cours_id = $conn->lastInsertId(); 
+                $stmt->execute();// Récupération de l'ID du cours inséré
 
                 // Traitement des sections, titres et paragraphes
                 if (isset($_POST['section']) && is_array($_POST['section'])) {
