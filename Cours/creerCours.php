@@ -6,52 +6,64 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nom = $_POST['nom'];
     $niveau = $_POST['niveau'];
     $prix = $_POST['prix'];
-    $id_USER = 1; // Exemple : récupérer l'ID utilisateur connecté
+    $id_user = 1; // Exemple : récupérer l'ID utilisateur connecté
 
     $upload_dir = 'images/';
-    
-    // Créer le répertoire s'il n'existe pas
-    if (!file_exists($upload_dir)) {
-        mkdir($upload_dir, 0755, true);
-    }
-
     $upload_file = $upload_dir . basename($_FILES['image_pres']['name']);
 
     if (move_uploaded_file($_FILES['image_pres']['tmp_name'], $upload_file)) {
         $path_image_pres = $upload_file;
 
-        // Utilisation de PDO pour sécuriser les requêtes
-        $sql = "INSERT INTO COURS (nom, niveau, prix, id_USER, path_image_pres) VALUES (?, ?, ?, ?, ?)";
+        // Insertion dans la table COURS
+        $sql = "INSERT INTO COURS (nom, niveau, prix, id_user, path_image_pres) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$nom, $niveau, $prix, $id_USER, $path_image_pres]);
+        $stmt->bind_param("ssdis", $nom, $niveau, $prix, $id_user, $path_image_pres);
 
-        $id_COURS = $conn->lastInsertId();
+        if ($stmt->execute()) {
+            $id_cours = $stmt->insert_id;
 
-        for ($i = 0; $i < count($_POST['section']); $i++) {
-            $titre_section = $_POST['section'][$i]['titre'];
-            $sql_section = "INSERT INTO SECTION (id_COURS, titre) VALUES (?, ?)";
-            $stmt_section = $conn->prepare($sql_section);
-            $stmt_section->execute([$id_COURS, $titre_section]);
+            // Insertion des sections
+            foreach ($_POST['section'] as $section) {
+                $titre_section = $section['titre'];
 
-            $id_section = $conn->lastInsertId();
+                // Insertion dans la table SECTIONS
+                $sql_section = "INSERT INTO SECTIONS (id_cours, titre) VALUES (?, ?)";
+                $stmt_section = $conn->prepare($sql_section);
+                $stmt_section->bind_param("is", $id_cours, $titre_section);
 
-            for ($j = 0; $j < count($_POST['section'][$i]['titre']); $j++) {
-                $titre = $_POST['section'][$i]['titre'][$j]['titre'];
-                $sql_titre = "INSERT INTO TITRE (id_section, titre) VALUES (?, ?)";
-                $stmt_titre = $conn->prepare($sql_titre);
-                $stmt_titre->execute([$id_section, $titre]);
+                if ($stmt_section->execute()) {
+                    $id_section = $stmt_section->insert_id;
 
-                $id_titre = $conn->lastInsertId();
+                    // Insertion des titres
+                    foreach ($section['titre'] as $titre) {
+                        $titre_titre = $titre['titre'];
 
-                for ($k = 0; $k < count($_POST['section'][$i]['titre'][$j]['paragraphe']); $k++) {
-                    $paragraphe = $_POST['section'][$i]['titre'][$j]['paragraphe'][$k];
-                    $sql_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES (?, ?)";
-                    $stmt_paragraphe = $conn->prepare($sql_paragraphe);
-                    $stmt_paragraphe->execute([$id_titre, $paragraphe]);
+                        // Insertion dans la table TITRE
+                        $sql_titre = "INSERT INTO TITRE (id_section, titre) VALUES (?, ?)";
+                        $stmt_titre = $conn->prepare($sql_titre);
+                        $stmt_titre->bind_param("is", $id_section, $titre_titre);
+
+                        if ($stmt_titre->execute()) {
+                            $id_titre = $stmt_titre->insert_id;
+
+                            // Insertion des paragraphes
+                            foreach ($titre['paragraphe'] as $paragraphe) {
+                                // Insertion dans la table PARAGRAPHE
+                                $sql_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES (?, ?)";
+                                $stmt_paragraphe = $conn->prepare($sql_paragraphe);
+                                $stmt_paragraphe->bind_param("is", $id_titre, $paragraphe);
+
+                                $stmt_paragraphe->execute();
+                            }
+                        }
+                    }
                 }
             }
+
+            echo "Cours créé avec succès.";
+        } else {
+            echo "Erreur : " . $conn->error;
         }
-        echo "Cours créé avec succès.";
     } else {
         echo "Erreur lors du téléchargement de l'image.";
     }
