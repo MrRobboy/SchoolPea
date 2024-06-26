@@ -3,7 +3,6 @@ session_start();
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
-
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
@@ -21,7 +20,7 @@ $users = $stmt->fetchAll();
 </head>
 
 <body>
-    <div id="content">
+    <div id="content" style="width: 95%;">
         <h1>Gestion des Utilisateurs</h1>
         <a href="add.php" class="btn">Ajouter un utilisateur</a>
         <div id="table-classement">
@@ -31,21 +30,23 @@ $users = $stmt->fetchAll();
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID</th>
                         <th style="padding: 0 3rem;border-right: solid 0.3rem white;">Nom</th>
                         <th style="padding: 0 3rem;border-right: solid 0.3rem white;">Prenom</th>
-                        <th style="padding: 0 7rem;border-right: solid 0.3rem white;">Email</th>
+                        <th style="padding: 0 4rem;border-right: solid 0.3rem white;">Email</th>
                         <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Rôle</th>
-                        <th>Actions</th>
+                        <th style="padding: 0 4rem;border-right: none;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($users as $user) : ?>
                         <tr>
-                            <td><?= $user['id'] ?></td>
-                            <td><?= $user['email'] ?></td>
-                            <td><?= $user['role'] ?></td>
+                            <td><?php echo $user['id_USER']; ?></td>
+                            <td><?php echo $user['lastname']; ?></td>
+                            <td><?php echo $user['firstname']; ?></td>
+                            <td><?php echo $user['email']; ?></td>
+                            <td><?php echo $user['role']; ?></td>
                             <td>
-                                <a href="edit.php?id=<?php $user[0]['id_user'] ?>" class="btn">Modifier</a>
-                                <a href="ban.php?id=<?= $user['id'] ?>" class="btn">Bannir</a>
-                                <a href="delete.php?id=<?= $user['id'] ?>" class="btn">Supprimer</a>
+                                <a href="edit.php?id=<?php echo $user['id_USER']; ?>" class="btn">Modifier</a>
+                                <a href="ban.php?id=<?php echo $user['id_USER']; ?>" class="btn">Bannir</a>
+                                <a href="delete.php?id=<?php echo $user['id_USER']; ?>" class="btn">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
