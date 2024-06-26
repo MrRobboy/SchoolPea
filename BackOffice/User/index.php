@@ -1,6 +1,6 @@
 <?php
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= '/BackEnd/auth.php';
+$path .= '/BackEnd/Includes/auth.php';
 include($path);
 
 $path = $_SERVER['DOCUMENT_ROOT'];
