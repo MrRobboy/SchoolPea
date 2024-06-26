@@ -131,27 +131,32 @@
     </script>
 
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        include 'db.php';
+session_start(); // Démarrer la session si ce n'est pas déjà fait
 
-        // Récupération des données principales du cours
-        $nom = $_POST['nom'];
-        $niveau = $_POST['niveau'];
-        $id_user = $_POST['id_user'];
-        $description = $_POST['description'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    include 'db.php';
 
-        // Traitement de l'image de présentation
+    // Récupération des données principales du cours
+    $nom = $_POST['nom'];
+    $niveau = $_POST['niveau'];
+    $description = $_POST['description'];
+
+    // Récupération de l'ID utilisateur à partir de la session
+    $id_user = $_SESSION['id_user']; // Adapter selon la clé de session utilisée
+
+    // Traitement de l'image de présentation
+    if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
         $target_dir = "uploads/";
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-        // Vérifier si le fichier image est une vraie image ou une fausse image
+        // Vérifier si le fichier est une vraie image
         $check = getimagesize($_FILES["image_pres"]["tmp_name"]);
         if ($check !== false) {
             $uploadOk = 1;
         } else {
-            echo "Le fichier n'est pas une image.";
+            echo "Le fichier n'est pas une image valide.";
             $uploadOk = 0;
         }
 
@@ -241,6 +246,10 @@
             }
         }
 
-        $conn->close();
+    } else {
+        echo "Veuillez sélectionner une image de présentation.";
     }
+
+    $conn->close();
+}
 ?>
