@@ -124,4 +124,30 @@ tbody tr:hover {
     padding: 0.5em;
     border-radius: 3em;
     margin: 0.5em;
+    color: white;
+    border: 0.1em transparent solid;
+}
+
+.btn.modify {
+    background-color: #4400ff;
+}
+
+.btn.modify:hover {
+    background-color: #3700cf;
+}
+
+.btn.ban {
+    background-color: #ffc400;
+}
+
+.btn.ban:hover {
+    background-color: #cf9f00;
+}
+
+.btn.del {
+    background-color: #ff0000;
+}
+
+.btn.del:hover {
+    background-color: #cf0000;
 }
