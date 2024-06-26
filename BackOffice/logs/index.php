@@ -28,10 +28,10 @@ echo ('</pre>');
         <tbody>
             <?php foreach ($logs as $log) : ?>
                 <tr>
-                    <td><? echo $log['id_LOGS']; ?></td>
-                    <td><? echo $log['id_user']; ?></td>
-                    <td><? echo $log['act']; ?></td>
-                    <td><? echo $log['time']; ?></td>
+                    <td><?php echo $log['id_LOGS']; ?></td>
+                    <td><?php echo $log['id_user']; ?></td>
+                    <td><?php echo $log['act']; ?></td>
+                    <td><?php echo $log['time']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
