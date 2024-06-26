@@ -47,7 +47,7 @@ header.admin {
     display: flex;
     flex-direction: column;
     font-weight: 500;
-    padding: 1em 0.2em;
+    padding: 3em 0.2em;
 }
 
 #Pages .link {
