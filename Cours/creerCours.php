@@ -1,103 +1,209 @@
-<?php
-include 'db.php';
-include 'header.php';
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Création de Cours</title>
+    <style>
+        .section {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        .titres {
+            margin-top: 10px;
+            border: 1px solid #eee;
+            padding: 5px;
+        }
+        .paragraphes {
+            margin-top: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Création de Cours</h2>
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $nom = $_POST['nom'];
-    $niveau = $_POST['niveau'];
-    $prix = $_POST['prix'];
-    $id_USER = 1; // Exemple : récupérer l'ID utilisateur connecté
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+        <label for="nom">Nom du Cours :</label>
+        <input type="text" id="nom" name="nom" required><br><br>
 
-    $upload_dir = 'images/';
-    
-    // Créer le répertoire s'il n'existe pas
-    if (!file_exists($upload_dir)) {
-        mkdir($upload_dir, 0755, true);
-    }
+        <label for="niveau">Niveau :</label>
+        <select id="niveau" name="niveau">
+            <option value="debutant">Débutant</option>
+            <option value="intermediaire">Intermédiaire</option>
+            <option value="avance">Avancé</option>
+        </select><br><br>
 
-    $upload_file = $upload_dir . basename($_FILES['image_pres']['name']);
+        <label for="prix">Prix :</label>
+        <input type="number" id="prix" name="prix"><br><br>
 
-    if (move_uploaded_file($_FILES['image_pres']['tmp_name'], $upload_file)) {
-        $path_image_pres = $upload_file;
+        <label for="id_user">ID de l'Utilisateur :</label>
+        <input type="number" id="id_user" name="id_user" required><br><br>
 
-        // Utilisation de PDO pour sécuriser les requêtes
-        $sql = "INSERT INTO COURS (nom, niveau, prix, id_USER, path_image_pres) VALUES (?, ?, ?, ?, ?)";
+        <label for="path_contenu">Chemin du Contenu :</label>
+        <input type="text" id="path_contenu" name="path_contenu"><br><br>
+
+        <label for="path_image_pres">Chemin de l'Image de Présentation :</label>
+        <input type="text" id="path_image_pres" name="path_image_pres"><br><br>
+
+        <label for="description">Description :</label><br>
+        <textarea id="description" name="description" rows="4"></textarea><br><br>
+
+        <h3>Sections</h3>
+        <button type="button" id="ajouter_section">Ajouter une Section</button><br><br>
+
+        <div id="sections">
+            <!-- Contenu des sections ajouté dynamiquement ici -->
+        </div><br>
+
+        <input type="submit" value="Créer le Cours">
+    </form>
+
+    <script>
+        document.getElementById('ajouter_section').addEventListener('click', function() {
+            var sectionsDiv = document.getElementById('sections');
+            var nextSectionIndex = sectionsDiv.children.length; // Index de la prochaine section à ajouter
+
+            var newSection = document.createElement('div');
+            newSection.className = 'section';
+
+            // Création du champ de titre de la section
+            var titreSectionLabel = document.createElement('label');
+            titreSectionLabel.textContent = 'Titre de la section :';
+            var titreSectionInput = document.createElement('input');
+            titreSectionInput.type = 'text';
+            titreSectionInput.name = 'section[' + nextSectionIndex + '][titre]';
+            titreSectionInput.required = true;
+
+            newSection.appendChild(titreSectionLabel);
+            newSection.appendChild(titreSectionInput);
+
+            // Ajout du bouton pour ajouter un titre à la section
+            var ajouterTitreBtn = document.createElement('button');
+            ajouterTitreBtn.textContent = 'Ajouter un titre';
+            ajouterTitreBtn.type = 'button';
+            ajouterTitreBtn.className = 'ajouter_titre';
+            newSection.appendChild(ajouterTitreBtn);
+
+            // Écouteur d'événement pour ajouter un titre à cette section
+            ajouterTitreBtn.addEventListener('click', function() {
+                var titresDiv = document.createElement('div');
+                titresDiv.className = 'titres';
+
+                // Création du champ de titre
+                var titreLabel = document.createElement('label');
+                titreLabel.textContent = 'Titre :';
+                var titreInput = document.createElement('input');
+                titreInput.type = 'text';
+                titreInput.name = 'section[' + nextSectionIndex + '][titre][' + newSection.getElementsByClassName('titre').length + '][titre]';
+                titreInput.required = true;
+
+                // Ajout du champ de titre à la section
+                titresDiv.appendChild(titreLabel);
+                titresDiv.appendChild(titreInput);
+
+                // Ajout du bouton pour ajouter un paragraphe à ce titre
+                var ajouterParagrapheBtn = document.createElement('button');
+                ajouterParagrapheBtn.textContent = 'Ajouter un paragraphe';
+                ajouterParagrapheBtn.type = 'button';
+                ajouterParagrapheBtn.className = 'ajouter_paragraphe';
+                titresDiv.appendChild(ajouterParagrapheBtn);
+
+                // Écouteur d'événement pour ajouter un paragraphe à ce titre
+                ajouterParagrapheBtn.addEventListener('click', function() {
+                    var paragraphesDiv = document.createElement('div');
+                    paragraphesDiv.className = 'paragraphes';
+
+                    // Création du champ de paragraphe
+                    var paragrapheLabel = document.createElement('label');
+                    paragrapheLabel.textContent = 'Paragraphe :';
+                    var paragrapheTextarea = document.createElement('textarea');
+                    paragrapheTextarea.name = 'section[' + nextSectionIndex + '][titre][' + newSection.getElementsByClassName('titre').length + '][paragraphe][]';
+                    paragrapheTextarea.required = true;
+
+                    // Ajout du champ de paragraphe au titre
+                    paragraphesDiv.appendChild(paragrapheLabel);
+                    paragraphesDiv.appendChild(paragrapheTextarea);
+
+                    titresDiv.appendChild(paragraphesDiv);
+                });
+
+                newSection.appendChild(titresDiv);
+            });
+
+            sectionsDiv.appendChild(newSection);
+        });
+    </script>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        include 'db.php';
+
+        // Récupération des données principales du cours
+        $nom = $_POST['nom'];
+        $niveau = $_POST['niveau'];
+        $prix = $_POST['prix'];
+        $id_user = $_POST['id_user'];
+        $path_contenu = $_POST['path_contenu'];
+        $path_image_pres = $_POST['path_image_pres'];
+        $description = $_POST['description'];
+
+        // Insertion des données principales du cours dans la table COURS
+        $sql = "INSERT INTO COURS (nom, niveau, prix, id_USER, path_contenu, path_image_pres, description)
+                VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$nom, $niveau, $prix, $id_USER, $path_image_pres]);
+        $stmt->bind_param("ssdisss", $nom, $niveau, $prix, $id_user, $path_contenu, $path_image_pres, $description);
+        $stmt->execute();
+        $cours_id = $stmt->insert_id; // Récupération de l'ID du cours inséré
 
-        $id_COURS = $conn->lastInsertId();
+        // Traitement des sections, titres et paragraphes
+        if (isset($_POST['section']) && is_array($_POST['section'])) {
+            foreach ($_POST['section'] as $section) {
+                $titre_section = $section['titre'];
 
-        for ($i = 0; $i < count($_POST['section']); $i++) {
-            $titre_section = $_POST['section'][$i]['titre'];
-            $sql_section = "INSERT INTO SECTION (id_COURS, titre) VALUES (?, ?)";
-            $stmt_section = $conn->prepare($sql_section);
-            $stmt_section->execute([$id_COURS, $titre_section]);
+                // Insertion de la section dans la table SECTIONS
+                $sql = "INSERT INTO SECTIONS (id_cours, titre)
+                        VALUES (?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("is", $cours_id, $titre_section);
+                $stmt->execute();
+                $section_id = $stmt->insert_id; // Récupération de l'ID de la section insérée
 
-            $id_section = $conn->lastInsertId();
+                if (isset($section['titre']) && is_array($section['titre'])) {
+                    foreach ($section['titre'] as $titre) {
+                        $titre_titre = $titre['titre'];
 
-            for ($j = 0; $j < count($_POST['section'][$i]['titre']); $j++) {
-                $titre = $_POST['section'][$i]['titre'][$j]['titre'];
-                $sql_titre = "INSERT INTO TITRE (id_section, titre) VALUES (?, ?)";
-                $stmt_titre = $conn->prepare($sql_titre);
-                $stmt_titre->execute([$id_section, $titre]);
+                        // Insertion du titre dans la table TITRE
+                        $sql = "INSERT INTO TITRE (id_section, titre)
+                                VALUES (?, ?)";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("is", $section_id, $titre_titre);
+                        $stmt->execute();
+                        $titre_id = $stmt->insert_id; // Récupération de l'ID du titre inséré
 
-                $id_titre = $conn->lastInsertId();
+                        if (isset($titre['paragraphe']) && is_array($titre['paragraphe'])) {
+                            foreach ($titre['paragraphe'] as $paragraphe) {
+                                $contenu_paragraphe = $paragraphe;
 
-                for ($k = 0; $k < count($_POST['section'][$i]['titre'][$j]['paragraphe']); $k++) {
-                    $paragraphe = $_POST['section'][$i]['titre'][$j]['paragraphe'][$k];
-                    $sql_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES (?, ?)";
-                    $stmt_paragraphe = $conn->prepare($sql_paragraphe);
-                    $stmt_paragraphe->execute([$id_titre, $paragraphe]);
+                                // Insertion du paragraphe dans la table PARAGRAPHE
+                                $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu)
+                                        VALUES (?, ?)";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("is", $titre_id, $contenu_paragraphe);
+                                $stmt->execute();
+                            }
+                        }
+                    }
                 }
             }
         }
-        echo "Cours créé avec succès.";
-    } else {
-        echo "Erreur lors du téléchargement de l'image.";
+
+        echo "Le cours a été créé avec succès.";
+
+        $stmt->close();
+        $conn->close();
     }
-}
-?>
-
-<h2>Créer un nouveau cours</h2>
-<form action="creerCours.php" method="post" enctype="multipart/form-data">
-    <label for="nom">Nom du cours :</label>
-    <input type="text" name="nom" id="nom" required><br>
-    
-    <label for="niveau">Niveau :</label>
-    <input type="text" name="niveau" id="niveau" required><br>
-    
-    <label for="prix">Prix :</label>
-    <input type="number" name="prix" id="prix" required><br>
-    
-    <label for="image_pres">Image de présentation :</label>
-    <input type="file" name="image_pres" id="image_pres" accept="image/*" required><br>
-    
-    <div id="sections">
-        <h3>Sections</h3>
-        <div class="section">
-            <label for="titre_section">Titre de la section :</label>
-            <input type="text" name="section[0][titre]" required><br>
-            
-            <div class="titres">
-                <h4>Titres</h4>
-                <div class="titre">
-                    <label for="titre">Titre :</label>
-                    <input type="text" name="section[0][titre][0][titre]" required><br>
-                    
-                    <div class="paragraphes">
-                        <h5>Paragraphes</h5>
-                        <label for="paragraphe">Paragraphe :</label>
-                        <textarea name="section[0][titre][0][paragraphe][]" required></textarea><br>
-                    </div>
-                    <button type="button" class="ajouter_paragraphe">Ajouter un paragraphe</button>
-                </div>
-                <button type="button" class="ajouter_titre">Ajouter un titre</button>
-            </div>
-        </div>
-        <button type="button" id="ajouter_section">Ajouter une section</button>
-    </div>
-    
-    <button type="submit">Créer le cours</button>
-</form>
-
-<?php include 'footer.php'; ?>
+    ?>
+</body>
+</html>

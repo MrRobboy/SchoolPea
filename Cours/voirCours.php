@@ -3,38 +3,42 @@ include 'db.php';
 include 'header.php';
 
 $id_cours = $_GET['id_cours'];
-$sql = "SELECT * FROM COURS WHERE id_cours = $id_cours";
-$result = $conn->query($sql);
+$sql = "SELECT * FROM COURS WHERE id_COURS = ?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$id_cours]);
 
-if ($result->num_rows > 0) {
-    $cours = $result->fetch_assoc();
-    echo "<h2>" . $cours['nom'] . "</h2>";
-    echo "<p>Niveau : " . $cours['niveau'] . "</p>";
-    echo "<p>Prix : " . $cours['prix'] . "€</p>";
-    echo "<img src='" . $cours['path_image_pres'] . "' alt='Image de présentation' width='300'><br>";
+if ($stmt->rowCount() > 0) {
+    $cours = $stmt->fetch(PDO::FETCH_ASSOC);
+    echo "<h2>" . htmlspecialchars($cours['nom']) . "</h2>";
+    echo "<p>Niveau : " . htmlspecialchars($cours['niveau']) . "</p>";
+    echo "<p>Prix : " . htmlspecialchars($cours['prix']) . "€</p>";
+    echo "<img src='" . htmlspecialchars($cours['path_image_pres']) . "' alt='Image de présentation' width='300'><br>";
     
-    $sql_section = "SELECT * FROM SECTION WHERE id_cours = $id_cours";
-    $result_section = $conn->query($sql_section);
+    $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
+    $stmt_section = $conn->prepare($sql_section);
+    $stmt_section->execute([$id_cours]);
     
-    if ($result_section->num_rows > 0) {
-        while ($section = $result_section->fetch_assoc()) {
-            echo "<h3>" . $section['titre'] . "</h3>";
+    if ($stmt_section->rowCount() > 0) {
+        while ($section = $stmt_section->fetch(PDO::FETCH_ASSOC)) {
+            echo "<h3>" . htmlspecialchars($section['titre']) . "</h3>";
             
             $id_section = $section['id_section'];
-            $sql_titre = "SELECT * FROM TITRE WHERE id_section = $id_section";
-            $result_titre = $conn->query($sql_titre);
+            $sql_titre = "SELECT * FROM TITRE WHERE id_section = ?";
+            $stmt_titre = $conn->prepare($sql_titre);
+            $stmt_titre->execute([$id_section]);
             
-            if ($result_titre->num_rows > 0) {
-                while ($titre = $result_titre->fetch_assoc()) {
-                    echo "<h4>" . $titre['titre'] . "</h4>";
+            if ($stmt_titre->rowCount() > 0) {
+                while ($titre = $stmt_titre->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<h4>" . htmlspecialchars($titre['titre']) . "</h4>";
                     
                     $id_titre = $titre['id_titre'];
-                    $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_titre = $id_titre";
-                    $result_paragraphe = $conn->query($sql_paragraphe);
+                    $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_titre = ?";
+                    $stmt_paragraphe = $conn->prepare($sql_paragraphe);
+                    $stmt_paragraphe->execute([$id_titre]);
                     
-                    if ($result_paragraphe->num_rows > 0) {
-                        while ($paragraphe = $result_paragraphe->fetch_assoc()) {
-                            echo "<p>" . $paragraphe['contenu'] . "</p>";
+                    if ($stmt_paragraphe->rowCount() > 0) {
+                        while ($paragraphe = $stmt_paragraphe->fetch(PDO::FETCH_ASSOC)) {
+                            echo "<p>" . htmlspecialchars($paragraphe['contenu']) . "</p>";
                         }
                     }
                 }
