@@ -66,8 +66,8 @@ include($auth);
             </div>
             <div class="front-office">
                 <a href="https://schoolpea.com/">
-                    <h2 style=" color: white;">Front-Office</h2>
-                    <p style=" color: white;">Retourner à la page d'accueil</p>
+                    <h2>Front-Office</h2>
+                    <p>Retourner à la page d'accueil</p>
                 </a>
             </div>
         </div>
