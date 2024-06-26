@@ -94,7 +94,7 @@ header.admin {
     background-color: #ff0000;
     color: white;
     border: solid transparent 0.1em;
-    margin: 2em;
+    margin: 1.5em 0;
 }
 
 #Front a:hover {
