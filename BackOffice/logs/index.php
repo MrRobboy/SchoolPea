@@ -7,7 +7,7 @@ $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
 
-$stmt = $dbh->query("USE PA; SELECT * FROM LOGS");
+$stmt = $dbh->query("SELECT * FROM LOGS");
 $logs = $stmt->fetchAll();
 echo ('<pre>');
 print_r($logs);
