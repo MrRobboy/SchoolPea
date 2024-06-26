@@ -9,9 +9,11 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: linear-gradient(180deg,
-            rgba(92, 107, 192, 1) 0%,
-            rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(92, 107, 192, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,6 +101,7 @@ thead th {
 
 tbody tr:nth-child(even) {
     background-color: #f5f5f5;
+    transition: all 0.3s ease-in-out;
     /* Couleur de fond des lignes paires */
 }
 
