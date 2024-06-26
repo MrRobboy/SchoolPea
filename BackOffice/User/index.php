@@ -1,8 +1,7 @@
 <?php
-if (!$_SESSION['role'] == "admin") {
-    $chemin = $_SERVER['DOCUMENT_ROOT'];
-    header('Location: /');
-}
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/auth.php';
+include($path);
 
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
