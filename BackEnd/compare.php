@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 					$_SESSION['mail_valide'] = true;
 					header('location: https://schoolpea.com/Connexion');
 				} else echo 'Erreur logs';
-			}
+			} else echo 'user_not_found';
 		}
 	} else {
 		echo ('<br>code echoué :(');
