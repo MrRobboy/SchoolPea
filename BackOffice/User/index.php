@@ -44,9 +44,9 @@ $users = $stmt->fetchAll();
                             <td class="not_right"><?php echo $user['email']; ?></td>
                             <td class="not_right"><?php echo $user['role']; ?></td>
                             <td>
-                                <a href="edit.php?id=<?php echo $user['id_USER']; ?>" class="btn">Modifier</a>
-                                <a href="ban.php?id=<?php echo $user['id_USER']; ?>" class="btn">Bannir</a>
-                                <a href="delete.php?id=<?php echo $user['id_USER']; ?>" class="btn">Supprimer</a>
+                                <a href="edit.php?id=<?php echo $user['id_USER']; ?>" class="btn modify">Modifier</a>
+                                <a href="ban.php?id=<?php echo $user['id_USER']; ?>" class="btn ban">Bannir</a>
+                                <a href="delete.php?id=<?php echo $user['id_USER']; ?>" class="btn del">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
