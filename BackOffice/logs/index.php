@@ -1,9 +1,12 @@
 <?php
-include '../includes/auth.php';
-include '../includes/functions.php';
-include '../templates/header.php';
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
+$auth = $_SERVER['DOCUMENT_ROOT'];
+$auth .= '/BackEnd/Includes/auth.php';
+include($auth);
 
-$logs = getAll('logs');
+$logs = getAll('LOGS');
 ?>
 
 <div class="container">
@@ -18,16 +21,14 @@ $logs = getAll('logs');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($logs as $log): ?>
+            <?php foreach ($logs as $log) : ?>
                 <tr>
-                    <td><?= $log['id'] ?></td>
-                    <td><?= $log['user_id'] ?></td>
-                    <td><?= $log['action'] ?></td>
-                    <td><?= $log['timestamp'] ?></td>
+                    <td><?= $log['id_LOGS'] ?></td>
+                    <td><?= $log['id_user'] ?></td>
+                    <td><?= $log['act'] ?></td>
+                    <td><?= $log['time'] ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 </div>
-
-<?php include '../templates/footer.php'; ?>
