@@ -6,7 +6,7 @@ body {
     align-content: center;
 }
 
-.container {
+/* .container {
     width: 80%;
     margin: 20px auto;
     background-color: #fff;
@@ -43,4 +43,4 @@ h1 {
 
 .dashboard-item:hover {
     background-color: #6b7ad1bf;
-}
+} */
