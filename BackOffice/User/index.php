@@ -7,6 +7,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
 
+$dbh->exec('USE PA');
 $stmt = $dbh->query("SELECT * FROM USER");
 $users = $stmt->fetchAll();
 ?>
