@@ -66,10 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Pour chaque titre dans la section
                     foreach ($section['titres'] as $titre) {
                         // Insérer le titre dans TITRE
-                        $sql_insert_titre = "INSERT INTO TITRE (id_cours, titre)
-                                             VALUES (:id_cours, :titre_titre)";
+                        $sql_insert_titre = "INSERT INTO TITRE ( titre)
+                                             VALUES ( :titre_titre)";
                         $stmt_insert_titre = $dbh->prepare($sql_insert_titre);
-                        $stmt_insert_titre->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
                         $stmt_insert_titre->bindValue(':titre_titre', $titre['titre'], PDO::PARAM_STR);
                         $stmt_insert_titre->execute();
                         $id_titre = $dbh->lastInsertId(); // Récupérer l'id du titre inséré
