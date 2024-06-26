@@ -73,7 +73,7 @@ header.admin {
 .lien_header {
     transition: all 0.3s ease-in-out;
     display: block;
-    margin: 0.5em 0;
+    margin: 0.2em 0;
 }
 
 #Pages a.front:hover {
