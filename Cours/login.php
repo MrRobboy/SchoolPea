@@ -18,7 +18,7 @@ session_unset();
 <body>
 	<div class="container Connexion" id="Conteneur">
 		<div class="form-container sign-in">
-			<form action="connexion.php" method="post">
+			<form action="./connexion.php" method="post">
 				<h1>Connexion</h1>
 				<?php
 				/*if (isset($badCredentials) && $badCredentials) {
@@ -32,21 +32,7 @@ session_unset();
 			</form>
 		</div>
 
-		<div class="form-container sign-up">
-			<form action="../../BackEnd/inscription.php" method="post">
-				<h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
-				<?php /*
-				if (isset($_GET['error']) && $_GET['password'] === '0') {
-					echo ('<p>Un champ a mal été saisi</p>');
-				}*/
-				?>
-				<input type="text" name="lastname" placeholder="Nom" required>
-				<input type="text" name="firstname" placeholder="Prenom" required>
-				<input type="email" name="email_inscription" placeholder="Email" required>
-				<input type="password" name="password_inscription" placeholder="Mot de passe" required>
-				<button type="submit" name="submit_inscription">Inscription</button>
-			</form>
-		</div>
+		
 
 		<div class="toggle-container">
 			<div class="toggle">
@@ -54,10 +40,7 @@ session_unset();
 					<h1>Te revoilà !</h1>
 					<button class="hidden" id="Connexion">Connexion</button>
 				</div>
-				<div class="toggle-panel toggle-right">
-					<h1>T'es nouveau ?</h1>
-					<button class="hidden" id="Inscription">Inscription</button>
-				</div>
+
 			</div>
 		</div>
 	</div>
