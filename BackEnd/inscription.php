@@ -55,9 +55,8 @@ if (isset($_POST['submit_inscription'])) {
 
         $result = $queryStatement->execute();
         $message = $firstname . ' ' . $lastname . ' a créer son compte, en attente de validation de mail';
-        echo $message;
 
-        $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, action) VALUES ((SELECT id_USER FROM USER where email=":email"),":message";');
+        $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES ((SELECT id_USER FROM USER where email=":email"),":message";');
         $queryLogs->bindvalue(':email', $email);
         $queryLogs->bindvalue(':message', $message);
         $queryLogs->execute();
