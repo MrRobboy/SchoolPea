@@ -1,1 +1,1 @@
-<? header('Location: https://schoolpea.com/BackOffice');
+<?php header('Location: https://schoolpea.com/BackOffice');
