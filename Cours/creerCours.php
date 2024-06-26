@@ -72,39 +72,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 if (isset($titre['titre']) && !empty($titre['titre'])) {
                                     $titre_titre = $titre['titre'];
 
-                                    // Vérification de l'existence de id_section avant l'insertion dans TITRE
-                                    $sql_check_section = "SELECT id_section FROM SECTIONS WHERE id_section = :section_id";
-                                    $stmt_check_section = $dbh->prepare($sql_check_section);
-                                    $stmt_check_section->bindValue(':section_id', $section_id, PDO::PARAM_INT);
-                                    $stmt_check_section->execute();
+                                    // Insertion du titre dans la table TITRE
+                                    $sql = "INSERT INTO TITRE (id_section, titre)
+                                            VALUES (:section_id, :titre_titre)";
+                                    $stmt = $dbh->prepare($sql);
+                                    $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
+                                    $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
 
-                                    if ($stmt_check_section->rowCount() > 0) {
-                                        // Insertion du titre dans la table TITRE
-                                        $sql_insert_titre = "INSERT INTO TITRE (id_section, titre)
-                                                            VALUES (:section_id, :titre_titre)";
-                                        $stmt_insert_titre = $dbh->prepare($sql_insert_titre);
-                                        $stmt_insert_titre->bindValue(':section_id', $section_id, PDO::PARAM_INT);
-                                        $stmt_insert_titre->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
-                                        $stmt_insert_titre->execute();
-                                        $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
+                                    // Insertion des paragraphes
+                                    if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
+                                        foreach ($titre['paragraphes'] as $paragraphe) {
+                                            $contenu_paragraphe = $paragraphe;
 
-                                        // Insertion des paragraphes
-                                        if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
-                                            foreach ($titre['paragraphes'] as $paragraphe) {
-                                                $contenu_paragraphe = $paragraphe;
-
-                                                // Insertion du paragraphe dans la table PARAGRAPHE
-                                                $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu)
-                                                                          VALUES (:titre_id, :contenu_paragraphe)";
-                                                $stmt_insert_paragraphe = $dbh->prepare($sql_insert_paragraphe);
-                                                $stmt_insert_paragraphe->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
-                                                $stmt_insert_paragraphe->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
-                                                $stmt_insert_paragraphe->execute();
-                                            }
+                                            // Insertion du paragraphe dans la table PARAGRAPHE
+                                            $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu)
+                                                    VALUES (:titre_id, :contenu_paragraphe)";
+                                            $stmt = $dbh->prepare($sql);
+                                            $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
+                                            $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
+                                            $stmt->execute();
                                         }
-                                    } else {
-                                        echo "Erreur: id_section $section_id n'existe pas dans la table SECTION.";
-                                        // Gérer le scénario où id_section n'existe pas dans la table SECTION
                                     }
                                 } else {
                                     echo "Le titre est vide ou nul.";
@@ -131,9 +120,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $dbh = null; // Fermeture de la connexion PDO
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
