@@ -9,9 +9,6 @@ include($auth);
 
 $stmt = $dbh->query("SELECT * FROM LOGS");
 $logs = $stmt->fetchAll();
-echo ('<pre>');
-print_r($logs);
-echo ('</pre>');
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -23,7 +20,7 @@ echo ('</pre>');
 </head>
 
 <body>
-    <div class="content" style="margin: auto;">
+    <div id="content" style="margin: auto;">
         <h1>Visualisation des Logs</h1>
         <div id="table-classement">
             <table id="classement">
