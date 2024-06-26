@@ -10,14 +10,14 @@ header {
     top: 0;
     left: 0;
     height: 100%;
-    width: 3em;
+    width: 10em;
     justify-content: space-between;
     display: flex;
     box-shadow: 0 0.5em 0.5em rgb(92, 107, 192, 100%);
     padding: 0.7em 0;
     background-color: #ffffff;
 }
-/* 
+
 header.admin {
     box-shadow: 0 0.5em 0.5em rgb(55, 156, 68);
 }
@@ -115,4 +115,4 @@ header.admin {
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
-} */
+}
