@@ -152,3 +152,8 @@ tbody tr:hover {
 .btn.del:hover {
     background-color: #cf0000;
 }
+
+.btn.add {
+    background-color: #00ff95;
+    color: black;
+}
