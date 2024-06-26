@@ -16,7 +16,7 @@ include($auth);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Back Office - Tableau de Bord</title>
     <link rel="stylesheet" type="text/css" href="./backoffice.css">
-</head>
+    < </head>
 
 <body>
     <div class="container">
