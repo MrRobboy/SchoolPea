@@ -10,7 +10,7 @@ include($auth);
 $stmt = $dbh->query("USE PA; SELECT * FROM LOGS");
 $logs = $stmt->fetchAll();
 echo ('<pre>');
-echo $logs;
+print_r($logs);
 echo ('</pre>');
 ?>
 
