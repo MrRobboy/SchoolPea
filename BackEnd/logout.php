@@ -2,7 +2,7 @@
 session_start();
 include('db.php');
 $dbh->exec('USE PA');
-$message = $_SESSION['id_USER'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est déconnecté !';
+$message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est déconnecté !';
 $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
 $queryLogs->bindvalue(':id_USER', $_SESSION['id_user']);
 $queryLogs->bindvalue(':msg', $message);
