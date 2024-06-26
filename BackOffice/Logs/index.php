@@ -6,7 +6,7 @@ include($path);
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
-
+$dbh->exec('USE PA');
 $stmt = $dbh->query("SELECT * FROM LOGS ORDER BY time DESC");
 $logs = $stmt->fetchAll();
 ?>
