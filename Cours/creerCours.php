@@ -54,63 +54,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Insertion des sections et des détails du cours
             if (isset($_POST['sections']) && is_array($_POST['sections'])) {
                 foreach ($_POST['sections'] as $section) {
-                    $titre_section = $section['titre'];
+                    if (isset($section['titre']) && !empty($section['titre'])) {
+                        $titre_section = $section['titre'];
 
-                    // Insertion de la section dans la table SECTIONS
-                    $sql = "INSERT INTO SECTIONS (id_cours, titre)
-                            VALUES (:cours_id, :titre_section)";
-                    $stmt = $dbh->prepare($sql);
-                    $stmt->bindValue(':cours_id', $cours_id, PDO::PARAM_INT);
-                    $stmt->bindValue(':titre_section', $titre_section, PDO::PARAM_STR);
-                    $stmt->execute();
-                    $section_id = $dbh->lastInsertId(); // Récupération de l'ID de la section insérée
+                        // Insertion de la section dans la table SECTIONS
+                        $sql = "INSERT INTO SECTIONS (id_cours, titre)
+                                VALUES (:cours_id, :titre_section)";
+                        $stmt = $dbh->prepare($sql);
+                        $stmt->bindValue(':cours_id', $cours_id, PDO::PARAM_INT);
+                        $stmt->bindValue(':titre_section', $titre_section, PDO::PARAM_STR);
+                        $stmt->execute();
+                        $section_id = $dbh->lastInsertId(); // Récupération de l'ID de la section insérée
 
-                    // Insertion des titres et des paragraphes
-                    if (isset($section['titres']) && is_array($section['titres'])) {
-                        foreach ($section['titres'] as $titre) {
-                            $titre_titre = $titre['titre'];
+                        // Insertion des titres et des paragraphes
+                        if (isset($section['titres']) && is_array($section['titres'])) {
+                            foreach ($section['titres'] as $titre) {
+                                if (isset($titre['titre']) && !empty($titre['titre'])) {
+                                    $titre_titre = $titre['titre'];
 
-                        // Insertion du titre dans la table TITRE
-$sql = "INSERT INTO TITRE (id_section, titre) VALUES (:section_id, :titre_titre)";
-$stmt = $dbh->prepare($sql);
-$stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
-$stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
+                                    // Insertion du titre dans la table TITRE
+                                    $sql = "INSERT INTO TITRE (id_section, titre)
+                                            VALUES (:section_id, :titre_titre)";
+                                    $stmt = $dbh->prepare($sql);
+                                    $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
+                                    $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
+                                    $stmt->execute();
+                                    $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
 
-// Check if titre_titre is not null before executing
-if (!empty($titre_titre)) {
-    try {
-        $stmt->execute();
-        $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
-    } catch (PDOException $e) {
-        echo "Erreur lors de l'insertion dans la table TITRE : " . $e->getMessage();
-    }
-} else {
-    echo "Le titre est vide ou nul."; // Handle case where titre_titre is empty or null
-}
+                                    // Insertion des paragraphes
+                                    if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
+                                        foreach ($titre['paragraphes'] as $paragraphe) {
+                                            $contenu_paragraphe = $paragraphe;
 
-                            // Insertion des paragraphes
-                            // Insertion des paragraphes
-if (isset($titre_id)) { // Ensure $titre_id is defined
-    foreach ($titre['paragraphes'] as $paragraphe) {
-        $contenu_paragraphe = $paragraphe;
-
-        // Insertion du paragraphe dans la table PARAGRAPHE
-        $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES (:titre_id, :contenu_paragraphe)";
-        $stmt = $dbh->prepare($sql);
-        $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
-        $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
-
-        try {
-            $stmt->execute();
-        } catch (PDOException $e) {
-            echo "Erreur lors de l'insertion dans la table PARAGRAPHE : " . $e->getMessage();
-        }
-    }
-} else {
-    echo "Erreur: \$titre_id non défini."; // Handle case where $titre_id is not defined
-}
-
+                                            // Insertion du paragraphe dans la table PARAGRAPHE
+                                            $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu)
+                                                    VALUES (:titre_id, :contenu_paragraphe)";
+                                            $stmt = $dbh->prepare($sql);
+                                            $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
+                                            $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
+                                            $stmt->execute();
+                                        }
+                                    }
+                                } else {
+                                    echo "Le titre est vide ou nul.";
+                                    // Handle the error or continue as necessary
+                                }
+                            }
                         }
+                    } else {
+                        echo "Le titre de la section est vide ou nul.";
+                        // Handle the error or continue as necessary
                     }
                 }
             }
@@ -127,6 +120,7 @@ if (isset($titre_id)) { // Ensure $titre_id is defined
 
 $dbh = null; // Fermeture de la connexion PDO
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
