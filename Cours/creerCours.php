@@ -65,14 +65,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     // Pour chaque titre dans la section
                     foreach ($section['titres'] as $titre) {
-                        // Insertion du titre dans TITRE
+                        // Insérer le titre dans TITRE
                         $sql_insert_titre = "INSERT INTO TITRE (id_cours, titre)
                                              VALUES (:id_cours, :titre_titre)";
                         $stmt_insert_titre = $dbh->prepare($sql_insert_titre);
                         $stmt_insert_titre->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
                         $stmt_insert_titre->bindValue(':titre_titre', $titre['titre'], PDO::PARAM_STR);
                         $stmt_insert_titre->execute();
-                        $id_cours = $dbh->lastInsertId();
+                        $id_titre = $dbh->lastInsertId(); // Récupérer l'id du titre inséré
+                        
+                        // Si id_titre est une colonne ajoutée dans COURS comme clé étrangère
+                        // Assurez-vous de l'ajouter dans la requête d'insertion pour COURS
+                        $sql_insert_cours = "INSERT INTO COURS (nom, niveau, prix, id_USER, path_image_pres, description, id_titre)
+                                             VALUES (:nom, :niveau, :prix, :id_user, :path_image_pres, :description, :id_titre)";
+                        $stmt_insert_cours = $dbh->prepare($sql_insert_cours);
+                        $stmt_insert_cours->bindValue(':nom', $nom, PDO::PARAM_STR);
+                        $stmt_insert_cours->bindValue(':niveau', $niveau, PDO::PARAM_STR);
+                        $stmt_insert_cours->bindValue(':prix', $prix, PDO::PARAM_INT);
+                        $stmt_insert_cours->bindValue(':id_user', $id_user, PDO::PARAM_INT);
+                        $stmt_insert_cours->bindValue(':path_image_pres', $target_file, PDO::PARAM_STR);
+                        $stmt_insert_cours->bindValue(':description', $description, PDO::PARAM_STR);
+                        $stmt_insert_cours->bindValue(':id_titre', $id_titre, PDO::PARAM_INT); // Utilisation de l'id_titre inséré
+                        $stmt_insert_cours->execute();
+                        $id_cours = $dbh->lastInsertId(); // Récupérer l'id du cours inséré
+                    }
 
                         // Pour chaque paragraphe sous le titre
                         foreach ($titre['paragraphes'] as $paragraphe) {
@@ -89,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
         }
     }
-}
+
 
 $dbh = null; // Fermeture de la connexion PDO
 ?>
