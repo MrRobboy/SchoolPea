@@ -3,11 +3,9 @@ session_start();
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
-
-if (!$_SESSION['role'] == "admin") {
-    $chemin = $_SERVER['DOCUMENT_ROOT'];
-    header('Location: /');
-}
+$auth = $_SERVER['DOCUMENT_ROOT'];
+$auth .= '/includes/auth.php';
+include($auth);
 ?>
 
 <!DOCTYPE html>
