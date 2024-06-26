@@ -1,7 +1,12 @@
 <?php
-include '../includes/auth.php';
-include '../includes/functions.php';
-include '../templates/header.php';
+if (!$_SESSION['role'] == "admin") {
+    $chemin = $_SERVER['DOCUMENT_ROOT'];
+    header('Location: /');
+}
+
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
 
 $users = getAll('users');
 ?>
@@ -19,7 +24,7 @@ $users = getAll('users');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($users as $user): ?>
+            <?php foreach ($users as $user) : ?>
                 <tr>
                     <td><?= $user['id'] ?></td>
                     <td><?= $user['email'] ?></td>

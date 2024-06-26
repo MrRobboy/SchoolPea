@@ -1,52 +1,26 @@
 <?php
-session_start();
-require_once 'db.php';
+include 'db.php';
+include 'header.php';
 
-// Gestion de la recherche
-$search = '';
-if (isset($_GET['search'])) {
-    $search = $_GET['search'];
-    $query = $db->prepare("SELECT * FROM COURS WHERE nom LIKE ? OR niveau LIKE ?");
-    $query->execute(['%' . $search . '%', '%' . $search . '%']);
+$sql = "SELECT * FROM COURS";
+$result = $conn->query($sql);
+
+echo "<h2>Explorer les cours</h2>";
+echo "<input type='text' id='search' placeholder='Rechercher des cours...' onkeyup='searchCourses()'><br><br>";
+
+echo "<div id='course_list'>";
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        echo "<div class='course_item'>";
+        echo "<h3>" . $row['nom'] . "</h3>";
+        echo "<img src='" . $row['path_image_pres'] . "' alt='Image de présentation' width='200'><br>";
+        echo "<a href='voirCours.php?id_cours=" . $row['id_cours'] . "'>Voir le cours</a>";
+        echo "</div>";
+    }
 } else {
-    $query = $db->query("SELECT * FROM COURS");
+    echo "Aucun cours disponible.";
 }
-$cours = $query->fetchAll(PDO::FETCH_ASSOC);
+echo "</div>";
+
+include 'footer.php';
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Explorer les cours</title>
-    <link rel="stylesheet" href="assets/style.css">
-</head>
-
-<body>
-    <h1>Explorer les cours</h1>
-    <!-- Formulaire de recherche -->
-    <form method="get" action="explorerLesCours.php">
-        <input type="text" name="search" placeholder="Rechercher des cours" value="<?= htmlspecialchars($search) ?>">
-        <button type="submit">Rechercher</button>
-    </form>
-    <div class="cours">
-        <?php if (count($cours) > 0) : ?>
-            <?php foreach ($cours as $coursItem) : ?>
-                <div class="cours">
-                    <?php if (!empty($coursItem['image']) && file_exists('uploads/' . $coursItem['image'])) : ?>
-                        <img src="uploads/<?= htmlspecialchars($coursItem['image']) ?>" alt="<?= htmlspecialchars($coursItem['nom']) ?>">
-                    <?php else : ?>
-                        <img src="placeholder.jpg" alt="Image non disponible">
-                    <?php endif; ?>
-                    <h2><a href="cours.php?id=<?= htmlspecialchars($coursItem['id']) ?>"><?= htmlspecialchars($coursItem['nom']) ?></a></h2>
-                    <p>Niveau : <?= htmlspecialchars($coursItem['niveau']) ?></p>
-                    <p>Prix : <?= $coursItem['prix'] == 0 ? 'Gratuit' : htmlspecialchars($coursItem['prix']) . ' €' ?></p>
-                </div>
-            <?php endforeach; ?>
-        <?php else : ?>
-            <p>Aucun cours trouvé.</p>
-        <?php endif; ?>
-    </div>
-</body>
-
-</html>
