@@ -56,7 +56,7 @@
         </span>
 
         <span class="link">
-            <a href="https://schoolpea.com/Connexion/" class="lien_header">
+            <a href="https://schoolpea.com/Connexion/" class="lien_header front">
                 Front-office
             </a>
         </span>
