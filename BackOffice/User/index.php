@@ -43,7 +43,7 @@ $users = $stmt->fetchAll();
                             <td><?= $user['email'] ?></td>
                             <td><?= $user['role'] ?></td>
                             <td>
-                                <a href="edit.php?id=<?= $user['id'] ?>" class="btn">Modifier</a>
+                                <a href="edit.php?id=<?php $user[0]['id_user'] ?>" class="btn">Modifier</a>
                                 <a href="ban.php?id=<?= $user['id'] ?>" class="btn">Bannir</a>
                                 <a href="delete.php?id=<?= $user['id'] ?>" class="btn">Supprimer</a>
                             </td>
