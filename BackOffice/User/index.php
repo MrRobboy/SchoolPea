@@ -22,7 +22,7 @@ $users = $stmt->fetchAll();
 <body>
     <div id="content" style="width: 95%;">
         <h1>Gestion des Utilisateurs</h1>
-        <a href="add.php" class="btn">Ajouter un utilisateur</a>
+        <a href="add.php" class="btn add">Ajouter un utilisateur</a>
         <div id="table-classement">
             <table id="classement">
                 <thead>
