@@ -9,6 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_user = 1; // Exemple : récupérer l'ID utilisateur connecté
 
     $upload_dir = 'images/';
+    
+    // Créer le répertoire s'il n'existe pas
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir, 0755, true);
+    }
+
     $upload_file = $upload_dir . basename($_FILES['image_pres']['name']);
 
     if (move_uploaded_file($_FILES['image_pres']['tmp_name'], $upload_file)) {
