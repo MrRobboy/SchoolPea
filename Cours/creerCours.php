@@ -61,26 +61,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt_insert_section->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
                     $stmt_insert_section->bindValue(':titre_section', $section['titre'], PDO::PARAM_STR);
                     $stmt_insert_section->execute();
-                    $id_section = $dbh->lastInsertId();
+                    $id_cours = $dbh->lastInsertId();
 
                     // Pour chaque titre dans la section
                     foreach ($section['titres'] as $titre) {
                         // Insertion du titre dans TITRE
-                        $sql_insert_titre = "INSERT INTO TITRE (id_section, titre)
-                                             VALUES (:id_section, :titre_titre)";
+                        $sql_insert_titre = "INSERT INTO TITRE (id_cours, titre)
+                                             VALUES (:id_cours, :titre_titre)";
                         $stmt_insert_titre = $dbh->prepare($sql_insert_titre);
-                        $stmt_insert_titre->bindValue(':id_section', $id_section, PDO::PARAM_INT);
+                        $stmt_insert_titre->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
                         $stmt_insert_titre->bindValue(':titre_titre', $titre['titre'], PDO::PARAM_STR);
                         $stmt_insert_titre->execute();
-                        $id_titre = $dbh->lastInsertId();
+                        $id_cours = $dbh->lastInsertId();
 
                         // Pour chaque paragraphe sous le titre
                         foreach ($titre['paragraphes'] as $paragraphe) {
                             // Insertion du paragraphe dans PARAGRAPHE
-                            $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu)
-                                                      VALUES (:id_titre, :contenu_paragraphe)";
+                            $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_cours, contenu)
+                                                      VALUES (:id_cours, :contenu_paragraphe)";
                             $stmt_insert_paragraphe = $dbh->prepare($sql_insert_paragraphe);
-                            $stmt_insert_paragraphe->bindValue(':id_titre', $id_titre, PDO::PARAM_INT);
+                            $stmt_insert_paragraphe->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
                             $stmt_insert_paragraphe->bindValue(':contenu_paragraphe', $paragraphe, PDO::PARAM_STR);
                             $stmt_insert_paragraphe->execute();
                         }
@@ -223,5 +223,3 @@ $dbh = null; // Fermeture de la connexion PDO
     </script>
 </body>
 </html>
-
-               
