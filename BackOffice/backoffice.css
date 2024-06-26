@@ -6,29 +6,6 @@ body {
     align-content: center;
 }
 
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-}
-
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-}
-
-header nav ul li {
-    display: inline;
-    margin: 0 10px;
-}
-
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
 .container {
     width: 80%;
     margin: 20px auto;
@@ -65,27 +42,5 @@ h1 {
 }
 
 .dashboard-item:hover {
-    background: #ccc;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-table,
-th,
-td {
-    border: 1px solid #ddd;
-}
-
-th,
-td {
-    padding: 8px;
-    text-align: left;
-}
-
-th {
-    background-color: #f4f4f4;
+    background-color: #ccc;
 }
