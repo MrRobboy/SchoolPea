@@ -16,9 +16,9 @@ if (isset($_POST['submit'])) {
 			$queryUser->execute();
 			$user_found = $queryUser->fetchAll();
 			if ($user_found) {
-				$message = $_SESSION['email'] . ' a été validé par l\'utilisateur n°' . $user_found;
+				$message = $_SESSION['email'] . ' a été validé par l\'utilisateur n°' . $user_found[0]['id_USER'];
 				$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
-				$queryLogs->bindvalue(':id_USER', $user_found);
+				$queryLogs->bindvalue(':id_USER', $user_found[0]['id_USER']);
 				$queryLogs->bindvalue(':msg', $message);
 				$result2 = $queryLogs->execute();
 				echo ('<br>code reussi !!');
