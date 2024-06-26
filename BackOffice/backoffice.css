@@ -1,4 +1,4 @@
-body {
+/*body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -6,7 +6,7 @@ body {
     align-content: center;
 }
 
-/* .container {
+ .container {
     width: 80%;
     margin: 20px auto;
     background-color: #fff;
