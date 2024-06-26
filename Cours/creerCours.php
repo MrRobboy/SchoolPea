@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 
@@ -8,11 +9,29 @@ if (!isset($_SESSION['id_user'])) {
 
 include 'db.php'; // Connexion à la base de données
 
+// Récupération de l'ID utilisateur depuis la session
+$id_user = $_SESSION['id_user'];
+
+try {
+    // Vérification si l'utilisateur existe dans la table USER
+    $stmt = $conn->prepare("SELECT id_USER FROM USER WHERE id_USER = :id_user");
+    $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
+    $stmt->execute();
+
+    if ($stmt->rowCount() == 0) {
+        echo "Utilisateur avec ID " . $id_user . " non trouvé dans la base de données USER.";
+        exit(); // Arrêter l'exécution si l'utilisateur n'existe pas
+    }
+} catch (PDOException $e) {
+    echo "Erreur PDO : " . $e->getMessage();
+    // En pratique, vous devriez logger cette erreur plutôt que de l'afficher directement
+}
+
+// Traitement du formulaire de création de cours
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = $_POST['nom'];
     $niveau = $_POST['niveau'];
     $description = $_POST['description'];
-    $id_user = $_SESSION['id_user'];
 
     // Vérification et traitement de l'image de présentation
     if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
@@ -20,16 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
         if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
-            // Vérifier si l'utilisateur existe dans la table USER
-            $stmt = $conn->prepare("SELECT id_USER FROM USER WHERE id_USER = :id_user");
-            $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
-            $stmt->execute();
-
-            if ($stmt->rowCount() == 0) {
-                echo "Utilisateur non trouvé dans la base de données USER.";
-                exit(); // Arrêter l'exécution si l'utilisateur n'existe pas
-            }
-
             // Insertion des données principales du cours dans la table COURS
             $sql = "INSERT INTO COURS (nom, niveau, id_USER, path_image_pres, description)
                     VALUES (:nom, :niveau, :id_user, :target_file, :description)";
@@ -42,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
             $cours_id = $conn->lastInsertId(); // Récupération de l'ID du cours inséré
 
-            // Insertion des sections
+            // Insertion des sections et des détails du cours
             if (isset($_POST['section']) && is_array($_POST['section'])) {
                 foreach ($_POST['section'] as $section) {
                     $titre_section = $section['titre'];
@@ -56,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $stmt->execute();
                     $section_id = $conn->lastInsertId(); // Récupération de l'ID de la section insérée
 
-                    // Insertion des titres et paragraphes
+                    // Insertion des titres et des paragraphes
                     if (isset($section['titre']) && is_array($section['titre'])) {
                         foreach ($section['titre'] as $titre) {
                             $titre_titre = $titre['titre'];
