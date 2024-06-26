@@ -54,11 +54,11 @@
                 Quizz
             </a>
         </span>
+    </span>
 
-        <span class="link">
-            <a href="https://schoolpea.com/" class="lien_header front">
-                Front-office
-            </a>
-        </span>
+    <span class="Front">
+        <a href="https://schoolpea.com/" class="lien_header front">
+            Front-office
+        </a>
     </span>
 </header>
