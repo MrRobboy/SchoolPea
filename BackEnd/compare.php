@@ -19,9 +19,11 @@ if (isset($_POST['submit'])) {
 				$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
 				$queryLogs->bindvalue(':id_USER', $id_USER);
 				$queryLogs->bindvalue(':msg', $message);
-				$result = $queryLogs->execute();
-				$_SESSION['mail_valide'] = true;
-				header('location: https://schoolpea.com/Connexion');
+				$result2 = $queryLogs->execute();
+				if ($result2) {
+					$_SESSION['mail_valide'] = true;
+					header('location: https://schoolpea.com/Connexion');
+				} else echo 'Erreur logs';
 			}
 		}
 	} else {
