@@ -23,9 +23,9 @@
             <a href="https://schoolpea.com/Classement/" class="lien_header">
                 Classement
             </a>
-        </span class="link">
+        </span>
 
-        <span>
+        <span class="link">
             <a href="https://schoolpea.com/Connexion/" class="lien_header">
                 Se connecter
             </a>

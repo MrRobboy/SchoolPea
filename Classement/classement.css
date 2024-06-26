@@ -9,9 +9,11 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: linear-gradient(180deg,
-            rgba(92, 107, 192, 1) 0%,
-            rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(92, 107, 192, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,6 +97,10 @@ thead th {
     /* Espacement interne plus grand pour l'en-tête */
     font-size: 1.1rem;
     /* Taille de la police dans l'en-tête */
+}
+
+tbody tr {
+    transition: all 0.5s ease-in-out;
 }
 
 tbody tr:nth-child(even) {
