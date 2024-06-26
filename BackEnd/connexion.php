@@ -13,6 +13,7 @@ $pass = htmlspecialchars($_POST['password_connexion']);
 $email = htmlspecialchars($_POST['email_connexion']);
 
 include('db.php');
+$dbh->exec('USE PA');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
@@ -35,7 +36,7 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
 		$_SESSION['role'] = htmlspecialchars($user[0]['role']);
 		$_SESSION['mail_valide'] = htmlspecialchars($user[0]['validation_mail']);
 
-		$message = $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
+		$message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
 
 		$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
 		$queryLogs->bindvalue(':id_USER', $user[0]['id_USER']);
