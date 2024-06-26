@@ -1,9 +1,8 @@
 <?php
-session_start(); // Démarrer la session en haut de votre fichier
+session_start();
 
 // Vérifier si l'utilisateur est connecté ou rediriger vers la page de connexion si nécessaire
 if (!isset($_SESSION['id_user'])) {
-    // Redirection vers la page de connexion
     header("Location: login.php");
     exit();
 }
@@ -11,98 +10,88 @@ if (!isset($_SESSION['id_user'])) {
 include 'db.php'; // Inclure votre fichier de connexion à la base de données
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Récupération des données principales du cours
     $nom = $_POST['nom'];
     $niveau = $_POST['niveau'];
     $description = $_POST['description'];
-    $id_user = $_SESSION['id_user']; // Récupération de l'ID utilisateur depuis la session
+    $id_user = $_SESSION['id_user'];
 
-    // Traitement de l'image de présentation
+    // Vérifier et traiter l'image de présentation
     if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
         $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
-        // Vérification si le fichier est une vraie image
-        $check = getimagesize($_FILES["image_pres"]["tmp_name"]);
-        if ($check === false) {
-            echo "Le fichier n'est pas une image valide.";
-        } else {
-            // Déplacer le fichier téléchargé vers le répertoire cible
-            if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
-                echo "Le fichier " . htmlspecialchars(basename($_FILES["image_pres"]["name"])) . " a été téléchargé avec succès.";
+        if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
+            // Insertion des données principales du cours dans la table COURS
+            $sql = "INSERT INTO COURS (nom, niveau, id_USER, path_image_pres, description)
+                    VALUES (:nom, :niveau, :id_user, :target_file, :description)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
+            $stmt->bindValue(':niveau', $niveau, PDO::PARAM_STR);
+            $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
+            $stmt->bindValue(':target_file', $target_file, PDO::PARAM_STR);
+            $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+            $stmt->execute();
+            $cours_id = $conn->lastInsertId(); // Récupération de l'ID du cours inséré
 
-                // Insertion des données principales du cours dans la table COURS
-                $sql = "INSERT INTO COURS (nom, niveau, id_USER, path_image_pres, description)
-                        VALUES (:nom, :niveau, :id_user, :target_file, :description)";
-                $stmt = $conn->prepare($sql);
-                $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
-                $stmt->bindValue(':niveau', $niveau, PDO::PARAM_STR);
-                $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
-                $stmt->bindValue(':target_file', $target_file, PDO::PARAM_STR);
-                $stmt->bindValue(':description', $description, PDO::PARAM_STR);
-                $cours_id = $conn->lastInsertId(); 
-                $stmt->execute();// Récupération de l'ID du cours inséré
+            // Insertion des sections
+            if (isset($_POST['section']) && is_array($_POST['section'])) {
+                foreach ($_POST['section'] as $section) {
+                    $titre_section = $section['titre'];
 
-                // Traitement des sections, titres et paragraphes
-                if (isset($_POST['section']) && is_array($_POST['section'])) {
-                    foreach ($_POST['section'] as $section) {
-                        $titre_section = $section['titre'];
+                    // Insertion de la section dans la table SECTIONS
+                    $sql = "INSERT INTO SECTIONS (id_cours, titre)
+                            VALUES (:cours_id, :titre_section)";
+                    $stmt = $conn->prepare($sql);
+                    $stmt->bindValue(':cours_id', $cours_id, PDO::PARAM_INT);
+                    $stmt->bindValue(':titre_section', $titre_section, PDO::PARAM_STR);
+                    $stmt->execute();
+                    $section_id = $conn->lastInsertId(); // Récupération de l'ID de la section insérée
 
-                        // Insertion de la section dans la table SECTIONS
-                        $sql = "INSERT INTO SECTIONS (id_COURS, titre)
-                                VALUES (:cours_id, :titre_section)";
-                        $stmt = $conn->prepare($sql);
-                        $stmt->bindValue(':cours_id', $cours_id, PDO::PARAM_INT);
-                        $stmt->bindValue(':titre_section', $titre_section, PDO::PARAM_STR);
-                        $stmt->execute();
-                        $section_id = $conn->lastInsertId(); // Récupération de l'ID de la section insérée
+                    // Insertion des titres et paragraphes
+                    if (isset($section['titre']) && is_array($section['titre'])) {
+                        foreach ($section['titre'] as $titre) {
+                            $titre_titre = $titre['titre'];
 
-                        if (isset($section['titre']) && is_array($section['titre'])) {
-                            foreach ($section['titre'] as $titre) {
-                                $titre_titre = $titre['titre'];
+                            // Insertion du titre dans la table TITRE
+                            $sql = "INSERT INTO TITRE (id_section, titre)
+                                    VALUES (:section_id, :titre_titre)";
+                            $stmt = $conn->prepare($sql);
+                            $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
+                            $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
+                            $stmt->execute();
+                            $titre_id = $conn->lastInsertId(); // Récupération de l'ID du titre inséré
 
-                                // Insertion du titre dans la table TITRE
-                                $sql = "INSERT INTO TITRE (id_SECTION, titre)
-                                        VALUES (:section_id, :titre_titre)";
-                                $stmt = $conn->prepare($sql);
-                                $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
-                                $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
-                                $stmt->execute();
-                                $titre_id = $conn->lastInsertId(); // Récupération de l'ID du titre inséré
+                            // Insertion des paragraphes
+                            if (isset($titre['paragraphe']) && is_array($titre['paragraphe'])) {
+                                foreach ($titre['paragraphe'] as $paragraphe) {
+                                    $contenu_paragraphe = $paragraphe;
 
-                                if (isset($titre['paragraphe']) && is_array($titre['paragraphe'])) {
-                                    foreach ($titre['paragraphe'] as $paragraphe) {
-                                        $contenu_paragraphe = $paragraphe;
-
-                                        // Insertion du paragraphe dans la table PARAGRAPHE
-                                        $sql = "INSERT INTO PARAGRAPHE (id_TITRE, contenu)
-                                                VALUES (:titre_id, :contenu_paragraphe)";
-                                        $stmt = $conn->prepare($sql);
-                                        $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
-                                        $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
-                                        $stmt->execute();
-                                    }
+                                    // Insertion du paragraphe dans la table PARAGRAPHE
+                                    $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu)
+                                            VALUES (:titre_id, :contenu_paragraphe)";
+                                    $stmt = $conn->prepare($sql);
+                                    $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
+                                    $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
+                                    $stmt->execute();
                                 }
                             }
                         }
                     }
                 }
-
-                echo "Le cours a été créé avec succès.";
-
-            } else {
-                echo "Désolé, une erreur s'est produite lors du téléchargement de votre fichier.";
             }
+
+            echo "Le cours a été créé avec succès.";
+
+        } else {
+            echo "Désolé, une erreur s'est produite lors du téléchargement de votre fichier.";
         }
     } else {
         echo "Veuillez sélectionner une image de présentation.";
     }
-
-    $conn = null; // Fermer la connexion PDO
 }
+
+$conn = null; // Fermer la connexion PDO
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
