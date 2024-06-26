@@ -1,7 +1,11 @@
 <?php
-include '../includes/auth.php';
-include '../includes/functions.php';
-include '../templates/header.php';
+session_start();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
+$auth = $_SERVER['DOCUMENT_ROOT'];
+$auth .= '/BackEnd/Includes/auth.php';
+include($auth);
 
 $questions = getAll('captcha_questions');
 ?>
@@ -19,7 +23,7 @@ $questions = getAll('captcha_questions');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($questions as $question): ?>
+            <?php foreach ($questions as $question) : ?>
                 <tr>
                     <td><?= $question['id'] ?></td>
                     <td><?= $question['question'] ?></td>
