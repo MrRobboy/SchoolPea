@@ -51,7 +51,7 @@ $result = $dbh->query($sql);
                             echo '<td class="not_right">' . htmlspecialchars($row['Nom']) . '</td>';
                             echo '<td class="not_right">' . htmlspecialchars($row['Prenom']) . '</td>';
                             echo '<td class="not_right">' . $row['Elo'] . '</td>';
-                            echo '<td border-right: none;>' . $row['Moyenne'] . '</td>';
+                            echo '<td>' . $row['Moyenne'] . '</td>';
                             echo '</tr>';
                             $counter++;
                         }
