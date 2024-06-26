@@ -15,10 +15,10 @@ if (isset($_POST['submit'])) {
 			$user_found = $queryUser->fetchAll();
 			if ($user_found) {
 				$message = $_SESSION['email'] . ' a été validé par l\'utilisateur n°' . $id_USER;
-				$queryLogs = $dbh->prepare('USE PA; INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
+				$queryLogs = $dbh->query('USE PA; INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
 				$queryLogs->bindvalue(':id_USER', $id_USER);
 				$queryLogs->bindvalue(':msg', $message);
-				$result2 = $queryLogs->execute();
+				$result2 = $queryLogs->fetchAll();
 				echo ('<br>code reussi !!');
 				if ($result2) {
 					$_SESSION['mail_valide'] = true;
