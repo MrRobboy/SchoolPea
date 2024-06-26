@@ -70,35 +70,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         foreach ($section['titres'] as $titre) {
                             $titre_titre = $titre['titre'];
 
-                          // Insertion du titre dans la table TITRE
-                        $sql = "INSERT INTO TITRE (id_section, titre) VALUES (:section_id, :titre_titre)";
-                        $stmt = $dbh->prepare($sql);
-                        $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
-                        $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
+                        // Insertion du titre dans la table TITRE
+$sql = "INSERT INTO TITRE (id_section, titre) VALUES (:section_id, :titre_titre)";
+$stmt = $dbh->prepare($sql);
+$stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
+$stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
 
-                        try {
-                        $stmt->execute();
-                        $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
-                        } catch (PDOException $e) {
-                        // Log or echo the error message for debugging
-                        echo "Erreur lors de l'insertion dans la table TITRE : " . $e->getMessage();
-                        // Example of logging the error
-                        // error_log("Erreur PDO : " . $e->getMessage(), 0);
-                        }
+// Check if titre_titre is not null before executing
+if (!empty($titre_titre)) {
+    try {
+        $stmt->execute();
+        $titre_id = $dbh->lastInsertId(); // Récupération de l'ID du titre inséré
+    } catch (PDOException $e) {
+        echo "Erreur lors de l'insertion dans la table TITRE : " . $e->getMessage();
+    }
+} else {
+    echo "Le titre est vide ou nul."; // Handle case where titre_titre is empty or null
+}
+
                             // Insertion des paragraphes
-                            if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
-                                foreach ($titre['paragraphes'] as $paragraphe) {
-                                    $contenu_paragraphe = $paragraphe;
+                            // Insertion des paragraphes
+if (isset($titre_id)) { // Ensure $titre_id is defined
+    foreach ($titre['paragraphes'] as $paragraphe) {
+        $contenu_paragraphe = $paragraphe;
 
-                                    // Insertion du paragraphe dans la table PARAGRAPHE
-                                    $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu)
-                                            VALUES (:titre_id, :contenu_paragraphe)";
-                                    $stmt = $dbh->prepare($sql);
-                                    $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
-                                    $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
-                                    $stmt->execute();
-                                }
-                            }
+        // Insertion du paragraphe dans la table PARAGRAPHE
+        $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES (:titre_id, :contenu_paragraphe)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
+        $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
+
+        try {
+            $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'insertion dans la table PARAGRAPHE : " . $e->getMessage();
+        }
+    }
+} else {
+    echo "Erreur: \$titre_id non défini."; // Handle case where $titre_id is not defined
+}
+
                         }
                     }
                 }
