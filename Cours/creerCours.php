@@ -33,11 +33,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Insertion des données principales du cours dans la table COURS
                 $sql = "INSERT INTO COURS (nom, niveau, id_USER, path_image_pres, description)
-                        VALUES (?, ?, ?, ?, ?)";
+                        VALUES (:nom, :niveau, :id_user, :target_file, :description)";
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param("ssiss", $nom, $niveau, $id_user, $target_file, $description);
-                $stmt->execute();
-                $cours_id = $conn->lastInsertId(); // Récupération de l'ID du cours inséré
+                $stmt->bindValue(':nom', $nom, PDO::PARAM_STR);
+                $stmt->bindValue(':niveau', $niveau, PDO::PARAM_STR);
+                $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
+                $stmt->bindValue(':target_file', $target_file, PDO::PARAM_STR);
+                $stmt->bindValue(':description', $description, PDO::PARAM_STR);
+                $cours_id = $conn->lastInsertId(); 
+                $stmt->execute();// Récupération de l'ID du cours inséré
 
                 // Traitement des sections, titres et paragraphes
                 if (isset($_POST['section']) && is_array($_POST['section'])) {
@@ -46,9 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                         // Insertion de la section dans la table SECTIONS
                         $sql = "INSERT INTO SECTIONS (id_COURS, titre)
-                                VALUES (?, ?)";
+                                VALUES (:cours_id, :titre_section)";
                         $stmt = $conn->prepare($sql);
-                        $stmt->bind_param("is", $cours_id, $titre_section);
+                        $stmt->bindValue(':cours_id', $cours_id, PDO::PARAM_INT);
+                        $stmt->bindValue(':titre_section', $titre_section, PDO::PARAM_STR);
                         $stmt->execute();
                         $section_id = $conn->lastInsertId(); // Récupération de l'ID de la section insérée
 
@@ -58,9 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                 // Insertion du titre dans la table TITRE
                                 $sql = "INSERT INTO TITRE (id_SECTION, titre)
-                                        VALUES (?, ?)";
+                                        VALUES (:section_id, :titre_titre)";
                                 $stmt = $conn->prepare($sql);
-                                $stmt->bind_param("is", $section_id, $titre_titre);
+                                $stmt->bindValue(':section_id', $section_id, PDO::PARAM_INT);
+                                $stmt->bindValue(':titre_titre', $titre_titre, PDO::PARAM_STR);
                                 $stmt->execute();
                                 $titre_id = $conn->lastInsertId(); // Récupération de l'ID du titre inséré
 
@@ -70,9 +76,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                                         // Insertion du paragraphe dans la table PARAGRAPHE
                                         $sql = "INSERT INTO PARAGRAPHE (id_TITRE, contenu)
-                                                VALUES (?, ?)";
+                                                VALUES (:titre_id, :contenu_paragraphe)";
                                         $stmt = $conn->prepare($sql);
-                                        $stmt->bind_param("is", $titre_id, $contenu_paragraphe);
+                                        $stmt->bindValue(':titre_id', $titre_id, PDO::PARAM_INT);
+                                        $stmt->bindValue(':contenu_paragraphe', $contenu_paragraphe, PDO::PARAM_STR);
                                         $stmt->execute();
                                     }
                                 }
@@ -94,6 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = null; // Fermer la connexion PDO
 }
 ?>
+
 
 
 <!DOCTYPE html>
