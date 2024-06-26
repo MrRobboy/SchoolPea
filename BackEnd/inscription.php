@@ -40,10 +40,10 @@ if (isset($_POST['submit_inscription'])) {
 
     include('db.php');
     $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
-    $queryVerification = $dbh->query('USE PA;SELECT email FROM USER where email="' . $email . '";');
+    $queryVerification = $dbh->query('SELECT email FROM USER where email=":email";');
+    $queryStatement->bindvalue(':email', $email);
     $emails = $queryVerification->fetchAll();
     echo '<pre>' . print_r($emails) . '</pre>';
-    echo ($emails[0][0]);
     $result = false;
 
     if ($email != $emails[0][0]) {
