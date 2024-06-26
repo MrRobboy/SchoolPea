@@ -51,7 +51,7 @@ header.admin {
 }
 
 #Pages .link {
-    margin: 1.5em;
+    margin: 1em;
 }
 
 #Pages a {
@@ -72,5 +72,5 @@ header.admin {
 .lien_header {
     transition: all 0.3s ease-in-out;
     display: block;
-    margin: 1.5em 0;
+    margin: 0.5em 0;
 }
