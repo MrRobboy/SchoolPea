@@ -56,11 +56,10 @@ if (isset($_POST['submit_inscription'])) {
         $result = $queryStatement->execute();
         $message = $firstname . ' ' . $lastname . ' a créer son compte, en attente de validation de mail';
 
-        $queryStatement = $dbh->prepare('INSERT INTO LOGS(id_user, action) VALUES ((SELECT id_USER FROM USER where email=":email"),:message;');
-        $queryStatement->bindvalue(':email', $email);
-        $queryStatement->bindvalue(':message', $message);
-        $queryStatement->bindvalue(':time', date('H:i:s d/m/Y', time()));
-        $queryStatement->execute();
+        $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, action) VALUES ((SELECT id_USER FROM USER where email=":email"),":message";');
+        $queryLogs->bindvalue(':email', $email);
+        $queryLogs->bindvalue(':message', $message);
+        $queryLogs->execute();
     } else {
         echo '<br>ALREADY USED EMAIL!!!!!!<br><a href="' . $_SERVER['HTTP_REFERER'] . '">GO BACK!</a>';
     }
