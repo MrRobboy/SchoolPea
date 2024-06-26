@@ -10,8 +10,8 @@ if (isset($_POST['submit'])) {
 		$queryStatement->bindvalue(':email', $_SESSION['email']);
 		$result = $queryStatement->execute();
 		if ($result) {
-			$queryUser = $dbh->query('USE PA; SELECT id_USER FROM USER WHERE email = :email');
-			$queryUser->bindValue(':email', $_SESSION['email']);
+			$sqlRequest = 'USE PA; SELECT id_USER FROM USER WHERE email =' . $_SESSION['email'];
+			$queryUser = $dbh->query($sqlRequest);
 			$user_found = $queryUser->fetchAll();
 			if ($user_found) {
 				$message = $_SESSION['email'] . ' a été validé par l\'utilisateur n°' . $id_USER;
