@@ -11,13 +11,13 @@ $stmt = $dbh->query("USE PA; SELECT * FROM LOGS");
 $logs = $stmt->fetchAll();
 ?>
 
-<div class="container">
+<div class="container" style="margin: auto;">
     <h1>Visualisation des Logs</h1>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>ID Utilisateur</th>
+                <th>ID_Utilisateur</th>
                 <th>Action</th>
                 <th>Date</th>
             </tr>
