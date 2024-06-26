@@ -2,54 +2,79 @@
 session_start();
 $badCredentials = false;
 
+// Vérifier si la méthode de requête est POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	// Check if the password and email keys exist in the $_POST array
-	if (!isset($_POST['password_connexion']) || !isset($_POST['email_connexion'])) {
-		header('Location: ' . $_SERVER['HTTP_REFERER']);
-	}
-} else header('Location: ' . $_SERVER['HTTP_REFERER']);
+    // Vérifier si les clés password_connexion et email_connexion existent dans $_POST
+    if (!isset($_POST['password_connexion']) || !isset($_POST['email_connexion'])) {
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit(); // Arrêter le script si les clés ne sont pas définies
+    }
 
-$pass = htmlspecialchars($_POST['password_connexion']);
-$email = htmlspecialchars($_POST['email_connexion']);
+    // Récupérer les valeurs postées
+    $pass = htmlspecialchars($_POST['password_connexion']);
+    $email = htmlspecialchars($_POST['email_connexion']);
 
-include('db.php');
-$requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
-$UserInfo = $dbh->query($requestDB);
-$user = $UserInfo->fetchAll();
+    // Inclure le fichier de connexion à la base de données
+    include('db.php');
 
-echo '<pre>';
-print_r($user);
-echo '</pre>';
+    // Vérifier la connexion à la base de données
+    if ($dbh === null) {
+        die("La connexion à la base de données a échoué.");
+    }
 
-if (!empty($user) && $user[0]['validation_mail'] == 1) {
-	echo 'test1<br>';
-	echo $pass;
-	echo '<br>' . $user[0]['pass'];
-	if (password_verify($pass, $user[0]['pass'])) {
-		$_SESSION['id_user'] = htmlspecialchars($user[0]['id_USER']);
-		$_SESSION['email'] = htmlspecialchars($user[0]['email']);
-		$_SESSION['firstname'] = htmlspecialchars($user[0]['firstname']);
-		$_SESSION['lastname'] = htmlspecialchars($user[0]['lastname']);
-		$_SESSION['path_pp'] = htmlspecialchars($user[0]['path_pp']);
-		$_SESSION['elo'] = htmlspecialchars($user[0]['elo']);
-		$_SESSION['role'] = htmlspecialchars($user[0]['role']);
-		$_SESSION['mail_valide'] = htmlspecialchars($user[0]['validation_mail']);
+    try {
+        // Préparer la requête SQL pour récupérer l'utilisateur par email
+        $requestDB = 'SELECT * FROM USER WHERE email = :email';
+        $stmt = $dbh->prepare($requestDB);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC); // Utiliser fetch pour récupérer une seule ligne
+    } catch (PDOException $e) {
+        echo "Erreur PDO : " . $e->getMessage();
+        exit(); // Arrêter le script en cas d'erreur PDO
+    }
 
-		$message = $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
+    // Vérifier si l'utilisateur existe et si son email est validé
+    if (!empty($user) && $user['validation_mail'] == 1) {
+        // Vérifier si le mot de passe correspond
+        if (password_verify($pass, $user['pass'])) {
+            // Stocker les informations de l'utilisateur en session
+            $_SESSION['id_user'] = htmlspecialchars($user['id_USER']);
+            $_SESSION['email'] = htmlspecialchars($user['email']);
+            $_SESSION['firstname'] = htmlspecialchars($user['firstname']);
+            $_SESSION['lastname'] = htmlspecialchars($user['lastname']);
+            $_SESSION['path_pp'] = htmlspecialchars($user['path_pp']);
+            $_SESSION['elo'] = htmlspecialchars($user['elo']);
+            $_SESSION['role'] = htmlspecialchars($user['role']);
+            $_SESSION['mail_valide'] = htmlspecialchars($user['validation_mail']);
 
-		$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
-		$queryLogs->bindvalue(':id_USER', $user[0]['id_USER']);
-		$queryLogs->bindvalue(':msg', $message);
-		$result = $queryLogs->execute();
+            // Enregistrer une action de connexion dans les logs
+            $message = $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
+            $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
+            $queryLogs->bindValue(':id_USER', $user['id_USER'], PDO::PARAM_INT);
+            $queryLogs->bindValue(':msg', $message, PDO::PARAM_STR);
+            $result = $queryLogs->execute();
 
-		if ($result) {
-			header('Location: https://schoolpea.com/Cours/creerCours.php');
-		}
-		echo ('ERREUR');
-	} else $badCredentials = true;
-} else echo ('Mail non validé !!!!');
+            // Redirection vers la page de création de cours si l'insertion est réussie
+            if ($result) {
+                header('Location: https://schoolpea.com/Cours/creerCours.php');
+                exit(); // Arrêter le script après la redirection
+            } else {
+                echo 'Erreur lors de l\'enregistrement de l\'action dans les logs.';
+            }
+        } else {
+            $badCredentials = true;
+        }
+    } else {
+        echo 'Mail non validé !!!!';
+    }
 
-if ($badCredentials == true) {
-	echo "Invalid email or password.";
+    // Afficher un message d'erreur si les identifiants sont invalides
+    if ($badCredentials) {
+        echo "Invalid email or password.";
+    }
+} else {
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit(); // Redirection si la méthode de requête n'est pas POST
 }
-
+?>
