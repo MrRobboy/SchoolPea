@@ -4,7 +4,7 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
 $auth = $_SERVER['DOCUMENT_ROOT'];
-$auth .= '/includes/auth.php';
+$auth .= '/BackEnd/Includes/auth.php';
 include($auth);
 ?>
 
@@ -62,6 +62,12 @@ include($auth);
                 <a href="quizzes/index.php">
                     <h2>Gestion des Quizz</h2>
                     <p>Ajouter, modifier ou supprimer des quizz</p>
+                </a>
+            </div>
+            <div class="dashboard-item" style="background-color: red;">
+                <a href="https://schoolpea.com/">
+                    <h2 style=" color: white;">Front-Office</h2>
+                    <p style=" color: white;">Retourner à la page d'accueil</p>
                 </a>
             </div>
         </div>
