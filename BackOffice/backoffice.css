@@ -35,6 +35,21 @@ h1 {
     color: white;
 }
 
+.front-office {
+    background-color: red;
+    margin: 10px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all ease-in-out 0.3s;
+    color: white;
+}
+
+.front-office:hover {
+    background-color: #c80000;
+}
+
 .dashboard-item a {
     border-radius: 1em;
     text-decoration: none;
