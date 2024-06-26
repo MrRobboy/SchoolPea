@@ -23,28 +23,30 @@ echo ('</pre>');
 </head>
 
 <body>
-    <div class="container" style="margin: auto;">
+    <div class="content" style="margin: auto;">
         <h1>Visualisation des Logs</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID_LOGS</th>
-                    <th>ID_Utilisateur</th>
-                    <th>Action</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($logs as $log) : ?>
+        <div id="table-classement">
+            <table id="classement">
+                <thead>
                     <tr>
-                        <td><?php echo $log['id_LOGS']; ?></td>
-                        <td><?php echo $log['id_user']; ?></td>
-                        <td><?php echo $log['act']; ?></td>
-                        <td><?php echo $log['time']; ?></td>
+                        <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID_LOGS</th>
+                        <th style="padding: 0 7rem;border-right: solid 0.3rem white;">ID_Utilisateur</th>
+                        <th style="padding: 0 7rem;border-right: solid 0.3rem white;">Action</th>
+                        <th style="padding: 0 3rem;border-right: none;">Date</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($logs as $log) : ?>
+                        <tr>
+                            <td class="not_right"><?php echo $log['id_LOGS']; ?></td>
+                            <td class="not_right"><?php echo $log['id_user']; ?></td>
+                            <td class="not_right"><?php echo $log['act']; ?></td>
+                            <td><?php echo $log['time']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 
