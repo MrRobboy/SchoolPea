@@ -1,13 +1,12 @@
 <?php
 session_start();
 
-// Vérifier si l'utilisateur est connecté ou rediriger vers la page de connexion si nécessaire
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php");
     exit();
 }
 
-include 'db.php'; // Inclure votre fichier de connexion à la base de données
+include 'db.php'; // Connexion à la base de données
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = $_POST['nom'];
@@ -15,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $id_user = $_SESSION['id_user'];
 
-    // Vérifier et traiter l'image de présentation
+    // Vérification et traitement de l'image de présentation
     if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
         $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
@@ -92,7 +91,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $conn = null; // Fermer la connexion PDO
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
