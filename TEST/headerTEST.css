@@ -75,7 +75,7 @@ header.admin {
     margin: 0.5em 0;
 }
 
-.lien_header.front {
+#Pages a.front {
     background-color: #ff0000;
     color: white;
 }
