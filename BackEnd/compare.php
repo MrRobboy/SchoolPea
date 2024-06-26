@@ -10,12 +10,12 @@ if (isset($_POST['submit'])) {
 		$queryStatement->bindvalue(':email', $_SESSION['email']);
 		$result = $queryStatement->execute();
 		if ($result) {
-			$queryUser = $dbh->query('SELECT id_USER FROM USER WHERE email = :email');
+			$queryUser = $dbh->query('USE PA; SELECT id_USER FROM USER WHERE email = :email');
 			$queryUser->bindValue(':email', $_SESSION['email']);
 			$user_found = $queryUser->fetchAll();
 			if ($user_found) {
 				$message = $_SESSION['email'] . ' a été validé par l\'utilisateur n°' . $id_USER;
-				$queryLogs = $dbh->prepare('USE PA; INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
+				$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
 				$queryLogs->bindvalue(':id_USER', $id_USER);
 				$queryLogs->bindvalue(':msg', $message);
 				$result2 = $queryLogs->execute();
