@@ -156,4 +156,5 @@ tbody tr:hover {
 .btn.add {
     background-color: #00ff95;
     color: black;
+    margin-bottom: 2em;
 }
