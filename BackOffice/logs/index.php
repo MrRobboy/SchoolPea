@@ -25,10 +25,10 @@ $logs = $stmt->fetchAll();
         <tbody>
             <?php foreach ($logs as $log) : ?>
                 <tr>
-                    <td><?= $log['id_LOGS'] ?></td>
-                    <td><?= $log['id_user'] ?></td>
-                    <td><?= $log['act'] ?></td>
-                    <td><?= $log['time'] ?></td>
+                    <td><? echo $log['id_LOGS']; ?></td>
+                    <td><? echo $log['id_user']; ?></td>
+                    <td><? echo $log['act']; ?></td>
+                    <td><? echo $log['time']; ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
