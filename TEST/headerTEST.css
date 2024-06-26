@@ -89,7 +89,7 @@ header.admin {
     margin: 1em;
 }
 
-#Font a {
+#Front a {
     text-decoration: none;
     padding: 0.3em 1em;
     background-color: #ff0000;
@@ -97,7 +97,7 @@ header.admin {
     border: solid transparent 0.1em;
 }
 
-#Font a:hover {
+#Front a:hover {
     background-color: #ed0000;
     border: black solid 0.1em;
 }
