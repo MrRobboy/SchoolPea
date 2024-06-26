@@ -13,6 +13,7 @@ $pass = htmlspecialchars($_POST['password_connexion']);
 $email = htmlspecialchars($_POST['email_connexion']);
 
 include('db.php');
+$dbh->exec('USE PA');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();

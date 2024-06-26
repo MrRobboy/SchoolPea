@@ -44,7 +44,7 @@ function sendVerificationEmail($email, $verificationCode)
     // Contenu du message
     $mail->isHTML(true);
     $mail->Subject = 'Verification d\'inscription';
-    $mail->Body = 'Votre code de vérification est : ' . $verificationCode;
+    $mail->Body = 'Votre code de verification est : ' . $verificationCode;
 
     // Envoyer l'e-mail
     if ($mail->send()) {
