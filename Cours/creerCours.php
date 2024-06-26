@@ -1,8 +1,9 @@
 <?php
-session_start();
+session_start(); // Démarrer la session en haut de votre fichier
 
-// Vérifier si l'utilisateur est connecté
+// Vérifier si l'utilisateur est connecté ou rediriger vers la page de connexion si nécessaire
 if (!isset($_SESSION['id_user'])) {
+    // Redirection vers la page de connexion
     header("Location: login.php");
     exit();
 }
@@ -16,84 +17,84 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $id_user = $_SESSION['id_user']; // Récupération de l'ID utilisateur depuis la session
 
- // Traitement de l'image de présentation
-if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
-    $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
-    $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
+    // Traitement de l'image de présentation
+    if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
+        $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
+        $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
-    // Vérification et déplacement du fichier téléchargé
-    if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
-            // Insertion des données principales du cours dans la table COURS
-            $sql = "INSERT INTO COURS (nom, niveau, id_user, path_image_pres, description)
-                    VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conn->prepare($sql);
-            $stmt->bindParam(1, $nom);
-            $stmt->bindParam(2, $niveau);
-            $stmt->bindParam(3, $id_user);
-            $stmt->bindParam(4, $target_file);
-            $stmt->bindParam(5, $description);
-            $stmt->execute();
-            $cours_id = $conn->lastInsertId(); // Récupération de l'ID du cours inséré
+        // Vérification si le fichier est une vraie image
+        $check = getimagesize($_FILES["image_pres"]["tmp_name"]);
+        if ($check === false) {
+            echo "Le fichier n'est pas une image valide.";
+        } else {
+            // Déplacer le fichier téléchargé vers le répertoire cible
+            if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
+                echo "Le fichier " . htmlspecialchars(basename($_FILES["image_pres"]["name"])) . " a été téléchargé avec succès.";
 
-            // Traitement des sections, titres et paragraphes
-            if (isset($_POST['section']) && is_array($_POST['section'])) {
-                foreach ($_POST['section'] as $section) {
-                    $titre_section = $section['titre'];
+                // Insertion des données principales du cours dans la table COURS
+                $sql = "INSERT INTO COURS (nom, niveau, id_USER, path_image_pres, description)
+                        VALUES (?, ?, ?, ?, ?)";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param("ssiss", $nom, $niveau, $id_user, $target_file, $description);
+                $stmt->execute();
+                $cours_id = $conn->lastInsertId(); // Récupération de l'ID du cours inséré
 
-                    // Insertion de la section dans la table SECTIONS
-                    $sql = "INSERT INTO SECTIONS (id_cours, titre)
-                            VALUES (?, ?)";
-                    $stmt = $conn->prepare($sql);
-                    $stmt->bindParam(1, $cours_id);
-                    $stmt->bindParam(2, $titre_section);
-                    $stmt->execute();
-                    $section_id = $conn->lastInsertId(); // Récupération de l'ID de la section insérée
+                // Traitement des sections, titres et paragraphes
+                if (isset($_POST['section']) && is_array($_POST['section'])) {
+                    foreach ($_POST['section'] as $section) {
+                        $titre_section = $section['titre'];
 
-                    if (isset($section['titre']) && is_array($section['titre'])) {
-                        foreach ($section['titre'] as $titre) {
-                            $titre_titre = $titre['titre'];
+                        // Insertion de la section dans la table SECTIONS
+                        $sql = "INSERT INTO SECTIONS (id_COURS, titre)
+                                VALUES (?, ?)";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("is", $cours_id, $titre_section);
+                        $stmt->execute();
+                        $section_id = $conn->lastInsertId(); // Récupération de l'ID de la section insérée
 
-                            // Insertion du titre dans la table TITRE
-                            $sql = "INSERT INTO TITRE (id_section, titre)
-                                    VALUES (?, ?)";
-                            $stmt = $conn->prepare($sql);
-                            $stmt->bindParam(1, $section_id);
-                            $stmt->bindParam(2, $titre_titre);
-                            $stmt->execute();
-                            $titre_id = $conn->lastInsertId(); // Récupération de l'ID du titre inséré
+                        if (isset($section['titre']) && is_array($section['titre'])) {
+                            foreach ($section['titre'] as $titre) {
+                                $titre_titre = $titre['titre'];
 
-                            if (isset($titre['paragraphe']) && is_array($titre['paragraphe'])) {
-                                foreach ($titre['paragraphe'] as $paragraphe) {
-                                    $contenu_paragraphe = $paragraphe;
+                                // Insertion du titre dans la table TITRE
+                                $sql = "INSERT INTO TITRE (id_SECTION, titre)
+                                        VALUES (?, ?)";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bind_param("is", $section_id, $titre_titre);
+                                $stmt->execute();
+                                $titre_id = $conn->lastInsertId(); // Récupération de l'ID du titre inséré
 
-                                    // Insertion du paragraphe dans la table PARAGRAPHE
-                                    $sql = "INSERT INTO PARAGRAPHE (id_titre, contenu)
-                                            VALUES (?, ?)";
-                                    $stmt = $conn->prepare($sql);
-                                    $stmt->bindParam(1, $titre_id);
-                                    $stmt->bindParam(2, $contenu_paragraphe);
-                                    $stmt->execute();
+                                if (isset($titre['paragraphe']) && is_array($titre['paragraphe'])) {
+                                    foreach ($titre['paragraphe'] as $paragraphe) {
+                                        $contenu_paragraphe = $paragraphe;
+
+                                        // Insertion du paragraphe dans la table PARAGRAPHE
+                                        $sql = "INSERT INTO PARAGRAPHE (id_TITRE, contenu)
+                                                VALUES (?, ?)";
+                                        $stmt = $conn->prepare($sql);
+                                        $stmt->bind_param("is", $titre_id, $contenu_paragraphe);
+                                        $stmt->execute();
+                                    }
                                 }
                             }
                         }
                     }
                 }
+
+                echo "Le cours a été créé avec succès.";
+
+            } else {
+                echo "Désolé, une erreur s'est produite lors du téléchargement de votre fichier.";
             }
-
-            echo "Le cours a été créé avec succès.";
-
-        } else {
-            echo "Désolé, une erreur s'est produite lors du téléchargement de votre fichier.";
         }
-
     } else {
         echo "Veuillez sélectionner une image de présentation.";
     }
 
-    // Fermer la connexion PDO
-    $conn = null;
+    $conn = null; // Fermer la connexion PDO
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
