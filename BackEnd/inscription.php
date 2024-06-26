@@ -40,7 +40,7 @@ if (isset($_POST['submit_inscription'])) {
 
     include('db.php');
     $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
-    $queryVerification = $dbh->query('SELECT email FROM USER where email="' . $email . '";');
+    $queryVerification = $dbh->query('USE PA;SELECT email FROM USER where email="' . $email . '";');
     $emails = $queryVerification->fetchAll();
     echo '<pre>' . print_r($emails) . '</pre>';
     echo ($emails[0][0]);
@@ -57,7 +57,7 @@ if (isset($_POST['submit_inscription'])) {
         $result = $queryStatement->execute();
         $message = $firstname . ' ' . $lastname . ' a créer son compte, en attente de validation de mail';
 
-        $queryStatement = $dbh->prepare('INSERT INTO LOGS(id_user, action, timestamp) VALUES ((SELECT id_user FROM USER where email=":email"),:message,STR_TO_DATE(":time","%h:%i%s - %dd/%mm/%yyyy");');
+        $queryStatement = $dbh->prepare('INSERT INTO LOGS(id_user, action) VALUES ((SELECT id_USER FROM USER where email=":email"),:message;');
         $queryStatement->bindvalue(':email', $email);
         $queryStatement->bindvalue(':message', $message);
         $queryStatement->bindvalue(':time', date('H:i:s d/m/Y', time()));
