@@ -6,6 +6,9 @@ include($path);
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
+echo ('<pre>');
+print_r($_SESSION);
+echo ('</pre>');
 ?>
 
 <!DOCTYPE html>
