@@ -11,8 +11,8 @@ if (isset($_POST['submit'])) {
 		$queryStatement->bindvalue(':email', $_SESSION['email']);
 		$result = $queryStatement->execute();
 		if ($result) {
-			$sqlRequest = 'SELECT id_USER FROM USER WHERE email =' . $_SESSION['email'];
-			$queryUser = $dbh->prepare($sqlRequest);
+			$queryUser = $dbh->prepare('SELECT id_USER FROM USER WHERE email = :email');
+			$queryStatement->bindvalue(':email', $_SESSION['email']);
 			$queryUser->execute();
 			$user_found = $queryUser->fetchAll();
 			if ($user_found) {
