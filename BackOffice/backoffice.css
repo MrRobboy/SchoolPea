@@ -35,7 +35,7 @@ h1 {
     color: white;
 }
 
-.dashboard-item a h2 + p {
+.dashboard-item a {
     border-radius: 1em;
     text-decoration: none;
     color: white;
