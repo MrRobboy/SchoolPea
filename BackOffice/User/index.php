@@ -1,13 +1,11 @@
 <?php
-$path = $_SERVER['DOCUMENT_ROOT'];
-$path .= '/BackEnd/Includes/auth.php';
-include($path);
+$auth = $_SERVER['DOCUMENT_ROOT'];
+$auth .= '/BackEnd/Includes/auth.php';
+include($auth);
 
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
-
-$users = getAll('users');
 ?>
 
 <div class="container">
