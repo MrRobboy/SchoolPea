@@ -23,43 +23,43 @@ include($auth);
         <h1>Tableau de Bord</h1>
         <div class="dashboard">
             <div class="dashboard-item">
-                <a href="users/index.php">
+                <a href="https://schoolpea.com/BackOffice/User">
                     <h2>Gestion des Utilisateurs</h2>
                     <p>Ajouter, modifier ou supprimer des utilisateurs</p>
                 </a>
             </div>
             <div class="dashboard-item">
-                <a href="captcha/index.php">
+                <a href="https://schoolpea.com/BackOffice/Captcha">
                     <h2>Gestion du CAPTCHA</h2>
                     <p>Ajouter, modifier ou supprimer des questions CAPTCHA</p>
                 </a>
             </div>
             <div class="dashboard-item">
-                <a href="newsletter/index.php">
+                <a href="https://schoolpea.com/BackOffice/Newsletter">
                     <h2>Newsletter</h2>
                     <p>Envoyer des newsletters et consulter l'historique</p>
                 </a>
             </div>
             <div class="dashboard-item">
-                <a href="logs/index.php">
+                <a href="https://schoolpea.com/BackOffice/Logs">
                     <h2>Visualisation des Logs</h2>
                     <p>Consulter les logs des activités</p>
                 </a>
             </div>
             <div class="dashboard-item">
-                <a href="tickets/index.php">
+                <a href="https://schoolpea.com/BackOffice/Tickets">
                     <h2>Gestion des Tickets</h2>
                     <p>Gérer les tickets utilisateur</p>
                 </a>
             </div>
             <div class="dashboard-item">
-                <a href="courses/index.php">
+                <a href="https://schoolpea.com/BackOffice/Cours">
                     <h2>Gestion des Cours</h2>
                     <p>Ajouter, modifier ou supprimer des cours</p>
                 </a>
             </div>
             <div class="dashboard-item">
-                <a href="quizzes/index.php">
+                <a href="https://schoolpea.com/BackOffice/Quizz">
                     <h2>Gestion des Quizz</h2>
                     <p>Ajouter, modifier ou supprimer des quizz</p>
                 </a>
