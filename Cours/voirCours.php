@@ -13,7 +13,7 @@ if ($stmt->rowCount() > 0) {
     $cours = $stmt->fetch(PDO::FETCH_ASSOC);
     echo "<h2>" . htmlspecialchars($cours['nom']) . "</h2>";
     echo "<p>Niveau : " . htmlspecialchars($cours['niveau']) . "</p>";
-    echo "<img src='" . htmlspecialchars($cours['path_image_pres']) . "' alt='Image de présentation' width='300'><br>";
+   
 
     // Récupérer les sections liées au cours
     $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
