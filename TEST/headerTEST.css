@@ -96,9 +96,11 @@ header.admin {
     color: white;
     border: solid transparent 0.1em;
     margin: 1.5em 0;
+    transition: all 0.3s ease-in-out;
 }
 
 #Front a:hover {
     background-color: #ed0000;
     border: black solid 0.1em;
+    border-radius: 3em;
 }
