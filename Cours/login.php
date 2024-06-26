@@ -18,7 +18,7 @@ session_unset();
 <body>
 	<div class="container Connexion" id="Conteneur">
 		<div class="form-container sign-in">
-			<form action="../../BackEnd/connexion.php" method="post">
+			<form action="connexion.php" method="post">
 				<h1>Connexion</h1>
 				<?php
 				/*if (isset($badCredentials) && $badCredentials) {
