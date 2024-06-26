@@ -16,13 +16,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $description = $_POST['description'];
     $id_user = $_SESSION['id_user']; // Récupération de l'ID utilisateur depuis la session
 
-    // Traitement de l'image de présentation
-    if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
-        $target_dir = "uploads/";
-        $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
+ // Traitement de l'image de présentation
+if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
+    $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
+    $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
-        // Vérification et déplacement du fichier téléchargé
-        if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
+    // Vérification et déplacement du fichier téléchargé
+    if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
             // Insertion des données principales du cours dans la table COURS
             $sql = "INSERT INTO COURS (nom, niveau, id_user, path_image_pres, description)
                     VALUES (?, ?, ?, ?, ?)";
