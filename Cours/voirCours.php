@@ -1,12 +1,12 @@
 <?php
-include 'db.php'; // Inclure le fichier où $conn (ou $dbh) est initialisé
+include 'db.php'; 
 include 'header.php';
 
 $id_cours = $_GET['id_cours'];
 
-// Exemple en supposant que $conn est l'objet de connexion PDO
+// Exemple en supposant que $dbh est l'objet de connexion PDO
 $sql = "SELECT * FROM COURS WHERE id_COURS = ?";
-$stmt = $conn->prepare($sql);
+$stmt = $dbh->prepare($sql);
 $stmt->execute([$id_cours]);
 
 if ($stmt->rowCount() > 0) {
@@ -17,7 +17,7 @@ if ($stmt->rowCount() > 0) {
 
     // Récupérer les sections liées au cours
     $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
-    $stmt_section = $conn->prepare($sql_section);
+    $stmt_section = $dbh->prepare($sql_section);
     $stmt_section->execute([$id_cours]);
 
     if ($stmt_section->rowCount() > 0) {
@@ -27,7 +27,7 @@ if ($stmt->rowCount() > 0) {
             // Récupérer les titres liés à la section
             $id_section = $section['id_section'];
             $sql_titre = "SELECT * FROM TITRE WHERE id_section = ?";
-            $stmt_titre = $conn->prepare($sql_titre);
+            $stmt_titre = $dbh->prepare($sql_titre);
             $stmt_titre->execute([$id_section]);
 
             if ($stmt_titre->rowCount() > 0) {
@@ -37,7 +37,7 @@ if ($stmt->rowCount() > 0) {
                     // Récupérer les paragraphes liés au titre
                     $id_titre = $titre['id_titre'];
                     $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_titre = ?";
-                    $stmt_paragraphe = $conn->prepare($sql_paragraphe);
+                    $stmt_paragraphe = $dbh->prepare($sql_paragraphe);
                     $stmt_paragraphe->execute([$id_titre]);
 
                     if ($stmt_paragraphe->rowCount() > 0) {
