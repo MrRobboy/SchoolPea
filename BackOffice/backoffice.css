@@ -35,6 +35,15 @@ h1 {
     color: white;
 }
 
+.dashboard-item:hover {
+    background-color: #515d9e;
+}
+
+.dashboard-item a {
+    border-radius: 1em;
+    text-decoration: none;
+    color: white;
+}
 .front-office {
     background-color: red;
     margin: 10px;
@@ -50,12 +59,8 @@ h1 {
     background-color: #c80000;
 }
 
-.dashboard-item a {
+.front-office a {
     border-radius: 1em;
     text-decoration: none;
     color: white;
-}
-
-.dashboard-item:hover {
-    background-color: #515d9e;
 }
