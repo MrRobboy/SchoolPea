@@ -81,14 +81,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $id_titre = $dbh->lastInsertId();
 
                                         // Pour chaque paragraphe sous le titre
-                                        if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
+                                        if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])
+                                        ) {
                                             foreach ($titre['paragraphes'] as $paragraphe) {
                                                 if (!empty($paragraphe)) {
                                                     // Insertion du paragraphe dans PARAGRAPHE
-                                                    $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_cours, contenu)
-                                                                            VALUES (:id_cours, :contenu_paragraphe)";
+                                                    $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu)
+                                                                            VALUES (:id_titre, :contenu_paragraphe)";
                                                     $stmt_insert_paragraphe = $dbh->prepare($sql_insert_paragraphe);
-                                                    $stmt_insert_paragraphe->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
+                                                    $stmt_insert_paragraphe->bindValue(':id_titre', $id_titre, PDO::PARAM_INT);
                                                     $stmt_insert_paragraphe->bindValue(':contenu_paragraphe', $paragraphe, PDO::PARAM_STR);
                                                     $stmt_insert_paragraphe->execute();
                                                 }
