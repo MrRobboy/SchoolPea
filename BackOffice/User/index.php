@@ -38,11 +38,11 @@ $users = $stmt->fetchAll();
                 <tbody>
                     <?php foreach ($users as $user) : ?>
                         <tr>
-                            <td><?php echo $user['id_USER']; ?></td>
-                            <td><?php echo $user['lastname']; ?></td>
-                            <td><?php echo $user['firstname']; ?></td>
-                            <td><?php echo $user['email']; ?></td>
-                            <td><?php echo $user['role']; ?></td>
+                            <td class="not_right"><?php echo $user['id_USER']; ?></td>
+                            <td class="not_right"><?php echo $user['lastname']; ?></td>
+                            <td class="not_right"><?php echo $user['firstname']; ?></td>
+                            <td class="not_right"><?php echo $user['email']; ?></td>
+                            <td class="not_right"><?php echo $user['role']; ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $user['id_USER']; ?>" class="btn">Modifier</a>
                                 <a href="ban.php?id=<?php echo $user['id_USER']; ?>" class="btn">Bannir</a>
