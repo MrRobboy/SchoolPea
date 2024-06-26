@@ -25,20 +25,20 @@ if ($stmt->rowCount() > 0) {
             echo "<h3>" . htmlspecialchars($section['titre']) . "</h3>";
 
             // Récupérer les titres liés à la section
-            $id_section = $section['id_section'];
-            $sql_titre = "SELECT * FROM TITRE WHERE id_section = ?";
+            $id_cours = $section['id_cours'];
+            $sql_titre = "SELECT * FROM TITRE WHERE id_cours = ?";
             $stmt_titre = $dbh->prepare($sql_titre);
-            $stmt_titre->execute([$id_section]);
+            $stmt_titre->execute([$id_cours]);
 
             if ($stmt_titre->rowCount() > 0) {
                 while ($titre = $stmt_titre->fetch(PDO::FETCH_ASSOC)) {
                     echo "<h4>" . htmlspecialchars($titre['titre']) . "</h4>";
 
                     // Récupérer les paragraphes liés au titre
-                    $id_titre = $titre['id_titre'];
-                    $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_titre = ?";
+                    $id_cours = $titre['id_cours'];
+                    $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_cours = ?";
                     $stmt_paragraphe = $dbh->prepare($sql_paragraphe);
-                    $stmt_paragraphe->execute([$id_titre]);
+                    $stmt_paragraphe->execute([$id_cours]);
 
                     if ($stmt_paragraphe->rowCount() > 0) {
                         while ($paragraphe = $stmt_paragraphe->fetch(PDO::FETCH_ASSOC)) {
