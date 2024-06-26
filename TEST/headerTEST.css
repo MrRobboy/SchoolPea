@@ -71,4 +71,5 @@ header.admin {
 .lien_header {
     transition: all 0.3s ease-in-out;
     display: block;
+    margin: 1.5em;
 }
