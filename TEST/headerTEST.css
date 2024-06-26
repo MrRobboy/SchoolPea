@@ -79,3 +79,7 @@ header.admin {
     background-color: #ff0000;
     color: white;
 }
+
+#Pages a.front:hover {
+    background-color: #df0000;
+}
