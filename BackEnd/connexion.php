@@ -26,7 +26,7 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
 	echo $pass;
 	echo '<br>' . $user[0]['pass'];
 	if (password_verify($pass, $user[0]['pass'])) {
-		$_SESSION['id_user'] = htmlspecialchars($user[0]['id_user']);
+		$_SESSION['id_user'] = htmlspecialchars($user[0]['id_USER']);
 		$_SESSION['email'] = htmlspecialchars($user[0]['email']);
 		$_SESSION['firstname'] = htmlspecialchars($user[0]['firstname']);
 		$_SESSION['lastname'] = htmlspecialchars($user[0]['lastname']);
