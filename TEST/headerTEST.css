@@ -86,7 +86,6 @@ header.admin {
     flex-direction: column;
     font-weight: 500;
     padding: 1.5em 0.2em;
-    margin-bottom: 1em;
 }
 
 #Front a {
@@ -96,7 +95,6 @@ header.admin {
     color: white;
     border: solid transparent 0.1em;
     margin: 1.5em 0;
-    transition: all 0.3s ease-in-out;
 }
 
 #Front a:hover {
