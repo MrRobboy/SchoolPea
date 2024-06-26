@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
 		$queryStatement->bindvalue(':email', $_SESSION['email']);
 		$result = $queryStatement->execute();
 		if ($result) {
-			$queryUser = $dbh->query('SELECT id_USER FROM USER WHERE email = :email');
+			$queryUser = $dbh->prepare('SELECT id_USER FROM USER WHERE email = :email');
 			$queryUser->bindValue(':email', $_SESSION['email']);
 			$user_found = $queryUser->fetchAll();
 			if ($user_found) {
