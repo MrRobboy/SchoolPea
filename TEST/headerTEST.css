@@ -5,7 +5,7 @@ html {
 }
 
 header {
-    flex-direction: column;
+    flex-direction: row;
     position: fixed;
     top: 0;
     left: 0;
