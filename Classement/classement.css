@@ -33,7 +33,7 @@ h1 {
 
 /* Style du contenu principal */
 #content {
-    width: 80%;
+    width: 90%;
     /* Utilisation de 80% de la largeur disponible */
     max-width: 85%;
     /* Limite la largeur maximale du contenu */
