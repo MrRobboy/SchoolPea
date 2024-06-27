@@ -1,8 +1,14 @@
 <?php
+session_start();
 include 'db.php';
 
+if (!isset($_SESSION['user_id'])) {
+    echo "Vous devez être connecté pour suivre un cours.";
+    exit();
+}
+
 $id_cours = $_POST['id_cours'];
-$id_user = $_POST['id_user'];
+$id_user = $_SESSION['user_id'];
 
 // Vérifier si le cours est déjà suivi
 $sql_check = "SELECT * FROM LIKES_COURS WHERE id_user = :id_user AND id_cours = :id_cours";
