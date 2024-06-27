@@ -17,9 +17,9 @@ if ($stmt->rowCount() > 0) {
 
     // Bouton pour générer le PDF du cours
     echo '<a href="downloadPdf.php?id_cours=' . $id_cours . '" class="button">Télécharger le PDF</a>';
+    //Bouton pour liker un cours 
+    echo '<a href="likeCours.php?id_cours=' . $id_cours . '" class="button">Liker ce cours :=)</a>';
 
-    // Bouton pour suivre le cours
-    echo '<button onclick="followCourse(' . $id_cours . ')" class="button">Suivre ce cours</button>';
 
     // Récupérer les sections liées au cours
     $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
@@ -27,7 +27,7 @@ if ($stmt->rowCount() > 0) {
     $stmt_section->execute([$id_cours]);
 
     if ($stmt_section->rowCount() > 0) {
-        while ($section = $stmt_section->fetch(PDO::FETCH_ASSOC)) {
+        while ($section = $stmt_section->fetch(PDO::FETCH_ASSOC)) { 
             echo "<h3>" . htmlspecialchars($section['titre']) . "</h3>";
 
             // Récupérer les titres liés à la section
@@ -61,20 +61,3 @@ if ($stmt->rowCount() > 0) {
 
 include 'footer.php';
 ?>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-function followCourse(id_cours) {
-    $.ajax({
-        type: "POST",
-        url: "followCourse.php",
-        data: { id_cours: id_cours },
-        success: function(response) {
-            alert(response); // Affiche le message de succès ou d'erreur
-        },
-        error: function(xhr, status, error) {
-            console.error("Erreur lors de la requête AJAX : " + status, error);
-        }
-    });
-}
-</script>
