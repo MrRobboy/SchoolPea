@@ -13,6 +13,7 @@ if ($stmt->rowCount() > 0) {
     $cours = $stmt->fetch(PDO::FETCH_ASSOC);
     echo "<h2>" . htmlspecialchars($cours['nom']) . "</h2>";
     echo "<p>Niveau : " . htmlspecialchars($cours['niveau']) . "</p>";
+    echo "<div class='cours-description'>" . htmlspecialchars($cours['description']) . "</div>";  // Afficher la description du cours
 
     // Récupérer les sections liées au cours
     $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
@@ -53,3 +54,4 @@ if ($stmt->rowCount() > 0) {
 }
 
 include 'footer.php';
+?>
