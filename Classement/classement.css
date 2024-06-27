@@ -9,9 +9,11 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: linear-gradient(180deg,
-            rgba(92, 107, 192, 1) 0%,
-            rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(92, 107, 192, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +35,7 @@ h1 {
 #content {
     width: 80%;
     /* Utilisation de 80% de la largeur disponible */
-    max-width: 1200px;
+    max-width: 85%;
     /* Limite la largeur maximale du contenu */
     margin: 1.5rem auto;
     /* Centre le contenu horizontalement avec un espacement autour */
