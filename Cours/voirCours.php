@@ -25,7 +25,7 @@ if ($stmt->rowCount() > 0) {
 
             // Récupérer les titres liés à la section
             $id_section = $section['id_section'];
-            $sql_titre = "SELECT * FROM TITRE WHERE id_cours = ?";
+            $sql_titre = "SELECT * FROM TITRE WHERE id_section = ?";
             $stmt_titre = $dbh->prepare($sql_titre);
             $stmt_titre->execute([$id_section]);
 
