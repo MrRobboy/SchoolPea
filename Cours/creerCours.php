@@ -81,8 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         $id_titre = $dbh->lastInsertId();
 
                                         // Pour chaque paragraphe sous le titre
-                                        if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])
-                                        ) {
+                                        if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
                                             foreach ($titre['paragraphes'] as $paragraphe) {
                                                 if (!empty($paragraphe)) {
                                                     // Insertion du paragraphe dans PARAGRAPHE
@@ -92,14 +91,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     $stmt_insert_paragraphe->bindValue(':id_titre', $id_titre, PDO::PARAM_INT);
                                                     $stmt_insert_paragraphe->bindValue(':contenu_paragraphe', $paragraphe, PDO::PARAM_STR);
                                                     $stmt_insert_paragraphe->execute();
+                                                } else {
+                                                    echo "Paragraphe vide trouvé, pas d'insertion pour ce paragraphe.<br>";
                                                 }
                                             }
+                                        } else {
+                                            echo "Aucun paragraphe trouvé pour le titre: " . $titre['titre'] . "<br>";
                                         }
+                                    } else {
+                                        echo "Titre vide ou non défini trouvé dans une section.<br>";
                                     }
                                 }
+                            } else {
+                                echo "Aucun titre trouvé pour la section: " . $section['titre'] . "<br>";
                             }
-                        } 
+                        } else {
+                            echo "Titre de section vide ou non défini trouvé.<br>";
+                        }
                     }
+                } else {
+                    echo "Aucune section trouvée dans les données POST.<br>";
                 }
 
                 // Valider la transaction
@@ -112,12 +123,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dbh->rollBack();
                 echo "Erreur lors de l'insertion : " . $e->getMessage();
             }
+        } else {
+            echo "Échec du téléchargement de l'image de présentation.<br>";
         }
+    } else {
+        echo "Aucune image de présentation trouvée ou image invalide.<br>";
     }
 }
 
 $dbh = null; // Fermeture de la connexion PDO
 ?>
+
 
 
 <!DOCTYPE html>
