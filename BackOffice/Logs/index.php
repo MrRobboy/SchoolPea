@@ -19,7 +19,7 @@ $logs = $stmt->fetchAll();
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Classement/classement.css">
 </head>
 
-<body>
+<body style="left: 150px;">
     <div id="content">
         <h1>Visualisation des Logs</h1>
         <div id="table-classement">
