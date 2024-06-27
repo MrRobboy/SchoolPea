@@ -1,8 +1,17 @@
 <?php
+session_start(); // Démarrer la session
 include 'db.php';
 include 'header.php';
 
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    // Rediriger vers la page de connexion ou afficher un message d'erreur
+    header("Location: login.php");
+    exit(); // Arrêter l'exécution du script après la redirection
+}
+
 $id_cours = $_GET['id_cours'];
+$id_user = $_SESSION['user_id']; // Récupérer l'ID de l'utilisateur à partir de la session
 
 // Exemple en supposant que $dbh est l'objet de connexion PDO
 $sql = "SELECT * FROM COURS WHERE id_COURS = ?";
@@ -14,6 +23,12 @@ if ($stmt->rowCount() > 0) {
     echo "<h2>" . htmlspecialchars($cours['nom']) . "</h2>";
     echo "<p>Niveau : " . htmlspecialchars($cours['niveau']) . "</p>";
     echo "<div class='cours-description'>" . htmlspecialchars($cours['description']) . "</div>";  // Afficher la description du cours
+
+    // Bouton pour générer le PDF du cours
+    echo '<a href="downloadPdf.php?id_cours=' . $id_cours . '" class="button">Télécharger le PDF</a>';
+
+    // Bouton pour suivre le cours
+    echo '<button onclick="followCourse(' . $id_cours . ')" class="button">Suivre ce cours</button>';
 
     // Récupérer les sections liées au cours
     $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
@@ -55,3 +70,20 @@ if ($stmt->rowCount() > 0) {
 
 include 'footer.php';
 ?>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+function followCourse(id_cours) {
+    $.ajax({
+        type: "POST",
+        url: "followCourse.php",
+        data: { id_cours: id_cours, id_user: <?php echo $id_user; ?> },
+        success: function(response) {
+            alert(response); // Affiche le message de succès ou d'erreur
+        },
+        error: function(xhr, status, error) {
+            console.error("Erreur lors de la requête AJAX : " + status, error);
+        }
+    });
+}
+</script>
