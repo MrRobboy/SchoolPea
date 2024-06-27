@@ -1,21 +1,20 @@
 <?php
 require_once('db.php');
+session_start(); // Démarrage de la session si ce n'est pas déjà fait
 
-session_start(); // Start session if not already started
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_cours'])) {
+    $id_cours = $_POST['id_cours'];
+    $id_user = $_SESSION['id_user']; // Supposant que vous avez stocké l'ID de l'utilisateur en session
 
-if (isset($_GET['id_cours'])) {
-    $id_cours = $_GET['id_cours'];
-    $id_user = $_SESSION['id_user']; // Assuming you have stored user ID in session
-
-    // Insert into LIKES_COURS table
+    // Insertion dans la table LIKES_COURS
     $sql = "INSERT INTO LIKES_COURS (id_user, id_cours) VALUES (?, ?)";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$id_user, $id_cours]);
 
-    // Redirect back to voirCours.php after liking
+    // Redirection vers voirCours.php après avoir aimé le cours
     header("Location: voirCours.php?id_cours=$id_cours");
     exit();
 } else {
-    echo "Erreur: ID de cours non spécifié.";
+    echo "Erreur: Requête non autorisée.";
 }
 ?>
