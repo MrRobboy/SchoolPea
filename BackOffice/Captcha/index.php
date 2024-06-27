@@ -3,39 +3,60 @@ session_start();
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
-$auth = $_SERVER['DOCUMENT_ROOT'];
-$auth .= '/BackEnd/Includes/auth.php';
-include($auth);
-
-$questions = getAll('captcha_questions');
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackOffice/Includes/headerBackOffice.php';
+include($path);
+$dbh->exec('USE PA');
+$stmt = $dbh->query("SELECT * FROM CAPTCHA");
+$questions = $stmt->fetchAll();
 ?>
+<!DOCTYPE html>
+<html lang="fr">
 
-<div class="container">
-    <h1>Gestion des Questions CAPTCHA</h1>
-    <a href="add.php" class="btn">Ajouter une question</a>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Question</th>
-                <th>Réponse</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($questions as $question) : ?>
-                <tr>
-                    <td><?= $question['id'] ?></td>
-                    <td><?= $question['question'] ?></td>
-                    <td><?= $question['answer'] ?></td>
-                    <td>
-                        <a href="edit.php?id=<?= $question['id'] ?>" class="btn">Modifier</a>
-                        <a href="delete.php?id=<?= $question['id'] ?>" class="btn">Supprimer</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <title> Captcha </title>
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Classement/classement.css">
+</head>
 
-<?php include '../templates/footer.php'; ?>
+<body style="padding-left: 10em;">
+    <div id="content" style="width: 95%;">
+        <h1 style="margin-bottom: 0.5em;">Gestion du Captcha</h1>
+        <a href="add.php" class="btn add">Ajouter une question</a>
+        <div id="table-classement" style="margin-top: 3em;">
+            <table id="classement">
+                <thead>
+                    <tr>
+                        <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID</th>
+                        <th style="padding: 0 5rem;border-right: solid 0.3rem white;">Question</th>
+                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse1</th>
+                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse2</th>
+                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse3</th>
+                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse4</th>
+                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse5</th>
+                        <th style="padding: 0 4rem;border-right: none;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($questions as $question) : ?>
+                        <tr>
+                            <td class="not_right"><?php echo $user['id_CAPTCHA']; ?></td>
+                            <td class="not_right"><?php echo $user['question']; ?></td>
+                            <td class="not_right"><?php echo $user['reponse1']; ?></td>
+                            <td class="not_right"><?php echo $user['reponse2']; ?></td>
+                            <td class="not_right"><?php echo $user['reponse3']; ?></td>
+                            <td class="not_right"><?php echo $user['reponse4']; ?></td>
+                            <td class="not_right"><?php echo $user['reponse5']; ?></td>
+                            <td>
+                                <a href="edit.php?id=<?php echo $user['id_CAPTCHA']; ?>" class="btn modify">Modifier</a>
+                                <a href="delete.php?id=<?php echo $user['id_CAPTCHA']; ?>" class="btn del">Supprimer</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
