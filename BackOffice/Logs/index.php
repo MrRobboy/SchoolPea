@@ -31,7 +31,7 @@ $logs = $stmt->fetchAll();
                     <tr>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID_LOGS</th>
                         <th style="padding: 0 1rem;border-right: solid 0.3rem white;">ID_Utilisateur</th>
-                        <th style="padding: 0 7rem;border-right: solid 0.3rem white;">Action</th>
+                        <th style="padding: 0 5rem;border-right: solid 0.3rem white;">Action</th>
                         <th style="padding: 0 3rem;border-right: none;">Date</th>
                     </tr>
                 </thead>
