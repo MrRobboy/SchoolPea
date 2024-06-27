@@ -1,8 +1,16 @@
 <?php
+session_start();
 include 'db.php';
 include 'header.php';
 
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 $id_cours = $_GET['id_cours'];
+$id_user = $_SESSION['user_id'];
 
 // Exemple en supposant que $dbh est l'objet de connexion PDO
 $sql = "SELECT * FROM COURS WHERE id_COURS = ?";
@@ -13,7 +21,7 @@ if ($stmt->rowCount() > 0) {
     $cours = $stmt->fetch(PDO::FETCH_ASSOC);
     echo "<h2>" . htmlspecialchars($cours['nom']) . "</h2>";
     echo "<p>Niveau : " . htmlspecialchars($cours['niveau']) . "</p>";
-    echo "<div class='cours-description'>" . htmlspecialchars($cours['description']) . "</div>";  // Afficher la description du cours
+    echo "<div class='cours-description'>" . htmlspecialchars($cours['description']) . "</div>";
 
     // Bouton pour générer le PDF du cours
     echo '<a href="downloadPdf.php?id_cours=' . $id_cours . '" class="button">Télécharger le PDF</a>';
@@ -68,7 +76,7 @@ function followCourse(id_cours) {
     $.ajax({
         type: "POST",
         url: "followCourse.php",
-        data: { id_cours: id_cours },
+        data: { id_cours: id_cours, id_user: <?php echo $id_user; ?> },
         success: function(response) {
             alert(response); // Affiche le message de succès ou d'erreur
         },
