@@ -1,13 +1,11 @@
 <?php
 session_start();
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= '/BackOffice/Includes/headerBackOffice.php';
-include($path);
-$path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
-
-
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackOffice/Includes/headerBackOffice.php';
+include($path);
 $dbh->exec('USE PA');
 $stmt = $dbh->query("SELECT * FROM USER");
 $users = $stmt->fetchAll();
@@ -21,7 +19,7 @@ $users = $stmt->fetchAll();
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Classement/classement.css">
 </head>
 
-<body>
+<body style="padding-left: 10em;">
     <div id="content" style="width: 95%;">
         <h1 style="margin-bottom: 0.5em;">Gestion des Utilisateurs</h1>
         <a href="add.php" class="btn add">Ajouter un utilisateur</a>
