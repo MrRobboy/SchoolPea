@@ -2,17 +2,18 @@
 require_once('db.php');
 include 'header.php';
 
-$id_cours = $_GET['id_cours'];
+session_start(); // Démarrage de la session si ce n'est pas déjà fait
 
-// Vérifier si l'ID du cours est spécifié dans l'URL
-if (!isset($id_cours)) {
+// Vérification de l'ID du cours dans l'URL
+if (!isset($_GET['id_cours'])) {
     echo "Erreur: ID de cours non spécifié.";
     include 'footer.php';
     exit();
 }
 
-// Exemple en supposant que $dbh est l'objet de connexion PDO
+$id_cours = $_GET['id_cours'];
 
+// Récupérer les détails du cours
 $sql = "SELECT * FROM COURS WHERE id_COURS = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$id_cours]);
@@ -25,8 +26,8 @@ if ($stmt->rowCount() > 0) {
 
     // Formulaire pour liker le cours
     ?>
-    <form action="likeCours.php" method="POST">
-        <input type="hidden" name="id_cours" value="<?php echo htmlspecialchars($id_cours); ?>">
+    <form action="voirCours.php?id_cours=<?php echo htmlspecialchars($id_cours); ?>" method="POST">
+        <input type="hidden" name="action" value="like">
         <button type="submit" class="button">Liker ce cours :=)</button>
     </form>
     <?php
@@ -40,7 +41,7 @@ if ($stmt->rowCount() > 0) {
     $stmt_section->execute([$id_cours]);
 
     if ($stmt_section->rowCount() > 0) {
-        while ($section = $stmt_section->fetch(PDO::FETCH_ASSOC)) { 
+        while ($section = $stmt_section->fetch(PDO::FETCH_ASSOC)) {
             echo "<h3>" . htmlspecialchars($section['titre']) . "</h3>";
 
             // Récupérer les titres liés à la section
@@ -70,6 +71,24 @@ if ($stmt->rowCount() > 0) {
     }
 } else {
     echo "Cours non trouvé.";
+}
+
+// Traitement de l'action de like
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'like') {
+    if (!isset($_SESSION['id_user'])) {
+        echo "Vous devez être connecté pour aimer un cours.";
+    } else {
+        $id_user = $_SESSION['id_user'];
+
+        // Insertion dans la table LIKES_COURS
+        $sql_like = "INSERT INTO LIKES_COURS (id_user, id_cours) VALUES (?, ?)";
+        $stmt_like = $dbh->prepare($sql_like);
+        $stmt_like->execute([$id_user, $id_cours]);
+
+        // Rafraîchir la page pour refléter le nouveau like
+        header("Refresh:0");
+        exit();
+    }
 }
 
 include 'footer.php';
