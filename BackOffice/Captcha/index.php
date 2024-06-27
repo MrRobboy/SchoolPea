@@ -40,16 +40,16 @@ $questions = $stmt->fetchAll();
                 <tbody>
                     <?php foreach ($questions as $question) : ?>
                         <tr>
-                            <td class="not_right"><?php echo $user['id_CAPTCHA']; ?></td>
-                            <td class="not_right"><?php echo $user['question']; ?></td>
-                            <td class="not_right"><?php echo $user['reponse1']; ?></td>
-                            <td class="not_right"><?php echo $user['reponse2']; ?></td>
-                            <td class="not_right"><?php echo $user['reponse3']; ?></td>
-                            <td class="not_right"><?php echo $user['reponse4']; ?></td>
-                            <td class="not_right"><?php echo $user['reponse5']; ?></td>
+                            <td class="not_right"><?php echo $question['id_CAPTCHA']; ?></td>
+                            <td class="not_right"><?php echo $question['question']; ?></td>
+                            <td class="not_right"><?php echo $question['reponse1']; ?></td>
+                            <td class="not_right"><?php echo $question['reponse2']; ?></td>
+                            <td class="not_right"><?php echo $question['reponse3']; ?></td>
+                            <td class="not_right"><?php echo $question['reponse4']; ?></td>
+                            <td class="not_right"><?php echo $question['reponse5']; ?></td>
                             <td>
-                                <a href="edit.php?id=<?php echo $user['id_CAPTCHA']; ?>" class="btn modify">Modifier</a>
-                                <a href="delete.php?id=<?php echo $user['id_CAPTCHA']; ?>" class="btn del">Supprimer</a>
+                                <a href="edit.php?id=<?php echo $question['id_CAPTCHA']; ?>" class="btn modify">Modifier</a>
+                                <a href="delete.php?id=<?php echo $question['id_CAPTCHA']; ?>" class="btn del">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
