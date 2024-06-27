@@ -1,10 +1,18 @@
 <?php
-include 'db.php';
+require_once('db.php');
 include 'header.php';
 
 $id_cours = $_GET['id_cours'];
 
+// Vérifier si l'ID du cours est spécifié dans l'URL
+if (!isset($id_cours)) {
+    echo "Erreur: ID de cours non spécifié.";
+    include 'footer.php';
+    exit();
+}
+
 // Exemple en supposant que $dbh est l'objet de connexion PDO
+
 $sql = "SELECT * FROM COURS WHERE id_COURS = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$id_cours]);
@@ -16,10 +24,12 @@ if ($stmt->rowCount() > 0) {
     echo "<div class='cours-description'>" . htmlspecialchars($cours['description']) . "</div>";
 
     // Formulaire pour liker le cours
-    echo '<form action="likeCours.php" method="POST">';
-    echo '<input type="hidden" name="id_cours" value="' . htmlspecialchars($id_cours) . '">';
-    echo '<button type="submit" class="button">Liker ce cours :=)</button>';
-    echo '</form>';
+    ?>
+    <form action="likeCours.php" method="POST">
+        <input type="hidden" name="id_cours" value="<?php echo htmlspecialchars($id_cours); ?>">
+        <button type="submit" class="button">Liker ce cours :=)</button>
+    </form>
+    <?php
 
     // Bouton pour générer le PDF du cours
     echo '<a href="downloadPdf.php?id_cours=' . $id_cours . '" class="button">Télécharger le PDF</a>';
