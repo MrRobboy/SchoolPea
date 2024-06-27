@@ -20,7 +20,7 @@ body {
     flex-direction: column;
     padding-top: 80px;
     /* Pour éviter que le contenu soit caché sous le header fixe */
-    margin: 0;
+    margin: 2em;
     min-height: 100vh;
     /* Hauteur minimum de la page pour assurer le dégradé complet */
 }
