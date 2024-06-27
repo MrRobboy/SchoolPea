@@ -1,5 +1,5 @@
 <?php
-require_once 'tcpdf/tcpdf.php';
+require_once '../BackEnd/vendor/tecnickcom/tcpdf/tcpdf.php';
 include 'db.php';
 
 $id_cours = $_GET['id_cours'];
