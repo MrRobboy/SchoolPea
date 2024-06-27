@@ -15,11 +15,14 @@ if ($stmt->rowCount() > 0) {
     echo "<p>Niveau : " . htmlspecialchars($cours['niveau']) . "</p>";
     echo "<div class='cours-description'>" . htmlspecialchars($cours['description']) . "</div>";
 
+    // Formulaire pour liker le cours
+    echo '<form action="likeCours.php" method="POST">';
+    echo '<input type="hidden" name="id_cours" value="' . htmlspecialchars($id_cours) . '">';
+    echo '<button type="submit" class="button">Liker ce cours :=)</button>';
+    echo '</form>';
+
     // Bouton pour générer le PDF du cours
     echo '<a href="downloadPdf.php?id_cours=' . $id_cours . '" class="button">Télécharger le PDF</a>';
-    //Bouton pour liker un cours 
-    echo '<a href="likeCours.php?id_cours=' . $id_cours . '" class="button">Liker ce cours :=)</a>';
-
 
     // Récupérer les sections liées au cours
     $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
