@@ -140,19 +140,23 @@ $dbh = null; // Fermeture de la connexion PDO
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Cours</title>
     <style>
-        .section {
+        .section, .titre, .paragraphe {
             margin-bottom: 20px;
             border: 1px solid #ccc;
             padding: 10px;
+            position: relative;
         }
-        .titres {
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .section .titre, .titre .paragraphe {
             margin-top: 10px;
-            border: 1px solid #eee;
-            padding: 5px;
-        }
-        .paragraphes {
-            margin-top: 5px;
-            padding: 5px;
         }
     </style>
 </head>
@@ -194,6 +198,16 @@ $dbh = null; // Fermeture de la connexion PDO
             var newSection = document.createElement('div');
             newSection.className = 'section';
 
+            // Bouton pour supprimer la section
+            var removeSectionBtn = document.createElement('button');
+            removeSectionBtn.textContent = 'Supprimer la Section';
+            removeSectionBtn.type = 'button';
+            removeSectionBtn.className = 'remove-btn';
+            removeSectionBtn.onclick = function() {
+                sectionsDiv.removeChild(newSection);
+            };
+            newSection.appendChild(removeSectionBtn);
+
             // Création du champ de titre de la section
             var titreSectionLabel = document.createElement('label');
             titreSectionLabel.textContent = 'Titre de la section :';
@@ -215,14 +229,24 @@ $dbh = null; // Fermeture de la connexion PDO
             // Écouteur d'événement pour ajouter un titre à cette section
             ajouterTitreBtn.addEventListener('click', function() {
                 var titresDiv = document.createElement('div');
-                titresDiv.className = 'titres';
+                titresDiv.className = 'titre';
+
+                // Bouton pour supprimer le titre
+                var removeTitreBtn = document.createElement('button');
+                removeTitreBtn.textContent = 'Supprimer le Titre';
+                removeTitreBtn.type = 'button';
+                removeTitreBtn.className = 'remove-btn';
+                removeTitreBtn.onclick = function() {
+                    newSection.removeChild(titresDiv);
+                };
+                titresDiv.appendChild(removeTitreBtn);
 
                 // Création du champ de titre
                 var titreLabel = document.createElement('label');
                 titreLabel.textContent = 'Titre :';
                 var titreInput = document.createElement('input');
                 titreInput.type = 'text';
-                titreInput.name = 'sections[' + nextSectionIndex + '][titres][' + newSection.getElementsByClassName('titres').length + '][titre]';
+                titreInput.name = 'sections[' + nextSectionIndex + '][titres][' + newSection.getElementsByClassName('titre').length + '][titre]';
                 titreInput.required = true;
 
                 // Ajout du champ de titre à la section
@@ -239,14 +263,23 @@ $dbh = null; // Fermeture de la connexion PDO
                 // Écouteur d'événement pour ajouter un paragraphe à ce titre
                 ajouterParagrapheBtn.addEventListener('click', function() {
                     var paragraphesDiv = document.createElement('div');
-                    paragraphesDiv.className = 'paragraphes';
+                    paragraphesDiv.className = 'paragraphe';
+
+                    // Bouton pour supprimer le paragraphe
+                    var removeParagrapheBtn = document.createElement('button');
+                    removeParagrapheBtn.textContent = 'Supprimer le Paragraphe';
+                    removeParagrapheBtn.type = 'button';
+                    removeParagrapheBtn.className = 'remove-btn';
+                    removeParagrapheBtn.onclick = function() {
+                        titresDiv.removeChild(paragraphesDiv);
+                    };
+                    paragraphesDiv.appendChild(removeParagrapheBtn);
 
                     // Création du champ de paragraphe
                     var paragrapheLabel = document.createElement('label');
                     paragrapheLabel.textContent = 'Paragraphe :';
                     var paragrapheTextarea = document.createElement('textarea');
-                    paragrapheTextarea.name = 'sections[' + nextSectionIndex + '][titres][' + titresDiv.getElementsByClassName('paragraphes').length + '][paragraphes][]';
-                    paragrapheTextarea.required = true;
+                    paragrapheTextarea.name = 'sections[' + nextSectionIndex + '][titres][' + newSection.getElementsByClassName('titre').length + '][paragraphes][]';
 
                     // Ajout du champ de paragraphe au titre
                     paragraphesDiv.appendChild(paragrapheLabel);
