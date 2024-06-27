@@ -3,6 +3,13 @@ session_start();
 include 'db.php';
 
 $id_cours = $_POST['id_cours'];
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    echo "Vous devez être connecté pour suivre ce cours.";
+    exit();
+}
+
 $id_user = $_SESSION['user_id']; // Récupère l'ID de l'utilisateur à partir de la session
 
 $sql = "INSERT INTO LIKES_COURS (id_user, id_cours) VALUES (:id_user, :id_cours)";
