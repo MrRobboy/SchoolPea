@@ -1,25 +1,26 @@
 <?php
-session_start();
 include 'db.php';
 
 $id_cours = $_POST['id_cours'];
+$id_user = $_POST['id_user'];
 
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    echo "Vous devez être connecté pour suivre ce cours.";
-    exit();
-}
+// Vérifier si le cours est déjà suivi
+$sql_check = "SELECT * FROM LIKES_COURS WHERE id_user = :id_user AND id_cours = :id_cours";
+$stmt_check = $dbh->prepare($sql_check);
+$stmt_check->bindParam(':id_user', $id_user);
+$stmt_check->bindParam(':id_cours', $id_cours);
+$stmt_check->execute();
 
-$id_user = $_SESSION['user_id']; // Récupère l'ID de l'utilisateur à partir de la session
+if ($stmt_check->rowCount() == 0) {
+    // Insérer dans LIKES_COURS
+    $sql = "INSERT INTO LIKES_COURS (id_user, id_cours) VALUES (:id_user, :id_cours)";
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':id_user', $id_user);
+    $stmt->bindParam(':id_cours', $id_cours);
+    $stmt->execute();
 
-$sql = "INSERT INTO LIKES_COURS (id_user, id_cours) VALUES (:id_user, :id_cours)";
-$stmt = $dbh->prepare($sql);
-$stmt->bindParam(':id_user', $id_user);
-$stmt->bindParam(':id_cours', $id_cours);
-
-if ($stmt->execute()) {
-    echo "Cours ajouté à vos suivis avec succès.";
+    echo "Cours suivi avec succès.";
 } else {
-    echo "Erreur lors de l'ajout du cours à vos suivis.";
+    echo "Vous suivez déjà ce cours.";
 }
 ?>
