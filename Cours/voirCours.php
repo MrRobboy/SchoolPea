@@ -1,17 +1,8 @@
 <?php
-session_start(); // Démarrer la session
 include 'db.php';
 include 'header.php';
 
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    // Rediriger vers la page de connexion ou afficher un message d'erreur
-    header("Location: login.php");
-    exit(); // Arrêter l'exécution du script après la redirection
-}
-
 $id_cours = $_GET['id_cours'];
-$id_user = $_SESSION['user_id']; // Récupérer l'ID de l'utilisateur à partir de la session
 
 // Exemple en supposant que $dbh est l'objet de connexion PDO
 $sql = "SELECT * FROM COURS WHERE id_COURS = ?";
@@ -77,7 +68,7 @@ function followCourse(id_cours) {
     $.ajax({
         type: "POST",
         url: "followCourse.php",
-        data: { id_cours: id_cours, id_user: <?php echo $id_user; ?> },
+        data: { id_cours: id_cours },
         success: function(response) {
             alert(response); // Affiche le message de succès ou d'erreur
         },
