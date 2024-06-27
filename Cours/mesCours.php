@@ -34,6 +34,7 @@ $liked_courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h3><?php echo htmlspecialchars($course['nom']); ?></h3>
                         <p>Niveau : <?php echo htmlspecialchars($course['niveau']); ?></p>
                         <p>Description : <?php echo htmlspecialchars($course['description']); ?></p>
+                        <a href="voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
