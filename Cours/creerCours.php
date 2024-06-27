@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Insérer les sections, titres et paragraphes
                 if (!empty($_POST['sections']) && is_array($_POST['sections'])) {
-                    foreach ($_POST['sections'] as $sectionIndex => $section) {
+                    foreach ($_POST['sections'] as $section) {
                         // Insertion de la section dans SECTIONS
                         if (isset($section['titre']) && !empty($section['titre'])) {
                             $sql_insert_section = "INSERT INTO SECTIONS (id_cours, titre)
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $id_section = $dbh->lastInsertId();
 
                             if (isset($section['titres']) && is_array($section['titres'])) {
-                                foreach ($section['titres'] as $titreIndex => $titre) {
+                                foreach ($section['titres'] as $titre) {
                                     if (isset($titre['titre']) && !empty($titre['titre'])) {
                                         // Insérer le titre dans TITRE
                                         $sql_insert_titre = "INSERT INTO TITRE (id_section, titre)
@@ -91,26 +91,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     $stmt_insert_paragraphe->bindValue(':id_titre', $id_titre, PDO::PARAM_INT);
                                                     $stmt_insert_paragraphe->bindValue(':contenu_paragraphe', $paragraphe, PDO::PARAM_STR);
                                                     $stmt_insert_paragraphe->execute();
-                                                } else {
-                                                    echo "Paragraphe vide trouvé, pas d'insertion pour ce paragraphe.<br>";
                                                 }
                                             }
-                                        } else {
-                                            echo "Aucun paragraphe trouvé pour le titre: " . $titre['titre'] . "<br>";
                                         }
-                                    } else {
-                                        echo "Titre vide ou non défini trouvé dans une section.<br>";
                                     }
                                 }
-                            } else {
-                                echo "Aucun titre trouvé pour la section: " . $section['titre'] . "<br>";
                             }
-                        } else {
-                            echo "Titre de section vide ou non défini trouvé.<br>";
                         }
                     }
-                } else {
-                    echo "Aucune section trouvée dans les données POST.<br>";
                 }
 
                 // Valider la transaction
@@ -197,102 +185,111 @@ $dbh = null; // Fermeture de la connexion PDO
 
             var newSection = document.createElement('div');
             newSection.className = 'section';
-
-            // Bouton pour supprimer la section
-            var removeSectionBtn = document.createElement('button');
-            removeSectionBtn.textContent = 'Supprimer la Section';
-            removeSectionBtn.type = 'button';
-            removeSectionBtn.className = 'remove-btn';
-            removeSectionBtn.onclick = function() {
+                      // Bouton pour supprimer la section
+                      var removeSectionButton = document.createElement('button');
+            removeSectionButton.className = 'remove-btn';
+            removeSectionButton.type = 'button';
+            removeSectionButton.textContent = 'Supprimer';
+            removeSectionButton.onclick = function() {
                 sectionsDiv.removeChild(newSection);
             };
-            newSection.appendChild(removeSectionBtn);
+            newSection.appendChild(removeSectionButton);
 
-            // Création du champ de titre de la section
-            var titreSectionLabel = document.createElement('label');
-            titreSectionLabel.textContent = 'Titre de la section :';
-            var titreSectionInput = document.createElement('input');
-            titreSectionInput.type = 'text';
-            titreSectionInput.name = 'sections[' + nextSectionIndex + '][titre]';
-            titreSectionInput.required = true;
+            // Champ de titre de la section
+            var sectionTitleInput = document.createElement('input');
+            sectionTitleInput.type = 'text';
+            sectionTitleInput.name = 'sections[' + nextSectionIndex + '][titre]';
+            sectionTitleInput.placeholder = 'Titre de la Section';
+            sectionTitleInput.required = true;
+            newSection.appendChild(sectionTitleInput);
 
-            newSection.appendChild(titreSectionLabel);
-            newSection.appendChild(titreSectionInput);
+            // Bouton pour ajouter un titre
+            var addTitleButton = document.createElement('button');
+            addTitleButton.type = 'button';
+            addTitleButton.textContent = 'Ajouter un Titre';
+            addTitleButton.onclick = function() {
+                addTitle(newSection, nextSectionIndex);
+            };
+            newSection.appendChild(addTitleButton);
 
-            // Ajout du bouton pour ajouter un titre à la section
-            var ajouterTitreBtn = document.createElement('button');
-            ajouterTitreBtn.textContent = 'Ajouter un titre';
-            ajouterTitreBtn.type = 'button';
-            ajouterTitreBtn.className = 'ajouter_titre';
-            newSection.appendChild(ajouterTitreBtn);
-
-            // Écouteur d'événement pour ajouter un titre à cette section
-            ajouterTitreBtn.addEventListener('click', function() {
-                var titresDiv = document.createElement('div');
-                titresDiv.className = 'titre';
-
-                // Bouton pour supprimer le titre
-                var removeTitreBtn = document.createElement('button');
-                removeTitreBtn.textContent = 'Supprimer le Titre';
-                removeTitreBtn.type = 'button';
-                removeTitreBtn.className = 'remove-btn';
-                removeTitreBtn.onclick = function() {
-                    newSection.removeChild(titresDiv);
-                };
-                titresDiv.appendChild(removeTitreBtn);
-
-                // Création du champ de titre
-                var titreLabel = document.createElement('label');
-                titreLabel.textContent = 'Titre :';
-                var titreInput = document.createElement('input');
-                titreInput.type = 'text';
-                titreInput.name = 'sections[' + nextSectionIndex + '][titres][' + newSection.getElementsByClassName('titre').length + '][titre]';
-                titreInput.required = true;
-
-                // Ajout du champ de titre à la section
-                titresDiv.appendChild(titreLabel);
-                titresDiv.appendChild(titreInput);
-
-                // Ajout du bouton pour ajouter un paragraphe à ce titre
-                var ajouterParagrapheBtn = document.createElement('button');
-                ajouterParagrapheBtn.textContent = 'Ajouter un paragraphe';
-                ajouterParagrapheBtn.type = 'button';
-                ajouterParagrapheBtn.className = 'ajouter_paragraphe';
-                titresDiv.appendChild(ajouterParagrapheBtn);
-
-                // Écouteur d'événement pour ajouter un paragraphe à ce titre
-                ajouterParagrapheBtn.addEventListener('click', function() {
-                    var paragraphesDiv = document.createElement('div');
-                    paragraphesDiv.className = 'paragraphe';
-
-                    // Bouton pour supprimer le paragraphe
-                    var removeParagrapheBtn = document.createElement('button');
-                    removeParagrapheBtn.textContent = 'Supprimer le Paragraphe';
-                    removeParagrapheBtn.type = 'button';
-                    removeParagrapheBtn.className = 'remove-btn';
-                    removeParagrapheBtn.onclick = function() {
-                        titresDiv.removeChild(paragraphesDiv);
-                    };
-                    paragraphesDiv.appendChild(removeParagrapheBtn);
-
-                    // Création du champ de paragraphe
-                    var paragrapheLabel = document.createElement('label');
-                    paragrapheLabel.textContent = 'Paragraphe :';
-                    var paragrapheTextarea = document.createElement('textarea');
-                    paragrapheTextarea.name = 'sections[' + nextSectionIndex + '][titres][' + newSection.getElementsByClassName('titre').length + '][paragraphes][]';
-
-                    // Ajout du champ de paragraphe au titre
-                    paragraphesDiv.appendChild(paragrapheLabel);
-                    paragraphesDiv.appendChild(paragrapheTextarea);
-
-                    titresDiv.appendChild(paragraphesDiv);
-                });
-
-                newSection.appendChild(titresDiv);
-            });
+            // Conteneur pour les titres
+            var titlesDiv = document.createElement('div');
+            titlesDiv.className = 'titles';
+            newSection.appendChild(titlesDiv);
 
             sectionsDiv.appendChild(newSection);
         });
+
+        function addTitle(sectionDiv, sectionIndex) {
+            var titlesDiv = sectionDiv.querySelector('.titles');
+            var nextTitleIndex = titlesDiv.children.length; // Index du prochain titre à ajouter
+
+            var newTitle = document.createElement('div');
+            newTitle.className = 'titre';
+
+            // Bouton pour supprimer le titre
+            var removeTitleButton = document.createElement('button');
+            removeTitleButton.className = 'remove-btn';
+            removeTitleButton.type = 'button';
+            removeTitleButton.textContent = 'Supprimer';
+            removeTitleButton.onclick = function() {
+                titlesDiv.removeChild(newTitle);
+            };
+            newTitle.appendChild(removeTitleButton);
+
+            // Champ de titre
+            var titleInput = document.createElement('input');
+            titleInput.type = 'text';
+            titleInput.name = 'sections[' + sectionIndex + '][titres][' + nextTitleIndex + '][titre]';
+            titleInput.placeholder = 'Titre';
+            titleInput.required = false;
+            newTitle.appendChild(titleInput);
+
+            // Bouton pour ajouter un paragraphe
+            var addParagrapheButton = document.createElement('button');
+            addParagrapheButton.type = 'button';
+            addParagrapheButton.textContent = 'Ajouter un Paragraphe';
+            addParagrapheButton.onclick = function() {
+                addParagraphe(newTitle, sectionIndex, nextTitleIndex);
+            };
+            newTitle.appendChild(addParagrapheButton);
+
+            // Conteneur pour les paragraphes
+            var paragraphesDiv = document.createElement('div');
+            paragraphesDiv.className = 'paragraphes';
+            newTitle.appendChild(paragraphesDiv);
+
+            titlesDiv.appendChild(newTitle);
+        }
+
+        function addParagraphe(titleDiv, sectionIndex, titleIndex) {
+            var paragraphesDiv = titleDiv.querySelector('.paragraphes');
+            var nextParagrapheIndex = paragraphesDiv.children.length; // Index du prochain paragraphe à ajouter
+
+            var newParagraphe = document.createElement('div');
+            newParagraphe.className = 'paragraphe';
+
+            // Bouton pour supprimer le paragraphe
+            var removeParagrapheButton = document.createElement('button');
+            removeParagrapheButton.className = 'remove-btn';
+            removeParagrapheButton.type = 'button';
+            removeParagrapheButton.textContent = 'Supprimer';
+            removeParagrapheButton.onclick = function() {
+                paragraphesDiv.removeChild(newParagraphe);
+            };
+            newParagraphe.appendChild(removeParagrapheButton);
+
+            // Champ de paragraphe
+            var paragrapheTextarea = document.createElement('textarea');
+            paragrapheTextarea.name = 'sections[' + sectionIndex + '][titres][' + titleIndex + '][paragraphes][' + nextParagrapheIndex + ']';
+            paragrapheTextarea.placeholder = 'Paragraphe';
+            paragrapheTextarea.rows = 4;
+            paragrapheTextarea.required = false;
+            newParagraphe.appendChild(paragrapheTextarea);
+
+            paragraphesDiv.appendChild(newParagraphe);
+        }
     </script>
 </body>
 </html>
+  
