@@ -28,12 +28,12 @@ $questions = $stmt->fetchAll();
                 <thead>
                     <tr>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID</th>
-                        <th style="padding: 0 5rem;border-right: solid 0.3rem white;">Question</th>
-                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse1</th>
-                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse2</th>
-                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse3</th>
-                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse4</th>
-                        <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Reponse5</th>
+                        <th style="padding: 0 4rem;border-right: solid 0.3rem white;">Question</th>
+                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse1</th>
+                        <th style="padding: 0 0.7rem1rem;border-right: solid 0.3rem white;">Reponse2</th>
+                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse3</th>
+                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse4</th>
+                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse5</th>
                         <th style="padding: 0 4rem;border-right: none;">Actions</th>
                     </tr>
                 </thead>
