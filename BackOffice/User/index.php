@@ -28,11 +28,11 @@ $users = $stmt->fetchAll();
                 <thead>
                     <tr>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID</th>
-                        <th style="padding: 0 3rem;border-right: solid 0.3rem white;">Nom</th>
-                        <th style="padding: 0 3rem;border-right: solid 0.3rem white;">Prenom</th>
-                        <th style="padding: 0 4rem;border-right: solid 0.3rem white;">Email</th>
+                        <th style="padding: 0 2rem;border-right: solid 0.3rem white;">Nom</th>
+                        <th style="padding: 0 2rem;border-right: solid 0.3rem white;">Prenom</th>
+                        <th style="padding: 0 3rem;border-right: solid 0.3rem white;">Email</th>
                         <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Rôle</th>
-                        <th style="padding: 0 4rem;border-right: none;">Actions</th>
+                        <th style="padding: 0 6rem;border-right: none;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
