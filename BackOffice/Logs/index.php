@@ -3,9 +3,9 @@ session_start();
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
-$auth = $_SERVER['DOCUMENT_ROOT'];
-$auth .= '/BackEnd/Includes/auth.php';
-include($auth);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackOffice/Includes/headerBackOffice.php';
+include($path);
 $dbh->exec('USE PA');
 $stmt = $dbh->query("SELECT * FROM LOGS ORDER BY time DESC");
 $logs = $stmt->fetchAll();
@@ -19,7 +19,7 @@ $logs = $stmt->fetchAll();
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Classement/classement.css">
 </head>
 
-<body>
+<body style="padding-left: 10em;">
     <div id="content">
         <h1>Visualisation des Logs</h1>
         <div id="table-classement">
@@ -28,7 +28,7 @@ $logs = $stmt->fetchAll();
                     <tr>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID_LOGS</th>
                         <th style="padding: 0 1rem;border-right: solid 0.3rem white;">ID_Utilisateur</th>
-                        <th style="padding: 0 7rem;border-right: solid 0.3rem white;">Action</th>
+                        <th style="padding: 0 5rem;border-right: solid 0.3rem white;">Action</th>
                         <th style="padding: 0 3rem;border-right: none;">Date</th>
                     </tr>
                 </thead>

@@ -9,16 +9,18 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: linear-gradient(180deg,
-            rgba(92, 107, 192, 1) 0%,
-            rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(
+        180deg,
+        rgba(92, 107, 192, 1) 0%,
+        rgba(255, 255, 255, 1) 100%
+    );
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding-top: 80px;
     /* Pour éviter que le contenu soit caché sous le header fixe */
-    margin: 0;
+    margin: 2em;
     min-height: 100vh;
     /* Hauteur minimum de la page pour assurer le dégradé complet */
 }
@@ -33,9 +35,9 @@ h1 {
 #content {
     width: 80%;
     /* Utilisation de 80% de la largeur disponible */
-    max-width: 1200px;
+    max-width: 85%;
     /* Limite la largeur maximale du contenu */
-    margin: 1.5rem auto;
+    margin: 1.5rem;
     /* Centre le contenu horizontalement avec un espacement autour */
     background-color: rgba(255, 255, 255, 0.9);
     /* Fond blanc semi-transparent */

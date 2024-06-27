@@ -1,11 +1,12 @@
 <?php
 session_start();
-$auth = $_SERVER['DOCUMENT_ROOT'];
-$auth .= '/BackEnd/Includes/auth.php';
-include($auth);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackOffice/Includes/headerBackOffice.php';
+include($path);
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
+
 
 $dbh->exec('USE PA');
 $stmt = $dbh->query("SELECT * FROM USER");
