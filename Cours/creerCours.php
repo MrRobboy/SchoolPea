@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 // Insérer les sections, titres et paragraphes
                 if (!empty($_POST['sections']) && is_array($_POST['sections'])) {
-                    foreach ($_POST['sections'] as $section) {
+                    foreach ($_POST['sections'] as $sectionIndex => $section) {
                         // Insertion de la section dans SECTIONS
                         if (isset($section['titre']) && !empty($section['titre'])) {
                             $sql_insert_section = "INSERT INTO SECTIONS (id_cours, titre)
@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $id_section = $dbh->lastInsertId();
 
                             if (isset($section['titres']) && is_array($section['titres'])) {
-                                foreach ($section['titres'] as $titre) {
+                                foreach ($section['titres'] as $titreIndex => $titre) {
                                     if (isset($titre['titre']) && !empty($titre['titre'])) {
                                         // Insérer le titre dans TITRE
                                         $sql_insert_titre = "INSERT INTO TITRE (id_section, titre)
@@ -133,9 +133,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 $dbh = null; // Fermeture de la connexion PDO
 ?>
-
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -248,7 +245,7 @@ $dbh = null; // Fermeture de la connexion PDO
                     var paragrapheLabel = document.createElement('label');
                     paragrapheLabel.textContent = 'Paragraphe :';
                     var paragrapheTextarea = document.createElement('textarea');
-                    paragrapheTextarea.name = 'sections[' + nextSectionIndex + '][titres][' + newSection.getElementsByClassName('titres').length + '][paragraphes][]';
+                    paragrapheTextarea.name = 'sections[' + nextSectionIndex + '][titres][' + titresDiv.getElementsByClassName('paragraphes').length + '][paragraphes][]';
                     paragrapheTextarea.required = true;
 
                     // Ajout du champ de paragraphe au titre
