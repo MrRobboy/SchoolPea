@@ -72,10 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 foreach ($section['titres'] as $titre) {
                                     if (isset($titre['titre']) && !empty($titre['titre'])) {
                                         // Insérer le titre dans TITRE
-                                        $sql_insert_titre = "INSERT INTO TITRE (id_cours, titre)
-                                                            VALUES (:id_cours, :titre_titre)";
+                                        $sql_insert_titre = "INSERT INTO TITRE (id_section, titre)
+                                                            VALUES (:id_section, :titre_titre)";
                                         $stmt_insert_titre = $dbh->prepare($sql_insert_titre);
-                                        $stmt_insert_titre->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
+                                        $stmt_insert_titre->bindValue(':id_section', $id_section, PDO::PARAM_INT);
                                         $stmt_insert_titre->bindValue(':titre_titre', $titre['titre'], PDO::PARAM_STR);
                                         $stmt_insert_titre->execute();
                                         $id_titre = $dbh->lastInsertId();
@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     }
                                 }
                             }
-                        }
+                        } 
                     }
                 }
 
