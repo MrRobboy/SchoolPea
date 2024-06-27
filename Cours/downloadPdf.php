@@ -30,7 +30,7 @@ if ($stmt->rowCount() > 0) {
             $pdf->SetFont('helvetica', 'B', 16);
             $pdf->Cell(0, 10, $section['titre'], 0, 1);
             $pdf->SetFont('helvetica', '', 12);
-            
+
             $id_section = $section['id_section'];
             $sql_titre = "SELECT * FROM TITRE WHERE id_section = ?";
             $stmt_titre = $dbh->prepare($sql_titre);
