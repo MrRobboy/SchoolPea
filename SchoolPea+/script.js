@@ -37,7 +37,7 @@ form.addEventListener('submit', function(event) {
         } else {
             // Envoi des données au serveur (ex: via fetch ou XMLHttpRequest)
             var paymentMethodId = result.paymentMethod.id;
-            fetch('/create-subscription', {
+            fetch('/checkout.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ form.addEventListener('submit', function(event) {
             }).then(function(result) {
                 // Gestion de la réponse du serveur (ex: redirection)
                 console.log(result);
-                window.location.href = '/success.html';
+                window.location.href = '/success.php';
             });
         }
     });
