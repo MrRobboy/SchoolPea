@@ -40,7 +40,7 @@ $courss = $stmt->fetchAll();
                             <td class="not_right"><?php echo $cours['id_COURS']; ?></td>
                             <td class="not_right"><?php echo $cours['nom']; ?></td>
                             <td class="not_right"><?php echo $cours['niveau']; ?></td>
-                            <td class="not_right"><?php echo $cours['path_contenu']; ?></td>
+                            <td class="not_right"><?php echo $cours['description']; ?></td>
 
                             <td>
                                 <a href="edit.php?id=<?php echo $cours['id_COURS']; ?>" class="btn modify">Modifier</a>
