@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Rediriger l'utilisateur vers la page des cours aimés
-    header('Location: likedCourses.php');
+    header('Location: mesCours.php');
     exit();
 } else {
     echo "Requête invalide.";
