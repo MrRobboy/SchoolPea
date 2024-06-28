@@ -31,7 +31,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 
     <span class="trait" id="SchoolPea"></span>
 
-    <main>
+    <div id="div1">
         <h1>Explorer les Cours</h1>
         <input type="text" id="search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
         <div class="courses" id="course_list">
@@ -51,7 +51,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
                 <p>Aucun cours disponible.</p>
             <?php endif; ?>
         </div>
-    </main>
+    </div>
     <script>
         function searchCourses() {
             let input = document.getElementById('search').value.toLowerCase();
