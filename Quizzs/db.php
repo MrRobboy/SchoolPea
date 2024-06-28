@@ -1,14 +1,14 @@
 <?php
-$dsn = 'mysql:host=localhost;dbname=PA;charset=utf8mb4';
+$host = 'localhost'; // ou votre hôte de base de données
+$dbname = 'PA';
 $username = 'root';
 $password = 'root';
 
-// Create a new PDO instance
 try {
-    $dbh = new PDO($dsn, $username, $password);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Activer les exceptions PDO
-    $dbh->setAttribute(PDO::ATTR_EMULATE_PREPARES, false); // Désactiver l'émulation des requêtes préparées
+    $dbh = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    // Définir le mode d'erreur PDO à exception
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
-    echo 'Connection failed: ' . $e->getMessage();
-    exit;
+    echo "Erreur de connexion : " . $e->getMessage();
+    exit(); // Arrêter le script en cas d'erreur de connexion
 }
