@@ -15,10 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':id_user', $id_user);
     $stmt->bindParam(':id_cours', $id_cours);
     if ($stmt->execute()) {
-        echo "Cours retiré de vos suivis avec succès.";
+        $_SESSION['message'] = "Cours retiré de vos suivis avec succès.";
     } else {
-        echo "Erreur lors du retrait du cours.";
+        $_SESSION['message'] = "Erreur lors du retrait du cours.";
     }
+
+    // Rediriger l'utilisateur vers la page des cours aimés
+    header('Location: mesCours.php');
+    exit();
 } else {
     echo "Requête invalide.";
 }
