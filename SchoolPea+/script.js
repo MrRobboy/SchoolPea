@@ -4,7 +4,14 @@ var stripe = Stripe('pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVew
 ///clé public : pk_live_51PMPWY04hLVR8JEwxX6LQLdLVsp7iMDvk9Pst8lVlz0PV5xqY3S4AahKWbeVkvSdWf9KA5DyQtMEcBnFmZSCWAxd00PCDKAU8D
 
 // Créez une instance de Stripe
+// Créez une instance d'elements
+var elements = stripe.elements();
 
+// Créez un élément de carte
+var cardElement = elements.create('card');
+
+// Montez l'élément de carte dans le conteneur de l'élément de carte
+cardElement.mount('#card-element');
 // Lorsque l'utilisateur soumet le formulaire
 document.querySelector('#subscriptionForm').addEventListener('submit', function(e) {
     e.preventDefault();
