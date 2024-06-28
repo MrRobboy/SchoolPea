@@ -13,6 +13,15 @@ body {
     margin-top: 0em;
 }
 
+#div1 {
+    padding: 20px;
+    margin: 4em;
+}
+
+h1 {
+    text-align: center;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -26,11 +35,6 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
-}
-
-#div1 {
-    padding: 20px;
-    margin: 4em;
 }
 
 footer {
