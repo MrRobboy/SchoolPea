@@ -21,6 +21,23 @@ $liked_courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Cours Aimés</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function unfollowCourse(id_cours) {
+            $.ajax({
+                type: "POST",
+                url: "unfollowCourse.php",
+                data: { id_cours: id_cours },
+                success: function(response) {
+                    alert(response); // Affiche le message de succès ou d'erreur
+                    location.reload(); // Recharge la page pour mettre à jour la liste des cours
+                },
+                error: function(xhr, status, error) {
+                    console.error("Erreur lors de la requête AJAX : " + status, error);
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <header>
@@ -35,10 +52,11 @@ $liked_courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <p>Niveau : <?php echo htmlspecialchars($course['niveau']); ?></p>
                         <p>Description : <?php echo htmlspecialchars($course['description']); ?></p>
                         <a href="voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
+                        <button onclick="unfollowCourse(<?php echo $course['id_COURS']; ?>)">Ne plus suivre</button>
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
-                <p>Aucun cours suivi .</p>
+                <p>Aucun cours suivi.</p>
             <?php endif; ?>
         </div>
     </main>
