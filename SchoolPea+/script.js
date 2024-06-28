@@ -1,28 +1,27 @@
 var stripe = Stripe('pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVewdHsMszYSCDvwLBPx4UTeTipQXTWBI7mBo6A4R7000FL8jc2N');
 
-// Créez une instance d'elements
+// Create an instance of elements
 var elements = stripe.elements();
 
-// Créez un élément de carte
+// Create a card element
 var cardElement = elements.create('card');
 
-// Montez l'élément de carte dans le conteneur de l'élément de carte
+// Mount the card element into the card element container
 cardElement.mount('#card-element');
 
-// Lorsque l'utilisateur soumet le formulaire
+// Handle form submission
 document.querySelector('#subscriptionForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
-    // Créez un PaymentMethod avec les détails de la carte
     stripe.createPaymentMethod({
         type: 'card',
-        card: cardElement, // Utilisez l'objet cardElement ici
+        card: cardElement,
     }).then(function(result) {
         if (result.error) {
-            // Affichez les erreurs
+            // Display errors
             document.getElementById('card-errors').textContent = result.error.message;
         } else {
-            // Envoyez l'ID du PaymentMethod au serveur
+            // Send PaymentMethod ID to server
             fetch('./create-subscription.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -30,7 +29,13 @@ document.querySelector('#subscriptionForm').addEventListener('submit', function(
             }).then(function(response) {
                 return response.json();
             }).then(function(subscription) {
-                console.log('Subscription created!', subscription);
+                if (subscription.error) {
+                    document.getElementById('card-errors').textContent = subscription.error;
+                } else {
+                    console.log('Subscription created!', subscription);
+                    // Redirect to success page or show success message
+                    window.location.href = 'http://localhost/success.php?subscription_id=' + subscription.subscriptionId;
+                }
             });
         }
     });
