@@ -4,9 +4,15 @@ require 'sendEmail.php';
 
 \Stripe\Stripe::setApiKey('sk_test_51PMPWY04hLVR8JEws7Pq0AxyUa289HwfgjeZDtzjyRxltMxIx03LIPLpU6kBJH9G5oxsRaizMvQAinjeGOIFvXPM000NV4FfZY');
 
-
 $input = json_decode(file_get_contents('php://input'), true);
 $email = $input['email'];
+
+if (!isset($input['payment_method'])) {
+    http_response_code(400);
+    echo json_encode(['error' => 'payment_method is required']);
+    exit;
+}
+
 $paymentMethodId = $input['payment_method'];
 
 header('Content-Type: application/json');
@@ -23,46 +29,14 @@ try {
     $subscription = \Stripe\Subscription::create([
         'customer' => $customer->id,
         'items' => [
-            [
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => [
-                        'name' => 'SchoolPea Subscription',
-                    ],
-                    'unit_amount' => 999,
-                    'recurring' => [
-                        'interval' => 'month',
-                    ],
-                ],
-            ],
+            ['price' => 'price_1PWeTS04hLVR8JEwV8T0Ulh6'], // Remplacez 'your_price_id' par l'ID de votre prix
         ],
         'expand' => ['latest_invoice.payment_intent'],
     ]);
 
-    $session = \Stripe\Checkout\Session::create([
-        'payment_method_types' => ['card'],
-        'line_items' => [[
-            'price_data' => [
-                'currency' => 'eur',
-                'product_data' => [
-                    'name' => 'SchoolPea Subscription',
-                ],
-                'unit_amount' => 999,
-                'recurring' => [
-                    'interval' => 'month',
-                ],
-            ],
-            'quantity' => 1,
-        ]],
-        'mode' => 'subscription',
-        'success_url' => 'http://localhost/success.php?session_id={CHECKOUT_SESSION_ID}',
-        'cancel_url' => 'http://localhost/cancel.php',
-        'customer' => $customer->id,
-    ]);
-
     sendWelcomeEmail($email);
 
-    echo json_encode(['id' => $session->id]);
+    echo json_encode(['id' => $subscription->id]);
 } catch (Error $e) {
     http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
