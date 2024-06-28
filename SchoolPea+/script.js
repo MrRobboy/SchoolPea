@@ -1,56 +1,41 @@
-// Assurez-vous que Stripe est initialisé avec votre clé secrète
 var stripe = Stripe('pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVewdHsMszYSCDvwLBPx4UTeTipQXTWBI7mBo6A4R7000FL8jc2N');
-///clé test: pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVewdHsMszYSCDvwLBPx4UTeTipQXTWBI7mBo6A4R7000FL8jc2N
-///clé public : pk_live_51PMPWY04hLVR8JEwxX6LQLdLVsp7iMDvk9Pst8lVlz0PV5xqY3S4AahKWbeVkvSdWf9KA5DyQtMEcBnFmZSCWAxd00PCDKAU8D
-// Configuration de l'élément card
+
+// Create an instance of elements
 var elements = stripe.elements();
+
+// Create a card element
 var cardElement = elements.create('card');
+
+// Mount the card element into the card element container
 cardElement.mount('#card-element');
 
-// Gestion des erreurs de validation de la carte
-cardElement.on('change', function(event) {
-    var displayError = document.getElementById('card-errors');
-    if (event.error) {
-        displayError.textContent = event.error.message;
-    } else {
-        displayError.textContent = '';
-    }
-});
+// Handle form submission
+document.querySelector('#subscriptionForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-// Gestion de la soumission du formulaire
-var form = document.getElementById('subscriptionForm');
-form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    
     stripe.createPaymentMethod({
         type: 'card',
         card: cardElement,
-        billing_details: {
-            email: document.getElementById('email').value
-        }
     }).then(function(result) {
         if (result.error) {
-            // Gestion des erreurs
-            var errorElement = document.getElementById('card-errors');
-            errorElement.textContent = result.error.message;
+            // Display errors
+            document.getElementById('card-errors').textContent = result.error.message;
         } else {
-            // Envoi des données au serveur (ex: via fetch ou XMLHttpRequest)
-            var paymentMethodId = result.paymentMethod.id;
-            fetch('/create-subscription', {
+            // Send PaymentMethod ID to server
+            fetch('./create-subscription.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: document.getElementById('email').value,
-                    payment_method: paymentMethodId
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: document.getElementById('email').value, paymentMethodId: result.paymentMethod.id })
             }).then(function(response) {
                 return response.json();
-            }).then(function(result) {
-                // Gestion de la réponse du serveur (ex: redirection)
-                console.log(result);
-                window.location.href = '/success.html';
+            }).then(function(subscription) {
+                if (subscription.error) {
+                    document.getElementById('card-errors').textContent = subscription.error;
+                } else {
+                    console.log('Subscription created!', subscription);
+                    // Redirect to success page or show success message
+                    window.location.href = 'http://localhost/success.php?subscription_id=' + subscription.subscriptionId;
+                }
             });
         }
     });
