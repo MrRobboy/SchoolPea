@@ -25,7 +25,7 @@ try {
         'customer' => $customer->id,
         'items' => [
             [
-                'price' => 'prod_QNPIYLXQkZVOWJ', 
+                'price' => 'price_1PWeTS04hLVR8JEwV8T0Ulh6', 
             ],
         ],
         'expand' => ['latest_invoice.payment_intent'],
