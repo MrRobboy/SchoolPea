@@ -23,7 +23,7 @@ document.querySelector('#subscriptionForm').addEventListener('submit', function(
             document.getElementById('card-errors').textContent = result.error.message;
         } else {
             // Envoyez l'ID du PaymentMethod au serveur
-            fetch('/create-subscription.php', {
+            fetch('./create-subscription.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email: document.getElementById('email').value, paymentMethodId: result.paymentMethod.id })
