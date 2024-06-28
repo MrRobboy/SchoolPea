@@ -29,11 +29,7 @@ $courss = $stmt->fetchAll();
                     <tr>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID</th>
                         <th style="padding: 0 3.5rem;border-right: solid 0.3rem white;">Cours</th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse1</th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse2</th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse3</th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse4</th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Reponse5</th>
+                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Nom </th>
                         <th style="padding: 0 6rem;border-right: none;">Actions</th>
                     </tr>
                 </thead>
@@ -41,9 +37,9 @@ $courss = $stmt->fetchAll();
                     <?php foreach ($courss as $cours) : ?>
                         <tr>
                             <td class="not_right"><?php echo $cours['id_COURS']; ?></td>
-                            <td class="not_right"><?php echo $cours['cours']; ?></td>
+                            <td class="not_right"><?php echo $cours['nom']; ?></td>
                             <td class="not_right"><?php echo $cours['niveau']; ?></td>
-                            <td class="not_right"><?php echo $cours['description ']; ?></td>
+                            <td class="not_right"><?php echo $cours['path_contenu']; ?></td>
 
                             <td>
                                 <a href="edit.php?id=<?php echo $cours['id_COURS']; ?>" class="btn modify">Modifier</a>
