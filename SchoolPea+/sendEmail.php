@@ -2,7 +2,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-require 'vendor/autoload.php';
+require_once '../BackEnd/vendor/autoload.php';
 
 function sendWelcomeEmail($recipientEmail) {
     $mail = new PHPMailer(true);

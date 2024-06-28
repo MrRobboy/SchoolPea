@@ -1,6 +1,6 @@
 <?php
 require_once '../BackEnd/vendor/autoload.php';
-require_once 'sendEmail.php';
+require 'sendEmail.php';
 
 \Stripe\Stripe::setApiKey('sk_test_51PMPWY04hLVR8JEws7Pq0AxyUa289HwfgjeZDtzjyRxltMxIx03LIPLpU6kBJH9G5oxsRaizMvQAinjeGOIFvXPM000NV4FfZY');
 
