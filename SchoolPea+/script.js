@@ -1,8 +1,6 @@
-// Assurez-vous que Stripe est initialisé avec votre clé secrète
+// Assurez-vous que Stripe est initialisé avec votre clé publique
 var stripe = Stripe('pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVewdHsMszYSCDvwLBPx4UTeTipQXTWBI7mBo6A4R7000FL8jc2N');
 
-///clé test: pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVewdHsMszYSCDvwLBPx4UTeTipQXTWBI7mBo6A4R7000FL8jc2N
-///clé public : pk_live_51PMPWY04hLVR8JEwxX6LQLdLVsp7iMDvk9Pst8lVlz0PV5xqY3S4AahKWbeVkvSdWf9KA5DyQtMEcBnFmZSCWAxd00PCDKAU8D
 // Configuration de l'élément card
 var elements = stripe.elements();
 var cardElement = elements.create('card');
@@ -21,8 +19,12 @@ cardElement.on('change', function(event) {
 // Gestion de la soumission du formulaire
 var form = document.getElementById('subscriptionForm');
 form.addEventListener('submit', function(event) {
-    event.preventDefault();
-    
+    event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+    // Désactive le bouton de soumission pendant le traitement
+    form.querySelector('button').disabled = true;
+
+    // Création du paiement avec Stripe
     stripe.createPaymentMethod({
         type: 'card',
         card: cardElement,
@@ -31,13 +33,17 @@ form.addEventListener('submit', function(event) {
         }
     }).then(function(result) {
         if (result.error) {
-            // Gestion des erreurs
+            // Gestion des erreurs de validation de la carte
             var errorElement = document.getElementById('card-errors');
             errorElement.textContent = result.error.message;
+            // Réactivation du bouton de soumission
+            form.querySelector('button').disabled = false;
         } else {
-            // Envoi des données au serveur (ex: via fetch ou XMLHttpRequest)
+            // Récupération de l'ID du moyen de paiement
             var paymentMethodId = result.paymentMethod.id;
-            fetch('/create-subscription', {
+
+            // Envoi des données au serveur via fetch
+            fetch('/create-subscription.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,9 +55,21 @@ form.addEventListener('submit', function(event) {
             }).then(function(response) {
                 return response.json();
             }).then(function(result) {
-                // Gestion de la réponse du serveur (ex: redirection)
+                // Gestion de la réponse du serveur
                 console.log(result);
-                window.location.href = '/success.html';
+                if (result.error) {
+                    // Gestion des erreurs côté serveur
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error;
+                } else {
+                    // Redirection vers la page de succès
+                    window.location.href = '/success.html';
+                }
+            }).catch(function(error) {
+                // Gestion des erreurs réseau ou autres
+                console.error('Error:', error);
+                // Réactivation du bouton de soumission
+                form.querySelector('button').disabled = false;
             });
         }
     });
