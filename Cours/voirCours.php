@@ -28,7 +28,7 @@ if ($stmt->rowCount() > 0) {
     ?>
     <form action="voirCours.php?id_cours=<?php echo htmlspecialchars($id_cours); ?>" method="POST">
         <input type="hidden" name="action" value="like">
-        <button type="submit" class="button">Liker ce cours :=)</button>
+        <button type="submit" class="button">Liker ce cours </button>
     </form>
     <?php
 
