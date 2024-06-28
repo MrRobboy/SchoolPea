@@ -6,18 +6,12 @@ require 'sendEmail.php';
 
 $input = json_decode(file_get_contents('php://input'), true);
 $email = $input['email'];
-
-if (!isset($input['payment_method'])) {
-    http_response_code(400);
-    echo json_encode(['error' => 'payment_method is required']);
-    exit;
-}
-
-$paymentMethodId = $input['payment_method'];
+$paymentMethodId = $input['paymentMethodId'];
 
 header('Content-Type: application/json');
 
 try {
+    // Create a new customer
     $customer = \Stripe\Customer::create([
         'email' => $email,
         'payment_method' => $paymentMethodId,
@@ -26,17 +20,22 @@ try {
         ],
     ]);
 
+    // Create a new subscription
     $subscription = \Stripe\Subscription::create([
         'customer' => $customer->id,
         'items' => [
-            ['price' => 'price_1PWeTS04hLVR8JEwV8T0Ulh6'], // Remplacez 'your_price_id' par l'ID de votre prix
+            [
+                'price' => 'prod_QNPIYLXQkZVOWJ', 
+            ],
         ],
         'expand' => ['latest_invoice.payment_intent'],
     ]);
 
+    // Send welcome email
     sendWelcomeEmail($email);
 
-    echo json_encode(['id' => $subscription->id]);
+    // Send back the subscription ID to the client
+    echo json_encode(['subscriptionId' => $subscription->id]);
 } catch (Error $e) {
     http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
