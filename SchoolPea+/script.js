@@ -19,7 +19,7 @@ document.querySelector('#subscriptionForm').addEventListener('submit', function(
     // Créez un PaymentMethod avec les détails de la carte
     stripe.createPaymentMethod({
         type: 'card',
-        card: document.getElementById('card-element'),
+        card: card-element,
     }).then(function(result) {
         if (result.error) {
             // Affichez les erreurs
