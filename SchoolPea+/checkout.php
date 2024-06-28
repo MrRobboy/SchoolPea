@@ -4,6 +4,7 @@ require 'sendEmail.php';
 
 \Stripe\Stripe::setApiKey('sk_test_51PMPWY04hLVR8JEws7Pq0AxyUa289HwfgjeZDtzjyRxltMxIx03LIPLpU6kBJH9G5oxsRaizMvQAinjeGOIFvXPM000NV4FfZY');
 
+
 $input = json_decode(file_get_contents('php://input'), true);
 $email = $input['email'];
 $paymentMethodId = $input['payment_method'];
@@ -11,7 +12,6 @@ $paymentMethodId = $input['payment_method'];
 header('Content-Type: application/json');
 
 try {
-    // Create a new customer
     $customer = \Stripe\Customer::create([
         'email' => $email,
         'payment_method' => $paymentMethodId,
@@ -20,7 +20,6 @@ try {
         ],
     ]);
 
-    // Create a subscription for the customer
     $subscription = \Stripe\Subscription::create([
         'customer' => $customer->id,
         'items' => [
@@ -30,7 +29,7 @@ try {
                     'product_data' => [
                         'name' => 'SchoolPea Subscription',
                     ],
-                    'unit_amount' => 999, // 9.99 EUR in cents
+                    'unit_amount' => 999,
                     'recurring' => [
                         'interval' => 'month',
                     ],
@@ -40,7 +39,6 @@ try {
         'expand' => ['latest_invoice.payment_intent'],
     ]);
 
-    // Create a checkout session
     $session = \Stripe\Checkout\Session::create([
         'payment_method_types' => ['card'],
         'line_items' => [[
@@ -62,10 +60,8 @@ try {
         'customer' => $customer->id,
     ]);
 
-    // Send a welcome email to the customer
     sendWelcomeEmail($email);
 
-    // Return the session ID as a JSON response
     echo json_encode(['id' => $session->id]);
 } catch (Error $e) {
     http_response_code(500);

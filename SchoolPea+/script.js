@@ -1,5 +1,6 @@
 // Assurez-vous que Stripe est initialisé avec votre clé secrète
 var stripe = Stripe('pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVewdHsMszYSCDvwLBPx4UTeTipQXTWBI7mBo6A4R7000FL8jc2N');
+
 ///clé test: pk_test_51PMPWY04hLVR8JEwaYxYJ3YDycRhKoOm168niuDBafcMgwfVewdHsMszYSCDvwLBPx4UTeTipQXTWBI7mBo6A4R7000FL8jc2N
 ///clé public : pk_live_51PMPWY04hLVR8JEwxX6LQLdLVsp7iMDvk9Pst8lVlz0PV5xqY3S4AahKWbeVkvSdWf9KA5DyQtMEcBnFmZSCWAxd00PCDKAU8D
 // Configuration de l'élément card
