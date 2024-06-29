@@ -71,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Afficher un message d'erreur si les identifiants sont invalides
     if ($badCredentials) {
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
         echo "Invalid email or password.";
     }
 } else {
