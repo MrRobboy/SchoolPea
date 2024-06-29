@@ -61,38 +61,36 @@ session_start();
 		<span>
 			<p id="titre_cours">Nos Cours les plus populaires</p>
 		</span>
-		<div class="fenetre">
-			<?php
-			 $options = [
-			     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-			 ];
+		<div id="fenetre">
+        <h1>Explorer les Cours</h1>
+		<?php
 
-			 try {
-			     $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
-			     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
-			//     // Récupération des cours depuis la base de données
-			     $sql = "SELECT * FROM COURS";
-			     $stmt = $bdd->query($sql);
-
-		   $counter = 0;
-			    while ($row = $stmt->fetch()) {
-			         if ($counter % 4 == 0 && $counter != 0) {
-			            echo "</div><div class='fenetre'>";
-			         }
-			         echo "<span id='fen" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
-			         $counter++;
-			     }
-
-			     if ($counter == 0) {
-			         echo "<span>Aucun cours trouvé.</span>";
-			     }
-			 } catch (PDOException $e) {
-			     echo "Erreur Connexion : " . $e->getMessage();
-			     die;
-			 }
-			?>
-		</div>
+$sql = "SELECT * FROM COURS";
+$result = $dbh->query($sql);
+$courses = $result->fetchAll(PDO::FETCH_ASSOC);
+?>
+        <div class="courses" id="course_list">
+            <?php if (!empty($courses)) : ?>
+                <?php foreach ($courses as $course) : ?>
+                    <div class="course_item">
+                        <h3><?php echo htmlspecialchars($course['nom']); ?></h3>
+                        <?php if (!empty($course['path_image_pres']) && file_exists($course['path_image_pres'])) : ?>
+                            <img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" alt="Image de présentation">
+                        <?php else : ?>
+                            <img src="default-image.jpg" alt="Image par défaut">
+                        <?php endif; ?>
+                        <a href="voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>Aucun cours disponible.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 	</div>
 
 
