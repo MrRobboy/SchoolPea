@@ -35,14 +35,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérification et traitement de l'image de présentation
     if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
-        $target_dir = "https://schoolpea.com/Cours/uploads/";
+        $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
+
 
         if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
             // Début de la transaction
             $dbh->beginTransaction();
 
             try {
+                $pathImg = 'https://schoolpea.com/Cours/uploads/' . basename($_FILES["image_pres"]["name"]);
                 // Insérer les informations générales du cours dans la table COURS
                 $sql_insert_cours = "INSERT INTO COURS (nom, niveau, description, id_USER, path_image_pres)
                                     VALUES (:nom, :niveau, :description, :id_user, :path_image_pres)";
@@ -51,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt_insert_cours->bindValue(':niveau', $niveau, PDO::PARAM_STR);
                 $stmt_insert_cours->bindValue(':description', $description, PDO::PARAM_STR);
                 $stmt_insert_cours->bindValue(':id_user', $id_user, PDO::PARAM_INT);
-                $stmt_insert_cours->bindValue(':path_image_pres', $target_file, PDO::PARAM_STR);
+                $stmt_insert_cours->bindValue(':path_image_pres', $pathImg, PDO::PARAM_STR);
                 $stmt_insert_cours->execute();
                 $id_cours = $dbh->lastInsertId();
 
