@@ -34,7 +34,7 @@ document.querySelector('#subscriptionForm').addEventListener('submit', function(
                 } else {
                     console.log('Subscription created!', subscription);
                     // Redirect to success page or show success message
-                    window.location.href = 'http://localhost/success.php?subscription_id=' + subscription.subscriptionId;
+                    window.location.href = 'https://schoolpea.com' + subscription.subscriptionId;
                 }
             });
         }
