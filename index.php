@@ -49,9 +49,9 @@ session_start();
 			</div>
 
 			<div id="barreDeRecherche">
-				<input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ...">
-				<button onclick="chercheCoursEtQuizz()" id="Submit_Recherche">Rechercher</button>
-			</div>
+        <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
+        <button onclick="searchCourses()" id="Submit_Recherche">Rechercher</button>
+    </div>
 		</div>
 	</div>
 
@@ -184,6 +184,21 @@ session_start();
 			</span>
 		</div>
 	</footer>
+
+	<script>
+        function searchCourses() {
+            let input = document.getElementById('coursenquizz-search').value.toLowerCase();
+            let courses = document.getElementsByClassName('course_item');
+            for (let i = 0; i < courses.length; i++) {
+                let courseName = courses[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+                if (courseName.includes(input)) {
+                    courses[i].style.display = "";
+                } else {
+                    courses[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
