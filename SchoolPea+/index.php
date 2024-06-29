@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if (!isset($_SESSION['mail_valide'])) {
     header('Location: https://schoolpea.com/Connexion');
 }
