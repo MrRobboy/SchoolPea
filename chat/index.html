@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <style>
+        .chat-container {
+            width: 80%;
+            margin: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-height: 400px;
+            overflow-y: scroll;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 5px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatMessages">
+        <!-- Messages seront affichés ici -->
+    </div>
+    <form id="messageForm">
+        <input type="hidden" id="sent_by" value="1"> <!-- ID de l'utilisateur actuel -->
+        <input type="hidden" id="sent_to" value="2"> <!-- ID de l'utilisateur avec qui l'utilisateur actuel chatte -->
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button type="submit">Send</button>
+    </form>
+
+    <script>
+        // JavaScript code will go here
+        document.addEventListener('DOMContentLoaded', function() {
+    const chatContainer = document.getElementById('chatContainer');
+    const messageForm = document.getElementById('messageForm');
+    const messageInput = document.getElementById('messageInput');
+
+    // Function to fetch messages from server
+    function fetchMessages() {
+        fetch('fetch_messages.php') // PHP script to fetch messages from database
+            .then(response => response.json())
+            .then(data => {
+                // Clear previous messages
+                chatContainer.innerHTML = '';
+
+                // Append new messages
+                data.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.classList.add('message');
+                    messageElement.textContent = `${message.sender}: ${message.message}`;
+                    chatContainer.appendChild(messageElement);
+                });
+
+                // Scroll to bottom of chat container
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            });
+    }
+
+    // Fetch messages initially and then every 5 seconds
+    fetchMessages();
+    setInterval(fetchMessages, 5000);
+
+    // Handle form submission
+    messageForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const message = messageInput.value;
+
+        fetch('send_message.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message }),
+        })
+        .then(() => {
+            messageInput.value = '';
+            fetchMessages(); // Fetch messages again to update chat
+        });
+    });
+});
+
+    </script>
+</body>
+</html>
