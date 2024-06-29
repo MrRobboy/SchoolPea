@@ -49,9 +49,8 @@ session_start();
 			</div>
 
 			<div id="barreDeRecherche">
-				<input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ...">
-				<button onclick="chercheCoursEtQuizz()" id="Submit_Recherche">Rechercher</button>
-			</div>
+        <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
+    </div>
 		</div>
 	</div>
 
@@ -184,6 +183,45 @@ session_start();
 			</span>
 		</div>
 	</footer>
+
+	<script>
+        function searchCourses() {
+            let input = document.getElementById('coursenquizz-search').value.toLowerCase();
+
+            // Creating a new XMLHttpRequest object
+            let xhr = new XMLHttpRequest();
+
+            // Define the type of request: GET and the URL including the input
+            xhr.open('GET', 'searchCourses.php?query=' + input, true);
+
+            // Set up a function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Parse the JSON response
+                    let courses = JSON.parse(xhr.responseText);
+
+                    // Clear previous results
+                    document.getElementById('courseList').innerHTML = '';
+
+                    // Display the courses
+                    for (let i = 0; i < courses.length; i++) {
+                        let course = courses[i];
+                        let courseItem = document.createElement('div');
+                        courseItem.className = 'course_item';
+                        courseItem.innerHTML = `
+                            <h3>${course.nom}</h3>
+                            <img src="${course.path_image_pres ? course.path_image_pres : 'default-image.jpg'}" alt="Image de présentation">
+                            <a href="voirCours.php?id_cours=${course.id_COURS}">Voir le cours</a>
+                        `;
+                        document.getElementById('courseList').appendChild(courseItem);
+                    }
+                }
+            };
+
+            // Send the request
+            xhr.send();
+        }
+    </script>
 </body>
 
 </html>
