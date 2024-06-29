@@ -5,7 +5,7 @@ require 'sendEmail.php';
 include 'db.php';
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $dbh = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
