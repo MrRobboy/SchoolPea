@@ -33,7 +33,7 @@ document.querySelector('#subscriptionForm').addEventListener('submit', function(
                     document.getElementById('card-errors').textContent = subscription.error;
                 } else {
                     // Redirect to confirmation page with subscriptionId
-                    window.location.href = 'https://schoolpea.com/subscription-success.html';
+                    window.location.href = 'https://schoolpea.com/SchoolPea+/subscription-success.html';
                 }
             });
         }
