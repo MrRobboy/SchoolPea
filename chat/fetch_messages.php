@@ -1,33 +1,19 @@
 <?php
-// Inclure le fichier de connexion à la base de données
-require_once 'db.php';
-
-// Récupérer l'ID de l'utilisateur actuel (par exemple à partir d'une session)
-$user_id = $_SESSION['user_id']; // Assurez-vous d'avoir démarré la session si nécessaire
+$host = 'localhost';
+$dbname = 'PA';
+$username = 'root';
+$password = 'root';
 
 try {
-    // Préparer la requête de sélection
-    $stmt = $dbh->prepare("SELECT m.*, u.path_pp FROM messages m 
-                           JOIN users u ON m.sent_by = u.id_USER 
-                           WHERE m.sent_to = :user_id OR m.sent_by = :user_id
-                           ORDER BY m.sent_at DESC
-                           LIMIT 20");
+    $dbh = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Binder les paramètres
-    $stmt->bindParam(':user_id', $user_id);
-
-    // Exécuter la requête
-    $stmt->execute();
-
-    // Récupérer les résultats
+    // Récupérer les messages depuis la table MESSAGE, avec les informations de l'utilisateur
+    $stmt = $dbh->query("SELECT m.message, u.email FROM MESSAGE m INNER JOIN USER u ON m.sent_by = u.id_USER ORDER BY m.id_MESSAGE DESC");
     $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Répondre avec les messages au format JSON
-    header('Content-Type: application/json');
     echo json_encode($messages);
 } catch (PDOException $e) {
-    // En cas d'erreur de base de données, afficher un message d'erreur
-    echo "Erreur de récupération des messages : " . $e->getMessage();
-    http_response_code(500); // Code d'erreur de serveur interne
+    echo json_encode(['error' => 'Erreur lors de la récupération des messages : ' . $e->getMessage()]);
 }
 ?>
