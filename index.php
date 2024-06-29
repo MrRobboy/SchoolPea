@@ -87,7 +87,7 @@ session_start();
                     } else {
                         echo "<img src='default-image.jpg' alt='Image par défaut'>";
                     }
-                    echo "<a href='voirCours.php?id_cours=" . htmlspecialchars($row['id_COURS']) . "'>Voir le cours</a>";
+                    echo "<a href='/Cours/voirCours.php?id_cours=" . htmlspecialchars($row['id_COURS']) . "'>Voir le cours</a>";
                     echo "</span>";
                     $counter++;
                 }
