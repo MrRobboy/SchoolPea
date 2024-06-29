@@ -55,9 +55,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $queryLogs->bindValue(':msg', $message, PDO::PARAM_STR);
             $result = $queryLogs->execute();
 
-            // Redirection vers la page de création de cours si l'insertion est réussie
+            
             if ($result) {
-                header('Location: https://schoolpea.com/Cours/creerCours.php');
+                header('Location: ' . $_SERVER['HTTP_REFERER']);
                 exit(); // Arrêter le script après la redirection
             } else {
                 echo 'Erreur lors de l\'enregistrement de l\'action dans les logs.';
