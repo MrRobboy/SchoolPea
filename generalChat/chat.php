@@ -5,21 +5,18 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "PA";
+include 'db.php'; // Inclure le fichier de connexion à la base de données
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
+// Récupérer les informations de l'utilisateur connecté
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM USER WHERE id_USER='$user_id'";
-$result = $conn->query($sql);
-$user = $result->fetch_assoc();
+$sql = "SELECT * FROM USER WHERE id_USER = :user_id";
+$stmt = $dbh->prepare($sql);
+$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Fermer la connexion PDO
+$stmt = null;
 ?>
 
 <!DOCTYPE html>
