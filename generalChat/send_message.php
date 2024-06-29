@@ -5,16 +5,15 @@ include 'db.php'; // Inclure le fichier de connexion à la base de données
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user_id = $_SESSION['user_id'];
     $content = $_POST['content'];
-    
-    $sql = "INSERT INTO MESSAGE (sent_by, message) VALUES (:user_id, :content)";
+
+    // Insérer le message dans la base de données
+    $sql = "INSERT INTO MESSAGE (sent_by, message) VALUES (?, ?)";
     $stmt = $dbh->prepare($sql);
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->bindParam(':content', $content, PDO::PARAM_STR);
     
-    if ($stmt->execute()) {
+    if ($stmt->execute([$user_id, $content])) {
         echo "Message envoyé avec succès.";
     } else {
-        echo "Erreur: " . $stmt->errorInfo()[2];
+        echo "Erreur lors de l'envoi du message.";
     }
 
     // Fermer la connexion PDO
