@@ -50,7 +50,6 @@ session_start();
 
 			<div id="barreDeRecherche">
         <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
-        <button onclick="searchCourses()" id="Submit_Recherche">Rechercher</button>
     </div>
 		</div>
 	</div>
@@ -188,15 +187,39 @@ session_start();
 	<script>
         function searchCourses() {
             let input = document.getElementById('coursenquizz-search').value.toLowerCase();
-            let courses = document.getElementsByClassName('course_item');
-            for (let i = 0; i < courses.length; i++) {
-                let courseName = courses[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
-                if (courseName.includes(input)) {
-                    courses[i].style.display = "";
-                } else {
-                    courses[i].style.display = "none";
+
+            // Creating a new XMLHttpRequest object
+            let xhr = new XMLHttpRequest();
+
+            // Define the type of request: GET and the URL including the input
+            xhr.open('GET', 'searchCourses.php?query=' + input, true);
+
+            // Set up a function to handle the response
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Parse the JSON response
+                    let courses = JSON.parse(xhr.responseText);
+
+                    // Clear previous results
+                    document.getElementById('courseList').innerHTML = '';
+
+                    // Display the courses
+                    for (let i = 0; i < courses.length; i++) {
+                        let course = courses[i];
+                        let courseItem = document.createElement('div');
+                        courseItem.className = 'course_item';
+                        courseItem.innerHTML = `
+                            <h3>${course.nom}</h3>
+                            <img src="${course.path_image_pres ? course.path_image_pres : 'default-image.jpg'}" alt="Image de présentation">
+                            <a href="voirCours.php?id_cours=${course.id_COURS}">Voir le cours</a>
+                        `;
+                        document.getElementById('courseList').appendChild(courseItem);
+                    }
                 }
-            }
+            };
+
+            // Send the request
+            xhr.send();
         }
     </script>
 </body>
