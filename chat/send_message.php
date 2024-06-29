@@ -1,31 +1,29 @@
 <?php
-// Inclure le fichier de connexion à la base de données
-require_once 'db.php';
+session_start(); // Démarre la session si ce n'est pas déjà fait
 
-// Récupérer les données du formulaire (dans un environnement réel, vous devrez valider et échapper ces données)
+$host = 'localhost';
+$dbname = 'PA';
+$username = 'root';
+$password = 'root';
+
+// Récupérer le message envoyé depuis le formulaire
 $message = $_POST['message'];
-$sent_by = $_POST['sent_by'];
-$sent_to = $_POST['sent_to'];
-$profile_picture = $_POST['profile_picture']; // Si nécessaire
 
 try {
-    // Préparer la requête d'insertion
-    $stmt = $dbh->prepare("INSERT INTO messages (message, sent_by, sent_to, profile_picture) VALUES (:message, :sent_by, :sent_to, :profile_picture)");
+    $dbh = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Binder les paramètres
+    // Récupérer l'ID de l'utilisateur actuel (vous devrez implémenter l'authentification)
+    $userId = $_SESSION['user_id']; // À remplacer par la méthode d'authentification appropriée
+
+    // Insérer le message dans la table MESSAGE
+    $stmt = $dbh->prepare("INSERT INTO MESSAGE (message, sent_by) VALUES (:message, :sent_by)");
     $stmt->bindParam(':message', $message);
-    $stmt->bindParam(':sent_by', $sent_by);
-    $stmt->bindParam(':sent_to', $sent_to);
-    $stmt->bindParam(':profile_picture', $profile_picture); // Si nécessaire
-
-    // Exécuter la requête
+    $stmt->bindParam(':sent_by', $userId);
     $stmt->execute();
 
-    // Répondre avec succès (ou gérer les erreurs si nécessaire)
-    http_response_code(200);
+    echo json_encode(['status' => 'success']);
 } catch (PDOException $e) {
-    // En cas d'erreur de base de données, afficher un message d'erreur
-    echo "Erreur d'envoi de message : " . $e->getMessage();
-    http_response_code(500); // Code d'erreur de serveur interne
+    echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
 }
 ?>
