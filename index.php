@@ -56,8 +56,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 
 			<div id="barreDeRecherche">
-        <input type="text" id="coursandquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
-        <div id="dropdown" class="dropdown"></div>
+			<input type="text" id="search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
     </div>
 		</div>
 	</div>
