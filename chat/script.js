@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     messageElement.classList.add('message');
 
                     const profilePhoto = document.createElement('img');
-                    profilePhoto.src = message.profile_photo;
+                    profilePhoto.src = message.path_pp;
                     profilePhoto.classList.add('profile-photo');
 
                     const messageBubble = document.createElement('div');
