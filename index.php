@@ -56,7 +56,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 
 			<div id="barreDeRecherche">
-			<input type="text" id="search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
+			<input type="text" id="coursenquizz-search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
     </div>
 		</div>
 	</div>
@@ -166,7 +166,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 	</footer>
 	<script>
         function searchCourses() {
-            let input = document.getElementById('search').value.toLowerCase();
+            let input = document.getElementById('coursenquizz-search').value.toLowerCase();
             let courses = document.getElementsByClassName('course_item');
             for (let i = 0; i < courses.length; i++) {
                 let courseName = courses[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
