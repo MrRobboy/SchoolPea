@@ -49,7 +49,8 @@ session_start();
 			</div>
 
 			<div id="barreDeRecherche">
-        <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
+        <input type="text" id="coursandquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
+        <div id="dropdown" class="dropdown"></div>
     </div>
 		</div>
 	</div>
@@ -183,16 +184,20 @@ session_start();
 			</span>
 		</div>
 	</footer>
-
 	<script>
         function searchCourses() {
             let input = document.getElementById('coursenquizz-search').value.toLowerCase();
+
+            if (input.length === 0) {
+                document.getElementById('dropdown').style.display = 'none';
+                return;
+            }
 
             // Creating a new XMLHttpRequest object
             let xhr = new XMLHttpRequest();
 
             // Define the type of request: GET and the URL including the input
-            xhr.open('GET', 'searchCourses.php?query=' + input, true);
+            xhr.open('GET', '/Cours/searchCourses.php?query=' + input, true);
 
             // Set up a function to handle the response
             xhr.onreadystatechange = function () {
@@ -201,19 +206,24 @@ session_start();
                     let courses = JSON.parse(xhr.responseText);
 
                     // Clear previous results
-                    document.getElementById('courseList').innerHTML = '';
+                    let dropdown = document.getElementById('dropdown');
+                    dropdown.innerHTML = '';
 
-                    // Display the courses
-                    for (let i = 0; i < courses.length; i++) {
-                        let course = courses[i];
-                        let courseItem = document.createElement('div');
-                        courseItem.className = 'course_item';
-                        courseItem.innerHTML = `
-                            <h3>${course.nom}</h3>
-                            <img src="${course.path_image_pres ? course.path_image_pres : 'default-image.jpg'}" alt="Image de présentation">
-                            <a href="voirCours.php?id_cours=${course.id_COURS}">Voir le cours</a>
-                        `;
-                        document.getElementById('courseList').appendChild(courseItem);
+                    // Display the dropdown list
+                    if (courses.length > 0) {
+                        courses.forEach(course => {
+                            let item = document.createElement('div');
+                            item.className = 'dropdown-item';
+                            item.textContent = course.nom;
+                            item.onclick = function () {
+                                window.location.href = 'voirCours.php?nom=' + encodeURIComponent(course.nom);
+                            };
+                            dropdown.appendChild(item);
+                        });
+
+                        dropdown.style.display = 'block';
+                    } else {
+                        dropdown.style.display = 'none';
                     }
                 }
             };
@@ -221,6 +231,14 @@ session_start();
             // Send the request
             xhr.send();
         }
+
+        // Hide the dropdown when clicking outside
+        document.addEventListener('click', function (event) {
+            let dropdown = document.getElementById('dropdown');
+            if (!dropdown.contains(event.target) && event.target.id !== 'coursandquizz-search') {
+                dropdown.style.display = 'none';
+            }
+        });
     </script>
 </body>
 
