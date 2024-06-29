@@ -41,5 +41,3 @@ $stmt = null;
     <script src="chat.js"></script>
 </body>
 </html>
-
-<?php $dbh->close(); ?>
