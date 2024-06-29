@@ -3,95 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat communautaire</title>
-    <style>
-        .chat-container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            overflow-y: scroll;
-            height: 400px; /* hauteur fixe pour défilement */
-        }
-        .message-bubble {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #f0f0f0;
-            clear: both;
-            overflow: hidden;
-        }
-        .message-bubble .user-info {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .message-bubble .message-content {
-            word-wrap: break-word;
-        }
-    </style>
+    <title>Community Chat</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="chat-container" id="chat-container">
-        <!-- Messages seront affichés ici -->
+    <div class="chat-container">
+        <div class="messages-box" id="messages-box"></div>
+        <input type="text" id="message-input" placeholder="Type a message...">
     </div>
-    <form id="message-form">
-        <textarea id="message-input" placeholder="Écrivez votre message..." rows="3"></textarea><br>
-        <button type="submit">Envoyer</button>
-    </form>
-
-    <script>
-        // Code JavaScript pour gérer l'envoi de messages et l'affichage
-
-        // Fonction pour récupérer et afficher les messages depuis la base de données
-        function fetchMessages() {
-            fetch('fetch_messages.php')
-                .then(response => response.json())
-                .then(messages => {
-                    const chatContainer = document.getElementById('chat-container');
-                    chatContainer.innerHTML = ''; // Efface le contenu actuel
-                    messages.forEach(message => {
-                        const messageBubble = document.createElement('div');
-                        messageBubble.classList.add('message-bubble');
-                        const userInfo = document.createElement('div');
-                        userInfo.classList.add('user-info');
-                        userInfo.textContent = `${message.email}`;
-                        const messageContent = document.createElement('div');
-                        messageContent.classList.add('message-content');
-                        messageContent.textContent = message.message;
-                        messageBubble.appendChild(userInfo);
-                        messageBubble.appendChild(messageContent);
-                        chatContainer.appendChild(messageBubble);
-                    });
-                    // Fait défiler vers le bas pour afficher les derniers messages
-                    chatContainer.scrollTop = chatContainer.scrollHeight;
-                })
-                .catch(error => console.error('Erreur lors du chargement des messages :', error));
-        }
-
-        // Appel fetchMessages toutes les quelques secondes pour rafraîchir les messages
-        setInterval(fetchMessages, 3000); // Rafraîchir toutes les 3 secondes
-
-        // Soumettre le formulaire pour envoyer un nouveau message
-        const messageForm = document.getElementById('message-form');
-        messageForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const messageInput = document.getElementById('message-input').value;
-            fetch('send_message.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message: messageInput }),
-            })
-            .then(response => {
-                if (response.ok) {
-                    document.getElementById('message-input').value = ''; // Efface le champ de message
-                    fetchMessages(); // Rafraîchit les messages après envoi
-                }
-            })
-            .catch(error => console.error('Erreur lors de l\'envoi du message :', error));
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
