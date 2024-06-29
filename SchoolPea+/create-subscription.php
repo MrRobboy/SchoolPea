@@ -2,6 +2,14 @@
 require_once '../BackEnd/vendor/autoload.php';
 require 'sendEmail.php';
 
+include 'db.php';
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+}
+
 \Stripe\Stripe::setApiKey('sk_test_51PMPWY04hLVR8JEws7Pq0AxyUa289HwfgjeZDtzjyRxltMxIx03LIPLpU6kBJH9G5oxsRaizMvQAinjeGOIFvXPM000NV4FfZY');
 
 $input = json_decode(file_get_contents('php://input'), true);
@@ -11,7 +19,33 @@ $paymentMethodId = $input['paymentMethodId'];
 header('Content-Type: application/json');
 
 try {
-    // Create a new customer
+    // Check if user is logged in
+    if (isset($_SESSION['user_id'])) {
+        $userId = $_SESSION['user_id'];
+    } else {
+        // Check if user already exists
+        $stmt = $pdo->prepare("SELECT id_USER FROM USER WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+
+        if (!$user) {
+            // Create new user in the database
+            $stmt = $pdo->prepare("INSERT INTO USER (email, pass, role) VALUES (?, ?, ?)");
+            $passwordHash = password_hash('defaultPassword', PASSWORD_BCRYPT); // Or generate a random password
+            $stmt->execute([$email, $passwordHash, 'prof']);
+
+            $userId = $pdo->lastInsertId();
+
+            // Log the user in
+            $_SESSION['user_id'] = $userId;
+            $_SESSION['email'] = $email;
+            $_SESSION['role'] = 'prof';
+        } else {
+            $userId = $user['id_USER'];
+        }
+    }
+
+    // Create a new customer in Stripe
     $customer = \Stripe\Customer::create([
         'email' => $email,
         'payment_method' => $paymentMethodId,
@@ -20,12 +54,12 @@ try {
         ],
     ]);
 
-    // Create a new subscription
+    // Create a new subscription in Stripe
     $subscription = \Stripe\Subscription::create([
         'customer' => $customer->id,
         'items' => [
             [
-                'price' => 'price_1PWeTS04hLVR8JEwV8T0Ulh6', 
+                'price' => 'price_1PWeTS04hLVR8JEwV8T0Ulh6',
             ],
         ],
         'expand' => ['latest_invoice.payment_intent'],

@@ -1,3 +1,11 @@
+<?php
+
+if (!isset($_SESSION['mail_valide'])) {
+    header('Location: https://schoolpea.com/Connexion');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
