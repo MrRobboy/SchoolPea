@@ -1,23 +1,27 @@
 <?php
-session_start();
-include 'db.php'; // Inclure le fichier de connexion à la base de données
+$host = 'localhost';
+$db = 'PA';
+$user = 'root';
+$pass = 'pa';
+$charset = 'utf8mb4';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $user_id = $_SESSION['user_id'];
-    $content = $_POST['content'];
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
 
-    // Insérer le message dans la base de données
-    $sql = "INSERT INTO MESSAGE (sent_by, message) VALUES (?, ?)";
-    $stmt = $dbh->prepare($sql);
-    
-    if ($stmt->execute([$user_id, $content])) {
-        echo "Message envoyé avec succès.";
-    } else {
-        echo "Erreur lors de l'envoi du message.";
-    }
-
-    // Fermer la connexion PDO
-    $stmt = null;
-    $dbh = null;
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
+
+$sent_by = $_POST['sent_by'];
+$sent_to = $_POST['sent_to'];
+$message = $_POST['message'];
+
+$stmt = $pdo->prepare('INSERT INTO MESSAGE (message, sent_by, sent_to) VALUES (?, ?, ?)');
+$stmt->execute([$message, $sent_by, $sent_to]);
 ?>

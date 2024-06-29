@@ -3,29 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Systeme de Messagerie</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Chat System</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="login">
-        <h2>Connexion</h2>
-        <form action="login.php" method="POST">
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <button type="submit">Connexion</button>
-        </form>
+    <div class="chat-container">
+        <div class="chat-window" id="chat-window"></div>
+        <input type="hidden" id="sent_by" value="1"> <!-- ID de l'utilisateur connecté -->
+        <input type="hidden" id="sent_to" value="2"> <!-- ID de l'utilisateur avec qui discuter -->
+        <input type="text" id="message" placeholder="Type your message...">
+        <button id="send">Send</button>
     </div>
-
-    <div id="register">
-        <h2>Inscription</h2>
-        <form action="register.php" method="POST" enctype="multipart/form-data">
-            <input type="text" name="firstname" placeholder="Prénom" required>
-            <input type="text" name="lastname" placeholder="Nom" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Mot de passe" required>
-            <input type="file" name="profile_picture" required>
-            <button type="submit">Inscription</button>
-        </form>
-    </div>
+    <script src="script.js"></script>
 </body>
 </html>
