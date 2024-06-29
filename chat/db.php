@@ -12,4 +12,3 @@ try {
     echo "Erreur de connexion : " . $e->getMessage();
     exit(); // Arrêter le script en cas d'erreur de connexion
 }
-?>
