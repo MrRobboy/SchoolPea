@@ -6,6 +6,7 @@ include 'db.php';
 
 try {
     $dbh = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+
 } catch (\PDOException $e) {
     throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
@@ -24,17 +25,17 @@ try {
         $userId = $_SESSION['user_id'];
     } else {
         // Check if user already exists
-        $stmt = $pdo->prepare("SELECT id_USER FROM USER WHERE email = ?");
+        $stmt = $dbh->prepare("SELECT id_USER FROM USER WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if (!$user) {
             // Create new user in the database
-            $stmt = $pdo->prepare("INSERT INTO USER (email, pass, role) VALUES (?, ?, ?)");
+            $stmt = $dbh->prepare("INSERT INTO USER (email, pass, role) VALUES (?, ?, ?)");
             $passwordHash = password_hash('defaultPassword', PASSWORD_BCRYPT); // Or generate a random password
             $stmt->execute([$email, $passwordHash, 'prof']);
 
-            $userId = $pdo->lastInsertId();
+            $userId = $dbh->lastInsertId();
 
             // Log the user in
             $_SESSION['user_id'] = $userId;
