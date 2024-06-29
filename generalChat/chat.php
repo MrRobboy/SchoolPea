@@ -9,14 +9,14 @@ include 'db.php'; // Inclure le fichier de connexion à la base de données
 
 // Récupérer les informations de l'utilisateur connecté
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM USER WHERE id_USER = :user_id";
+$sql = "SELECT * FROM USER WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
-$stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-$stmt->execute();
+$stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Fermer la connexion PDO
 $stmt = null;
+$dbh = null;
 ?>
 
 <!DOCTYPE html>

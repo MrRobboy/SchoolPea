@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: `content=${message}`
+                body: `content=${encodeURIComponent(message)}`
             }).then(response => response.text())
               .then(data => {
                   messageInput.value = '';

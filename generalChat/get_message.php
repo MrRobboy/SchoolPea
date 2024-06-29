@@ -7,8 +7,7 @@ $sql = "SELECT MESSAGE.message, MESSAGE.sent_at, USER.email, USER.path_pp
         JOIN USER ON MESSAGE.sent_by = USER.id_USER 
         ORDER BY MESSAGE.sent_at DESC";
 
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
+$stmt = $dbh->query($sql);
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Fermer la connexion PDO
