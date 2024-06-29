@@ -42,4 +42,4 @@ $stmt = null;
 </body>
 </html>
 
-<?php $conn->close(); ?>
+<?php $dbh->close(); ?>

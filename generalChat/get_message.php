@@ -1,31 +1,19 @@
 <?php
 session_start();
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "PA";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+include 'db.php'; // Inclure le fichier de connexion à la base de données
 
 $sql = "SELECT MESSAGE.message, MESSAGE.sent_at, USER.email, USER.path_pp 
         FROM MESSAGE 
         JOIN USER ON MESSAGE.sent_by = USER.id_USER 
         ORDER BY MESSAGE.sent_at DESC";
 
-$result = $conn->query($sql);
-$messages = [];
+$stmt = $dbh->prepare($sql);
+$stmt->execute();
+$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $messages[] = $row;
-    }
-}
-
-$conn->close();
+// Fermer la connexion PDO
+$stmt = null;
+$dbh = null;
 
 echo json_encode($messages);
 ?>
