@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             
             if ($result) {
-                header('Location: ' . $_SERVER['HTTP_REFERER']);
+                header('Location: https://schoolpea.com/chat/index.php');
                 exit(); // Arrêter le script après la redirection
             } else {
                 echo 'Erreur lors de l\'enregistrement de l\'action dans les logs.';
