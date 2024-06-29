@@ -14,6 +14,28 @@
         <h1>A propos de SchoolPéa</h1>
         <p>Informations sur SchoolPéa.</p>
     </main>
-    <?php include 'footer.php'; ?>
+    <footer>
+		<div class="footer">
+			<span class="col1">
+				<h3>
+					<a href="#SchoolPea" style="color: white; text-decoration: none; font-weight: bolder;">SchoolPéa</a>
+				</h3>
+			</span>
+
+			<span class="col2">
+				<h4>Schoolpéa</h4>
+				<a href="index.php">Accueil</a>
+                <a href="about.php">A propos</a>
+			</span>
+
+			<span class="col3">
+				<h4>Contact</h4>
+				<a href="mailto:schoolpea@outlook.com">E-mail</a>
+                <a href="https://schoolpea.com/EasterEgg/" >LinkedIn</a>
+			</span>
+
+
+		</div>
+	</footer>
 </body>
 </html>
