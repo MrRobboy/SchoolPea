@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Vérification et traitement de l'image de présentation
     if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
-        $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
+        $target_dir = "https://schoolpea.com/Cours/uploads/";
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
         if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
@@ -105,7 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dbh->commit();
 
                 echo "Cours créé avec succès !";
-
             } catch (PDOException $e) {
                 // En cas d'erreur, annuler la transaction
                 $dbh->rollBack();
@@ -123,17 +122,21 @@ $dbh = null; // Fermeture de la connexion PDO
 ?>
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Cours</title>
     <style>
-        .section, .titre, .paragraphe {
+        .section,
+        .titre,
+        .paragraphe {
             margin-bottom: 20px;
             border: 1px solid #ccc;
             padding: 10px;
             position: relative;
         }
+
         .remove-btn {
             position: absolute;
             top: 10px;
@@ -143,11 +146,14 @@ $dbh = null; // Fermeture de la connexion PDO
             border: none;
             cursor: pointer;
         }
-        .section .titre, .titre .paragraphe {
+
+        .section .titre,
+        .titre .paragraphe {
             margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
     <h2>Création de Cours</h2>
 
@@ -185,8 +191,8 @@ $dbh = null; // Fermeture de la connexion PDO
 
             var newSection = document.createElement('div');
             newSection.className = 'section';
-                      // Bouton pour supprimer la section
-                      var removeSectionButton = document.createElement('button');
+            // Bouton pour supprimer la section
+            var removeSectionButton = document.createElement('button');
             removeSectionButton.className = 'remove-btn';
             removeSectionButton.type = 'button';
             removeSectionButton.textContent = 'Supprimer';
@@ -291,5 +297,5 @@ $dbh = null; // Fermeture de la connexion PDO
         }
     </script>
 </body>
+
 </html>
-  
