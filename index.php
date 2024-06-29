@@ -56,7 +56,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 
 			<div id="barreDeRecherche">
-			<input type="text" id="search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
+			<input type="text" id="coursenquizz-search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
     </div>
 		</div>
 	</div>
@@ -78,7 +78,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
                         <?php else : ?>
                             <img src="default-image.jpg" alt="Image par défaut">
                         <?php endif; ?>
-                        <a href="voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
+                        <a href="/Cours/voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
@@ -151,25 +151,22 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 
 			<span class="col2">
 				<h4>Schoolpéa</h4>
-				<a>Accueil</a>
-				<a>A propos</a>
+				<a href="index.php">Accueil</a>
+                <a href="about.php">A propos</a>
 			</span>
 
 			<span class="col3">
 				<h4>Contact</h4>
-				<a>E-mail</a>
-				<a>Linkedin</a>
+				<a href="mailto:schoolpea@outlook.com">E-mail</a>
+                <a href="https://schoolpea.com/EasterEgg/" >LinkedIn</a>
 			</span>
 
-			<span class="col4">
-				<h4>Newsletter</h4>
-				<a>Api fetch à Implémenter<br />Input email</a>
-			</span>
+
 		</div>
 	</footer>
 	<script>
         function searchCourses() {
-            let input = document.getElementById('search').value.toLowerCase();
+            let input = document.getElementById('coursenquizz-search').value.toLowerCase();
             let courses = document.getElementsByClassName('course_item');
             for (let i = 0; i < courses.length; i++) {
                 let courseName = courses[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
