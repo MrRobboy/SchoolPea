@@ -49,7 +49,7 @@ session_start();
 			</div>
 
 			<div id="barreDeRecherche">
-        <input type="text" id="coursenquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
+        <input type="text" id="coursandquizz-search" placeholder="Rechercher un cours ou un quizz ..." onkeyup="searchCourses()">
         <div id="dropdown" class="dropdown"></div>
     </div>
 		</div>
@@ -184,7 +184,6 @@ session_start();
 			</span>
 		</div>
 	</footer>
-
 	<script>
         function searchCourses() {
             let input = document.getElementById('coursenquizz-search').value.toLowerCase();
@@ -198,7 +197,7 @@ session_start();
             let xhr = new XMLHttpRequest();
 
             // Define the type of request: GET and the URL including the input
-            xhr.open('GET', 'searchCourses.php?query=' + input, true);
+            xhr.open('GET', '/Cours/searchCourses.php?query=' + input, true);
 
             // Set up a function to handle the response
             xhr.onreadystatechange = function () {
@@ -211,17 +210,21 @@ session_start();
                     dropdown.innerHTML = '';
 
                     // Display the dropdown list
-                    courses.forEach(course => {
-                        let item = document.createElement('div');
-                        item.className = 'dropdown-item';
-                        item.textContent = course.nom;
-                        item.onclick = function () {
-                            window.location.href = 'voirCours.php?nom=' + encodeURIComponent(course.nom);
-                        };
-                        dropdown.appendChild(item);
-                    });
+                    if (courses.length > 0) {
+                        courses.forEach(course => {
+                            let item = document.createElement('div');
+                            item.className = 'dropdown-item';
+                            item.textContent = course.nom;
+                            item.onclick = function () {
+                                window.location.href = 'voirCours.php?nom=' + encodeURIComponent(course.nom);
+                            };
+                            dropdown.appendChild(item);
+                        });
 
-                    dropdown.style.display = 'block';
+                        dropdown.style.display = 'block';
+                    } else {
+                        dropdown.style.display = 'none';
+                    }
                 }
             };
 
@@ -232,7 +235,7 @@ session_start();
         // Hide the dropdown when clicking outside
         document.addEventListener('click', function (event) {
             let dropdown = document.getElementById('dropdown');
-            if (!dropdown.contains(event.target) && event.target.id !== 'coursenquizz-search') {
+            if (!dropdown.contains(event.target) && event.target.id !== 'coursandquizz-search') {
                 dropdown.style.display = 'none';
             }
         });
