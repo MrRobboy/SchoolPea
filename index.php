@@ -1,5 +1,12 @@
 <?php
 session_start();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
+
+$sql = "SELECT * FROM COURS";
+$result = $dbh->query($sql);
+$courses = $result->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -62,47 +69,24 @@ session_start();
         <p id="titre_cours">Nos Cours les plus populaires</p>
     </span>
     <div class="fenetre">
-        <?php
-            $options = [
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ];
-
-            try {
-                $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
-                $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-                // Récupération des cours depuis la base de données
-                $sql = "SELECT * FROM COURS";
-                $stmt = $bdd->query($sql);
-
-                $counter = 0;
-                while ($row = $stmt->fetch()) {
-                    if ($counter % 4 == 0 && $counter != 0) {
-                        echo "</div><div class='fenetre'>";
-                    }
-                    echo "<span id='fen" . ($counter + 1) . "'>";
-                    echo "<h3>" . htmlspecialchars($row['nom']) . "</h3>";
-                    if (!empty($row['path_image_pres']) && file_exists($row['path_image_pres'])) {
-                        echo "<img src='" . htmlspecialchars($row['path_image_pres']) . "' alt='Image de présentation'>";
-                    } else {
-                        echo "<img src='default-image.jpg' alt='Image par défaut'>";
-                    }
-                    echo "<a href='/Cours/voirCours.php?id_cours=" . htmlspecialchars($row['id_COURS']) . "'>Voir le cours</a>";
-                    echo "</span>";
-                    $counter++;
-                }
-
-                if ($counter == 0) {
-                    echo "<span>Aucun cours trouvé.</span>";
-                }
-            } catch (PDOException $e) {
-                echo "Erreur Connexion : " . $e->getMessage();
-                die;
-            }
-        ?>
+        <div class="courses" id="course_list">
+            <?php if (!empty($courses)) : ?>
+                <?php foreach ($courses as $course) : ?>
+                    <div class="course_item">
+                        <h3><?php echo htmlspecialchars($course['nom']); ?></h3>
+                        <?php if (!empty($course['path_image_pres'])) : ?>
+                            <img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" alt="Image de présentation">
+                        <?php else : ?>
+                            <img src="default-image.jpg" alt="Image par défaut">
+                        <?php endif; ?>
+                        <a href="voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>Aucun cours disponible.</p>
+            <?php endif; ?>
+        </div>
     </div>
-</div>
-
 
 	<span>
 		<a class="voir_plus" href="https://schoolpea.com/Connexion/">
@@ -186,59 +170,17 @@ session_start();
 	</footer>
 	<script>
         function searchCourses() {
-            let input = document.getElementById('coursenquizz-search').value.toLowerCase();
-
-            if (input.length === 0) {
-                document.getElementById('dropdown').style.display = 'none';
-                return;
-            }
-
-            // Creating a new XMLHttpRequest object
-            let xhr = new XMLHttpRequest();
-
-            // Define the type of request: GET and the URL including the input
-            xhr.open('GET', '/Cours/searchCourses.php?query=' + input, true);
-
-            // Set up a function to handle the response
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState === 4 && xhr.status === 200) {
-                    // Parse the JSON response
-                    let courses = JSON.parse(xhr.responseText);
-
-                    // Clear previous results
-                    let dropdown = document.getElementById('dropdown');
-                    dropdown.innerHTML = '';
-
-                    // Display the dropdown list
-                    if (courses.length > 0) {
-                        courses.forEach(course => {
-                            let item = document.createElement('div');
-                            item.className = 'dropdown-item';
-                            item.textContent = course.nom;
-                            item.onclick = function () {
-                                window.location.href = 'voirCours.php?nom=' + encodeURIComponent(course.nom);
-                            };
-                            dropdown.appendChild(item);
-                        });
-
-                        dropdown.style.display = 'block';
-                    } else {
-                        dropdown.style.display = 'none';
-                    }
+            let input = document.getElementById('search').value.toLowerCase();
+            let courses = document.getElementsByClassName('course_item');
+            for (let i = 0; i < courses.length; i++) {
+                let courseName = courses[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+                if (courseName.includes(input)) {
+                    courses[i].style.display = "";
+                } else {
+                    courses[i].style.display = "none";
                 }
-            };
-
-            // Send the request
-            xhr.send();
-        }
-
-        // Hide the dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            let dropdown = document.getElementById('dropdown');
-            if (!dropdown.contains(event.target) && event.target.id !== 'coursandquizz-search') {
-                dropdown.style.display = 'none';
             }
-        });
+        }
     </script>
 </body>
 
