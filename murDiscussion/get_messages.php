@@ -15,7 +15,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Préparer et exécuter la requête pour récupérer les messages
-    $sql = "SELECT user_id, message, created_at FROM messages ORDER BY created_at DESC";
+    $sql = "SELECT user_id, message, created_at, path_pp, firstname, lastname, email FROM messages JOIN users ON messages.user_id = users.id ORDER BY created_at DESC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
@@ -26,6 +26,8 @@ try {
     echo json_encode($messages);
 
 } catch (PDOException $e) {
+    // Retourner un code HTTP 500 en cas d'erreur serveur
+    http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
 }
 
