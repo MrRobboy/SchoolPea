@@ -3,19 +3,19 @@ session_start();
 include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $email = $_POST['email'];
+    $pass = $_POST['pass'];
 
-    $stmt = $conn->prepare("SELECT id FROM users WHERE username = :username AND password = :password");
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':password', $password);
+    $stmt = $conn->prepare("SELECT id FROM USER WHERE email = :email AND pass = :pass");
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':pass', $pass);
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
         $_SESSION['user_id'] = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
         header("Location: message_board.php");
     } else {
-        echo "Invalid username or password";
+        echo "Invalid email or pass";
     }
 }
 ?>
@@ -26,10 +26,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <form method="POST" action="">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+    <label for="email">email:</label>
+    <input type="text" id="email" name="email" required>
+    <label for="pass">pass:</label>
+    <input type="pass" id="pass" name="pass" required>
     <button type="submit">Login</button>
 </form>
 </body>
