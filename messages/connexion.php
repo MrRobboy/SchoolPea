@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $pass = htmlspecialchars($_POST['password_connexion']);
 $email = htmlspecialchars($_POST['email_connexion']);
 
-include('db.php');
+include('db_connect.php');
 $dbh->exec('USE PA');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
