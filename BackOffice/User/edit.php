@@ -1,4 +1,5 @@
 <?php
+session_start();
 $_GET;
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
