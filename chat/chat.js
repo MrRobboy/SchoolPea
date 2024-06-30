@@ -53,7 +53,7 @@ $(document).ready(function() {
         var message = $('#messageArea').val();
         if (message.trim() !== "") {
             $.ajax({
-                url: 'sendMessage.php',
+                url: 'sendMessage.php', // Assurez-vous que ce chemin est correct
                 type: 'POST',
                 data: {
                     'message': message
@@ -75,7 +75,7 @@ $(document).ready(function() {
         var keyword = $('#search').val();
         if (keyword.trim() !== "") {
             $.ajax({
-                url: 'searchMessages.php',
+                url: 'searchMessages.php', // Assurez-vous que ce chemin est correct
                 type: 'GET',
                 data: {
                     'keyword': keyword
