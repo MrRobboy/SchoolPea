@@ -1,81 +1,81 @@
 <?php
+// On active l'accès à la session
 session_start();
-$badCredentials = false;
 
-// Vérifier si la méthode de requête est POST
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Vérifier si les clés password_connexion et email_connexion existent dans $_POST
-    if (!isset($_POST['password_connexion']) || !isset($_POST['email_connexion'])) {
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        exit(); // Arrêter le script si les clés ne sont pas définies
-    }
+// Formulaire de connexion
+// Doit afficher en haut de page "Vous êtes connecté(e)" si le mail et le mot de passe sont bons.
+// Doit afficher en haut de page "Email et/ou mot de passe invalide" si le mail et le mot de passe ne sont pas bons.
 
-    // Récupérer les valeurs postées
-    $pass = htmlspecialchars($_POST['password_connexion']);
-    $email = htmlspecialchars($_POST['email_connexion']);
+// On vérifie que $_POST existe et qu'il n'est pas vide.
+if(isset($_POST) && !empty($_POST)){
 
-    // Inclure le fichier de connexion à la base de données
-    include('db.php');
+    // On vérifie que tous les champs sont remplis
+    if(isset($_POST['email']) && !empty($_POST['email']) && isset($_POST['pass']) && !empty($_POST['pass'])){
+        // On récupère les valeurs saisies
+        $mail = strip_tags($_POST['email']);
+        $pass = $_POST['pass'];
 
-    // Vérifier la connexion à la base de données
-    if ($dbh === null) {
-        die("La connexion à la base de données a échoué.");
-    }
+        // On vérifie si l'email existe dans la base de données
+        // On se connecte à la base
+        require_once('db.php');
 
-    try {
-        // Préparer la requête SQL pour récupérer l'utilisateur par email
-        $requestDB = 'SELECT * FROM USER WHERE email = :email';
-        $stmt = $dbh->prepare($requestDB);
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->execute();
-        $user = $stmt->fetch(PDO::FETCH_ASSOC); // Utiliser fetch pour récupérer une seule ligne
-    } catch (PDOException $e) {
-        echo "Erreur PDO : " . $e->getMessage();
-        exit(); // Arrêter le script en cas d'erreur PDO
-    }
+        // On écrit la requête
+        $sql = 'SELECT * FROM `USER` WHERE `email` = :email;';
 
-    // Vérifier si l'utilisateur existe et si son email est validé
-    if (!empty($user) && $user['validation_mail'] == 1) {
-        // Vérifier si le mot de passe correspond
-        if (password_verify($pass, $user['pass'])) {
-            // Stocker les informations de l'utilisateur en session
-            $_SESSION['id_user'] = htmlspecialchars($user['id_USER']);
-            $_SESSION['email'] = htmlspecialchars($user['email']);
-            $_SESSION['firstname'] = htmlspecialchars($user['firstname']);
-            $_SESSION['lastname'] = htmlspecialchars($user['lastname']);
-            $_SESSION['path_pp'] = htmlspecialchars($user['path_pp']);
-            $_SESSION['elo'] = htmlspecialchars($user['elo']);
-            $_SESSION['role'] = htmlspecialchars($user['role']);
-            $_SESSION['mail_valide'] = htmlspecialchars($user['validation_mail']);
+        // On prépare la requête
+        $query = $db->prepare($sql);
 
-            // Enregistrer une action de connexion dans les logs
-            $message = $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
-            $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
-            $queryLogs->bindValue(':id_USER', $user['id_USER'], PDO::PARAM_INT);
-            $queryLogs->bindValue(':msg', $message, PDO::PARAM_STR);
-            $result = $queryLogs->execute();
+        // On injecte (terme scientifique) les valeurs
+        $query->bindValue(':email', $mail, PDO::PARAM_STR);
 
-            
-            if ($result) {
-                header('Location: https://schoolpea.com/chat/index.php');
-                exit(); // Arrêter le script après la redirection
-            } else {
-                echo 'Erreur lors de l\'enregistrement de l\'action dans les logs.';
+        // On exécute la requête
+        $query->execute();
+
+        // On récupère les données
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+
+        // Soit on a une réponse dans $user, soit non
+        // On vérifie si on a une réponse
+        if(!$user){
+            echo 'Email et/ou mot de passe invalide';
+        }else{
+            // On vérifie que le mot de passe saisi correspond à celui en base
+            // password_verify($passEnClairSaisi, $passBaseDeDonnees)
+            if(password_verify($pass, $user['pass'])){
+                // On crée la session "user"
+                // On ne stocke JAMAIS de données dont on ne maîtrise pas le contenu
+                $_SESSION['user'] = [
+                    'id'    => $user['id_USER'],
+                    'email' => $user['email'],
+                    
+                ];
+
+                header('Location: index.php');
+            }else{
+                echo 'Email et/ou mot de passe invalide';
             }
-        } else {
-            $badCredentials = true;
         }
-    } else {
-        echo 'Mail non validé !!!!';
-    }
 
-    // Afficher un message d'erreur si les identifiants sont invalides
-    if ($badCredentials) {
-        header('Location: ' . $_SERVER['HTTP_REFERER']);
-        echo "Invalid email or password.";
+    }else{
+        echo "Veuillez remplir tous les champs...";
     }
-} else {
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
-    exit(); // Redirection si la méthode de requête n'est pas POST
 }
+
+include_once('header.php');
 ?>
+<div class="col-12 my-1">
+    <h1>Connexion</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="email">E-mail :</label>
+            <input class="form-control" type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="pass">Mot de passe :</label>
+            <input class="form-control" type="password" id="pass" name="pass">
+        </div>
+        <button class="btn btn-primary">Me connecter</button>
+    </form>
+</div>
+<?php
+include_once('footer.php');
