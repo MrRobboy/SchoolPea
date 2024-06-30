@@ -1,9 +1,15 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    die('Utilisateur non connecté.');
+}
+
 // Informations de connexion à la base de données
 $host = 'localhost'; // Adresse du serveur de base de données
 $dbname = 'PA'; // Nom de la base de données
-$username = 'root'; // Nom d'utilisateur
-$password = 'root'; // Mot de passe
+$username = 'username'; // Nom d'utilisateur
+$password = 'password'; // Mot de passe
 
 try {
     // Création de la connexion PDO
@@ -12,8 +18,8 @@ try {
     // Configuration de PDO pour lancer des exceptions en cas d'erreur
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Récupérer les données du formulaire
-    $user_id = intval($_POST['user_id']); // ID de l'utilisateur
+    // Récupérer l'ID de l'utilisateur connecté depuis la session
+    $user_id = $_SESSION['user_id'];
     $message = $_POST['message']; // Message
 
     // Préparer la requête d'insertion
@@ -27,9 +33,10 @@ try {
     // Exécuter la requête
     $stmt->execute();
 
-    echo "Message envoyé avec succès.";
+    // Rediriger vers la page principale pour afficher les messages
+    header("Location: index.php");
+    exit();
 } catch (PDOException $e) {
-    // Gérer les erreurs
     echo "Erreur : " . $e->getMessage();
 }
 

@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    die('Utilisateur non connecté.');
+}
+$user_id = $_SESSION['user_id'];
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,13 +37,12 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Fonction pour charger les messages depuis le serveur
             function loadMessages() {
                 fetch('get_messages.php')
                     .then(response => response.json())
                     .then(data => {
                         const messageContainer = document.querySelector('.message-container');
-                        messageContainer.innerHTML = ''; // Vider le conteneur avant de le remplir
+                        messageContainer.innerHTML = '';
 
                         if (Array.isArray(data)) {
                             data.forEach(message => {
@@ -56,24 +63,19 @@
                     });
             }
 
-            // Charger les messages au chargement de la page
             loadMessages();
-
-            // Optionnel : Recharger les messages périodiquement
-            // setInterval(loadMessages, 5000); // Recharger toutes les 5 secondes
         });
     </script>
 </head>
 <body>
 
-    <!-- Conteneur pour afficher les messages -->
     <div class="message-container">
         <!-- Les messages seront chargés ici par JavaScript -->
     </div>
 
     <!-- Formulaire pour envoyer un message -->
     <form method="post" action="send_message.php">
-        <input type="hidden" name="user_id" value="3"> <!-- Changez cette valeur dynamiquement selon l'utilisateur connecté -->
+        <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user_id); ?>">
         <textarea name="message" rows="4" cols="50" placeholder="Entrez votre message ici..."></textarea>
         <button type="submit">Envoyer</button>
     </form>
