@@ -8,8 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 // Informations de connexion à la base de données
 $host = 'localhost'; // Adresse du serveur de base de données
 $dbname = 'PA'; // Nom de la base de données
-$username = 'username'; // Nom d'utilisateur
-$password = 'password'; // Mot de passe
+$username = 'root'; // Nom d'utilisateur
+$password = 'root'; // Mot de passe
 
 try {
     // Création de la connexion PDO
