@@ -1,4 +1,5 @@
 <?php
+session_start();
 $_GET;
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
@@ -22,8 +23,12 @@ $users = $stmt->fetchAll();
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Compte/compte.css">
 </head>
 
-<body>
-    <div id="div1">
+<body style="padding-left: 10em;">
+    <?php
+    $header = $_SERVER['DOCUMENT_ROOT'];
+    $header .= '/BackOffice/Includes/headerBackOffice.php';
+    include($header); ?>
+    <div id="Info_gen">
         <h1>Modifier l'Utilisateur</h1>
         <form method="post">
             <div>
