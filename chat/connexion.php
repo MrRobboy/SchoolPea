@@ -23,7 +23,7 @@ if(isset($_POST) && !empty($_POST)){
         $sql = 'SELECT * FROM `USER` WHERE `email` = :email;';
 
         // On prépare la requête
-        $query = $db->prepare($sql);
+        $query = $dbh->prepare($sql);
 
         // On injecte (terme scientifique) les valeurs
         $query->bindValue(':email', $mail, PDO::PARAM_STR);
