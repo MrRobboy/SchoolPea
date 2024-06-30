@@ -177,15 +177,16 @@ html, body {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
-    // Load messages when document is ready
+    // Chargement des messages au chargement du document
     loadMessages();
 
-    // Toggle chat box visibility
+    // Toggle la visibilité de la boîte de chat
     $('#chat-circle, .chat-box-toggle').click(function() {
         $('.chat-box').toggle('scale');
+        scrollChatToBottom();
     });
 
-    // Handle message submission
+    // Gestion de l'envoi de message
     $('#chat-submit-btn').click(function() {
         var message = $('#chat-input-text').val().trim();
         if (message !== '') {
@@ -193,28 +194,43 @@ $(document).ready(function() {
         }
     });
 
-    // Function to load messages
+    // Fonction pour charger les messages
     function loadMessages() {
-        $.get('get_messages.php', function(data) {
-            var messages = JSON.parse(data);
-            var html = '';
-            messages.forEach(function(msg) {
-                html += generateMessage(msg.message, msg.email);
-            });
-            $('#chat-logs').html(html);
-            scrollChatToBottom();
+        $.ajax({
+            url: 'get_messages.php',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                var html = '';    
+                data.forEach(function(msg) {
+                    html += generateMessage(msg.message, msg.email);
+                });
+                $('#chat-logs').html(html);
+                scrollChatToBottom();
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching messages:', status, error);
+            }
         });
     }
 
-    // Function to send message
+    // Fonction pour envoyer un message
     function sendMessage(message) {
-        $.post('send_message.php', { message: message }, function() {
-            $('#chat-input-text').val('');
-            loadMessages(); // Reload messages after sending
+        $.ajax({
+            url: 'send_message.php',
+            type: 'POST',
+            data: { message: message },
+            success: function() {
+                $('#chat-input-text').val('');
+                loadMessages(); // Recharge les messages après l'envoi
+            },
+            error: function(xhr, status, error) {
+                console.error('Error sending message:', status, error);
+            }
         });
     }
 
-    // Function to generate HTML for message
+    // Fonction pour générer le HTML d'un message
     function generateMessage(message, email) {
         var type = (email === '<?php echo $_SESSION["email"]; ?>') ? 'self' : 'user';
         var avatarBg = (type === 'self') ? '#2E7D32' : '#5A5EB9';
@@ -225,12 +241,13 @@ $(document).ready(function() {
         return html;
     }
 
-    // Function to scroll chat to bottom
+    // Fonction pour faire défiler la boîte de chat vers le bas
     function scrollChatToBottom() {
         $('#chat-logs').stop().animate({ scrollTop: $('#chat-logs')[0].scrollHeight }, 1000);
     }
 });
 </script>
+
 
 </body>
 </html>
