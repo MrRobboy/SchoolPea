@@ -1,25 +1,30 @@
+
 <?php
 session_start();
-if(!isset($_SESSION['id_user'])){
-    header("Location: login.php");
-    exit();
+include_once('header.php');
+if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+    // Ici, l'utilisateur est connecté
+    ?>
+    <p>Bonjour <?= $_SESSION['user']['pseudo'] ?> <a class="btn btn-danger" href="deconnexion.php">Déconnexion</a></p>
+<?php
+}else{
+    // Ici l'utilisateur n'est pas connecté
+    ?>
+    <a class="btn btn-primary mr-2" href="connexion.php">Connexion</a> <a class="btn btn-primary" href="inscription.php">Inscription</a>
+<?php
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Chat Général</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
-<body>
-<div id="messages"></div>
-<textarea id="messageArea"></textarea>
-<button id="sendBtn">Envoyer</button>
-<input type="text" id="search" placeholder="Rechercher">
-<button id="searchBtn">Rechercher</button>
-<div id="onlineUsers"></div>
-
-<script src="chat.js"></script>
-</body>
-</html>
+<div class="col-12 my-1">
+    <div class="p-2" id="discussion">
+    </div>
+</div>
+<div class="col-12 saisie">
+    <div class="input-group">
+        <input type="text" class="form-control" id="texte" placeholder="Entrez votre texte">
+        <div class="input-group-append">
+            <span class="input-group-text" id="valid"><i class="la la-check"></i></span>
+        </div>
+    </div>
+</div>
+<?php
+include_once('footer.php');
