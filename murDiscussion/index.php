@@ -27,23 +27,48 @@
             font-size: 0.85em;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fonction pour charger les messages depuis le serveur
+            function loadMessages() {
+                fetch('get_messages.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const messageContainer = document.querySelector('.message-container');
+                        messageContainer.innerHTML = ''; // Vider le conteneur avant de le remplir
+
+                        if (Array.isArray(data)) {
+                            data.forEach(message => {
+                                const messageDiv = document.createElement('div');
+                                messageDiv.className = 'message';
+                                messageDiv.innerHTML = `
+                                    <p>${message.message}</p>
+                                    <span class="timestamp">${message.created_at}</span>
+                                `;
+                                messageContainer.appendChild(messageDiv);
+                            });
+                        } else {
+                            messageContainer.innerHTML = '<p>Aucun message à afficher.</p>';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                    });
+            }
+
+            // Charger les messages au chargement de la page
+            loadMessages();
+
+            // Optionnel : Recharger les messages périodiquement
+            // setInterval(loadMessages, 5000); // Recharger toutes les 5 secondes
+        });
+    </script>
 </head>
 <body>
 
     <!-- Conteneur pour afficher les messages -->
     <div class="message-container">
-        <?php
-        // Inclure le script pour récupérer les messages
-        include 'display_messages.php';
-
-        // Afficher les messages
-        foreach ($messages as $message) {
-            echo '<div class="message">';
-            echo '<p>' . htmlspecialchars($message['message']) . '</p>';
-            echo '<span class="timestamp">' . $message['created_at'] . '</span>';
-            echo '</div>';
-        }
-        ?>
+        <!-- Les messages seront chargés ici par JavaScript -->
     </div>
 
     <!-- Formulaire pour envoyer un message -->
