@@ -23,7 +23,7 @@ $users = $stmt->fetchAll();
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Compte/compte.css">
 </head>
 
-<body>
+<body style="padding-left: 10em;">
     <?php
     $header = $_SERVER['DOCUMENT_ROOT'];
     $header .= '/BackOffice/Includes/headerBackOffice.php';
