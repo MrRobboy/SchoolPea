@@ -21,6 +21,7 @@ $users = $stmt->fetchAll();
     <meta charset="UTF-8">
     <title> EDIT - USERS </title>
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Compte/compte.css">
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/BackOffice/User/edit.css">
 </head>
 
 <body style="padding-left: 10em;">
@@ -35,27 +36,27 @@ $users = $stmt->fetchAll();
             <h1>Modifier l'Utilisateur</h1>
             <div>
                 <span>Id</span>
-                <input type="text" name="id_USER" value="<?php echo $users[0]['id_USER']; ?>">
+                <input type="text" name="id_USER" class="Input_edit" value="<?php echo $users[0]['id_USER']; ?>">
             </div>
 
             <div>
                 <span>Nom</span>
-                <input type="text" name="lastname" value="<?php echo $users[0]['lastname']; ?>">
+                <input type="text" name="lastname" class="Input_edit" value="<?php echo $users[0]['lastname']; ?>">
             </div>
 
             <div>
                 <span>Prenom</span>
-                <input type="text" name="firstname" value="<?php echo $users[0]['firstname']; ?>">
+                <input type="text" name="firstname" class="Input_edit" value="<?php echo $users[0]['firstname']; ?>">
             </div>
 
             <div>
                 <span>Email</span>
-                <input type="email" name="email" value="<?php echo $users[0]['email']; ?>">
+                <input type="email" name="email" class="Input_edit" value="<?php echo $users[0]['email']; ?>">
             </div>
 
             <div>
                 <span>Image</span>
-                <input type="text" name="path_pp" value="<?php echo $users[0]['path_pp']; ?>">
+                <input type="text" name="path_pp" class="Input_edit" value="<?php echo $users[0]['path_pp']; ?>">
             </div>
 
             <div>
