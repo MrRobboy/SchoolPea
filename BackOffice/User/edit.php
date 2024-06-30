@@ -63,7 +63,7 @@ $users = $stmt->fetchAll();
                 <input type="radio" value="<?php echo $users[0]['role']; ?>">
             </div>
 
-            <input type="submit">Valider les modifications</input>
+            <input type="submit" value="Valider les modifications"></input>
         </form>
     </div>
 </body>
