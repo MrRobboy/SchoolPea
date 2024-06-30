@@ -53,6 +53,7 @@ footer {
     margin: 10px 0;
     text-align: center;
 }
+
 /* styles.css */
 body {
     font-family: Arial, sans-serif;
@@ -105,4 +106,8 @@ body {
 .course_item a:hover,
 .quiz a:hover {
     background-color: #45a049;
+}
+
+.img_pres {
+    max-width: 50px;
 }
