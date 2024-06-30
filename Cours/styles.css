@@ -78,13 +78,14 @@ body {
     padding: 15px;
     text-align: center;
     align-items: center;
+    justify-content: center;
     display: flex;
     flex-direction: column;
 }
 
 .course_item img,
 .quiz img {
-    max-width: 50px;
+    max-width: 150px;
     height: auto;
     border-radius: 5px;
 }
