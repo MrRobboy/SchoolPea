@@ -15,7 +15,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Préparer et exécuter la requête pour récupérer les messages
-    $sql = "SELECT user_id, message, created_at, path_pp, firstname, lastname, email FROM messages JOIN users ON messages.user_id = users.id ORDER BY created_at DESC";
+    $sql = "SELECT user_id, message, created_at, path_pp, firstname, lastname, email FROM messages JOIN USER ON messages.user_id = USER.id ORDER BY created_at DESC";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
 
