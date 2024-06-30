@@ -1,13 +1,3 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
-    header("Location: login.php");
-    exit();
-}
-$user_id = $_SESSION['user_id'];
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -21,13 +11,26 @@ $user_id = $_SESSION['user_id'];
             margin-bottom: 20px;
             max-height: 300px;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse; /* Afficher les messages du bas vers le haut */
         }
         .message {
-            padding: 5px;
+            padding: 10px;
             border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
         }
         .message:last-child {
             border-bottom: none;
+        }
+        .message img {
+            border-radius: 50%;
+            margin-right: 10px;
+            width: 50px;
+            height: 50px;
+        }
+        .message-content {
+            flex: 1;
         }
         .message p {
             margin: 0;
@@ -36,14 +39,20 @@ $user_id = $_SESSION['user_id'];
             color: #666;
             font-size: 0.85em;
         }
+        .message .email {
+            color: #007bff;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            const messageContainer = document.querySelector('.message-container');
+
             function loadMessages() {
                 fetch('get_messages.php')
                     .then(response => response.json())
                     .then(data => {
-                        const messageContainer = document.querySelector('.message-container');
                         messageContainer.innerHTML = '';
 
                         if (Array.isArray(data)) {
@@ -51,11 +60,18 @@ $user_id = $_SESSION['user_id'];
                                 const messageDiv = document.createElement('div');
                                 messageDiv.className = 'message';
                                 messageDiv.innerHTML = `
-                                    <p>${message.message}</p>
-                                    <span class="timestamp">${message.created_at}</span>
+                                    <img src="${message.path_pp}" alt="${message.firstname} ${message.lastname}">
+                                    <div class="message-content">
+                                        <p>${message.message}</p>
+                                        <span class="timestamp">${message.created_at}</span>
+                                        <span class="email">${message.email}</span>
+                                    </div>
                                 `;
                                 messageContainer.appendChild(messageDiv);
                             });
+
+                            // Faire défiler le conteneur vers le bas
+                            messageContainer.scrollTop = messageContainer.scrollHeight;
                         } else {
                             messageContainer.innerHTML = '<p>Aucun message à afficher.</p>';
                         }
@@ -65,7 +81,9 @@ $user_id = $_SESSION['user_id'];
                     });
             }
 
-            loadMessages();
+            // Charger les messages toutes les 5 secondes
+            loadMessages(); // Chargement initial
+            setInterval(loadMessages, 5000); // Rafraîchir toutes les 5 secondes
         });
     </script>
 </head>
