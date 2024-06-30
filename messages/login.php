@@ -12,8 +12,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
 
     if ($stmt->rowCount() > 0) {
-        $_SESSION['user_id'] = $stmt->fetch(PDO::FETCH_ASSOC)['id'];
+        $_SESSION['user_id'] = $stmt->fetch(PDO::FETCH_ASSOC)['id_USER']; // Correction ici
         header("Location: message_board.php");
+        exit();
     } else {
         echo "Invalid email or pass";
     }
@@ -26,10 +27,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 <form method="POST" action="">
-    <label for="email">email:</label>
+    <label for="email">Email:</label>
     <input type="text" id="email" name="email" required>
-    <label for="pass">pass:</label>
-    <input type="pass" id="pass" name="pass" required>
+    <label for="pass">Password:</label>
+    <input type="password" id="pass" name="pass" required> <!-- Correction ici -->
     <button type="submit">Login</button>
 </form>
 </body>
