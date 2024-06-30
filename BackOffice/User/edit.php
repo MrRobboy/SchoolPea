@@ -24,6 +24,10 @@ $users = $stmt->fetchAll();
 </head>
 
 <body>
+    <?php
+    $header = $_SERVER['DOCUMENT_ROOT'];
+    $header .= '/BackOffice/Includes/headerBackOffice.php';
+    include($header); ?>
     <div id="div1">
         <h1>Modifier l'Utilisateur</h1>
         <form method="post">
