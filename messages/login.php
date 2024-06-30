@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $pass = $_POST['pass'];
 
-    $stmt = $conn->prepare("SELECT id FROM USER WHERE email = :email AND pass = :pass");
+    $stmt = $conn->prepare("SELECT id_USER FROM USER WHERE email = :email AND pass = :pass");
     $stmt->bindParam(':email', $email);
     $stmt->bindParam(':pass', $pass);
     $stmt->execute();
