@@ -28,7 +28,7 @@ $users = $stmt->fetchAll();
     $header = $_SERVER['DOCUMENT_ROOT'];
     $header .= '/BackOffice/Includes/headerBackOffice.php';
     include($header); ?>
-    <div id="div1">
+    <div id="Info_gen">
         <h1>Modifier l'Utilisateur</h1>
         <form method="post">
             <div>
