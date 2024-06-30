@@ -89,10 +89,8 @@
     }
     .chat-box-body {
       position: relative;
-      height: 370px;
-      height: auto;
-      border: 1px solid #ccc;
-      overflow: hidden;
+      height: calc(100% - 130px);
+      overflow-y: auto;
     }
     .chat-box-body:after {
       content: "";
@@ -116,19 +114,23 @@
     }
     .chat-logs {
       padding: 15px;
-      height: 370px;
-      height: auto;
       overflow-y: scroll;
+      height: calc(100% - 60px);
     }
     .chat-input {
       border-top: 1px solid #ddd;
+      display: flex;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
     }
     .chat-input .input {
       resize: none;
       border: none;
       padding: 10px;
       font-size: 13px;
-      width: 270px;
+      flex: 1;
     }
     .chat-input .input:focus {
       outline: none;
