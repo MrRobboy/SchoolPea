@@ -1,7 +1,9 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    die('Utilisateur non connecté.');
+    // L'utilisateur n'est pas connecté, rediriger vers la page de connexion
+    header("Location: login.php");
+    exit();
 }
 $user_id = $_SESSION['user_id'];
 ?>
