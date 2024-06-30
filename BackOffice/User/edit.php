@@ -31,8 +31,8 @@ $users = $stmt->fetchAll();
     <span class="trait" id="SchoolPea"></span>
 
     <div id="div1">
-        <h1>Modifier l'Utilisateur</h1>
         <form method="post" id="Info_gen">
+            <h1>Modifier l'Utilisateur</h1>
             <div>
                 <span>Id</span>
                 <input type="text" value="<?php echo $users[0]['id_USER']; ?>">
