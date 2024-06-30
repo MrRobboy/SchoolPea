@@ -2,10 +2,10 @@
 <?php
 session_start();
 include_once('header.php');
-if(isset($_SESSION['firstname']) && !empty($_SESSION['firstname'])){
+if(isset($_SESSION['email']) && !empty($_SESSION['email'])){
     // Ici, l'utilisateur est connecté
     ?>
-    <p>Bonjour <?= $_SESSION['firstname'] ?> <a class="btn btn-danger" href="deconnexion.php">Déconnexion</a></p>
+    <p>Bonjour <?= $_SESSION['email'] ?> <a class="btn btn-danger" href="deconnexion.php">Déconnexion</a></p>
 <?php
 }else{
     // Ici l'utilisateur n'est pas connecté
