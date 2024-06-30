@@ -5,7 +5,7 @@ include_once('header.php');
 if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
     // Ici, l'utilisateur est connecté
     ?>
-    <p>Bonjour <?= $_SESSION['user']['pseudo'] ?> <a class="btn btn-danger" href="deconnexion.php">Déconnexion</a></p>
+    <p>Bonjour <?= $_SESSION['user'] ?> <a class="btn btn-danger" href="deconnexion.php">Déconnexion</a></p>
 <?php
 }else{
     // Ici l'utilisateur n'est pas connecté
