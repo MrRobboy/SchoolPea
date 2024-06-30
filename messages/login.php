@@ -1,37 +1,67 @@
 <?php
 session_start();
-include 'db_connect.php';
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $pass = $_POST['pass'];
-
-    $stmt = $conn->prepare("SELECT id_USER FROM USER WHERE email = :email AND pass = :pass");
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':pass', $pass);
-    $stmt->execute();
-
-    if ($stmt->rowCount() > 0) {
-        $_SESSION['user_id'] = $stmt->fetch(PDO::FETCH_ASSOC)['id_USER']; // Correction ici
-        header("Location: message_board.php");
-        exit();
-    } else {
-        echo "Invalid email or pass";
-    }
+if (!empty($_SESSION['mail_valide']) && $_SESSION['mail_valide'] == true) {
+	echo '<script>alert("Votre mail a bien été enregisté")</script>';
 }
+session_unset();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
 <head>
-    <title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Connexion | SchoolPéa</title>
+	<link rel="stylesheet" type="text/css" href="./connexion.css">
 </head>
+
 <body>
-<form method="POST" action="">
-    <label for="email">Email:</label>
-    <input type="text" id="email" name="email" required>
-    <label for="pass">Password:</label>
-    <input type="password" id="pass" name="pass" required> <!-- Correction ici -->
-    <button type="submit">Login</button>
-</form>
+	<div class="container Connexion" id="Conteneur">
+		<div class="form-container sign-in">
+			<form action="connexion.php" method="post">
+				<h1>Connexion</h1>
+				<?php
+				/*if (isset($badCredentials) && $badCredentials) {
+					echo ('<p class="error">Mauvais identifiants</p>');
+				}*/
+				?>
+				<input type="email" id="email" name="email_connexion" placeholder="Email" required>
+				<input type="password" id="password" name="password_connexion" placeholder="Mot de passe" required>
+				<a href="#">Mot de passe oublié ?</a>
+				<button type="submit" name="submit_connexion">Connexion</button>
+			</form>
+		</div>
+
+		<div class="form-container sign-up">
+			<form action="../../BackEnd/inscription.php" method="post">
+				<h1 style="text-align: center">Bienvenue chez SchoolPéa</h1>
+				<?php /*
+				if (isset($_GET['error']) && $_GET['password'] === '0') {
+					echo ('<p>Un champ a mal été saisi</p>');
+				}*/
+				?>
+				<input type="text" name="lastname" placeholder="Nom" required>
+				<input type="text" name="firstname" placeholder="Prenom" required>
+				<input type="email" name="email_inscription" placeholder="Email" required>
+				<input type="password" name="password_inscription" placeholder="Mot de passe" required>
+				<button type="submit" name="submit_inscription">Inscription</button>
+			</form>
+		</div>
+
+		<div class="toggle-container">
+			<div class="toggle">
+				<div class="toggle-panel toggle-left">
+					<h1>Te revoilà !</h1>
+					<button class="hidden" id="Connexion">Connexion</button>
+				</div>
+				<div class="toggle-panel toggle-right">
+					<h1>T'es nouveau ?</h1>
+					<button class="hidden" id="Inscription">Inscription</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./script_Inscr_Conn.js"></script>
 </body>
+
 </html>
