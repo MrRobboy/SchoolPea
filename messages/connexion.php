@@ -13,9 +13,9 @@ $pass = htmlspecialchars($_POST['password_connexion']);
 $email = htmlspecialchars($_POST['email_connexion']);
 
 include('db_connect.php');
-$dbh->exec('USE PA');
+$conn->exec('USE PA');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
-$UserInfo = $dbh->query($requestDB);
+$UserInfo = $conn->query($requestDB);
 $user = $UserInfo->fetchAll();
 
 echo '<pre>';
@@ -38,7 +38,7 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
 
 		$message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
 
-		$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
+		$queryLogs = $conn->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
 		$queryLogs->bindvalue(':id_USER', $user[0]['id_USER']);
 		$queryLogs->bindvalue(':msg', $message);
 		$result = $queryLogs->execute();
