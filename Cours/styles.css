@@ -81,7 +81,7 @@ body {
 
 .course_item img,
 .quiz img {
-    max-width: 100%;
+    max-width: 50px;
     height: auto;
     border-radius: 5px;
 }
@@ -106,8 +106,4 @@ body {
 .course_item a:hover,
 .quiz a:hover {
     background-color: #45a049;
-}
-
-.img_pres {
-    max-width: 50px;
 }
