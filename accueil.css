@@ -159,6 +159,12 @@ body div {
     padding: 2.5em 1em;
 }
 
+#course_list {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+}
+
 .course_item {
     display: flex;
     flex-direction: column;
