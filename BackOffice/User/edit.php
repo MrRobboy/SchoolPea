@@ -61,15 +61,15 @@ $users = $stmt->fetchAll();
 
             <div class="edit">
                 <span>Role : </span>
-                <div class="bouton">
+                <div class="boutton">
                     <label for="male">Admin</label>
                     <input type="radio" value="Admin" <?php if ($users[0]['role'] == 'admin') echo 'checked="checked"'; ?>>
                 </div>
-                <div class="bouton">
+                <div class="boutton">
                     <label for="male">Professeur</label>
                     <input type="radio" value="Professeur" <?php if ($users[0]['role'] == 'professeur') echo 'checked="checked"'; ?>>
                 </div>
-                <div class="bouton">
+                <div class="boutton">
                     <label for="male">Classique</label>
                     <input type="radio" value="Classique" <?php if ($users[0]['role'] == 'classique') echo 'checked="checked"'; ?>>
                 </div>
