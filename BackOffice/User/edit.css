@@ -29,3 +29,9 @@
     border-radius: 1em;
     border: solid 0.1em #374599;
 }
+
+.title_edit {
+    align-items: center;
+    font-weight: 600;
+    margin: 0 1em;
+}
