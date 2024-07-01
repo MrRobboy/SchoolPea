@@ -64,7 +64,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 	<span class="trait" id="Explorer_les_cours"></span>
 
 	<div id="Cours_section">
-		<span>
+		<span style="margin-bottom: -2em;">
 			<p id="titre_cours">Nos Cours les plus populaires</p>
 		</span>
 		<div class="fenetre">
