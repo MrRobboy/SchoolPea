@@ -163,7 +163,6 @@ body div {
     flex-direction: row;
     display: flex;
     justify-content: space-around;
-    align-items: center;
     padding: 0 1em;
 }
 
@@ -174,6 +173,7 @@ body div {
     border: solid 0.1em black;
     border-radius: 2em;
     margin: 1em;
+    align-items: center;
 }
 
 .fenetre span {
