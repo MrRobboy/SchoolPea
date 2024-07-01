@@ -168,6 +168,9 @@ body div {
 .course_item {
     display: flex;
     flex-direction: column;
+    padding: 1em;
+    border: solid 0.1em black;
+    border-radius: 2em;
 }
 
 .fenetre span {
