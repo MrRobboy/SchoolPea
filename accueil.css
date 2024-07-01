@@ -152,6 +152,13 @@ body div {
     margin: 0;
 }
 
+.img_pres {
+    width: 150px;
+    margin: 1em 0;
+    height: 150px;
+    object-fit: cover;
+}
+
 #div_cours {
     background-color: #5c6bc0;
     border-radius: 3em;
