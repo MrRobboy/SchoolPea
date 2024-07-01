@@ -142,10 +142,10 @@ body div {
 }
 
 #titre_cours {
-    border: solid #5c6bc0;
+    border: solid #28326e 0.2em;
     padding: 1em 8em;
     border-radius: 3em;
-    background-color: #28326e;
+    background-color: #6b7ad2;
     color: #ffffff;
     font-weight: 700;
     font-size: large;
