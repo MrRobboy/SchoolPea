@@ -164,6 +164,9 @@ body div {
     display: flex;
     justify-content: space-around;
     padding: 0 1em;
+    border: solid 0.1em black;
+    background-color: #374599;
+    border-radius: 3em;
 }
 
 .course_item {
