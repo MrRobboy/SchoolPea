@@ -32,7 +32,7 @@ $users = $stmt->fetchAll();
                         <th style="padding: 0 2rem;border-right: solid 0.3rem white;">Prenom</th>
                         <th style="padding: 0 3rem;border-right: solid 0.3rem white;">Email</th>
                         <th style="padding: 0 1rem;border-right: solid 0.3rem white;">Rôle</th>
-                        <th style="padding: 0 6rem;border-right: none;">Actions</th>
+                        <th style="padding: 0 7rem;border-right: none;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
