@@ -177,6 +177,7 @@ body div {
     border-radius: 2em;
     margin: 1em;
     align-items: center;
+    background-color: white;
 }
 
 .fenetre span {
