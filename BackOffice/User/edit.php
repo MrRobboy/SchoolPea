@@ -31,7 +31,7 @@ $users = $stmt->fetchAll();
     include($header); ?>
     <span class="trait" id="SchoolPea"></span>
 
-    <div id="div1" style="width: 40%;">
+    <div id="div1">
         <form method="post" id="Info_gen" action="">
             <h1 style="text-align: center;">Modifier l'Utilisateur</h1>
             <div class="edit">
