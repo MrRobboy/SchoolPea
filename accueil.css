@@ -149,6 +149,7 @@ body div {
     color: #ffffff;
     font-weight: 700;
     font-size: large;
+    margin: 0;
 }
 
 #div_cours {
@@ -191,6 +192,7 @@ body div {
 .voir_plus {
     padding: 0.5em 4em;
     background-color: #6b7ad2;
+    border: #374599;
     color: white;
     text-decoration: none;
     border-radius: 2em;
