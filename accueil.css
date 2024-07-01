@@ -193,7 +193,7 @@ body div {
 .voir_plus {
     padding: 0.5em 4em;
     background-color: #6b7ad2;
-    border: #374599;
+    border: #374599 0.1em solid;
     color: white;
     text-decoration: none;
     border-radius: 2em;
