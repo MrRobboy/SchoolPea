@@ -165,8 +165,9 @@ body div {
     justify-content: space-around;
 }
 
-.img_pres {
-    width: 150px;
+.course_item {
+    display: flex;
+    flex-direction: column;
 }
 
 .fenetre span {
