@@ -72,7 +72,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 				<?php if (!empty($courses)) : ?>
 					<?php foreach ($courses as $course) : ?>
 						<div class="course_item">
-							<h3><?php echo htmlspecialchars($course['nom']); ?></h3>
+							<h2><?php echo htmlspecialchars($course['nom']); ?></h2>
 							<?php if (!empty($course['path_image_pres'])) : ?>
 								<img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" style="width: 150px;margin: 1em 0;" alt="Image de présentation">
 							<?php else : ?>
