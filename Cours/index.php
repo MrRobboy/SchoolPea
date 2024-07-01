@@ -44,7 +44,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
                         <?php else : ?>
                             <img src="default-image.jpg" alt="Image par défaut">
                         <?php endif; ?>
-                        <a href="voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
+                        <a href="voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>" style="text-decoration: none;">Voir le cours</a>
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
