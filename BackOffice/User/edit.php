@@ -35,32 +35,32 @@ $users = $stmt->fetchAll();
         <form method="post" id="Info_gen" action="">
             <h1>Modifier l'Utilisateur</h1>
             <div class="edit">
-                <span>Id</span>
+                <span class="title_edit">Id</span>
                 <input type="text" name="id_USER" class="Input_edit" class="value" value="<?php echo $users[0]['id_USER']; ?>">
             </div>
 
             <div class="edit">
-                <span>Nom</span>
+                <span class="title_edit">Nom</span>
                 <input type="text" name="lastname" class="Input_edit" class="value" value="<?php echo $users[0]['lastname']; ?>">
             </div>
 
             <div class="edit">
-                <span>Prenom</span>
+                <span class="title_edit">Prenom</span>
                 <input type="text" name="firstname" class="Input_edit" class="value" value="<?php echo $users[0]['firstname']; ?>">
             </div>
 
             <div class="edit">
-                <span>Email</span>
+                <span class="title_edit">Email</span>
                 <input type="email" name="email" class="Input_edit" class="value" value="<?php echo $users[0]['email']; ?>">
             </div>
 
             <div class="edit">
-                <span>Image</span>
+                <span class="title_edit">Image</span>
                 <input type="text" name="path_pp" class="Input_edit" class="value" value="<?php echo $users[0]['path_pp']; ?>">
             </div>
 
             <div class="edit">
-                <span>Role : </span>
+                <span class="title_edit">Role : </span>
                 <div class="boutton">
                     <label for="male">Admin</label>
                     <input type="radio" value="Admin" <?php if ($users[0]['role'] == 'admin') echo 'checked="checked"'; ?>>
