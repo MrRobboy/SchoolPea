@@ -36,7 +36,7 @@ $users = $stmt->fetchAll();
             <h1 style="text-align: center;">Modifier l'Utilisateur</h1>
             <div class="edit">
                 <span class="title_edit">Id</span>
-                <input type="text" name="id_USER" class="Input_edit" class="value" value="<?php echo $users[0]['id_USER']; ?>" readonly="readonly">
+                <input type="text" name="id_USER" class="Input_edit" style="cursor: not-allowed;" class="value" value="<?php echo $users[0]['id_USER']; ?>" readonly="readonly">
             </div>
 
             <div class="edit">
