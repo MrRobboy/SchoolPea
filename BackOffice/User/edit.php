@@ -36,27 +36,27 @@ $users = $stmt->fetchAll();
             <h1>Modifier l'Utilisateur</h1>
             <div class="edit">
                 <span>Id</span>
-                <input type="text" name="id_USER" class="Input_edit" value="<?php echo $users[0]['id_USER']; ?>">
+                <input type="text" name="id_USER" class="Input_edit" class="value" value="<?php echo $users[0]['id_USER']; ?>">
             </div>
 
             <div class="edit">
                 <span>Nom</span>
-                <input type="text" name="lastname" class="Input_edit" value="<?php echo $users[0]['lastname']; ?>">
+                <input type="text" name="lastname" class="Input_edit" class="value" value="<?php echo $users[0]['lastname']; ?>">
             </div>
 
             <div class="edit">
                 <span>Prenom</span>
-                <input type="text" name="firstname" class="Input_edit" value="<?php echo $users[0]['firstname']; ?>">
+                <input type="text" name="firstname" class="Input_edit" class="value" value="<?php echo $users[0]['firstname']; ?>">
             </div>
 
             <div class="edit">
                 <span>Email</span>
-                <input type="email" name="email" class="Input_edit" value="<?php echo $users[0]['email']; ?>">
+                <input type="email" name="email" class="Input_edit" class="value" value="<?php echo $users[0]['email']; ?>">
             </div>
 
             <div class="edit">
                 <span>Image</span>
-                <input type="text" name="path_pp" class="Input_edit" value="<?php echo $users[0]['path_pp']; ?>">
+                <input type="text" name="path_pp" class="Input_edit" class="value" value="<?php echo $users[0]['path_pp']; ?>">
             </div>
 
             <div class="edit">
