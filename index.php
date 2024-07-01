@@ -74,7 +74,7 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 						<div class="course_item">
 							<h2 style="margin: 0;"><?php echo htmlspecialchars($course['nom']); ?></h2>
 							<?php if (!empty($course['path_image_pres'])) : ?>
-								<img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" style="width: 150px; margin: 1em 0;" alt="Image de présentation">
+								<img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" class="img_pres" alt="Image de présentation">
 							<?php else : ?>
 								<img src="default-image.jpg" alt="Image par défaut">
 							<?php endif; ?>
