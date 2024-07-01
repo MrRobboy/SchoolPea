@@ -185,7 +185,7 @@ body div {
     padding: 5.5em 3.5em;
     background-color: #ffffff;
     margin: 1em 0.7em;
-    border: solid #374599;
+    border: solid #374599 0.1em;
     border-radius: 1.5em;
 }
 
