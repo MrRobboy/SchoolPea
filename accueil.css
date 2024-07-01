@@ -171,6 +171,7 @@ body div {
     padding: 1em;
     border: solid 0.1em black;
     border-radius: 2em;
+    margin: 1em;
 }
 
 .fenetre span {
