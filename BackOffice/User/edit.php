@@ -34,34 +34,36 @@ $users = $stmt->fetchAll();
     <div id="div1">
         <form method="post" id="Info_gen" action="">
             <h1>Modifier l'Utilisateur</h1>
-            <div>
+            <div class="edit">
                 <span>Id</span>
                 <input type="text" name="id_USER" class="Input_edit" value="<?php echo $users[0]['id_USER']; ?>">
             </div>
 
-            <div>
+            <div class="edit">
                 <span>Nom</span>
                 <input type="text" name="lastname" class="Input_edit" value="<?php echo $users[0]['lastname']; ?>">
             </div>
 
-            <div>
+            <div class="edit">
                 <span>Prenom</span>
                 <input type="text" name="firstname" class="Input_edit" value="<?php echo $users[0]['firstname']; ?>">
             </div>
 
-            <div>
+            <div class="edit">
                 <span>Email</span>
                 <input type="email" name="email" class="Input_edit" value="<?php echo $users[0]['email']; ?>">
             </div>
 
-            <div>
+            <div class="edit">
                 <span>Image</span>
                 <input type="text" name="path_pp" class="Input_edit" value="<?php echo $users[0]['path_pp']; ?>">
             </div>
 
-            <div>
+            <div class="edit">
                 <span>Role</span>
-                <input type="radio" value="<?php echo $users[0]['role']; ?>">
+                <input type="radio" value="Admin" <?php if ($users[0]['role'] == 'admin') echo 'checked="checked"'; ?>>
+                <input type="radio" value="Professeur" <?php if ($users[0]['role'] == 'professeur') echo 'checked="checked"'; ?>>
+                <input type="radio" value="Classique" <?php if ($users[0]['role'] == 'classique') echo 'checked="checked"'; ?>>
             </div>
 
             <input type="submit" value="Valider les modifications"></input>
