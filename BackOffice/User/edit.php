@@ -75,7 +75,7 @@ $users = $stmt->fetchAll();
                 </div>
             </div>
 
-            <input type="submit" value="Valider les modifications">
+            <input type="submit" value="Valider les modifications" id="submit">
         </form>
     </div>
 </body>

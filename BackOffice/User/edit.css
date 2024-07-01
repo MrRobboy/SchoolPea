@@ -17,8 +17,15 @@
 
 .Input_edit {
     width: 100%;
-    padding: 0.2em;
+    padding: 0.5em;
     border-radius: 1em;
     border: 0.1em solid black;
     margin: 0 1em;
+}
+
+#submit {
+    padding: 0.5em 1em;
+    background-color: #6b7ad2;
+    border-radius: 1em;
+    border: solid 0.1em #374599;
 }
