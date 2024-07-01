@@ -2,272 +2,275 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 html {
-        scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 #SchoolPea {
-        background-color: transparent;
-        margin-bottom: 10em;
-        margin-top: 0em;
+    background-color: transparent;
+    margin-bottom: 10em;
+    margin-top: 0em;
 }
 
 body {
-        font-family: "Montserrat";
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        flex-direction: column;
+    font-family: "Montserrat";
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 body div {
-        justify-content: center;
+    justify-content: center;
 }
 
 #shadow_search {
-        box-shadow: -1em 1em 1px #374599;
-        border-radius: 2em;
+    box-shadow: -1em 1em 1px #374599;
+    border-radius: 2em;
 }
 
 #Search_section {
-        /*body -> search*/
-        border: solid;
-        border-color: #5c6bc0;
-        border-radius: 2em;
-        border-width: 0.1em;
-        padding: 3em 4em;
-        box-shadow: 0px 0px 90px rgba(200, 200, 255, 75%);
+    /*body -> search*/
+    border: solid;
+    border-color: #5c6bc0;
+    border-radius: 2em;
+    border-width: 0.1em;
+    padding: 3em 4em;
+    box-shadow: 0px 0px 90px rgba(200, 200, 255, 75%);
 }
 
 .aff {
-        /*body -> search -> aff*/
-        display: flex;
+    /*body -> search -> aff*/
+    display: flex;
 }
 
 #text_search {
-        /*body -> search -> aff -> text_search*/
-        padding: 1.5em 1em;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+    /*body -> search -> aff -> text_search*/
+    padding: 1.5em 1em;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #text_search * {
-        margin: 0.7em 0;
-        text-align: center;
+    margin: 0.7em 0;
+    text-align: center;
 }
 
 #text_search h1 {
-        font-size: 50px;
+    font-size: 50px;
 }
 
 #logo_aff {
-        /*body -> search -> aff -> logo*/
-        width: 7em;
-        align-items: center;
-        margin: 4em 2em;
+    /*body -> search -> aff -> logo*/
+    width: 7em;
+    align-items: center;
+    margin: 4em 2em;
 }
 
 .but {
-        /*body -> search -> but*/
-        display: flex;
-        justify-content: space-around;
-        margin: 2em;
+    /*body -> search -> but*/
+    display: flex;
+    justify-content: space-around;
+    margin: 2em;
 }
 
 .but a {
-        /*body -> search -> but -> boutons*/
-        padding: 0.3em 2.5em;
-        border: solid 0.1em rgb(92, 107, 192);
-        border-radius: 2em;
-        margin: 0 3.5em;
-        box-shadow: 0 0.2em 0.3em rgb(92, 107, 192);
-        font-weight: 600;
-        color: #6b7ad2;
-        text-decoration: none;
+    /*body -> search -> but -> boutons*/
+    padding: 0.3em 2.5em;
+    border: solid 0.1em rgb(92, 107, 192);
+    border-radius: 2em;
+    margin: 0 3.5em;
+    box-shadow: 0 0.2em 0.3em rgb(92, 107, 192);
+    font-weight: 600;
+    color: #6b7ad2;
+    text-decoration: none;
 }
 
 .but a:hover {
-        background-color: rgb(92, 107, 192, 10%);
-        border-color: #374599;
+    background-color: rgb(92, 107, 192, 10%);
+    border-color: #374599;
 }
 
 #barreDeRecherche {
-        /*body -> search -> rec*/
-        justify-content: center;
-        display: flex;
-        border: solid #6b7ad2;
-        border-radius: 3em;
-        text-align: center;
-        margin: 4em 0 1.5em 0;
-        color: #374599;
+    /*body -> search -> rec*/
+    justify-content: center;
+    display: flex;
+    border: solid #6b7ad2;
+    border-radius: 3em;
+    text-align: center;
+    margin: 4em 0 1.5em 0;
+    color: #374599;
 }
 
 #coursenquizz-search {
-        width: 100%;
-        height: 4em;
-        border-radius: 3em;
-        border: none;
-        padding: 0 1em;
-        font-size: 1em;
+    width: 100%;
+    height: 4em;
+    border-radius: 3em;
+    border: none;
+    padding: 0 1em;
+    font-size: 1em;
 }
 
 #Submit_Recherche {
-        border-radius: 0 3em 3em 0;
-        border: none;
-        border-left: solid 1px black;
-        width: 20%;
-        font-size: 1em;
-        padding: auto;
+    border-radius: 0 3em 3em 0;
+    border: none;
+    border-left: solid 1px black;
+    width: 20%;
+    font-size: 1em;
+    padding: auto;
 }
 
 .trait {
-        padding: 0.2em 20em;
-        background-color: #6b7ad2;
-        border-radius: 3em;
-        justify-content: center;
-        margin: 7em 0;
+    padding: 0.2em 20em;
+    background-color: #6b7ad2;
+    border-radius: 3em;
+    justify-content: center;
+    margin: 7em 0;
 }
 
 #Cours_section {
-        /*body -> Cours*/
-        justify-content: space-around;
+    /*body -> Cours*/
+    justify-content: space-around;
 }
 
 #Cours_section span {
-        /*body -> Cours -> span*/
-        text-align: center;
-        justify-content: center;
-        display: flex;
+    /*body -> Cours -> span*/
+    text-align: center;
+    justify-content: center;
+    display: flex;
 }
 
 #titre_cours {
-        border: solid #5c6bc0;
-        padding: 1em 8em;
-        border-radius: 3em;
-        background-color: #6b7ad2;
-        color: #ffffff;
-        font-weight: 700;
-        font-size: large;
+    border: solid #5c6bc0;
+    padding: 1em 8em;
+    border-radius: 3em;
+    background-color: #6b7ad2;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: large;
 }
 
 #div_cours {
-        background-color: #5c6bc0;
-        border-radius: 3em;
-        border: solid 0.2em #8493e8;
-        margin-top: -2.9em;
-        padding: 2.5em 1em;
+    background-color: #5c6bc0;
+    border-radius: 3em;
+    border: solid 0.2em #8493e8;
+    margin-top: -2.9em;
+    padding: 2.5em 1em;
 }
 
 #Cours_section div div {
-        flex-direction: row;
-        display: flex;
-        justify-content: space-around;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+}
+
+.img_pres {
+    width: 150px;
 }
 
 .fenetre span {
-        padding: 5.5em 3.5em;
-        background-color: #ffffff;
-        margin: 1em 0.7em;
-        border: solid #374599;
-        border-radius: 1.5em;
+    padding: 5.5em 3.5em;
+    background-color: #ffffff;
+    margin: 1em 0.7em;
+    border: solid #374599;
+    border-radius: 1.5em;
 }
 
 .voir_plus {
-        padding: 0.5em 4em;
-        background-color: #6b7ad2;
-        color: white;
-        text-decoration: none;
-        border-radius: 2em;
-        margin: -1.5em 0 0 0;
+    padding: 0.5em 4em;
+    background-color: #6b7ad2;
+    color: white;
+    text-decoration: none;
+    border-radius: 2em;
+    margin: -1.5em 0 0 0;
 }
 
 #Quizz_section {
-        /*body -> Quizz*/
-        justify-content: space-around;
+    /*body -> Quizz*/
+    justify-content: space-around;
 }
 
 #Quizz_section span {
-        /*body -> Cours -> span*/
-        text-align: center;
-        justify-content: center;
-        display: flex;
+    /*body -> Cours -> span*/
+    text-align: center;
+    justify-content: center;
+    display: flex;
 }
 
 #titre_quizz {
-        border: solid #5c6bc0;
-        padding: 1em 8em;
-        border-radius: 3em;
-        background-color: #6b7ad2;
-        color: #ffffff;
-        font-weight: 700;
-        font-size: larger;
+    border: solid #5c6bc0;
+    padding: 1em 8em;
+    border-radius: 3em;
+    background-color: #6b7ad2;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: larger;
 }
 
 #div_quizz {
-        background-color: #5c6bc0;
-        border-radius: 3em;
-        margin-top: -2.9em;
-        padding: 2.5em 1em;
-        border: solid 0.2em #8493e8;
+    background-color: #5c6bc0;
+    border-radius: 3em;
+    margin-top: -2.9em;
+    padding: 2.5em 1em;
+    border: solid 0.2em #8493e8;
 }
 
 #Quizz_section div div {
-        flex-direction: row;
-        display: flex;
-        justify-content: space-around;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
 }
 
 /*---------------------------------------------------Tout ce qu'il y a dans le Footer de gauche à droite---------------------------------------------------*/
 
 footer {
-        background-color: #fff;
-        color: white;
-        font-weight: 500;
-        border-radius: 2.5em;
-        padding: 1em;
-        margin-bottom: 3em;
-        border: 0.1em solid #5c6bc0;
-        box-shadow: -1em 1em 1px #5c6bc0;
+    background-color: #fff;
+    color: white;
+    font-weight: 500;
+    border-radius: 2.5em;
+    padding: 1em;
+    margin-bottom: 3em;
+    border: 0.1em solid #5c6bc0;
+    box-shadow: -1em 1em 1px #5c6bc0;
 }
 
 .footer {
-        background-color: #5c6bc0;
-        display: flex;
-        flex-direction: row;
-        padding: 1em;
-        border-radius: 2.5em;
+    background-color: #5c6bc0;
+    display: flex;
+    flex-direction: row;
+    padding: 1em;
+    border-radius: 2.5em;
 }
 
 .footer span {
-        display: flex;
-        flex-direction: column;
-        padding: 0 3em;
-        text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0 3em;
+    text-align: center;
 }
 
 .footer a {
-        padding: 0.7em 0;
-        text-decoration: none;
-        color: #fff;
+    padding: 0.7em 0;
+    text-decoration: none;
+    color: #fff;
 }
 
 .footer h3 {
-        padding: 0.4em 0;
-        margin: 0.6em 0;
+    padding: 0.4em 0;
+    margin: 0.6em 0;
 }
 
 .footer h4 {
-        padding: 0.4em 0;
-        margin: 0.6em 0;
+    padding: 0.4em 0;
+    margin: 0.6em 0;
 }
-
 
 /* Styles pour la barre de recherche */
 .search-bar {
-        border: 1px solid #ccc;
-        border-radius: 20px;
-        padding: 10px;
-        width: 300px;
-        font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
 }

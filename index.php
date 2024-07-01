@@ -56,128 +56,128 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
 			</div>
 
 			<div id="barreDeRecherche">
-			<input type="text" id="coursenquizz-search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
-    </div>
+				<input type="text" id="coursenquizz-search" placeholder="Rechercher des cours..." onkeyup="searchCourses()">
+			</div>
 		</div>
 	</div>
 
 	<span class="trait" id="Explorer_les_cours"></span>
 
 	<div id="Cours_section">
-    <span>
-        <p id="titre_cours">Nos Cours les plus populaires</p>
-    </span>
-    <div class="fenetre">
-        <div class="courses" id="course_list">
-            <?php if (!empty($courses)) : ?>
-                <?php foreach ($courses as $course) : ?>
-                    <div class="course_item">
-                        <h3><?php echo htmlspecialchars($course['nom']); ?></h3>
-                        <?php if (!empty($course['path_image_pres'])) : ?>
-                            <img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" alt="Image de présentation">
-                        <?php else : ?>
-                            <img src="default-image.jpg" alt="Image par défaut">
-                        <?php endif; ?>
-                        <a href="/Cours/voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
-                    </div>
-                <?php endforeach; ?>
-            <?php else : ?>
-                <p>Aucun cours disponible.</p>
-            <?php endif; ?>
-        </div>
-    </div>
-
-	<span>
-		<a class="voir_plus" href="https://schoolpea.com/Connexion/">
-			Voir plus >
-		</a>
-	</span>
-
-	<span class="trait" id="2"></span>
-
-	<div id="Quizz_section">
 		<span>
-			<p id="titre_quizz">Nos Quizzs les plus sollicités !</p>
+			<p id="titre_cours">Nos Cours les plus populaires</p>
 		</span>
-		<div id="div_quizz">
-			<div class="fenetre">
-				<?php
-				// $options = [
-				//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-				// ];
-
-				// try {
-				//     $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
-				//     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-				//     // Récupération des quizz depuis la base de données
-				//     $sql = "SELECT * FROM quizz";
-				//     $stmt = $bdd->query($sql);
-
-				//     $counter = 0;
-				//     while ($row = $stmt->fetch()) {
-				//         if ($counter % 4 == 0 && $counter != 0) {
-				//             echo "</div><div class='fenetre'>";
-				//         }
-				//         echo "<span id='quizz_" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
-				//         $counter++;
-				//     }
-
-				//     if ($counter == 0) {
-				//         echo "<span>Aucun quizz trouvé.</span>";
-				//     }
-				// } catch (PDOException $e) {
-				//     echo "Erreur Connexion : " . $e->getMessage();
-				//     die;
-				// }
-				?>
+		<div class="fenetre">
+			<div class="courses" id="course_list">
+				<?php if (!empty($courses)) : ?>
+					<?php foreach ($courses as $course) : ?>
+						<div class="course_item">
+							<h3><?php echo htmlspecialchars($course['nom']); ?></h3>
+							<?php if (!empty($course['path_image_pres'])) : ?>
+								<img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" class="img_pres" alt="Image de présentation">
+							<?php else : ?>
+								<img src="default-image.jpg" alt="Image par défaut">
+							<?php endif; ?>
+							<a href="/Cours/voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>">Voir le cours</a>
+						</div>
+					<?php endforeach; ?>
+				<?php else : ?>
+					<p>Aucun cours disponible.</p>
+				<?php endif; ?>
 			</div>
 		</div>
 
 		<span>
-			<a class="voir_plus" href="https://schoolpea.com/Connexion/">Voir plus ></a>
+			<a class="voir_plus" href="https://schoolpea.com/Connexion/">
+				Voir plus >
+			</a>
 		</span>
-	</div>
 
-	<span class="trait" id="3"></span>
+		<span class="trait" id="2"></span>
 
-	<footer>
-		<div class="footer">
-			<span class="col1">
-				<h3>
-					<a href="#SchoolPea" style="color: white; text-decoration: none; font-weight: bolder;">SchoolPéa</a>
-				</h3>
+		<div id="Quizz_section">
+			<span>
+				<p id="titre_quizz">Nos Quizzs les plus sollicités !</p>
 			</span>
+			<div id="div_quizz">
+				<div class="fenetre">
+					<?php
+					// $options = [
+					//     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+					// ];
 
-			<span class="col2">
-				<h4>Schoolpéa</h4>
-				<a href="index.php">Accueil</a>
-                <a href="about.php">A propos</a>
+					// try {
+					//     $bdd = new PDO("mysql:host=localhost;dbname=PA", "root", "root", $options);
+					//     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+					//     // Récupération des quizz depuis la base de données
+					//     $sql = "SELECT * FROM quizz";
+					//     $stmt = $bdd->query($sql);
+
+					//     $counter = 0;
+					//     while ($row = $stmt->fetch()) {
+					//         if ($counter % 4 == 0 && $counter != 0) {
+					//             echo "</div><div class='fenetre'>";
+					//         }
+					//         echo "<span id='quizz_" . ($counter + 1) . "'>" . $row["nom"] . "</span>";
+					//         $counter++;
+					//     }
+
+					//     if ($counter == 0) {
+					//         echo "<span>Aucun quizz trouvé.</span>";
+					//     }
+					// } catch (PDOException $e) {
+					//     echo "Erreur Connexion : " . $e->getMessage();
+					//     die;
+					// }
+					?>
+				</div>
+			</div>
+
+			<span>
+				<a class="voir_plus" href="https://schoolpea.com/Connexion/">Voir plus ></a>
 			</span>
-
-			<span class="col3">
-				<h4>Contact</h4>
-				<a href="mailto:schoolpea@outlook.com">E-mail</a>
-                <a href="https://schoolpea.com/EasterEgg/" >LinkedIn</a>
-			</span>
-
-
 		</div>
-	</footer>
-	<script>
-        function searchCourses() {
-            let input = document.getElementById('coursenquizz-search').value.toLowerCase();
-            let courses = document.getElementsByClassName('course_item');
-            for (let i = 0; i < courses.length; i++) {
-                let courseName = courses[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
-                if (courseName.includes(input)) {
-                    courses[i].style.display = "";
-                } else {
-                    courses[i].style.display = "none";
-                }
-            }
-        }
-    </script>
+
+		<span class="trait" id="3"></span>
+
+		<footer>
+			<div class="footer">
+				<span class="col1">
+					<h3>
+						<a href="#SchoolPea" style="color: white; text-decoration: none; font-weight: bolder;">SchoolPéa</a>
+					</h3>
+				</span>
+
+				<span class="col2">
+					<h4>Schoolpéa</h4>
+					<a href="index.php">Accueil</a>
+					<a href="about.php">A propos</a>
+				</span>
+
+				<span class="col3">
+					<h4>Contact</h4>
+					<a href="mailto:schoolpea@outlook.com">E-mail</a>
+					<a href="https://schoolpea.com/EasterEgg/">LinkedIn</a>
+				</span>
+
+
+			</div>
+		</footer>
+		<script>
+			function searchCourses() {
+				let input = document.getElementById('coursenquizz-search').value.toLowerCase();
+				let courses = document.getElementsByClassName('course_item');
+				for (let i = 0; i < courses.length; i++) {
+					let courseName = courses[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+					if (courseName.includes(input)) {
+						courses[i].style.display = "";
+					} else {
+						courses[i].style.display = "none";
+					}
+				}
+			}
+		</script>
 </body>
 
 </html>
