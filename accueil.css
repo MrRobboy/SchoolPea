@@ -165,7 +165,7 @@ body div {
     justify-content: space-around;
     padding: 1.5em;
     border: solid 0.1em black;
-    background-color: #5c6bc0;
+    background-color: #8493e8;
     border-radius: 3em;
 }
 
@@ -194,7 +194,7 @@ body div {
     color: white;
     text-decoration: none;
     border-radius: 2em;
-    margin: 1.5em 0 0 0;
+    margin: -1.5em 0 0 0;
 }
 
 #Quizz_section {
