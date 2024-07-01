@@ -32,7 +32,7 @@ $users = $stmt->fetchAll();
     <span class="trait" id="SchoolPea"></span>
 
     <div id="div1">
-        <form method="post" id="Info_gen">
+        <form method="post" id="Info_gen" action="">
             <h1>Modifier l'Utilisateur</h1>
             <div>
                 <span>Id</span>

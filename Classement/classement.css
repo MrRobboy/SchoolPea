@@ -148,6 +148,14 @@ tbody tr:hover {
     background-color: #cf9f00;
 }
 
+.btn.unban {
+    background-color: #00ff37;
+    color: black;
+}
+
+.btn.unban:hover {
+    background-color: #00cf2d;
+}
 .btn.del {
     background-color: #ff0000;
 }

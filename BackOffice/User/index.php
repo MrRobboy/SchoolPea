@@ -45,7 +45,11 @@ $users = $stmt->fetchAll();
                             <td class="not_right"><?php echo $user['role']; ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $user['id_USER']; ?>" class="btn modify">Modifier</a>
-                                <?php if ($user['role'] != 'admin') echo "<a href='ban.php?id=" . $user['id_USER'] . "' class='btn ban'>Bannir</a>" ?>
+                                <?php if ($user['role'] != 'admin' and $user['banni'] != 1) {
+                                    echo ("<a href='ban.php?id=" . $user['id_USER'] . "' class='btn ban'>Bannir</a>");
+                                } else if ($user['banni'] == 1) {
+                                    echo ('123');
+                                } ?>
                                 <a href="delete.php?id=<?php echo $user['id_USER']; ?>" class="btn del">Supprimer</a>
                             </td>
                         </tr>
