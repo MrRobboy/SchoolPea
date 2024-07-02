@@ -34,7 +34,6 @@ $stmt->bindvalue(':id_user', $_GET['id']);
 $stmt->execute();
 $result = $stmt->fetchAll();
 
-$path = '';
 if ($result) {
     header('Location: https://schoolpea.com/BackOffice/User/index.php?success=1');
 }
