@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     print_r($result);
     echo '</pre>';
 
-    if ($email != $result[0]['email']) {
+    if (empty($result[0]['email'])) {
 
         $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
 
