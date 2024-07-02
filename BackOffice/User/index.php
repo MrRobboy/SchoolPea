@@ -20,7 +20,8 @@ $users = $stmt->fetchAll();
 </head>
 
 <body style="padding-left: 10em;">
-    <?php if (!empty($_GET['success'])) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">Utilisateur supprimé avec succès!</p>'; ?>
+    <?php if (!isset($_GET['success']) && $_GET['success'] == 1) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">Utilisateur supprimé avec succès!</p>'; ?>
+    <?php if (!isset($_GET['success']) && $_GET['success'] == 1) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">Utilisateur banni avec succès!</p>'; ?>
     <div id="content" style="width: 95%;">
         <h1 style="margin-bottom: 0.5em;">Gestion des Utilisateurs</h1>
         <a href="add.php" class="btn add">Ajouter un utilisateur</a>
@@ -47,7 +48,7 @@ $users = $stmt->fetchAll();
                             <td>
                                 <a href="edit.php?id=<?php echo $user['id_USER']; ?>" class="btn modify">Modifier</a>
                                 <?php if ($user['role'] != 'admin' and $user['banni'] != 1) {
-                                    echo ("<a href='ban.php?id=" . $user['id_USER'] . "' class='btn ban'>Bannir</a>");
+                                    echo ("<a href='confirm_ban.php?id=" . $user['id_USER'] . "' class='btn ban'>Bannir</a>");
                                 } else if ($user['banni'] == 1) {
                                     echo ("<a href='unban.php?id=" . $user['id_USER'] . "' class='btn unban'>Débannir</a>");
                                 } ?>
