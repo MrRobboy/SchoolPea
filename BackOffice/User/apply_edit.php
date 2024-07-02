@@ -19,9 +19,9 @@ $stmt->bindvalue(':id', $_POST['id_USER']);
 $stmt->execute();
 $userInfo = $stmt->fetchAll();
 
-if ($userInfo['id_USER'] == $_POST['id_USER'] and $userInfo['email'] == $_POST['email'] and $userInfo['path_pp'] == $_POST['path_pp'] and $userInfo['firstname'] == $_POST['firstname'] and $userInfo['lastname'] == $_POST['lastname']) header('Location: ' . $_SERVER['HTTP_REFERER']);
+if ($userInfo[0]['id_USER'] == $_POST['id_USER'] and $userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname'] and $userInfo[0]['role'] == $_POST['role']) header('Location: ' . $_SERVER['HTTP_REFERER']);
 /*Ici il y a forcément eu une modification ! */
-if ($userInfo['email'] != $_POST['email']) {
+if ($userInfo[0]['email'] != $_POST['email']) {
     $dbh->exec('USE PA');
     $stmt1 = $dbh->prepare("SELECT * FROM USER where email=:email");
     $stmt1->bindvalue(':email', $_POST['email']);
@@ -34,12 +34,13 @@ if ($userInfo['email'] != $_POST['email']) {
     }
 }
 
-$stmt2 = $dbh->prepare("UPDATE USER SET lastname=:lastname, firstname=:firstname, email=:email, path_pp=:path_pp where id_USER = :id_user");
+$stmt2 = $dbh->prepare("UPDATE USER SET lastname=:lastname, firstname=:firstname, email=:email, path_pp=:path_pp, role=:role where id_USER = :id_user");
 $stmt2->bindvalue(':id_user', $_POST['id_USER']);
 $stmt2->bindvalue(':lastname', $_POST['lastname']);
 $stmt2->bindvalue(':firstname', $_POST['firstname']);
 $stmt2->bindvalue(':email', $_POST['email']);
 $stmt2->bindvalue(':path_pp', $_POST['path_pp']);
+$stmt2->bindvalue(':role', $_POST['role']);
 $stmt2->execute();
 $result = $stmt2->fetchAll();
 
