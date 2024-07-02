@@ -37,5 +37,5 @@ if ($userExist[0]['email'] != $_POST['email']) {
         echo $result;
     }
 }
-$_GET['Error'] = 1;
-header('Location: ' . $_SERVER['HTTP_REFERER']);
+$_GET['error'] = 1;
+header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
