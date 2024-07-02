@@ -1,12 +1,7 @@
 <?php
-session_start();
-$_GET;
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
-$path = $_SERVER['DOCUMENT_ROOT'];
-$path .= '/BackEnd/db.php';
-include($path);
 ?>
 <script>
     if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?") !== true) {
