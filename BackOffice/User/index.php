@@ -50,7 +50,7 @@ $users = $stmt->fetchAll();
                                 } else if ($user['banni'] == 1) {
                                     echo ("<a href='unban.php?id=" . $user['id_USER'] . "' class='btn unban'>Débannir</a>");
                                 } ?>
-                                <a href="delete.php?id=<?php echo $user['id_USER']; ?>" class="btn del">Supprimer</a>
+                                <a href="confirm_delete.php?id=<?php echo $user['id_USER']; ?>" class="btn del">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
