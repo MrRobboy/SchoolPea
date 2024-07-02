@@ -15,6 +15,8 @@ $stmt->bindvalue(':id_user', $_GET['id']);
 $result = $stmt->execute();
 
 if ($result) {
-    header('Location: https://schoolpea.com/BackOffice/User/index.php?success=1');
+    echo 'ban success';
+    // header('Location: https://schoolpea.com/BackOffice/User/index.php?success=2');
 }
-header('Location: https://schoolpea.com/BackOffice/User');
+echo 'ban fail';
+// header('Location: https://schoolpea.com/BackOffice/User');
