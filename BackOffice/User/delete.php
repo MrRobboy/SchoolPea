@@ -14,10 +14,17 @@ include($path);
     }
 </script>
 
-<a style="text-align: center; padding: 2em; font-size: 30px; font-weight: 600; text-decoration: none; background-color: red; color: white; border-radius: 1em;" href="#"> Supprimer l'utilisateur</a>
-<a style="text-align: center; padding: 2em; font-size: 30px; font-weight: 600; text-decoration: none; background-color: green; color: white; border-radius: 1em;" href="?"> Annuler la suppression</a>
+<!DOCTYPE html>
+<html lang="fr">
 
-<?php
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmation Supression USER</title>
+</head>
 
+<body style="padding: 5em;">
+    <a style="text-align: center; margin:5em; padding: 2em; font-size: 30px; font-weight: 600; text-decoration: none; background-color: red; color: white; border-radius: 1em;" href="#"> Supprimer l'utilisateur</a>
+    <a style="text-align: center; margin:5em; padding: 2em; font-size: 30px; font-weight: 600; text-decoration: none; background-color: green; color: white; border-radius: 1em;" href="?"> Annuler la suppression</a>
+</body>
 
-?>
+</html>
