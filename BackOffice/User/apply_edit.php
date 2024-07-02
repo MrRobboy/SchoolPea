@@ -55,7 +55,9 @@ if ($result) {
     echo '<br>success';
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
 } else {
-    echo $result;
+    echo '<pre>';
+    print_r($result);
+    echo '</pre>';
     $_GET['error'] = 1;
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
     echo '<br>error wtf';
