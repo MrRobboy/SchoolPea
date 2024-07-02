@@ -5,7 +5,6 @@ $dbh->exec('USE PA');
 
 $queryLogs = $dbh->prepare('SELECT * FROM USER WHERE id_USER=:id_USER');
 $queryLogs->bindvalue(':id_USER', $_SESSION['id_user']);
-$queryLogs->bindvalue(':msg', $message);
 $result1 = $queryLogs->execute();
 
 if ($result1[0]['id_USER'] == $_SESSION['id_USER']) {
