@@ -37,3 +37,4 @@ if ($userExist[0]['email'] != $_POST['email']) {
         echo $result;
     }
 }
+echo '<br>Comparaison échouée';
