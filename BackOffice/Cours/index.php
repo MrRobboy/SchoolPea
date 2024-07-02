@@ -28,9 +28,9 @@ $courss = $stmt->fetchAll();
                 <thead>
                     <tr>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID</th>
-                        <th style="padding: 0 3.5rem;border-right: solid 0.3rem white;">Cours</th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Nom </th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">description</th>
+                        <th style="padding: 0 3.5rem;border-right: solid 0.3rem white;">Titre</th>
+                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Difficulté </th>
+                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Description</th>
                         <th style="padding: 0 6rem;border-right: none;">Actions</th>
                     </tr>
                 </thead>

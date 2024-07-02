@@ -10,4 +10,3 @@ if (delete('courses', $id)) {
 } else {
     echo 'Erreur lors de la suppression du cours';
 }
-?>
