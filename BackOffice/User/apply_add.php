@@ -19,9 +19,10 @@ if (isset($_POST['submit'])) {
 
     $stmt = $dbh->prepare("SELECT * FROM  USER where email=:email");
     $stmt->bindvalue(':email', $email);
-    $result = $stmt->execute();
+    $stmt->execute();
+    $result = $stmt->fetchAll();
 
-    if ($email == $_POST['email']) header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error_mail=1');
+    if ($email == $result[0]['email']) header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error_mail=1');
     else {
         $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
 
