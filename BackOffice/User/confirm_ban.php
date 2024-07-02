@@ -15,7 +15,7 @@ include($auth);
 
 <head>
     <meta charset="UTF-8">
-    <title>Confirmation Supression USER</title>
+    <title>Confirmation banissement USER</title>
 </head>
 
 <body style="padding: 5em;">
