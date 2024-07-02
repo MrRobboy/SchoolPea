@@ -17,7 +17,7 @@ $userExist = $stmt->fetchAll();
 if ($userExist[0]['email'] != $_GET['email']) {
 
     $stmt2 = $dbh->prepare("UPDATE USER SET lastname=:lastname, firstname=:firstname, email=:email, path_pp=:path_pp where id_USER = :id_user");
-    $stmt2->bindvalue(':id_user', $_GET['id']);
+    $stmt2->bindvalue(':id_user', $_GET['id_USER']);
     $stmt2->bindvalue(':lastname', $_GET['lastname']);
     $stmt2->bindvalue(':firstname', $_GET['firstname']);
     $stmt2->bindvalue(':email', $_GET['email']);
