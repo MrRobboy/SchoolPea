@@ -15,6 +15,7 @@ $stmt->execute();
 $result = $stmt->fetchAll();
 
 $path = '';
-if ($result)
+if ($result) {
     $path = 'success=1';
+}
 header('Location: https://schoolpea.com/BackOffice/User/index.php?' . $path);

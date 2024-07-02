@@ -20,7 +20,7 @@ $users = $stmt->fetchAll();
 </head>
 
 <body style="padding-left: 10em;">
-    <?php if (!empty($_GET['success'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">Utilisateur supprimé avec succès!</p>'; ?>
+    <?php if (!empty($_GET['success'])) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">Utilisateur supprimé avec succès!</p>'; ?>
     <div id="content" style="width: 95%;">
         <h1 style="margin-bottom: 0.5em;">Gestion des Utilisateurs</h1>
         <a href="add.php" class="btn add">Ajouter un utilisateur</a>
