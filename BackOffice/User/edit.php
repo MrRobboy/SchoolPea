@@ -32,7 +32,7 @@ $users = $stmt->fetchAll();
     <span class="trait" id="SchoolPea"></span>
 
     <div id="div1">
-        <form method="post" id="Info_gen" action="apply_edit.php">
+        <form method="get" id="Info_gen" action="apply_edit.php">
             <h1 style="text-align: center;">Modifier l'Utilisateur</h1>
             <div class="edit">
                 <span class="title_edit">Id</span>
