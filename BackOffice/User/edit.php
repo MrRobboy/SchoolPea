@@ -34,7 +34,7 @@ $users = $stmt->fetchAll();
     <?php if (!empty($_GET['error'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">ERREUR VALEURS ENTREES!</p>'; ?>
     <?php if (!empty($_GET['success'])) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">REUSSITE CHANGEMENT</p>'; ?>
 
-    <div id="div1">
+    <div id="div1" style="width-min: 40%;">
         <form method="post" id="Info_gen" action="apply_edit.php">
             <h1 style="text-align: center;">Modifier l'Utilisateur</h1>
             <div class="edit">
