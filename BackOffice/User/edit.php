@@ -29,7 +29,6 @@ $users = $stmt->fetchAll();
     $header = $_SERVER['DOCUMENT_ROOT'];
     $header .= '/BackOffice/Includes/headerBackOffice.php';
     include($header); ?>
-    <span class="trait" id="SchoolPea"></span>
 
     <?php if (!empty($_GET['Error'])) echo '<p>MAIL DEJA EXISTANT!</p>'; ?>
 
