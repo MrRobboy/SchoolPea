@@ -24,7 +24,7 @@ $users = $stmt->fetchAll();
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/BackOffice/User/edit.css">
 </head>
 
-<body style="padding: 5em 0 5em 10em;">
+<body style="padding: 2em 0 2em 10em;">
     <?php
     $header = $_SERVER['DOCUMENT_ROOT'];
     $header .= '/BackOffice/Includes/headerBackOffice.php';
