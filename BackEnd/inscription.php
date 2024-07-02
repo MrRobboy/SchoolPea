@@ -1,36 +1,5 @@
 <?php
 session_start();
-/*
-$error = false;
-$passwordError = false;
-
-// Vérifier si le formulaire d'inscription est soumis
-if (isset($_POST['submit_inscription'])) {
-    if (isset($_POST['name']) && strlen($_POST['name']) < 2) {
-        $error = true;
-    }
-
-    if (isset($_POST['email_inscription']) && !preg_match("/^[\w\-\.]+@([\w-]+\.)+[\w-]{2,4}$/", $_POST['email_inscription'])) {
-        $error = true;
-    }
-    if (isset($_POST['password_inscription']) && !preg_match('/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/', $_POST['password_inscription'])) {
-        $passwordError = true;
-    }
-}
-
-if ($passwordError || $error) {
-    // Vérifiez si le formulaire d'inscription est soumis
-    if (isset($_POST['submit_inscr'])) {//volontairement laissé mal saisi pour accéder à la page de back end ;)
-        $location = 'Location: ../FrontEnd/Pages/inscription.php?';
-
-        if ($passwordError) {
-            $location .= 'password=0';
-        }
-
-        header($location);
-    }
-}
-*/
 
 if (isset($_POST['submit_inscription'])) {
     $firstname = htmlspecialchars($_POST['firstname']);
