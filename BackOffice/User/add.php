@@ -53,19 +53,19 @@ include($auth);
                 <span class="title_edit">Role : </span>
                 <div class="boutton">
                     <label for="male">Admin</label>
-                    <input type="radio" value="admin" name="role">
+                    <input type="radio" value="admin" name="role" required>
                 </div>
                 <div class="boutton">
                     <label for="male">Professeur</label>
-                    <input type="radio" value="prof" name="role">
+                    <input type="radio" value="prof" name="role" required>
                 </div>
                 <div class="boutton">
                     <label for="male">Classique</label>
-                    <input type="radio" value="classique" name="role">
+                    <input type="radio" value="classique" name="role" required>
                 </div>
             </div>
 
-            <input type="submit" value="Valider les modifications" id="submit">
+            <input type="submit" name="submit" value="Valider les modifications" id="submit">
         </form>
     </div>
 </body>

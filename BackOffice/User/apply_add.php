@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
     else {
         $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
 
-        $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, pass) VALUES (:firstname, :lastname, :email, :pass);');
+        $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, pass, mail, validation_mail) VALUES (:firstname, :lastname, :email, :pass,1);');
 
         $queryStatement->bindvalue(':firstname', $firstname);
         $queryStatement->bindvalue(':lastname', $lastname);
@@ -33,6 +33,6 @@ if (isset($_POST['submit'])) {
         $queryStatement->bindvalue(':pass', $passwordHash);
 
         $result1 = $queryStatement->execute();
-        echo 'direction la validation de mail !';
+        echo 'Le mail est validé d\'office !';
     }
-} else header('Location: https:schoolpea.com');
+} else header('Location: https://schoolpea.com');
