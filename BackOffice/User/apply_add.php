@@ -33,6 +33,6 @@ if (isset($_POST['submit'])) {
         $queryStatement->bindvalue(':pass', $passwordHash);
 
         $result1 = $queryStatement->execute();
-        echo 'direction la validation de mail !';
+        echo 'Le mail est validé d\'office !';
     }
 } else header('Location: https:schoolpea.com');
