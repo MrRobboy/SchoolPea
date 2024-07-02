@@ -32,5 +32,6 @@ $result = $stmt->execute();
 
 if ($result && $result1 && $result2 && $result3 && $result4) {
     header('Location: https://schoolpea.com/BackOffice/User/index.php?success=1');
+} else {
+    header('Location: https://schoolpea.com/BackOffice/User');
 }
-header('Location: https://schoolpea.com/BackOffice/User');
