@@ -36,13 +36,9 @@ $question = $stmt->fetchAll();
         <form method="post" id="Info_gen" action="">
             <h1 style="text-align: center;">Modifier le CAPTCHA</h1>
 
-            <input type="text" name="question" value="<?= $question['question'] ?>" required>
-            <label>Réponse:</label>
-            <input type="text" name="answer" value="<?= $question['answer'] ?>" required>
-            <button type="submit">Modifier</button>
             <div class="edit">
                 <span class="title_edit">Id</span>
-                <input type="text" name="id_USER" class="Input_edit" style="cursor: not-allowed;" class="value" value="<?php echo $users[0]['id_USER']; ?>" readonly="readonly">
+                <input type="text" name="id_CAPTCHA" class="Input_edit" style="cursor: not-allowed;" class="value" value="<?php echo $question[0]['id_USER']; ?>" readonly="readonly">
             </div>
 
             <div class="edit">
