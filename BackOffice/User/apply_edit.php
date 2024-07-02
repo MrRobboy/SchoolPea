@@ -8,6 +8,10 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
 
+echo '<pre>';
+print_r($_GET);
+echo '</pre>';
+
 $dbh->exec('USE PA');
 $stmt = $dbh->prepare("SELECT * FROM USER where email=:email");
 $stmt->bindvalue(':email', $_GET['email']);
