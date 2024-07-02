@@ -23,8 +23,8 @@ include($path);
 </head>
 
 <body style="padding: 5em;">
-    <a style="text-align: center; margin:5em; padding: 2em; font-size: 30px; font-weight: 600; text-decoration: none; background-color: red; color: white; border-radius: 1em;" href="#"> Supprimer l'utilisateur</a>
-    <a style="text-align: center; margin:5em; padding: 2em; font-size: 30px; font-weight: 600; text-decoration: none; background-color: green; color: white; border-radius: 1em;" href="?"> Annuler la suppression</a>
+    <a style="text-align: center; margin:5em; padding: 0.5em 1em; font-size: 20px; font-weight: 600; text-decoration: none; background-color: red; color: white; border-radius: 1em;" href="#"> Supprimer l'utilisateur</a>
+    <a style="text-align: center; margin:5em; padding: 0.5em 1em; font-size: 20px; font-weight: 600; text-decoration: none; background-color: green; color: white; border-radius: 1em;" href="?"> Annuler la suppression</a>
 </body>
 
 </html>
