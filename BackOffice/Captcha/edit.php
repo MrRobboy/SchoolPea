@@ -38,7 +38,7 @@ $question = $stmt->fetchAll();
 
             <div class="edit">
                 <span class="title_edit">Id</span>
-                <input type="text" name="id_CAPTCHA" class="Input_edit" style="cursor: not-allowed;" class="value" value="<?php echo $question[0]['id_USER']; ?>" readonly="readonly">
+                <input type="text" name="id_CAPTCHA" class="Input_edit" style="cursor: not-allowed;" class="value" value="<?php echo $question[0]['id_CAPTCHA']; ?>">
             </div>
 
             <div class="edit">
