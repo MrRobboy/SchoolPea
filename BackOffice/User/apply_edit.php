@@ -46,8 +46,7 @@ $result = $stmt2->execute();
 
 
 if ($result) {
-    echo 'success';
-    echo $result;
+    echo '<br>' . $result;
     $_GET['success'] = 1;
     echo '<br>success';
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
