@@ -1,49 +1,21 @@
 <?php
-include '../includes/auth.php';
-include '../includes/functions.php';
-include '../templates/header.php';
+session_start();
+$_GET;
+$auth = $_SERVER['DOCUMENT_ROOT'];
+$auth .= '/BackEnd/Includes/auth.php';
+include($auth);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
 
-$id = $_GET['id'];
+$dbh->exec('USE PA');
 
-$user = getById('users', $id);
+$stmt = $dbh->prepare("UPDATE USER SET banni = 0 where id_USER=:id_user");
+$stmt->bindvalue(':id_user', $_GET['id']);
+$result = $stmt->execute();
 
-if (!$user) {
-    echo 'Utilisateur non trouvé';
-    exit();
+if ($result) {
+    header('Location: https://schoolpea.com/BackOffice/User/index.php?success=3');
+} else {
+    header('Location: https://schoolpea.com/BackOffice/User');
 }
-
-if ($user['status'] !== 'banned') {
-    echo 'L\'utilisateur n\'est pas banni';
-    exit();
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (update('users', $id, ['status' => 'active'])) {
-        // Envoi de l'email de déban
-        $to = $user['email'];
-        $subject = 'Votre compte a été rétabli';
-        $message = 'Bonjour ' . $user['username'] . ",\n\nVotre compte a été rétabli. Vous pouvez maintenant vous reconnecter.\n\nCordialement,\nL'équipe de support.";
-        $headers = 'From: support@votre-site.com' . "\r\n" .
-                   'Reply-To: support@votre-site.com' . "\r\n" .
-                   'X-Mailer: PHP/' . phpversion();
-
-        mail($to, $subject, $message, $headers);
-
-        header('Location: index.php');
-        exit();
-    } else {
-        echo 'Erreur lors du débannissement de l\'utilisateur';
-    }
-}
-?>
-
-<div class="container">
-    <h1>Débannir Utilisateur</h1>
-    <p>Êtes-vous sûr de vouloir débannir l'utilisateur <strong><?= $user['username'] ?></strong>?</p>
-    <form method="post">
-        <button type="submit">Oui</button>
-        <a href="index.php">Non</a>
-    </form>
-</div>
-
-<?php include '../templates/footer.php'; ?>
