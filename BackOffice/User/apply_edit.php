@@ -46,14 +46,14 @@ $result = $stmt2->execute();
 
 
 if ($result) {
-    echo 'success';
-    echo $result;
+    echo '<br>' . $result;
     $_GET['success'] = 1;
     echo '<br>success';
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
 } else {
     echo $result;
+    echo '<br>error wtf';
     $_GET['error'] = 1;
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
-    echo '<br>error wtf';
+
 }
