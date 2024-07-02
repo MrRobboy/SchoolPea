@@ -51,7 +51,7 @@ $users = $stmt->fetchAll();
                                 <?php if ($user['role'] != 'admin' and $user['banni'] != 1) {
                                     echo ("<a href='confirm_ban.php?id=" . $user['id_USER'] . "' class='btn ban'>Bannir</a>");
                                 } else if ($user['banni'] == 1) {
-                                    echo ("<a href='unban.php?id=" . $user['id_USER'] . "' class='btn unban'>Débannir</a>");
+                                    echo ("<a href='confirm_unban.php?id=" . $user['id_USER'] . "' class='btn unban'>Débannir</a>");
                                 } ?>
                                 <a href="confirm_delete.php?id=<?php echo $user['id_USER']; ?>" class="btn del">Supprimer</a>
                             </td>
