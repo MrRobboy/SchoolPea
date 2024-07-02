@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
         $queryStatement->bindvalue(':pass', $passwordHash);
 
         $result1 = $queryStatement->execute();
-        echo 'Le mail est validé d\'office !';
+        header('Location: ' . $_SERVER['HTTP_REFERER'] . '?success=1');
     } else {
         header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error_mail=1');
     }
