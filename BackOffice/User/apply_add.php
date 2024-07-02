@@ -21,19 +21,22 @@ if (isset($_POST['submit'])) {
     $stmt->bindvalue(':email', $email);
     $stmt->execute();
     $result = $stmt->fetchAll();
+    echo '<pre>';
+    print_r($result);
+    echo '</pre>';
 
-    if ($email == $result[0]['email']) header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error_mail=1');
-    else {
-        $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
+    // if ($email == $result[0]['email']) header('Location: ' . $_SERVER['HTTP_REFERER'] . '?error_mail=1');
+    // else {
+    //     $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
 
-        $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, pass, mail, validation_mail) VALUES (:firstname, :lastname, :email, :pass,1);');
+    //     $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, pass, mail, validation_mail) VALUES (:firstname, :lastname, :email, :pass,1);');
 
-        $queryStatement->bindvalue(':firstname', $firstname);
-        $queryStatement->bindvalue(':lastname', $lastname);
-        $queryStatement->bindvalue(':email', $email);
-        $queryStatement->bindvalue(':pass', $passwordHash);
+    //     $queryStatement->bindvalue(':firstname', $firstname);
+    //     $queryStatement->bindvalue(':lastname', $lastname);
+    //     $queryStatement->bindvalue(':email', $email);
+    //     $queryStatement->bindvalue(':pass', $passwordHash);
 
-        $result1 = $queryStatement->execute();
-        echo 'Le mail est validé d\'office !';
-    }
+    //     $result1 = $queryStatement->execute();
+    //     echo 'Le mail est validé d\'office !';
+    // }
 } else header('Location: https://schoolpea.com');
