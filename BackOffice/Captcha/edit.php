@@ -32,13 +32,13 @@ $question = $stmt->fetchAll();
     include($header);
     ?>
 
-    <div class="container">
+    <div id="div1" style="width: 40%;">
         <form method="post" id="Info_gen" action="">
             <h1 style="text-align: center;">Modifier le CAPTCHA</h1>
 
             <div class="edit">
                 <span class="title_edit">Id</span>
-                <input type="text" name="id_CAPTCHA" class="Input_edit" style="cursor: not-allowed;" class="value" value="<?php echo $question[0]['id_CAPTCHA']; ?>">
+                <input type="text" name="id_CAPTCHA" class="Input_edit" style="cursor: not-allowed;" class="value" value="<?php echo $question[0]['id_CAPTCHA']; ?>" readonly>
             </div>
 
             <div class="edit">
