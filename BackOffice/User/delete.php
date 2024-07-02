@@ -22,7 +22,7 @@ include($path);
     <title>Confirmation Supression USER</title>
 </head>
 
-<body style="padding: 5em;">
+<body style="padding: 5em; justify-content: center;align-items: center;">
     <a style="text-align: center; margin:5em; padding: 0.5em 1em; font-size: 20px; font-weight: 600; text-decoration: none; background-color: red; color: white; border-radius: 1em;" href="#"> Supprimer l'utilisateur</a>
     <a style="text-align: center; margin:5em; padding: 0.5em 1em; font-size: 20px; font-weight: 600; text-decoration: none; background-color: green; color: white; border-radius: 1em;" href="?"> Annuler la suppression</a>
 </body>
