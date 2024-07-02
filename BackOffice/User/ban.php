@@ -17,6 +17,7 @@ $result = $stmt->execute();
 if ($result) {
     echo 'ban success';
     // header('Location: https://schoolpea.com/BackOffice/User/index.php?success=2');
+} else {
+    echo 'ban fail';
+    // header('Location: https://schoolpea.com/BackOffice/User');
 }
-echo 'ban fail';
-// header('Location: https://schoolpea.com/BackOffice/User');
