@@ -19,7 +19,7 @@ $stmt->bindvalue(':id', $_POST['id_USER']);
 $stmt->execute();
 $userInfo = $stmt->fetchAll();
 
-if ($userInfo[0]['id_USER'] == $_POST['id_USER'] and $userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname'] and $userInfo[0]['role'] == $_POST['role']) header('Location: ' . $_SERVER['HTTP_REFERER']);
+if ($userInfo[0]['id_USER'] == $_POST['id_USER'] and $userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname'] and $userInfo[0]['role'] == $_POST['role']) echo '<br>valeurs similaires'/*header('Location: ' . $_SERVER['HTTP_REFERER'])*/;
 /*Ici il y a forcément eu une modification ! */
 if ($userInfo[0]['email'] != $_POST['email']) {
     $dbh->exec('USE PA');
@@ -28,9 +28,10 @@ if ($userInfo[0]['email'] != $_POST['email']) {
     $stmt1->execute();
     $userExist = $stmt1->fetchAll();
 
-    if ($userExist['email'] == $_POST['email']) {
+    if ($userExist[0]['email'] == $_POST['email']) {
         $_GET['error_mail'] = 1;
-        header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error_mail=1');
+        echo '<br>email error';
+        // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error_mail=1');
     }
 }
 
@@ -49,10 +50,12 @@ if ($result) {
     echo 'success';
     echo $result;
     $_GET['success'] = 1;
-    header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
+    echo '<br>success';
+    // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
 } else {
     echo 'echec';
     echo $result;
     $_GET['error'] = 1;
-    header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
+    // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
+    echo '<br>error wtf';
 }
