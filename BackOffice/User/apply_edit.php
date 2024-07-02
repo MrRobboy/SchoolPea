@@ -42,22 +42,17 @@ $stmt2->bindvalue(':firstname', $_POST['firstname']);
 $stmt2->bindvalue(':email', $_POST['email']);
 $stmt2->bindvalue(':path_pp', $_POST['path_pp']);
 $stmt2->bindvalue(':role', $_POST['role']);
-$stmt2->execute();
-$result = $stmt2->fetchAll();
+$result = $stmt2->execute();
 
 
 if ($result) {
     echo 'success';
-    echo '<pre>';
-    print_r($result);
-    echo '</pre>';
+    echo $result;
     $_GET['success'] = 1;
     echo '<br>success';
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
 } else {
-    echo '<pre>';
-    print_r($result);
-    echo '</pre>';
+    echo $result;
     $_GET['error'] = 1;
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
     echo '<br>error wtf';
