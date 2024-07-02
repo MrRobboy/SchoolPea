@@ -30,7 +30,7 @@ $users = $stmt->fetchAll();
     $header .= '/BackOffice/Includes/headerBackOffice.php';
     include($header); ?>
 
-    <?php if (!empty($_GET['error'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700;">MAIL DEJA EXISTANT!</p>'; ?>
+    <?php if (!empty($_GET['error'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em;">MAIL DEJA EXISTANT!</p>'; ?>
 
     <div id="div1">
         <form method="post" id="Info_gen" action="apply_edit.php">
