@@ -30,7 +30,7 @@ $stmt = $dbh->prepare("DELETE FROM USER where id_USER = :id_user");
 $stmt->bindvalue(':id_user', $_GET['id']);
 $result = $stmt->execute();
 
-if ($result) {
+if ($result && $result1 && $result2 && $result3 && $result4) {
     header('Location: https://schoolpea.com/BackOffice/User/index.php?success=1');
 }
 header('Location: https://schoolpea.com/BackOffice/User');
