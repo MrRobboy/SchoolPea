@@ -65,7 +65,7 @@ include($auth);
                 </div>
             </div>
 
-            <input type="submit" value="Valider les modifications" id="submit">
+            <input type="submit" name="submit" value="Valider les modifications" id="submit">
         </form>
     </div>
 </body>

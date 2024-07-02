@@ -35,4 +35,4 @@ if (isset($_POST['submit'])) {
         $result1 = $queryStatement->execute();
         echo 'Le mail est validé d\'office !';
     }
-} else header('Location: https:schoolpea.com');
+} else header('Location: https://schoolpea.com');
