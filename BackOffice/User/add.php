@@ -45,6 +45,11 @@ include($auth);
             </div>
 
             <div class="edit">
+                <span class="title_edit">Mot de passe</span>
+                <input type="password" name="password" class="Input_edit" class="value" placeholder="Mot de Passe">
+            </div>
+
+            <div class="edit">
                 <span class="title_edit">Role : </span>
                 <div class="boutton">
                     <label for="male">Admin</label>
