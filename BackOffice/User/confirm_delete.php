@@ -1,4 +1,5 @@
 <?php
+session_start();
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
