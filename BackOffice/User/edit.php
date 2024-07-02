@@ -70,7 +70,7 @@ $users = $stmt->fetchAll();
                 </div>
                 <div class="boutton">
                     <label for="male">Professeur</label>
-                    <input type="radio" value="professeur" name="role" <?php if ($users[0]['role'] == 'professeur') echo 'checked="checked"'; ?>>
+                    <input type="radio" value="prof" name="role" <?php if ($users[0]['role'] == 'prof') echo 'checked="checked"'; ?>>
                 </div>
                 <div class="boutton">
                     <label for="male">Classique</label>
