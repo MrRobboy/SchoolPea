@@ -20,7 +20,7 @@ $question = $stmt->fetchAll();
 
 <head>
     <meta charset="UTF-8">
-    <title> EDIT - USERS </title>
+    <title> EDIT - CAPTCHA </title>
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Compte/compte.css">
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/BackOffice/User/edit.css">
 </head>
