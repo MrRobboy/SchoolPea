@@ -26,5 +26,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit">Ajouter</button>
     </form>
 </div>
-
-<?php include '../templates/footer.php'; ?>
