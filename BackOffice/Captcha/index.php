@@ -49,7 +49,7 @@ $questions = $stmt->fetchAll();
                             <td class="not_right"><?php echo $question['reponse5']; ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $question['id_CAPTCHA']; ?>" class="btn modify">Modifier</a>
-                                <a href="delete.php?id=<?php echo $question['id_CAPTCHA']; ?>" class="btn del">Supprimer</a>
+                                <a href="confirm_delete.php?id=<?php echo $question['id_CAPTCHA']; ?>" class="btn del">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

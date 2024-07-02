@@ -1,13 +1,21 @@
 <?php
-include '../includes/auth.php';
-include '../includes/functions.php';
+session_start();
+$_GET;
+$auth = $_SERVER['DOCUMENT_ROOT'];
+$auth .= '/BackEnd/Includes/auth.php';
+include($auth);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
 
-$id = $_GET['id'];
+$dbh->exec('USE PA');
 
-if (delete('captcha_questions', $id)) {
-    header('Location: index.php');
-    exit();
+$stmt1 = $dbh->prepare("DELETE FROM CAPTCHA where id_CAPTCHA = :id_CAPTCHA");
+$stmt1->bindvalue(':id_CAPTCHA', $_GET['id']);
+$result1 = $stmt1->execute();
+
+if ($result1) {
+    header('Location: https://schoolpea.com/BackOffice/Captcha/index.php?success=1');
 } else {
-    echo 'Erreur lors de la suppression de la question';
+    header('Location: https://schoolpea.com/BackOffice/Captcha');
 }
-?>
