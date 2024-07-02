@@ -36,7 +36,6 @@ $result = $stmt->fetchAll();
 
 $path = '';
 if ($result) {
-    $_GET['success'] = 1;
-    header('Location: https://schoolpea.com/BackOffice/User/index.php?' . $_GET['success']);
+    header('Location: https://schoolpea.com/BackOffice/User/index.php?success=1');
 }
 header('Location: https://schoolpea.com/BackOffice/User');
