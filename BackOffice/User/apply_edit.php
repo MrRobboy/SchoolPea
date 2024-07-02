@@ -37,4 +37,5 @@ if ($userExist[0]['email'] != $_POST['email']) {
         echo $result;
     }
 }
-echo '<br>Comparaison échouée';
+$_GET['Error'] = 1;
+header('Location: ' . $_SERVER['HTTP_REFERER']);
