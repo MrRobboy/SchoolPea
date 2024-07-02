@@ -53,7 +53,6 @@ if ($result) {
     echo '<br>success';
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
 } else {
-    echo 'echec';
     echo $result;
     $_GET['error'] = 1;
     // header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
