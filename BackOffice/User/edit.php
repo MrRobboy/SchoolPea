@@ -31,6 +31,8 @@ $users = $stmt->fetchAll();
     include($header); ?>
     <span class="trait" id="SchoolPea"></span>
 
+    <?php echo 'MAIL DEJA EXISTANT!'; ?>
+
     <div id="div1">
         <form method="post" id="Info_gen" action="apply_edit.php">
             <h1 style="text-align: center;">Modifier l'Utilisateur</h1>
