@@ -31,7 +31,7 @@ $users = $stmt->fetchAll();
     include($header); ?>
     <span class="trait" id="SchoolPea"></span>
 
-    <?php echo 'MAIL DEJA EXISTANT!'; ?>
+    <?php if ($_GET['Error'] == 1) echo 'MAIL DEJA EXISTANT!'; ?>
 
     <div id="div1">
         <form method="post" id="Info_gen" action="apply_edit.php">
