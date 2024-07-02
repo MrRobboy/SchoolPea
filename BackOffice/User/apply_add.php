@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
 
         $passwordHash = password_hash($pass, PASSWORD_DEFAULT);
 
-        $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, pass, mail, validation_mail) VALUES (:firstname, :lastname, :email, :pass,1);');
+        $queryStatement = $dbh->prepare('INSERT INTO USER(firstname, lastname, email, pass, validation_mail) VALUES (:firstname, :lastname, :email, :pass,1);');
 
         $queryStatement->bindvalue(':firstname', $firstname);
         $queryStatement->bindvalue(':lastname', $lastname);
