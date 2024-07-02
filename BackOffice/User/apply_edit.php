@@ -24,4 +24,12 @@ if ($userExist[0]['email'] != $_GET['email']) {
     $stmt2->bindvalue(':path_pp', $_GET['path_pp']);
     $stmt2->execute();
     $result = $stmt2->fetchAll();
+
+    if ($result) {
+        echo 'success';
+        echo $result;
+    } else {
+        echo 'echec';
+        echo $result;
+    }
 }
