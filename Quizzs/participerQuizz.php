@@ -44,33 +44,16 @@ if ($currentQuestion < 1 || $currentQuestion > count($questions)) {
 // Récupérer les données de la question actuelle
 $currentQuestionData = $questions[$currentQuestion - 1];
 
-// Si une réponse est soumise
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $answers = $_POST['answers'];
+// Récupérer les choix de la question actuelle
+$sql = "SELECT * FROM CHOIX WHERE id_question = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$currentQuestionData['id_question']]);
+$choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Valider et enregistrer les réponses
-    foreach ($answers as $questionId => $answerIds) {
-        if (!empty($answerIds)) {
-            foreach ($answerIds as $answerId) {
-                $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
-                $stmt = $dbh->prepare($sql);
-                $stmt->execute([$_SESSION['id_user'], $questionId, $idQuizz, $answerId]);
-            }
-        }
-    }
-
-    // Vérifier s'il y a une prochaine question à afficher
-    $nextQuestion = $currentQuestion + 1;
-
-    if ($nextQuestion > count($questions)) {
-        // Rediriger vers la page de résultats du quiz
-        header("Location: resultatQuizz.php?id_quizz=$idQuizz");
-        exit();
-    } else {
-        // Rediriger vers la prochaine question
-        header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
-        exit();
-    }
+// Vérifier si des choix sont trouvés
+if (empty($choices)) {
+    echo "Aucun choix trouvé pour cette question.";
+    exit();
 }
 ?>
 
@@ -82,63 +65,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Participer au Quiz</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        function showQuestion() {
-            var currentQuestion = <?php echo $currentQuestion; ?>;
-            var totalQuestions = <?php echo count($questions); ?>;
+        function validateQuestion() {
             var form = document.getElementById('quiz-form');
+            var checkboxes = form.elements['answers[]'];
+            var answered = false;
 
-            // Afficher la question actuelle
-            var questionHeader = document.getElementById('question-header');
-            questionHeader.innerText = "Question " + currentQuestion + ":";
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    answered = true;
+                    break;
+                }
+            }
 
-            // Afficher le texte de la question
-            var questionText = document.getElementById('question-text');
-            questionText.innerText = "<?php echo htmlspecialchars($currentQuestionData['question_text']); ?>";
+            if (!answered) {
+                alert('Veuillez sélectionner au moins une réponse.');
+                return false;
+            }
 
-            // Afficher les choix de réponse
-            var choicesContainer = document.getElementById('choices-container');
-            choicesContainer.innerHTML = ''; // Effacer les anciens choix
-
-            <?php foreach ($choices as $choice) : ?>
-                var choiceDiv = document.createElement('div');
-                var choiceInput = document.createElement('input');
-                choiceInput.type = 'checkbox';
-                choiceInput.name = 'answers[<?php echo $currentQuestionData['id_question']; ?>][]';
-                choiceInput.value = '<?php echo $choice['id_CHOIX']; ?>';
-                choiceInput.id = 'choice-<?php echo $choice['id_CHOIX']; ?>';
-
-                var choiceLabel = document.createElement('label');
-                choiceLabel.setAttribute('for', 'choice-<?php echo $choice['id_CHOIX']; ?>');
-                choiceLabel.innerText = '<?php echo htmlspecialchars($choice['choix_text']); ?>';
-
-                choiceDiv.appendChild(choiceInput);
-                choiceDiv.appendChild(choiceLabel);
-                choicesContainer.appendChild(choiceDiv);
-            <?php endforeach; ?>
+            return true;
         }
-
-        // Appeler showQuestion() lors du chargement initial
-        window.onload = function() {
-            showQuestion();
-        };
     </script>
 </head>
 <body>
     <div class="container">
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
-        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>&question=<?php echo $currentQuestion; ?>" method="post" id="quiz-form">
-            <h3 id="question-header">Question <?php echo $currentQuestion; ?>:</h3>
-            <p id="question-text"></p>
+        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>&question=<?php echo $currentQuestion; ?>" method="post" id="quiz-form" onsubmit="return validateQuestion()">
+            <h3>Question <?php echo $currentQuestion; ?>:</h3>
+            <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
 
             <div id="choices-container">
-                <!-- Les choix de réponse seront ajoutés ici par JavaScript -->
+                <?php foreach ($choices as $choice) : ?>
+                    <div>
+                        <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
+                        <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
+                    </div>
+                <?php endforeach; ?>
             </div>
 
-            <?php if ($currentQuestion < count($questions)) : ?>
-                <button type="button" onclick="showQuestion()">Suivant</button>
-            <?php else : ?>
-                <button type="submit">J'ai Tout Fini</button>
-            <?php endif; ?>
+            <button type="submit">Suivant</button>
         </form>
     </div>
 </body>
