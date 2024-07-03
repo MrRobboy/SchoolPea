@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 
 // Inclure le fichier de connexion à la base de données et les fonctions communes
 require_once 'common.php';

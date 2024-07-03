@@ -1,7 +1,7 @@
 <?php
 include 'common.php';
 // createQuizz.php
-session_start();
+
 
 ?>
 
