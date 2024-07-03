@@ -109,7 +109,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dbh->commit();
 
                 echo "Cours créé avec succès !";
-                header('Location: ' . $_SESSION['referer']) . $concat . 'success=2';
+                header('Location: ' . $_SESSION['referer'] . $concat . 'success=2');
             } catch (PDOException $e) {
 
                 $dbh->rollBack();
