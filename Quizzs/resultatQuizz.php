@@ -1,6 +1,6 @@
 <?php
 require_once('common.php');
-
+session_start();
 // Vérifier si l'ID du quiz est spécifié dans l'URL
 if (!isset($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié.";
