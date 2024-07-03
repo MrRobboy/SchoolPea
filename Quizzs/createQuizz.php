@@ -1,5 +1,14 @@
 <?php
 include 'common.php';
+// createQuizz.php
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+// Rest of the create quiz page
+
 ?>
 
 <!DOCTYPE html>
