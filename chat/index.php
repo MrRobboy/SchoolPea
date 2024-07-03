@@ -13,7 +13,8 @@ try {
     exit();
 }
 
-function isUserLoggedIn() {
+function isUserLoggedIn()
+{
     return isset($_SESSION['user_id']);
 }
 
@@ -32,13 +33,27 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat.css">
 </head>
+
 <body>
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
+        $path .= '/headerL.php';
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+    }
+    include($path);
+    ?>
+
+    <span id="trait_chat"></span>
+
     <div class="chat-container">
         <div class="messages" id="messages">
             <?php include 'fetch_messages.php'; ?>
@@ -51,4 +66,5 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     <script src="script.js"></script>
 </body>
+
 </html>
