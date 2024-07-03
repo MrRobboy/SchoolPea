@@ -41,7 +41,7 @@ $totalQuestions = count($questions);
 $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
 
 if (!$idUser) {
-    require_once('common.php');;
+    header("Location: login.php");
     exit();
 }
 
