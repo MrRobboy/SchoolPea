@@ -44,7 +44,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
                         <?php else : ?>
                             <img src="default-image.jpg" alt="Image par défaut">
                         <?php endif; ?>
-                        <a href="voirQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" style="text-decoration: none;">Voir le quizz</a>
+                        <a href="participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" style="text-decoration: none;">Voir le quizz</a>
                     </div>
                 <?php endforeach; ?>
             <?php else : ?>
