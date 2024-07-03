@@ -55,6 +55,34 @@ if (empty($choices)) {
     echo "Aucun choix trouvé pour cette question.";
     exit();
 }
+
+// Si une réponse est soumise
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $answers = $_POST['answers'];
+
+    // Valider et enregistrer les réponses
+    foreach ($answers as $questionId => $answerIds) {
+        if (!empty($answerIds)) {
+            foreach ($answerIds as $answerId) {
+                $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
+                $stmt = $dbh->prepare($sql);
+                $stmt->execute([$_SESSION['id_user'], $questionId, $idQuizz, $answerId]);
+            }
+        }
+    }
+
+    // Déterminer la prochaine question à afficher
+    $nextQuestion = $currentQuestion + 1;
+
+    if ($nextQuestion > count($questions)) {
+        // Rediriger vers la page de résultats du quiz
+        header("Location: resultatQuizz.php?id_quizz=$idQuizz");
+    } else {
+        // Rediriger vers la prochaine question
+        header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
+    }
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
