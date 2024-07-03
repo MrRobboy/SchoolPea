@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const formData = new FormData(this);
 
-        fetch('sendMessage.php', {
+        fetch('send_message.php', {
             method: 'POST',
             body: formData
         })
@@ -21,10 +21,16 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchMessages() {
-    fetch('fetchMessages.php')
+    fetch('fetch_messages.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('messages').innerHTML = data;
+            scrollToBottom(); // Scroll vers le bas après la mise à jour des messages
         })
         .catch(error => console.error('Error fetching messages:', error));
+}
+
+function scrollToBottom() {
+    const messagesDiv = document.getElementById('messages');
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
