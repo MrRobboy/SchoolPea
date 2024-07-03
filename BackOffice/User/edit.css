@@ -23,6 +23,9 @@
     border: 0.1em solid black;
     margin: 0 1em;
     text-align: end;
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 1em;
 }
 
 #submit {
