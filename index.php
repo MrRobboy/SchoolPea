@@ -102,16 +102,16 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
         <div id="div_quizz">
             <div class="fenetre">
                 <div class="courses" id="quizz_list">
-                    <?php if (!empty($quizzs)) : ?>
-                        <?php foreach ($quizzs as $quizz) : ?>
+                    <?php if (!empty($quizzes)) : ?>
+                        <?php foreach ($quizzes as $quiz) : ?>
                             <div class="course_item">
-                                <h3 style="margin: 0;"><?php echo htmlspecialchars($quizz['nom']); ?></h3>
-                                <?php if (!empty($quizz['path_image_pres'])) : ?>
-                                    <img src="<?php echo htmlspecialchars($quizz['path_image_pres']); ?>" class="img_pres" alt="Image de présentation">
+                                <h3 style="margin: 0;"><?php echo htmlspecialchars($['nom']); ?></h3>
+                                <?php if (!empty($quiz['path_image_pres'])) : ?>
+                                    <img src="<?php echo htmlspecialchars($quiz['path_image_pres']); ?>" class="img_pres" alt="Image de présentation">
                                 <?php else : ?>
                                     <img src="default-image.jpg" alt="Image par défaut">
                                 <?php endif; ?>
-                                <a href="/Quizzs/participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quizz['id_QUIZZ']); ?>" class="But_voir">Voir le quizz</a>
+                                <a href="/Quizzs/participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" class="But_voir">Voir le quizz</a>
                             </div>
                         <?php endforeach; ?>
                     <?php else : ?>
