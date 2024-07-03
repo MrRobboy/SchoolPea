@@ -37,11 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $answers = $_POST['answers'];
 
     // Valider et enregistrer les réponses
-    foreach ($answers as $questionId => $answer) {
-        if (!empty($answer)) {
-            $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
-            $stmt = $dbh->prepare($sql);
-            $stmt->execute([$_SESSION['id_user'], $questionId, $idQuizz, $answer]);
+    foreach ($answers as $questionId => $answerIds) {
+        if (!empty($answerIds)) {
+            foreach ($answerIds as $answerId) {
+                $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
+                $stmt = $dbh->prepare($sql);
+                $stmt->execute([$_SESSION['id_user'], $questionId, $idQuizz, $answerId]);
+            }
         }
     }
 
@@ -85,18 +87,18 @@ $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <script>
         function validateQuestion() {
             var form = document.getElementById('quiz-form');
-            var radios = form.elements['answers'];
+            var checkboxes = form.elements['answers[]'];
             var answered = false;
 
-            for (var i = 0; i < radios.length; i++) {
-                if (radios[i].checked) {
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
                     answered = true;
                     break;
                 }
             }
 
             if (!answered) {
-                alert('Veuillez sélectionner une réponse.');
+                alert('Veuillez sélectionner au moins une réponse.');
                 return false;
             }
 
@@ -115,7 +117,7 @@ $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php foreach ($choices as $choice) : ?>
                 <div>
-                    <input type="radio" name="answers[<?php echo $currentQuestionData['id_question']; ?>]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
+                    <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
                     <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
                 </div>
             <?php endforeach; ?>
