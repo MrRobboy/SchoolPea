@@ -7,9 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Handle file upload
     $targetDir = "uploads/";
-    $targetFile = $targetDir . basename($_FILES["quiz_image"]["name"]);
+    $fileName = basename($_FILES["quiz_image"]["name"]);
+    $targetFile = $targetDir . uniqid() . "_" . $fileName;
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["quiz_image"]["tmp_name"]);
@@ -17,12 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $uploadOk = 1;
     } else {
         echo "File is not an image.";
-        $uploadOk = 0;
-    }
-
-    // Check if file already exists
-    if (file_exists($targetFile)) {
-        echo "Sorry, file already exists.";
         $uploadOk = 0;
     }
 
@@ -41,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["quiz_image"]["tmp_name"], $targetFile)) {
             echo "The file " . htmlspecialchars(basename($_FILES["quiz_image"]["name"])) . " has been uploaded.";
@@ -59,17 +53,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert questions and choices
     foreach ($_POST['questions'] as $questionIndex => $question) {
-        $sql = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)";
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute([$quizId, $question['text']]);
-
-        $questionId = $dbh->lastInsertId();
-
-        foreach ($question['choices'] as $choiceIndex => $choice) {
-            $isCorrect = isset($choice['is_correct']) ? 1 : 0;
-            $sql = "INSERT INTO CHOIX (id_question, choix_text, is_correct) VALUES (?, ?, ?)";
+        if (isset($question['text']) && !empty($question['text'])) {
+            $sql = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)";
             $stmt = $dbh->prepare($sql);
-            $stmt->execute([$questionId, $choice['text'], $isCorrect]);
+            $stmt->execute([$quizId, $question['text']]);
+
+            $questionId = $dbh->lastInsertId();
+
+            foreach ($question['choices'] as $choiceIndex => $choice) {
+                if (isset($choice['text']) && !empty($choice['text'])) {
+                    $isCorrect = isset($choice['is_correct']) ? 1 : 0;
+                    $sql = "INSERT INTO CHOIX (id_question, choix_text, is_correct) VALUES (?, ?, ?)";
+                    $stmt = $dbh->prepare($sql);
+                    $stmt->execute([$questionId, $choice['text'], $isCorrect]);
+                }
+            }
         }
     }
 
