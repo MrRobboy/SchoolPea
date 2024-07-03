@@ -20,6 +20,18 @@ $courss = $stmt->fetchAll();
 </head>
 
 <body style="padding-left: 10em;">
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
+        $path .= '/headerL.php';
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+    }
+    include($path);
+    ?>
+
+    <span id="trait_chat"></span>
+
     <div id="content" style="width: 95%;">
         <h1 style="margin-bottom: 0.5em;">Gestion des Cours</h1>
         <a href="add.php" class="btn add">Ajouter un Cours </a>

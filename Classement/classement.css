@@ -9,11 +9,9 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: linear-gradient(
-        180deg,
-        rgba(92, 107, 192, 1) 0%,
-        rgba(255, 255, 255, 1) 100%
-    );
+    background: linear-gradient(180deg,
+            rgba(92, 107, 192, 1) 0%,
+            rgba(255, 255, 255, 1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,6 +21,14 @@ body {
     margin: 2em;
     min-height: 100vh;
     /* Hauteur minimum de la page pour assurer le dégradé complet */
+}
+
+#trait_chat {
+    padding: 0.2em 20em;
+    justify-content: center;
+    background-color: transparent;
+    margin-bottom: 5em;
+    margin-top: 0em;
 }
 
 h1 {
@@ -156,6 +162,7 @@ tbody tr:hover {
 .btn.unban:hover {
     background-color: #00cf2d;
 }
+
 .btn.del {
     background-color: #ff0000;
 }
