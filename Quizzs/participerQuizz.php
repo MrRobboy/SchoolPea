@@ -2,7 +2,7 @@
 session_start();
 
 // Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
-if (!isset($_SESSION['mail_valide'])) {
+if (!isset($_SESSION['id_user'])) {
     header('Location: https://schoolpea.com/Quizzs/login.php');
     exit();
 }
@@ -16,6 +16,7 @@ if (!isset($_GET['id_quizz'])) {
 $idQuizz = $_GET['id_quizz'];
 
 // Récupérer les informations sur le quiz
+require_once('common.php');
 $sql = "SELECT * FROM QUIZZ WHERE id_QUIZZ = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$idQuizz]);
@@ -77,7 +78,7 @@ $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -110,11 +111,7 @@ $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
         <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post" id="quiz-form" onsubmit="return validateQuestion()">
             <input type="hidden" name="next_question" value="<?php echo $currentQuestion % $totalQuestions + 1; ?>">
-            <input type="hidden" name="answers[<?php echo $currentQuestionData['id_question']; ?>]" id="question-<?php echo $currentQuestionData['id_question']; ?>">
-
-            <h3>Question <?php echo $currentQuestion; ?></h3>
-            <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
-
+            
             <?php foreach ($choices as $choice) : ?>
                 <div>
                     <input type="radio" name="answers[<?php echo $currentQuestionData['id_question']; ?>]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
