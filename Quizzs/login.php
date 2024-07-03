@@ -2,8 +2,22 @@
 // login.php
 session_start();
 
-// Include file for database connection
-require_once('common.php'); // Assurez-vous d'ajuster le chemin selon votre structure de fichier
+
+$dsn = 'mysql:host=localhost;dbname=PA';
+$username = 'root';
+$password = 'root';
+
+try {
+    $dbh = new PDO($dsn, $username, $password);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo 'Connection failed: ' . $e->getMessage();
+    exit();
+}
+
+function isUserLoggedIn() {
+    return isset($_SESSION['user_id']);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
