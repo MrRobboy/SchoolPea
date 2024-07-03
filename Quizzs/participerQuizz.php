@@ -1,6 +1,10 @@
 <?php
-require_once('common.php');
 
+require_once('common.php');
+// Démarrer la session si ce n'est pas déjà fait
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 // Vérifier si l'ID du quiz est spécifié dans l'URL
 if (!isset($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié.";
