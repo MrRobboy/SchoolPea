@@ -2,7 +2,6 @@
 // login.php
 session_start();
 
-
 $dsn = 'mysql:host=localhost;dbname=PA';
 $username = 'root';
 $password = 'root';
@@ -32,13 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user && password_verify($password, $user['pass'])) {
         $_SESSION['user_id'] = $user['id_USER']; // Set session variable upon successful login
-        header("Location: createQuizz.php");
+        $redirectUrl = isset($_SESSION['redirect_url']) ? $_SESSION['redirect_url'] : 'createQuizz.php';
+        unset($_SESSION['redirect_url']); // Clear the redirect URL after using it
+        header("Location: $redirectUrl");
         exit();
     } else {
         $error = "Invalid email or password.";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
