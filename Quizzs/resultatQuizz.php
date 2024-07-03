@@ -1,7 +1,10 @@
 <?php
 require_once('common.php');
-// Si `session_start()` n'est pas déjà appelé dans 'common.php', vous pouvez le démarrer ici
-// session_start();
+
+// Démarrer la session si ce n'est pas déjà fait
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Vérifier si l'ID du quiz est spécifié dans l'URL
 if (!isset($_GET['id_quizz'])) {
@@ -124,6 +127,11 @@ if ($eloDiff > 0) {
 } else {
     $eloColor = 'orange'; // Aucun changement d'élo (nul)
 }
+
+// Mettre à jour l'Elo de l'utilisateur dans la table USER
+$sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$classementGeneralDesParticipants[0]['score'], $idUser]);
 ?>
 
 <!DOCTYPE html>
