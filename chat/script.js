@@ -7,7 +7,10 @@ function fetchMessages() {
         .catch(error => console.error('Error fetching messages:', error));
 }
 
-fetchMessages();
+setTimeout(fetchMessages,1);
+
+setInterval(fetchMessages, 3000);
+
 
 document.getElementById('message-form').addEventListener('submit', function(event) {
     event.preventDefault();
@@ -25,5 +28,3 @@ document.getElementById('message-form').addEventListener('submit', function(even
     })
     .catch(error => console.error('Error sending message:', error));
 });
-
-setInterval(fetchMessages, 3000);
