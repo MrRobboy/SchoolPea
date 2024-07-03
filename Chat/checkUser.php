@@ -1,12 +1,16 @@
 <?php
+session_start();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
 
-require_once('db.php');
-function isUserLoggedIn() {
+function isUserLoggedIn()
+{
     return isset($_SESSION['user_id']);
 }
 
 if (!isUserLoggedIn()) {
-    header("Location: login.php");
+    header("Location: https://schoolpea.com/Connexion");
     exit();
 }
 
@@ -16,4 +20,3 @@ $stmt = $dbh->prepare($sql);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
-?>
