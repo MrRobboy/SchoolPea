@@ -13,6 +13,7 @@ $stmt = $dbh->prepare("SELECT nom, niveau, description FROM COURS where id_COURS
 $stmt->bindvalue(':id', $_GET['id']);
 $stmt->execute();
 $Cours = $stmt->fetchAll();
+$_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
 ?>
 
 <!DOCTYPE html>
