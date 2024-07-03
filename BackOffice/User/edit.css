@@ -23,6 +23,7 @@
     border: 0.1em solid black;
     margin: 0 1em;
     text-align: end;
+    flex-wrap: wrap;
 }
 
 #submit {
