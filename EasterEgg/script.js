@@ -55,7 +55,7 @@ var Jeu = {
         this.ia = IA.nouveau.call(this, 'droite');
         this.Ball = Ball.nouveau.call(this);
  
-        this.ia.vitesse = 8;
+        this.ia.vitesse = 5;
         this.enCours = this.termine = false;
         this.tour = this.ia;
         this.timer = this.manche = 0;
@@ -145,18 +145,18 @@ var Jeu = {
             else if (this.joueur.y >= (this.canvas.height - this.joueur.hauteur)) this.joueur.y = (this.canvas.height - this.joueur.hauteur);
  
             // deplace le Ball dans la direction prévue en fonction des valeurs de deplacementY et deplacementX
-            if (this.Ball.deplacementY === DIRECTION.HAUT) this.Ball.y -= (this.Ball.vitesse );
-            else if (this.Ball.deplacementY === DIRECTION.BAS) this.Ball.y += (this.Ball.vitesse );
+            if (this.Ball.deplacementY === DIRECTION.HAUT) this.Ball.y -= (this.Ball.vitesse / 1.5);
+            else if (this.Ball.deplacementY === DIRECTION.BAS) this.Ball.y += (this.Ball.vitesse / 1.5);
             if (this.Ball.deplacementX === DIRECTION.GAUCHE) this.Ball.x -= this.Ball.vitesse;
             else if (this.Ball.deplacementX === DIRECTION.DROITE) this.Ball.x += this.Ball.vitesse;
  
             // gèere les mouvements HAUT et BAS de l'ia
             if (this.ia.y > this.Ball.y - (this.ia.hauteur / 2)) {
-                if (this.Ball.deplacementX === DIRECTION.DROITE) this.ia.y -= this.ia.vitesse;
+                if (this.Ball.deplacementX === DIRECTION.DROITE) this.ia.y -= this.ia.vitesse / 1.5;
                 else this.ia.y -= this.ia.vitesse / 4;
             }
             if (this.ia.y < this.Ball.y - (this.ia.hauteur / 2)) {
-                if (this.Ball.deplacementX === DIRECTION.DROITE) this.ia.y += this.ia.vitesse;
+                if (this.Ball.deplacementX === DIRECTION.DROITE) this.ia.y += this.ia.vitesse / 1.5;
                 else this.ia.y += this.ia.vitesse / 4;
             }
  
