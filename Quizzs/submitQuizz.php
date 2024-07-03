@@ -58,11 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quizId = $dbh->lastInsertId();
 
     // Insert questions and choices
-    foreach ($_POST['questions'] as $questionIndex => $question) {
-        $sql = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)";
+    foreach ($_POST['questions'] as $question) {
+        $questionText = $question['text'];
+        $sql = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (:quiz_id, :question_text)";
         $stmt = $dbh->prepare($sql);
-        $stmt->execute([$quizId, $question['text']]);
-
+        $stmt->bindParam(':quiz_id', $quizId);
+        $stmt->bindParam(':question_text', $questionText);
+        $stmt->execute();
         $questionId = $dbh->lastInsertId();
 
         foreach ($question['choices'] as $choiceIndex => $choice) {
