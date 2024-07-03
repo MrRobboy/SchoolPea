@@ -7,10 +7,10 @@ function fetchMessages() {
         .catch(error => console.error('Error fetching messages:', error));
 }
 
-// Fetch messages every 3 seconds
+
 setInterval(fetchMessages, 3000);
 
-// Handle form submission
+
 document.getElementById('message-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -22,8 +22,8 @@ document.getElementById('message-form').addEventListener('submit', function(even
     })
     .then(response => response.text())
     .then(data => {
-        fetchMessages();  // Refresh messages after sending a new one
-        this.reset();  // Clear the form
+        fetchMessages(); 
+        this.reset(); 
     })
     .catch(error => console.error('Error sending message:', error));
 });
