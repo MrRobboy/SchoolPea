@@ -10,7 +10,7 @@ function isUserLoggedIn()
 }
 
 if (!isUserLoggedIn()) {
-    header("Location: login.php");
+    header("Location: https://schoolpea.com/Connexion");
     exit();
 }
 
