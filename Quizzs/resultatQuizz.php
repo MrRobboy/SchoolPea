@@ -1,6 +1,8 @@
 <?php
 require_once('common.php');
-session_start();
+// Si `session_start()` n'est pas déjà appelé dans 'common.php', vous pouvez le démarrer ici
+// session_start();
+
 // Vérifier si l'ID du quiz est spécifié dans l'URL
 if (!isset($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié.";
@@ -35,10 +37,18 @@ if (empty($questions)) {
 // Compter le nombre total de questions
 $totalQuestions = count($questions);
 
+// Vérifier si l'utilisateur est connecté et récupérer son ID utilisateur
+$idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
+
+if (!$idUser) {
+    echo "Utilisateur non connecté.";
+    exit();
+}
+
 // Récupérer les réponses du participant connecté pour ce quiz
 $sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
 $stmt = $dbh->prepare($sql);
-$stmt->execute([$idQuizz, $_SESSION['id_user']]);
+$stmt->execute([$idQuizz, $idUser]);
 $userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Compter le nombre de bonnes réponses
@@ -76,7 +86,7 @@ $scoreParticipant = $initialElo;
 // Liste des participants (pour cet exemple, un seul participant)
 $listeDesParticipants = [
     [
-        'id' => $_SESSION['id_user'],
+        'id' => $idUser,
         'score' => $scoreParticipant,
     ]
 ];
