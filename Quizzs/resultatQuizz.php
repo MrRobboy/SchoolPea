@@ -1,9 +1,15 @@
 <?php
 require_once('common.php');
 
-// Démarrer la session si ce n'est pas déjà fait
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
+}
+
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI']; // Stocker l'URL actuelle
+    header("Location: login.php");
+    exit();
 }
 
 // Vérifier si l'ID du quiz est spécifié dans l'URL
@@ -41,9 +47,13 @@ if (empty($questions)) {
 $totalQuestions = count($questions);
 
 // Vérifier si l'utilisateur est connecté et récupérer son ID utilisateur
-$idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
+$idUser = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-
+if (!$idUser) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    header("Location: login.php");
+    exit();
+}
 
 // Récupérer les réponses du participant connecté pour ce quiz
 $sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
@@ -67,8 +77,14 @@ foreach ($userResponses as $response) {
 // Calculer le pourcentage de bonnes réponses
 $percentageCorrect = ($totalQuestions > 0) ? round(($correctAnswers / $totalQuestions) * 100, 2) : 0;
 
+// Récupérer l'Elo initial de l'utilisateur
+$sql = "SELECT elo FROM USER WHERE id_USER = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$idUser]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$initialElo = $user['elo'];
+
 // Calculer l'élo du participant
-$initialElo = 1000; // Score de départ
 $K = 32; // Coefficient de gain, ajustable selon la sensibilité souhaitée
 
 // Fonction pour calculer l'espérance de gain (simplifiée pour cet exemple)
