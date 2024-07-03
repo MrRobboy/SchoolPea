@@ -1,4 +1,6 @@
 <?php
+
+require_once('db.php');
 function isUserLoggedIn() {
     return isset($_SESSION['user_id']);
 }

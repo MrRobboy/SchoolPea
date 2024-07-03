@@ -1,4 +1,7 @@
 <?php
+
+require_once('db.php');
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
     $author = $_SESSION['user_email']; // assuming email is stored in session
