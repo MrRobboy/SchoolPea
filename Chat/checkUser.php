@@ -6,7 +6,7 @@ include($path);
 
 function isUserLoggedIn()
 {
-    return empty($_SESSION['id_USER']);
+    return empty($_SESSION['mail_valide']);
 }
 
 if (!isUserLoggedIn()) {

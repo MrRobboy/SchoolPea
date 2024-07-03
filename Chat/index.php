@@ -1,6 +1,5 @@
 <?php
 session_start();
-include('checkUser.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
