@@ -1,100 +1,64 @@
 <?php
+session_start();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
-
-// Inclure le fichier de connexion à la base de données et les fonctions communes
-require_once 'common.php';
-
-// Vérifier si l'ID du quiz est passé en paramètre GET
-if (!isset($_GET['id_quizz'])) {
-    echo "ID de quiz non spécifié.";
-    exit();
-}
-
-$idQuizz = $_GET['id_quizz'];
-
-// Récupérer les informations sur le quiz
-$sql = "SELECT * FROM QUIZZ WHERE id_QUIZZ = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$idQuizz]);
-$quiz = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$quiz) {
-    echo "Quiz non trouvé.";
-    exit();
-}
-
-// Récupérer les questions du quiz
-$sql = "SELECT * FROM QUESTIONS WHERE id_quizz = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$idQuizz]);
-$questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Vérifier s'il y a des questions à afficher
-if (empty($questions)) {
-    echo "Aucune question trouvée pour ce quiz.";
-    exit();
-}
-
-// Vérifier si une réponse a été soumise pour la question précédente
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $currentQuestion = $_POST['current_question'] ?? 1;
-    $answer = $_POST['answer'] ?? null;
-
-    // Valider et enregistrer la réponse si une réponse a été donnée
-    if (!empty($answer)) {
-        $sql = "INSERT INTO REPONSES_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
-        $stmt = $dbh->prepare($sql);
-        $stmt->execute([$_SESSION['id_user'], $questions[$currentQuestion - 1]['id_question'], $idQuizz, $answer]);
-    }
-
-    // Rediriger vers la prochaine question ou vers le résultat si c'est la dernière question
-    $nextQuestion = $currentQuestion + 1;
-    if ($nextQuestion <= count($questions)) {
-        header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
-    } else {
-        header("Location: resultatQuizz.php?id_quizz=$idQuizz");
-    }
-    exit();
-}
-
-// Vérifier si une question spécifique est demandée
-$currentQuestion = isset($_GET['question']) ? (int)$_GET['question'] : 1;
-
-// Récupérer la question actuelle
-$currentQuestionData = $questions[$currentQuestion - 1];
-
-// Récupérer les choix de la question
-$sql = "SELECT * FROM CHOIX WHERE id_question = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$currentQuestionData['id_question']]);
-$choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT * FROM QUIZZ";
+$result = $dbh->query($sql);
+$quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participer au Quiz</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Explorer les Quizz</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
-    <div class="container">
-        <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
-        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post">
-            <input type="hidden" name="current_question" value="<?php echo $currentQuestion; ?>">
-            <h3>Question <?php echo $currentQuestion; ?></h3>
-            <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
 
-            <?php foreach ($choices as $choice) : ?>
-                <div>
-                    <input type="radio" name="answer" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
-                    <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
-                </div>
-            <?php endforeach; ?>
 
-            <button type="submit">Valider</button>
-        </form>
+    <span class="trait" id="SchoolPea"></span>
+
+    <div id="div1">
+        <h1>Explorer les Quizz</h1>
+        <input type="text" id="search" placeholder="Rechercher des quizz..." onkeyup="searchQuizzes()">
+        <div class="quizzes" id="quiz_list">
+            <?php if (!empty($quizzes)) : ?>
+                <?php foreach ($quizzes as $quiz) : ?>
+                    <div class="quiz">
+                        <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
+                        <?php if (!empty($quiz['path_img_pres'])) : ?>
+                            <img src="<?php echo htmlspecialchars($quiz['path_img_pres']); ?>" class="img_pres" alt="Image de présentation">
+                        <?php else : ?>
+                            <img src="default-image.jpg" alt="Image par défaut">
+                        <?php endif; ?>
+                        <a href="participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" style="text-decoration: none;">Voir le quizz</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>Aucun quizz disponible.</p>
+            <?php endif; ?>
+        </div>
     </div>
+
+    <script>
+        function searchQuizzes() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let quizzes = document.getElementsByClassName('quiz');
+            for (let i = 0; i < quizzes.length; i++) {
+                let quizName = quizzes[i].getElementsByTagName('h3')[0].textContent.toLowerCase();
+                if (quizName.includes(input)) {
+                    quizzes[i].style.display = "";
+                } else {
+                    quizzes[i].style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
+
 </html>
