@@ -1,9 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
-include('checkUser.php');
-=======
->>>>>>> c423aec4e1cec3350dc9586eeee00d0cea8117c3
 ?>
 <!DOCTYPE html>
 <html lang="en">
