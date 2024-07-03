@@ -32,6 +32,18 @@ if (empty($questions)) {
     exit();
 }
 
+// Déterminer la question actuelle
+$currentQuestion = isset($_GET['question']) ? (int)$_GET['question'] : 1;
+
+// Vérifier si la question actuelle est valide
+if ($currentQuestion < 1 || $currentQuestion > count($questions)) {
+    echo "Numéro de question invalide.";
+    exit();
+}
+
+// Récupérer les données de la question actuelle
+$currentQuestionData = $questions[$currentQuestion - 1];
+
 // Si une réponse est soumise
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $answers = $_POST['answers'];
@@ -47,36 +59,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Déterminer la prochaine question à afficher
+    // Vérifier s'il y a une prochaine question à afficher
     $nextQuestion = $currentQuestion + 1;
 
     if ($nextQuestion > count($questions)) {
         // Rediriger vers la page de résultats du quiz
         header("Location: resultatQuizz.php?id_quizz=$idQuizz");
+        exit();
     } else {
         // Rediriger vers la prochaine question
         header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
+        exit();
     }
-    exit();
 }
-
-// Déterminer la question actuelle
-$currentQuestion = isset($_GET['question']) ? (int)$_GET['question'] : 1;
-
-// Vérifier si la question actuelle est valide
-if ($currentQuestion < 1 || $currentQuestion > count($questions)) {
-    echo "Numéro de question invalide.";
-    exit();
-}
-
-// Récupérer les données de la question actuelle
-$currentQuestionData = $questions[$currentQuestion - 1];
-
-// Récupérer les choix de la question
-$sql = "SELECT * FROM CHOIX WHERE id_question = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$currentQuestionData['id_question']]);
-$choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -87,44 +82,63 @@ $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Participer au Quiz</title>
     <link rel="stylesheet" href="style.css">
     <script>
-        function validateQuestion() {
+        function showQuestion() {
+            var currentQuestion = <?php echo $currentQuestion; ?>;
+            var totalQuestions = <?php echo count($questions); ?>;
             var form = document.getElementById('quiz-form');
-            var checkboxes = form.elements['answers[]'];
-            var answered = false;
 
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    answered = true;
-                    break;
-                }
-            }
+            // Afficher la question actuelle
+            var questionHeader = document.getElementById('question-header');
+            questionHeader.innerText = "Question " + currentQuestion + ":";
 
-            if (!answered) {
-                alert('Veuillez sélectionner au moins une réponse.');
-                return false;
-            }
+            // Afficher le texte de la question
+            var questionText = document.getElementById('question-text');
+            questionText.innerText = "<?php echo htmlspecialchars($currentQuestionData['question_text']); ?>";
 
-            return true;
+            // Afficher les choix de réponse
+            var choicesContainer = document.getElementById('choices-container');
+            choicesContainer.innerHTML = ''; // Effacer les anciens choix
+
+            <?php foreach ($choices as $choice) : ?>
+                var choiceDiv = document.createElement('div');
+                var choiceInput = document.createElement('input');
+                choiceInput.type = 'checkbox';
+                choiceInput.name = 'answers[<?php echo $currentQuestionData['id_question']; ?>][]';
+                choiceInput.value = '<?php echo $choice['id_CHOIX']; ?>';
+                choiceInput.id = 'choice-<?php echo $choice['id_CHOIX']; ?>';
+
+                var choiceLabel = document.createElement('label');
+                choiceLabel.setAttribute('for', 'choice-<?php echo $choice['id_CHOIX']; ?>');
+                choiceLabel.innerText = '<?php echo htmlspecialchars($choice['choix_text']); ?>';
+
+                choiceDiv.appendChild(choiceInput);
+                choiceDiv.appendChild(choiceLabel);
+                choicesContainer.appendChild(choiceDiv);
+            <?php endforeach; ?>
         }
+
+        // Appeler showQuestion() lors du chargement initial
+        window.onload = function() {
+            showQuestion();
+        };
     </script>
 </head>
 <body>
     <div class="container">
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
-        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post" id="quiz-form" onsubmit="return validateQuestion()">
-            <input type="hidden" name="next_question" value="<?php echo $currentQuestion + 1; ?>">
+        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>&question=<?php echo $currentQuestion; ?>" method="post" id="quiz-form">
+            <h3 id="question-header">Question <?php echo $currentQuestion; ?>:</h3>
+            <p id="question-text"></p>
 
-            <h3>Question <?php echo $currentQuestion; ?>:</h3>
-            <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
+            <div id="choices-container">
+                <!-- Les choix de réponse seront ajoutés ici par JavaScript -->
+            </div>
 
-            <?php foreach ($choices as $choice) : ?>
-                <div>
-                    <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
-                    <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
-                </div>
-            <?php endforeach; ?>
-
-            <button type="submit">Valider</button>
+            <?php if ($currentQuestion < count($questions)) : ?>
+                <button type="button" onclick="showQuestion()">Suivant</button>
+            <?php else : ?>
+                <button type="submit">J'ai Tout Fini</button>
+            <?php endif; ?>
         </form>
     </div>
 </body>
