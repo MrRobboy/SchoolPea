@@ -4,7 +4,7 @@ require_once('db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = $_POST['content'];
-    $author = $_SESSION['user_email']; // assuming email is stored in session
+    $author = $_SESSION['user_email']; 
 
     $sql = "INSERT INTO messages (author, content) VALUES (:author, :content)";
     $stmt = $dbh->prepare($sql);
