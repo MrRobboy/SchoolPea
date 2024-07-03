@@ -24,11 +24,11 @@ include 'common.php';
             <input type="file" name="quiz_image" id="quiz-image" accept="image/*">
 
             <div id="questions-container">
-                <div class="question">
+                <div class="question" data-question-index="0">
                     <label>Question:</label>
                     <textarea name="questions[0][text]" required></textarea>
                     <div class="choices">
-                        <div class="choice">
+                        <div class="choice" data-choice-index="0">
                             <label>Choice:</label>
                             <input type="text" name="questions[0][choices][0][text]" required>
                             <label>Correct:</label>
