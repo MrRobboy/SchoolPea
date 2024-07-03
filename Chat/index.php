@@ -15,7 +15,7 @@ include('checkUser.php');
 <body>
     <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
-    if (isset($_SESSION['mail_valide'])) {
+    if (!empty($_SESSION['mail_valide'])) {
         $path .= '/headerL.php';
     } else {
         header('Location: https://schoolpea.com/Connexion');
