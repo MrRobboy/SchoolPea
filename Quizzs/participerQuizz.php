@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 require_once('common.php');
 
 // Vérifier s'il y a un ID de quiz passé en paramètre GET
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Valider et enregistrer les réponses
     foreach ($answers as $questionId => $answer) {
         if (!empty($answer)) {
-            $sql = "INSERT INTO REPONSES_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
+            $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
             $stmt = $dbh->prepare($sql);
             $stmt->execute([$_SESSION['id_user'], $questionId, $idQuizz, $answer]);
         }
