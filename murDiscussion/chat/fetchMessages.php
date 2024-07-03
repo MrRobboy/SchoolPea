@@ -1,4 +1,6 @@
 <?php
+require_once('db.php');
+
 $sql = "SELECT m.content, m.created_at, u.email, u.path_pp 
         FROM messages m
         JOIN USER u ON m.author = u.email
