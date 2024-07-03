@@ -13,7 +13,7 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div id="messages">
     <?php foreach ($messages as $message) : ?>
         <div class="message">
-            <img src="<?php echo $_SERVER['DOCUMENT_ROOT'] . htmlspecialchars($message['path_pp']); ?>" alt="Profile Picture">
+            <img src="<?php echo 'https://schoolpea.com/' . htmlspecialchars($message['path_pp']); ?>" alt="Profile Picture">
             <div class="message-content">
                 <p><?php echo htmlspecialchars($message['content']); ?></p>
                 <span><?php echo htmlspecialchars($message['email']); ?></span>
