@@ -22,7 +22,7 @@ $courss = $stmt->fetchAll();
 <body style="padding-left: 10em;">
     <?php if (!empty($_GET['error'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">ERREUR VALEURS ENTREES!</p>'; ?>
     <?php if (!empty($_GET['success']) && $_GET['success'] == 1) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">REUSSITE SUPPRESSION COURS</p>'; ?>
-    <?php if (!empty($_GET['success']) && $_GET['success'] == 2) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">REUSSITE SUPPRESSION COURS</p>'; ?>
+    <?php if (!empty($_GET['success']) && $_GET['success'] == 2) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">REUSSITE AJOUT COURS</p>'; ?>
 
     <div id="content" style="width: 95%;">
         <h1 style="margin-bottom: 0.5em;">Gestion des Cours</h1>
