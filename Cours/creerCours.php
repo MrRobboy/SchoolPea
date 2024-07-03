@@ -1,5 +1,10 @@
 <?php
 session_start();
+if (str_contains($_SESSION['referer'], '?')) {
+    $concat = '&';
+} else {
+    $concat = '?';
+}
 
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php");
@@ -103,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dbh->commit();
 
                 echo "Cours créé avec succès !";
-                header('Location: ' . $_SESSION['referer']) . '?success=2';
+                header('Location: ' . $_SESSION['referer']) . $concat . 'success=2';
             } catch (PDOException $e) {
 
                 $dbh->rollBack();
