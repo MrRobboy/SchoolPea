@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':content', $content, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
-        header("Location: chat.php");
+        header("Location: index.php");
     } else {
         echo "Error: " . $stmt->errorInfo()[2];
     }
