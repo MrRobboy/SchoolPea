@@ -43,10 +43,7 @@ $totalQuestions = count($questions);
 // Vérifier si l'utilisateur est connecté et récupérer son ID utilisateur
 $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
 
-if (!$idUser) {
-    header("Location: login.php");
-    exit();
-}
+
 
 // Récupérer les réponses du participant connecté pour ce quiz
 $sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
