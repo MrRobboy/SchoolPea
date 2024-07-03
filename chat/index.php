@@ -52,8 +52,6 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
     include($path);
     ?>
 
-    <span id="trait_chat"></span>
-
     <div class="chat-container">
         <div class="messages" id="messages">
             <?php include 'fetch_messages.php'; ?>
