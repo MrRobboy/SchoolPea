@@ -47,13 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // Rediriger vers la prochaine question ou vers le résultat si c'est la dernière question
-    $nextQuestion = $_POST['next_question'] ?? null;
-    if (!empty($nextQuestion)) {
-        header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
-    } else {
+    // Déterminer la prochaine question à afficher
+    $nextQuestion = $currentQuestion + 1;
+
+    if ($nextQuestion > count($questions)) {
         // Rediriger vers la page de résultats du quiz
         header("Location: resultatQuizz.php?id_quizz=$idQuizz");
+    } else {
+        // Rediriger vers la prochaine question
+        header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
     }
     exit();
 }
@@ -110,7 +112,7 @@ $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container">
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
         <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post" id="quiz-form" onsubmit="return validateQuestion()">
-            <input type="hidden" name="next_question" value="<?php echo $currentQuestion % count($questions) + 1; ?>">
+            <input type="hidden" name="next_question" value="<?php echo $currentQuestion + 1; ?>">
 
             <h3>Question <?php echo $currentQuestion; ?>:</h3>
             <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
