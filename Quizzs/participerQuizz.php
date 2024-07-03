@@ -1,11 +1,6 @@
 <?php
 session_start();
-
-// Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
-if (!isset($_SESSION['id_user'])) {
-    header('Location: https://schoolpea.com/Quizzs/login.php');
-    exit();
-}
+require_once('common.php');
 
 // Vérifier s'il y a un ID de quiz passé en paramètre GET
 if (!isset($_GET['id_quizz'])) {
@@ -15,8 +10,7 @@ if (!isset($_GET['id_quizz'])) {
 
 $idQuizz = $_GET['id_quizz'];
 
-// Récupérer les informations sur le quiz
-require_once('common.php');
+// Récupérer les informations sur le qui
 $sql = "SELECT * FROM QUIZZ WHERE id_QUIZZ = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$idQuizz]);
