@@ -23,7 +23,7 @@ if (!isUserLoggedIn()) {
 }
 
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT email, path_pp FROM users WHERE id_USER = :user_id";
+$sql = "SELECT email, path_pp FROM USER WHERE id_USER = :user_id";
 $stmt = $dbh->prepare($sql);
 $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
 $stmt->execute();
