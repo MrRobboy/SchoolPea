@@ -22,7 +22,7 @@ $courss = $stmt->fetchAll();
 <body style="padding-left: 10em;">
     <div id="content" style="width: 95%;">
         <h1 style="margin-bottom: 0.5em;">Gestion des Cours</h1>
-        <a href="add.php" class="btn add">Ajouter un Cours </a>
+        <a href="https://schoolpea.com/Cours/creerCours.php" class="btn add">Ajouter un Cours </a>
         <div id="table-classement" style="margin-top: 3em;">
             <table id="classement">
                 <thead>
