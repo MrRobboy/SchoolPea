@@ -19,7 +19,7 @@ $stmt1 = $dbh->prepare("DELETE FROM COURS where id_COURS = :id");
 $stmt1->bindvalue(':id', $_GET['id']);
 $result1 = $stmt1->execute();
 
-unlink($path[0][0]);
+unlink($path[0]['path_image_pres']);
 
 if ($result1) {
     header('Location: https://schoolpea.com/BackOffice/Cours/index.php?success=1');
