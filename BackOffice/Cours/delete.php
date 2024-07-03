@@ -10,7 +10,7 @@ include($path);
 
 $dbh->exec('USE PA');
 
-$stmt1 = $dbh->prepare("DELETE FROM COURS where id_COURS = :id_");
+$stmt1 = $dbh->prepare("DELETE FROM COURS where id_COURS = :id");
 $stmt1->bindvalue(':id', $_GET['id']);
 $result1 = $stmt1->execute();
 
