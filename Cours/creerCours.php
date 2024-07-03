@@ -1,6 +1,6 @@
 <?php
 session_start();
-$_SESSSION['referer'] = $_SERVER['HTTP_REFERER'];
+$_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
 
 if (!isset($_SESSION['id_user'])) {
     header("Location: login.php");
@@ -104,7 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dbh->commit();
 
                 echo "Cours créé avec succès !";
-                header('Location: ' . $_SESSSION['referer']) . 'success=2';
+                header('Location: ' . $_SESSION['referer']) . 'success=2';
             } catch (PDOException $e) {
 
                 $dbh->rollBack();
