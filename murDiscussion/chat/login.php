@@ -2,8 +2,8 @@
 session_start();
 
 $dsn = 'mysql:host=localhost;dbname=PA';
-$username = 'username';
-$password = 'password';
+$username = 'root';
+$password = 'root';
 
 try {
     $dbh = new PDO($dsn, $username, $password);
