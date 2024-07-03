@@ -2,13 +2,7 @@
 session_start();
 
 // Inclure le fichier de connexion à la base de données et les fonctions communes
-include 'common.php';
-
-// Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
-if (!isset($_SESSION['mail_valide'])) {
-    header('Location: https://schoolpea.com/Quizzs/login.php');
-    exit();
-}
+require_once 'common.php';
 
 // Vérifier si l'ID du quiz est passé en paramètre GET
 if (!isset($_GET['id_quizz'])) {
