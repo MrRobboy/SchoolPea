@@ -10,7 +10,7 @@ include($path);
 
 $dbh->exec('USE PA');
 
-$stmt = $dbh->prepare("SELECT path_pp FROM COURS where id_COURS = :id");
+$stmt = $dbh->prepare("SELECT path_image_pres FROM COURS where id_COURS = :id");
 $stmt->bindvalue(':id', $_GET['id']);
 $result = $stmt->execute();
 $path = $stmt->fetchAll();
