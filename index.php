@@ -101,26 +101,25 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
         </span>
         <div id="div_quizz">
             <div class="fenetre">
-                <div class="courses" id="quizz_list">
-                    <?php if (!empty($quizzes)) : ?>
-                        <?php foreach ($quizzes as $quiz) : ?>
-                            <div class="course_item">
-                                <h3 style="margin: 0;"><?php echo htmlspecialchars($quiz['nom']); ?></h3>
-                                <?php if (!empty($quiz['path_image_pres'])) : ?>
-                                    <img src="<?php echo htmlspecialchars($quiz['path_image_pres']); ?>" class="img_pres" alt="Image de présentation">
-                                <?php else : ?>
-                                    <img src="default-image.jpg" alt="Image par défaut">
-                                <?php endif; ?>
-                                <a href="/Quizzs/participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" class="But_voir">Voir le quizz</a>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else : ?>
-                        <p>Aucun Quizz disponible.</p>
-                    <?php endif; ?>
-                </div>
+                       <div class="quizzes" id="quiz_list">
+            <?php if (!empty($quizzes)) : ?>
+                <?php foreach ($quizzes as $quiz) : ?>
+                    <div class="quiz">
+                        <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
+                        <?php if (!empty($quiz['path_img_pres'])) : ?>
+                            <img src="<?php echo htmlspecialchars($quiz['path_img_pres']); ?>" class="img_pres" alt="Image de présentation">
+                        <?php else : ?>
+                            <img src="default-image.jpg" alt="Image par défaut">
+                        <?php endif; ?>
+                        <a href="participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" style="text-decoration: none;">Voir le quizz</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>Aucun quizz disponible.</p>
+            <?php endif; ?>
+        </div>
             </div>
         </div>
-
         <span>
             <a class="voir_plus" href="https://schoolpea.com/Connexion/">Voir plus ></a>
         </span>
@@ -176,6 +175,3 @@ $courses = $result->fetchAll(PDO::FETCH_ASSOC);
         }
     </script>
 </body>
-
-
-</html>
