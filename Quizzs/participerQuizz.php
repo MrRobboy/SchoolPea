@@ -1,8 +1,7 @@
 <?php
-
 require_once('common.php');
 
-// Vérifier s'il y a un ID de quiz passé en paramètre GET
+// Vérifier si l'ID du quiz est spécifié dans l'URL
 if (!isset($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié.";
     exit();
@@ -10,7 +9,7 @@ if (!isset($_GET['id_quizz'])) {
 
 $idQuizz = $_GET['id_quizz'];
 
-// Récupérer les informations sur le qui
+// Récupérer les informations sur le quiz
 $sql = "SELECT * FROM QUIZZ WHERE id_QUIZZ = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$idQuizz]);
@@ -51,17 +50,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($nextQuestion)) {
         header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
     } else {
-        // Rediriger vers la page de résultats
+        // Rediriger vers la page de résultats du quiz
         header("Location: resultatQuizz.php?id_quizz=$idQuizz");
     }
     exit();
 }
 
-// Vérifier si une question spécifique est demandée
+// Déterminer la question actuelle
 $currentQuestion = isset($_GET['question']) ? (int)$_GET['question'] : 1;
-$totalQuestions = count($questions);
 
-// Récupérer la question actuelle
+// Vérifier si la question actuelle est valide
+if ($currentQuestion < 1 || $currentQuestion > count($questions)) {
+    echo "Numéro de question invalide.";
+    exit();
+}
+
+// Récupérer les données de la question actuelle
 $currentQuestionData = $questions[$currentQuestion - 1];
 
 // Récupérer les choix de la question
@@ -104,8 +108,11 @@ $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="container">
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
         <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post" id="quiz-form" onsubmit="return validateQuestion()">
-            <input type="hidden" name="next_question" value="<?php echo $currentQuestion % $totalQuestions + 1; ?>">
-            
+            <input type="hidden" name="next_question" value="<?php echo $currentQuestion % count($questions) + 1; ?>">
+
+            <h3>Question <?php echo $currentQuestion; ?>:</h3>
+            <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
+
             <?php foreach ($choices as $choice) : ?>
                 <div>
                     <input type="radio" name="answers[<?php echo $currentQuestionData['id_question']; ?>]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
