@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($user && password_verify($password, $user['pass'])) {
         $_SESSION['user_id'] = $user['id_USER']; // Set session variable upon successful login
-        $redirectUrl = isset($_SESSION['redirect_url']) ? $_SESSION['redirect_url'] : 'createQuizz.php';
+        $redirectUrl = isset($_SESSION['redirect_url']) ? $_SESSION['redirect_url'] : 'index.php';
         unset($_SESSION['redirect_url']); // Clear the redirect URL after using it
         header("Location: $redirectUrl");
         exit();
