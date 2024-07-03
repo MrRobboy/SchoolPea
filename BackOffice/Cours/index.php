@@ -44,7 +44,7 @@ $courss = $stmt->fetchAll();
 
                             <td>
                                 <a href="edit.php?id=<?php echo $cours['id_COURS']; ?>" class="btn modify">Modifier</a>
-                                <a href="delete.php?id=<?php echo $cours['id_COURS']; ?>" class="btn del">Supprimer</a>
+                                <a href="confirm_delete.php?id=<?php echo $cours['id_COURS']; ?>" class="btn del">Supprimer</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>
