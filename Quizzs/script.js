@@ -1,12 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     let questionIndex = 1;
-    const addQuestionButton = document.getElementById('add-question');
-    const questionsContainer = document.getElementById('questions-container');
 
-    addQuestionButton.addEventListener('click', function() {
-        const questionDiv = document.createElement('div');
-        questionDiv.classList.add('question');
-        questionDiv.innerHTML = `
+    document.getElementById('add-question').addEventListener('click', () => {
+        addQuestion();
+    });
+
+    function addQuestion() {
+        const questionContainer = document.createElement('div');
+        questionContainer.classList.add('question');
+
+        questionContainer.innerHTML = `
             <label>Question:</label>
             <textarea name="questions[${questionIndex}][text]" required></textarea>
             <div class="choices">
@@ -19,24 +22,29 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <button type="button" class="add-choice">Add Choice</button>
         `;
-        questionsContainer.appendChild(questionDiv);
-        questionIndex++;
-    });
 
-    questionsContainer.addEventListener('click', function(event) {
-        if (event.target.classList.contains('add-choice')) {
-            const choicesDiv = event.target.previousElementSibling;
-            const choiceCount = choicesDiv.children.length;
-            const questionIndex = choicesDiv.parentElement.querySelector('textarea').name.match(/\d+/)[0];
-            const choiceDiv = document.createElement('div');
-            choiceDiv.classList.add('choice');
-            choiceDiv.innerHTML = `
-                <label>Choice:</label>
-                <input type="text" name="questions[${questionIndex}][choices][${choiceCount}][text]" required>
-                <label>Correct:</label>
-                <input type="checkbox" name="questions[${questionIndex}][choices][${choiceCount}][is_correct]">
-            `;
-            choicesDiv.appendChild(choiceDiv);
-        }
-    });
+        questionContainer.querySelector('.add-choice').addEventListener('click', (event) => {
+            addChoice(event.target.closest('.question'), questionIndex);
+        });
+
+        document.getElementById('questions-container').appendChild(questionContainer);
+        questionIndex++;
+    }
+
+    function addChoice(questionElement, questionIndex) {
+        const choicesContainer = questionElement.querySelector('.choices');
+        const choiceCount = choicesContainer.querySelectorAll('.choice').length;
+
+        const choiceElement = document.createElement('div');
+        choiceElement.classList.add('choice');
+
+        choiceElement.innerHTML = `
+            <label>Choice:</label>
+            <input type="text" name="questions[${questionIndex}][choices][${choiceCount}][text]" required>
+            <label>Correct:</label>
+            <input type="checkbox" name="questions[${questionIndex}][choices][${choiceCount}][is_correct]">
+        `;
+
+        choicesContainer.appendChild(choiceElement);
+    }
 });
