@@ -41,7 +41,7 @@ $Cours = $stmt->fetchAll();
 
             <div class="edit">
                 <span class="title_edit">ID</span>
-                <input type="text" name="id" style="cursor: not-allowed;" class="Input_edit value" value="<?php echo $Cours[0]['id_COURS']; ?>" readonly>
+                <input type="text" name="id" style="cursor: not-allowed;" class="Input_edit value" value="<?php echo $_GET['id']; ?>" readonly>
             </div>
 
             <div class="edit">
