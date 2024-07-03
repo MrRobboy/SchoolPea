@@ -36,16 +36,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="chat.css">
 </head>
+
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <?php if (isset($error)): ?>
+        <?php if (isset($error)) : ?>
             <p class="error"><?php echo htmlspecialchars($error); ?></p>
         <?php endif; ?>
         <form action="login.php" method="post">
@@ -57,4 +59,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 </body>
+
 </html>
