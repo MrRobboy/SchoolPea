@@ -41,7 +41,7 @@ $totalQuestions = count($questions);
 $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : null;
 
 if (!$idUser) {
-    echo "Utilisateur non connecté.";
+    require_once('common.php');;
     exit();
 }
 
