@@ -19,13 +19,13 @@ $stmt1->bindvalue(':id', $_POST['id']);
 $result1 = $stmt1->execute();
 $Cours = $stmt1->fetchAll();
 
-if ($_POST['titre'] == $Cours[0]['titre'] and $_POST['niveau'] == $Cours[0]['niveau'] and $_POST['description'] == $Cours[0]['description']) {
+if ($_POST['nom'] == $Cours[0]['nom'] and $_POST['niveau'] == $Cours[0]['niveau'] and $_POST['description'] == $Cours[0]['description']) {
         header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
 
-        $stmt2 = $dbh->prepare("UPDATE COURS SET titre=:titre, niveau=:niveau, description=:description where id_COURS = :id");
+        $stmt2 = $dbh->prepare("UPDATE COURS SET nom=:nom, niveau=:niveau, description=:description where id_COURS = :id");
         $stmt2->bindvalue(':id', $_POST['id']);
-        $stmt2->bindvalue(':titre', $_POST['titre']);
+        $stmt2->bindvalue(':nom', $_POST['nom']);
         $stmt2->bindvalue(':niveau', $_POST['niveau']);
         $stmt2->bindvalue(':description', $_POST['description']);
         $result2 = $stmt2->execute();
