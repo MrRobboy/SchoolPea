@@ -23,14 +23,6 @@ body {
     /* Hauteur minimum de la page pour assurer le dégradé complet */
 }
 
-#trait_chat {
-    padding: 0.2em 20em;
-    justify-content: center;
-    background-color: transparent;
-    margin-bottom: 5em;
-    margin-top: 0em;
-}
-
 h1 {
     margin-bottom: 1em;
     font-size: 3em;
