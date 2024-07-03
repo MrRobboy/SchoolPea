@@ -1,24 +1,28 @@
 <?php
-session_start();
 include 'common.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['mail_valide'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quizName = $_POST['quiz_name'];
     $quizDescription = $_POST['quiz_description'];
-    $questions = $_POST['questions'];
 
     // Handle file upload
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["quiz_image"]["name"]);
+    $targetDir = "uploads/";
+    $targetFile = $targetDir . basename($_FILES["quiz_image"]["name"]);
     $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
 
-    // Check if image file is an actual image or fake image
+    // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["quiz_image"]["tmp_name"]);
     if ($check !== false) {
         $uploadOk = 1;
     } else {
         echo "File is not an image.";
+        $uploadOk = 0;
+    }
+
+    // Check if file already exists
+    if (file_exists($targetFile)) {
+        echo "Sorry, file already exists.";
         $uploadOk = 0;
     }
 
@@ -37,37 +41,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['mail_valide'])) {
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
     } else {
-        if (move_uploaded_file($_FILES["quiz_image"]["tmp_name"], $target_file)) {
-            $stmt = $dbh->prepare("INSERT INTO QUIZZ (nom, description, path_img_pres, date_creation) VALUES (:nom, :description, :path_img_pres, NOW())");
-            $stmt->bindParam(':nom', $quizName);
-            $stmt->bindParam(':description', $quizDescription);
-            $stmt->bindParam(':path_img_pres', $target_file);
-            $stmt->execute();
-            $quizId = $dbh->lastInsertId();
-
-            foreach ($questions as $question) {
-                $stmt = $dbh->prepare("INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (:id_quizz, :question_text)");
-                $stmt->bindParam(':id_quizz', $quizId);
-                $stmt->bindParam(':question_text', $question['text']);
-                $stmt->execute();
-                $questionId = $dbh->lastInsertId();
-
-                foreach ($question['choices'] as $choice) {
-                    $stmt = $dbh->prepare("INSERT INTO CHOIX (id_question, choix_text, is_correct) VALUES (:id_question, :choix_text, :is_correct)");
-                    $stmt->bindParam(':id_question', $questionId);
-                    $stmt->bindParam(':choix_text', $choice['text']);
-                    $stmt->bindParam(':is_correct', $choice['is_correct'] ? 1 : 0);
-                    $stmt->execute();
-                }
-            }
-
-            header('Location: explorerLesQuizzs.php');
+        if (move_uploaded_file($_FILES["quiz_image"]["tmp_name"], $targetFile)) {
+            echo "The file " . htmlspecialchars(basename($_FILES["quiz_image"]["name"])) . " has been uploaded.";
         } else {
             echo "Sorry, there was an error uploading your file.";
         }
     }
-} else {
-    echo "Invalid request or not authenticated.";
+
+    // SQL to insert quiz details
+    $sql = "INSERT INTO QUIZZ (nom, description, path_img_pres, date_creation) VALUES (?, ?, ?, NOW())";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([$quizName, $quizDescription, $targetFile]);
+
+    $quizId = $dbh->lastInsertId();
+
+    // Insert questions and choices
+    foreach ($_POST['questions'] as $questionIndex => $question) {
+        $sql = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute([$quizId, $question['text']]);
+
+        $questionId = $dbh->lastInsertId();
+
+        foreach ($question['choices'] as $choiceIndex => $choice) {
+            $isCorrect = isset($choice['is_correct']) ? 1 : 0;
+            $sql = "INSERT INTO CHOIX (id_question, choix_text, is_correct) VALUES (?, ?, ?)";
+            $stmt = $dbh->prepare($sql);
+            $stmt->execute([$questionId, $choice['text'], $isCorrect]);
+        }
+    }
+
+    echo "Quiz created successfully!";
 }
 ?>
