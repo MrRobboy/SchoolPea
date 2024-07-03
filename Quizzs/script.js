@@ -1,6 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     let questionIndex = 1;
 
+
+    document.querySelector('.add-choice').addEventListener('click', function() {
+        addChoice(this.closest('.question'), 0);
+    });
+
     document.getElementById('add-question').addEventListener('click', () => {
         addQuestion();
     });
@@ -8,12 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function addQuestion() {
         const questionContainer = document.createElement('div');
         questionContainer.classList.add('question');
+        questionContainer.setAttribute('data-question-index', questionIndex);
 
         questionContainer.innerHTML = `
             <label>Question:</label>
             <textarea name="questions[${questionIndex}][text]" required></textarea>
             <div class="choices">
-                <div class="choice">
+                <div class="choice" data-choice-index="0">
                     <label>Choice:</label>
                     <input type="text" name="questions[${questionIndex}][choices][0][text]" required>
                     <label>Correct:</label>
@@ -23,8 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="add-choice">Add Choice</button>
         `;
 
-        questionContainer.querySelector('.add-choice').addEventListener('click', (event) => {
-            addChoice(event.target.closest('.question'), questionIndex);
+        questionContainer.querySelector('.add-choice').addEventListener('click', function() {
+            addChoice(this.closest('.question'), questionIndex);
         });
 
         document.getElementById('questions-container').appendChild(questionContainer);
@@ -37,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const choiceElement = document.createElement('div');
         choiceElement.classList.add('choice');
+        choiceElement.setAttribute('data-choice-index', choiceCount);
 
         choiceElement.innerHTML = `
             <label>Choice:</label>
