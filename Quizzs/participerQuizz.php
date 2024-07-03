@@ -1,15 +1,13 @@
 <?php
-include 'common.php';
-
 session_start();
 
-// Vérifier si l'utilisateur est connecté
+// Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
 if (!isset($_SESSION['mail_valide'])) {
-    header('Location: https://schoolpea.com/Connexion');
+    header('Location: https://schoolpea.com/Quizzs/login.php');
     exit();
 }
 
-// Vérifier si un ID de quiz est passé en paramètre
+// Vérifier s'il y a un ID de quiz passé en paramètre GET
 if (!isset($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié.";
     exit();
