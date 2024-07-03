@@ -8,9 +8,6 @@ function fetchMessages() {
 }
 
 
-setInterval(fetchMessages, 3000);
-
-
 document.getElementById('message-form').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -27,3 +24,5 @@ document.getElementById('message-form').addEventListener('submit', function(even
     })
     .catch(error => console.error('Error sending message:', error));
 });
+
+setInterval(fetchMessages, 3000);
