@@ -6,7 +6,7 @@ include 'common.php';
 
 // Vérifier si l'utilisateur est connecté, sinon le rediriger vers la page de connexion
 if (!isset($_SESSION['mail_valide'])) {
-    header('Location: https://schoolpea.com/Connexion');
+    header('Location: https://schoolpea.com/Quizzs/login.php');
     exit();
 }
 
