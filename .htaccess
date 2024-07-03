@@ -1,5 +1,16 @@
+
 RewriteEngine On
+
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [L]
-RewriteRule ^ inscription.php [L]
+
+
+RewriteRule ^ inscription.php$ inscription.php [L]
+
+
+ErrorDocument 404 /BackEnd/Includes/error404.php
+
+
+ErrorDocument 403 /BackEnd/Includes/error403.php
