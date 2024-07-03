@@ -6,7 +6,7 @@ include($path);
 
 function isUserLoggedIn()
 {
-    return empty($_SESSION['user_id']);
+    return empty($_SESSION['id_USER']);
 }
 
 if (!isUserLoggedIn()) {
