@@ -7,6 +7,7 @@ function fetchMessages() {
         .catch(error => console.error('Error fetching messages:', error));
 }
 
+fetchMessages();
 
 document.getElementById('message-form').addEventListener('submit', function(event) {
     event.preventDefault();
