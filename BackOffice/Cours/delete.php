@@ -10,9 +10,16 @@ include($path);
 
 $dbh->exec('USE PA');
 
+$stmt = $dbh->prepare("SELECT path_pp FROM COURS where id_COURS = :id");
+$stmt->bindvalue(':id', $_GET['id']);
+$result = $stmt->execute();
+$path = $stmt->fetchAll();
+
 $stmt1 = $dbh->prepare("DELETE FROM COURS where id_COURS = :id");
 $stmt1->bindvalue(':id', $_GET['id']);
 $result1 = $stmt1->execute();
+
+unlink($path[0][0]);
 
 if ($result1) {
     header('Location: https://schoolpea.com/BackOffice/Cours/index.php?success=1');
