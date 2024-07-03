@@ -9,7 +9,7 @@ $path .= '/BackEnd/db.php';
 include($path);
 
 $dbh->exec('USE PA');
-$stmt = $dbh->prepare("SELECT titre, niveau, description FROM COURS where id_COURS = :id");
+$stmt = $dbh->prepare("SELECT nom, niveau, description FROM COURS where id_COURS = :id");
 $stmt->bindvalue(':id', $_GET['id']);
 $stmt->execute();
 $Cours = $stmt->fetchAll();
@@ -46,7 +46,7 @@ $Cours = $stmt->fetchAll();
 
             <div class="edit">
                 <span class="title_edit">Titre</span>
-                <input type="text" name="titre" value="<?php echo $Cours[0]['titre']; ?>" class="Input_edit value" required>
+                <input type="text" name="nom" value="<?php echo $Cours[0]['nom']; ?>" class="Input_edit value" required>
             </div>
 
             <div class="edit">
