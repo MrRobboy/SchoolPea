@@ -3,11 +3,11 @@ session_start();
 
 
 if (!isset($_SESSION['id_user'])) {
-    header("Location: login.php"); 
+    header("Location: login.php");
     exit();
 }
 
-include 'db.php'; 
+include 'db.php';
 
 
 $id_user = $_SESSION['id_user'];
@@ -24,7 +24,6 @@ try {
     }
 } catch (PDOException $e) {
     echo "Erreur PDO : " . $e->getMessage();
-   
 }
 
 
@@ -33,14 +32,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $niveau = $_POST['niveau'];
     $description = $_POST['description'];
 
-//Ici on verifie si l'image est recevable 
+    //Ici on verifie si l'image est recevable 
     if ($_FILES["image_pres"]["size"] > 0 && is_uploaded_file($_FILES["image_pres"]["tmp_name"])) {
         $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
 
         if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
-            
+
             $dbh->beginTransaction();
 
             try {
@@ -59,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Insérer les sections, titres et paragraphes
                 if (!empty($_POST['sections']) && is_array($_POST['sections'])) {
                     foreach ($_POST['sections'] as $section) {
-                       
+
                         if (isset($section['titre']) && !empty($section['titre'])) {
                             $sql_insert_section = "INSERT INTO SECTIONS (id_cours, titre)
                                                 VALUES (:id_cours, :titre_section)";
@@ -85,7 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
                                             foreach ($titre['paragraphes'] as $paragraphe) {
                                                 if (!empty($paragraphe)) {
-                                                    
+
                                                     $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu)
                                                                             VALUES (:id_titre, :contenu_paragraphe)";
                                                     $stmt_insert_paragraphe = $dbh->prepare($sql_insert_paragraphe);
@@ -105,8 +104,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $dbh->commit();
 
                 echo "Cours créé avec succès !";
+                header('Location: ' . $_SERVER['HTTP_REFERER']) . 'success=2';
             } catch (PDOException $e) {
-               
+
                 $dbh->rollBack();
                 echo "Erreur lors de l'insertion : " . $e->getMessage();
             }
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-$dbh = null; 
+$dbh = null;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -187,11 +187,11 @@ $dbh = null;
     <script>
         document.getElementById('ajouter_section').addEventListener('click', function() {
             var sectionsDiv = document.getElementById('sections');
-            var nextSectionIndex = sectionsDiv.children.length; 
+            var nextSectionIndex = sectionsDiv.children.length;
 
             var newSection = document.createElement('div');
             newSection.className = 'section';
-       
+
             var removeSectionButton = document.createElement('button');
             removeSectionButton.className = 'remove-btn';
             removeSectionButton.type = 'button';
@@ -208,7 +208,7 @@ $dbh = null;
             sectionTitleInput.required = true;
             newSection.appendChild(sectionTitleInput);
 
-           
+
             var addTitleButton = document.createElement('button');
             addTitleButton.type = 'button';
             addTitleButton.textContent = 'Ajouter un Titre';
@@ -217,7 +217,7 @@ $dbh = null;
             };
             newSection.appendChild(addTitleButton);
 
-           
+
             var titlesDiv = document.createElement('div');
             titlesDiv.className = 'titles';
             newSection.appendChild(titlesDiv);
@@ -227,12 +227,12 @@ $dbh = null;
 
         function addTitle(sectionDiv, sectionIndex) {
             var titlesDiv = sectionDiv.querySelector('.titles');
-            var nextTitleIndex = titlesDiv.children.length; 
+            var nextTitleIndex = titlesDiv.children.length;
 
             var newTitle = document.createElement('div');
             newTitle.className = 'titre';
 
-            
+
             var removeTitleButton = document.createElement('button');
             removeTitleButton.className = 'remove-btn';
             removeTitleButton.type = 'button';
@@ -242,7 +242,7 @@ $dbh = null;
             };
             newTitle.appendChild(removeTitleButton);
 
-            
+
             var titleInput = document.createElement('input');
             titleInput.type = 'text';
             titleInput.name = 'sections[' + sectionIndex + '][titres][' + nextTitleIndex + '][titre]';
@@ -250,7 +250,7 @@ $dbh = null;
             titleInput.required = false;
             newTitle.appendChild(titleInput);
 
-            
+
             var addParagrapheButton = document.createElement('button');
             addParagrapheButton.type = 'button';
             addParagrapheButton.textContent = 'Ajouter un Paragraphe';
@@ -259,7 +259,7 @@ $dbh = null;
             };
             newTitle.appendChild(addParagrapheButton);
 
-            
+
             var paragraphesDiv = document.createElement('div');
             paragraphesDiv.className = 'paragraphes';
             newTitle.appendChild(paragraphesDiv);
@@ -274,7 +274,7 @@ $dbh = null;
             var newParagraphe = document.createElement('div');
             newParagraphe.className = 'paragraphe';
 
-           
+
             var removeParagrapheButton = document.createElement('button');
             removeParagrapheButton.className = 'remove-btn';
             removeParagrapheButton.type = 'button';
@@ -284,7 +284,7 @@ $dbh = null;
             };
             newParagraphe.appendChild(removeParagrapheButton);
 
-            
+
             var paragrapheTextarea = document.createElement('textarea');
             paragrapheTextarea.name = 'sections[' + sectionIndex + '][titres][' + titleIndex + '][paragraphes][' + nextParagrapheIndex + ']';
             paragrapheTextarea.placeholder = 'Paragraphe';
