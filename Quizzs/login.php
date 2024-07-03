@@ -3,7 +3,7 @@
 session_start();
 
 // Include file for database connection
-require_once('common.php'); // Assurez-vous d'ajuster le chemin selon votre structure de fichier
+require_once('connexion.php'); // Assurez-vous d'ajuster le chemin selon votre structure de fichier
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
