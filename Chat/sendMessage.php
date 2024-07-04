@@ -3,7 +3,7 @@ session_start();
 require('db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $content = trim(htmlspecialchars($_POST['content']));
+    $content = stripslashes(trim(htmlspecialchars($_POST['content'])));
     $author = $_SESSION['email'];
 
     $sql = "INSERT INTO messages (author, content) VALUES (:author, :content)";
