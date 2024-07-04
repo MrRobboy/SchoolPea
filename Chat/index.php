@@ -16,10 +16,11 @@ session_start();
     $path = $_SERVER['DOCUMENT_ROOT'];
     if (!empty($_SESSION['mail_valide'])) {
         $path .= '/headerL.php';
+        include($path);
     } else {
         header('Location: https://schoolpea.com/Connexion');
     }
-    include($path);
+
     ?>
 
     <div class="chat-container">
