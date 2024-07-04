@@ -1,6 +1,6 @@
 <?php
-session_start();
-$temp = $_SESSION['email'];
+// session_start();
+// $temp = $_SESSION['email'];
 require('./db.php');
 
 $sql = "SELECT m.content, m.created_at, u.email, u.path_pp 
