@@ -3,7 +3,7 @@ session_start();
 $temp = $_SESSION['email'];
 require('./db.php');
 
-$sql = "SELECT m.content, m.created_at, u.email, u.path_pp, m.date_heure 
+$sql = "SELECT m.content, m.created_at, u.email, u.path_pp, DATE_FORMAT(m.date_heure,'%e/%m/%Y %H:%i') 
         FROM messages m
         JOIN USER u ON m.author = u.email
         ORDER BY m.created_at DESC";
@@ -17,8 +17,8 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="message">
             <img src="<?php echo 'https://schoolpea.com/' . htmlspecialchars($message['path_pp']); ?>" alt="Profile Picture">
             <div class="message-content" <?php if ($message['email'] == $_SESSION['email']) echo 'style="background-color: #00ffb39e"'; ?>>
-                <p><?php echo $message['content']; ?></p>
                 <span><?php echo htmlspecialchars($message['email']); ?> <br> <?php echo $message['date_heure']; ?></span>
+                <p><?php echo $message['content']; ?></p>
             </div>
         </div>
     <?php endforeach; ?>
