@@ -3,7 +3,7 @@ session_start();
 $temp = $_SESSION['email'];
 require('./db.php');
 
-$sql = "SELECT m.content, m.created_at, u.email, u.path_pp 
+$sql = "SELECT m.content, m.created_at, u.email, u.path_pp, m.date_heure 
         FROM messages m
         JOIN USER u ON m.author = u.email
         ORDER BY m.created_at DESC";
