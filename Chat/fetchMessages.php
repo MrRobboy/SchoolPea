@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('./db.php');
 
 $sql = "SELECT m.content, m.created_at, u.email, u.path_pp 
