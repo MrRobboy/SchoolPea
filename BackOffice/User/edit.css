@@ -14,7 +14,6 @@
 .value {
     width: 100%;
     border-radius: 1em;
-    text-align: left;
 }
 
 .Input_edit {
@@ -23,6 +22,7 @@
     border-radius: 1em;
     border: 0.1em solid black;
     margin: 0 1em;
+    text-align: start;
     overflow-wrap: break-word;
 }
 
