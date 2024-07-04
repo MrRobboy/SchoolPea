@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const formData = new FormData(this);
 
-            fetch("send_message.php", {
+            fetch("sendMessage.php", {
                 method: "POST",
                 body: formData,
             })
