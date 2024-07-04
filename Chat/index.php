@@ -26,7 +26,7 @@ session_start();
         <div class="messages" id="messages">
             <?php include 'fetchMessages.php'; ?>
         </div>
-        <form action="send_message.php" method="post" id="message-form">
+        <form action="sendMessage.php" method="post" id="message-form">
             <textarea name="content" required></textarea>
             <button type="submit">Send</button>
         </form>
