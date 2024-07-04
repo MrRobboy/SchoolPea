@@ -30,7 +30,6 @@ function fetchMessages() {
         .then((response) => response.text())
         .then((data) => {
             document.getElementById("messages").innerHTML = data;
-            scrollToBottom(); // Scroll vers le bas après la mise à jour des messages
         })
         .catch((error) => console.error("Error fetching messages:", error));
 }
