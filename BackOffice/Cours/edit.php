@@ -37,7 +37,7 @@ $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
     <?php if (!empty($_GET['success'])) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">REUSSITE CHANGEMENT</p>'; ?>
 
     <div id="div1" style="width: 40%;">
-        <form method="post" id="Info_gen" action="apply_edit.php">
+        <form method="post" id="Info_gen" style="text-align: left;" action="apply_edit.php">
             <h1 style="text-align: center;">Modifier les infos du Cours</h1>
 
             <div class="edit">
