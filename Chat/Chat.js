@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetchMessages(); // Appel de la fonction fetchMessages dès le chargement de la page
     setInterval(fetchMessages, 3000); // Mise en place de l'intervalle
-    scrollToBottom(); // Scroll vers le bas après la mise à jour des messages
 
     document
         .getElementById("message-form")
@@ -30,6 +29,7 @@ function fetchMessages() {
         .then((response) => response.text())
         .then((data) => {
             document.getElementById("messages").innerHTML = data;
+            scrollToBottom(); // Scroll vers le bas après la mise à jour des messages
         })
         .catch((error) => console.error("Error fetching messages:", error));
 }
