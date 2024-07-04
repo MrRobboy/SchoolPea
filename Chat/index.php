@@ -24,7 +24,7 @@ session_start();
 
     <div class="chat-container">
         <div class="messages" id="messages">
-            <?php include 'fetch_messages.php'; ?>
+            <?php include 'fetchMessages.php'; ?>
         </div>
         <form action="send_message.php" method="post" id="message-form">
             <textarea name="content" required></textarea>
