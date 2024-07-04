@@ -32,7 +32,7 @@ session_start();
         </form>
     </div>
 
-    <script src="script.js"></script>
+    <script src="Chat.js"></script>
 </body>
 
 </html>
