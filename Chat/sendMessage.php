@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':content', $content, PDO::PARAM_STR);
 
     if ($stmt->execute()) {
-        header("Location: index.php");
+        header("Location: https://schoolpea.com/Chat");
     } else {
         echo "Error: " . $stmt->errorInfo()[2];
     }
