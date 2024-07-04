@@ -20,7 +20,6 @@ session_start();
     } else {
         header('Location: https://schoolpea.com/Connexion');
     }
-
     ?>
 
     <div class="chat-container">

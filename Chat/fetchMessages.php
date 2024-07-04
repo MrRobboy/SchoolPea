@@ -1,5 +1,5 @@
 <?php
-require_once('db.php');
+require('./db.php');
 
 $sql = "SELECT m.content, m.created_at, u.email, u.path_pp 
         FROM messages m
