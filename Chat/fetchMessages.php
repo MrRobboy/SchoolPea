@@ -15,8 +15,8 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php foreach ($messages as $message) : ?>
         <div class="message">
             <img src="<?php echo 'https://schoolpea.com/' . htmlspecialchars($message['path_pp']); ?>" alt="Profile Picture">
-            <div class="message-content">
-                <p <?php if ($message['email'] == $_SESSION['email']) echo 'style="background-color: #00ffb39e"'; ?>><?php echo htmlspecialchars($message['content']); ?></p>
+            <div class="message-content" <?php if ($message['email'] == $_SESSION['email']) echo 'style="background-color: #00ffb39e"'; ?>>
+                <p><?php echo htmlspecialchars($message['content']); ?></p>
                 <span><?php echo htmlspecialchars($message['email']); ?></span>
             </div>
         </div>
