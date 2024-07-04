@@ -57,7 +57,7 @@ $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
 
             <div class="edit">
                 <span class="title_edit">Description</span>
-                <textarea type="text" name="description" style="width: 50%;" class="Input_edit value" required><?php echo $Cours[0]['description']; ?></textarea>
+                <textarea type="text" name="description" style="resize: none;" class="Input_edit value" required><?php echo $Cours[0]['description']; ?></textarea>
             </div>
 
             <input type="submit" value="Valider les modifications" id="submit">
