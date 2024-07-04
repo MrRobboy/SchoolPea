@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetchMessages(); // Appel de la fonction fetchMessages dès le chargement de la page
+    scrollToBottom();
     setInterval(fetchMessages, 3000); // Mise en place de l'intervalle
 
     document
