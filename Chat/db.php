@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $dsn = 'mysql:host=localhost;dbname=PA';
 $username = 'root';
 $password = 'root';
@@ -12,4 +10,3 @@ try {
     echo 'Connection failed: ' . $e->getMessage();
     exit();
 }
-?>
