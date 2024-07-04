@@ -2,7 +2,7 @@
 require('db.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $content = $_POST['content'];
+    $content = trim(htmlspecialchars($_POST['content']));
     $author = $_SESSION['email'];
 
     $sql = "INSERT INTO messages (author, content) VALUES (:author, :content)";
