@@ -37,7 +37,7 @@ $questions = $stmt->fetchAll();
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">Reponse3</th>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">Reponse4</th>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">Reponse5</th>
-                        <th style="padding: 0 8rem;border-right: none;">Actions</th>
+                        <th style="padding: 0 5rem;border-right: none;">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
