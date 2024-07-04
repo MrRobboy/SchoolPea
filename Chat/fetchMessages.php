@@ -1,4 +1,5 @@
 <?php
+session_start();
 require('./db.php');
 
 $sql = "SELECT m.content, m.created_at, u.email, u.path_pp 
@@ -15,7 +16,7 @@ $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="message">
             <img src="<?php echo 'https://schoolpea.com/' . htmlspecialchars($message['path_pp']); ?>" alt="Profile Picture">
             <div class="message-content">
-                <p><?php echo htmlspecialchars($message['content']); ?></p>
+                <p <?php if ($message['email'] == $_SESSION['email']) echo 'style="background-color: #00ffb39e"'; ?>><?php echo htmlspecialchars($message['content']); ?></p>
                 <span><?php echo htmlspecialchars($message['email']); ?></span>
             </div>
         </div>
