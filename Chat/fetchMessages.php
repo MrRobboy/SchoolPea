@@ -10,10 +10,6 @@ $sql = "SELECT m.content, m.created_at, u.email, u.path_pp, DATE_FORMAT(m.date_h
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-echo '<pre>';
-print_r($messages);
-echo '</pre>';
 ?>
 
 <div id="messages">
