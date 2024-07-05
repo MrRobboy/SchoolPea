@@ -1,6 +1,8 @@
 <?php
+// Inclure le fichier common.php pour établir la connexion PDO et autres configurations
 require_once('common.php');
 
+// Démarrer la session si ce n'est pas déjà fait
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -43,38 +45,42 @@ if (empty($questions)) {
     exit();
 }
 
-// Compter le nombre total de questions
-$totalQuestions = count($questions);
-
-// Vérifier si l'utilisateur est connecté et récupérer son ID utilisateur
-$idUser = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
-
-if (!$idUser) {
-    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
-    header("Location: login.php");
-    exit();
-}
-
 // Récupérer les réponses du participant connecté pour ce quiz
+$idUser = $_SESSION['user_id'];
+
 $sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$idQuizz, $idUser]);
 $userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Initialiser le score Elo du participant
-$sql = "SELECT elo FROM USER WHERE id_USER = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$idUser]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-$scoreParticipant = $user['elo'];
+// Initialiser les variables pour le calcul du score
+$bonnesReponses = 0;
+$totalQuestions = count($questions);
+$scoreParticipant = 0;
 
-// Coefficient de gain, ajustable selon la sensibilité souhaitée
-$K = 32;
+// Fonction pour vérifier si une réponse est valide
+function isReponseValide($idQuestion, $userResponses, $dbh) {
+    // Récupérer les choix corrects pour cette question
+    $sql = "SELECT COUNT(*) AS nb_correct_choices FROM CHOIX WHERE id_question = ? AND is_correct = 1";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([$idQuestion]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $nb_correct_choices = $result['nb_correct_choices'];
 
-// Calculer le nouveau score Elo du participant après chaque question
+    // Récupérer les choix corrects sélectionnés par l'utilisateur
+    $sql = "SELECT COUNT(*) AS nb_user_correct_choices FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ? AND is_selected = 1";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([$idQuestion, $_SESSION['user_id']]);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $nb_user_correct_choices = $result['nb_user_correct_choices'];
+
+    // La réponse est valide si tous les choix corrects ont été sélectionnés
+    return ($nb_user_correct_choices == $nb_correct_choices);
+}
+
+// Calculer le score du participant et mettre à jour les résultats du quiz
 foreach ($questions as $question) {
-    $bonnesReponses = 0;
-    $mauvaisesReponses = 0;
+    $bonnesReponsesQuestion = 0;
 
     // Vérifier les réponses du participant pour cette question
     foreach ($userResponses as $response) {
@@ -86,43 +92,36 @@ foreach ($questions as $question) {
             $choice = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($choice && $choice['is_correct'] == 1) {
-                $bonnesReponses++;
-            } else {
-                $mauvaisesReponses++;
+                $bonnesReponsesQuestion++;
             }
         }
     }
 
-    // Déterminer si la réponse à la question est valide
+    // Vérifier si la réponse à la question est valide
     $reponseValide = isReponseValide($question['id_question'], $userResponses, $dbh);
 
-    // Calculer l'espérance de gain
-    $E = $reponseValide ? 1 : 0;
-
-    // Calculer R en fonction de la validité de la réponse
-    $R = ($bonnesReponses > 0 && $mauvaisesReponses == 0) ? 1 : 0;
-
-    // Calcul du nouveau score Elo
-    if ($bonnesReponses > $mauvaisesReponses) {
-        // Gain d'Elo proportionnel aux bonnes réponses
-        $gainElo = $K * ($bonnesReponses / $totalQuestions);
-        $scoreParticipant += $gainElo * ($R - $E);
-    } elseif ($mauvaisesReponses > $bonnesReponses) {
-        // Perte d'Elo proportionnelle aux mauvaises réponses
-        $perteElo = $K * ($mauvaisesReponses / $totalQuestions);
-        $scoreParticipant -= $perteElo * ($E - $R);
+    if ($reponseValide) {
+        $bonnesReponses += 1;
     }
-
-    // Mettre à jour les réponses du participant dans la table RESULTATS_QUIZZ
-    // Note: Cela doit être adapté selon votre structure de base de données pour mettre à jour les réponses du participant après chaque question.
 }
 
-// Mettre à jour le score Elo de l'utilisateur dans la table USER
+// Calculer le pourcentage de bonnes réponses
+$pourcentageCorrect = ($totalQuestions > 0) ? round(($bonnesReponses / $totalQuestions) * 100, 2) : 0;
+
+// Calculer le score Elo
+// Coefficient de gain, ajustable selon la sensibilité souhaitée
+$K = 32;
+
+// Calcul du nouveau score Elo
+if ($bonnesReponses > 0) {
+    $scoreParticipant = $scoreParticipant + $K * ($bonnesReponses / $totalQuestions);
+}
+
+// Mettre à jour le score Elo de l'utilisateur dans la base de données
 $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$scoreParticipant, $idUser]);
 
-// Affichage des résultats (exemple simplifié pour un seul participant)
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -136,15 +135,9 @@ $stmt->execute([$scoreParticipant, $idUser]);
     <div class="container">
         <h2>Résultat du Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
         
-        <?php
-        // Afficher le nombre de bonnes réponses et le pourcentage
-        echo "<p>Nombre de bonnes réponses : $bonnesReponses / $totalQuestions</p>";
-        $pourcentageCorrect = ($totalQuestions > 0) ? round(($bonnesReponses / $totalQuestions) * 100, 2) : 0;
-        echo "<p>Pourcentage de bonnes réponses : $pourcentageCorrect%</p>";
-        ?>
-        
-        <h3>Votre score Elo: <?php echo $scoreParticipant; ?></h3>
-
+        <p>Nombre de bonnes réponses : <?php echo $bonnesReponses; ?> / <?php echo $totalQuestions; ?></p>
+        <p>Pourcentage de bonnes réponses : <?php echo $pourcentageCorrect; ?>%</p>
+        <h3>Votre score Elo: <?php echo round($scoreParticipant, 2); ?></h3>
     </div>
 </body>
 </html>
