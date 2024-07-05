@@ -22,7 +22,11 @@ body {
     margin: 0;
     flex-direction: column;
     background: rgb(255, 255, 255);
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(146, 189, 249, 1) 100%);
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(146, 189, 249, 1) 100%
+    );
 }
 
 #div1 {
@@ -240,5 +244,4 @@ body {
 #But_Delete_Acc:hover {
     border: black 0.2em solid;
     background-color: rgba(255, 0, 0, 1);
-
 }
