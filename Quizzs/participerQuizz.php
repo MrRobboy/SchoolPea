@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         function validateQuestion() {
             var form = document.getElementById('quiz-form');
-            var checkboxes = form.elements['answers[]'];
+            var checkboxes = form.elements['answers[<?php echo $currentQuestionData['id_question']; ?>][]'];
             var answered = false;
 
             for (var i = 0; i < checkboxes.length; i++) {
