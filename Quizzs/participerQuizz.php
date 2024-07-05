@@ -1,17 +1,18 @@
 <?php
-
 require_once('common.php');
+
 // Démarrer la session si ce n'est pas déjà fait
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-// Vérifier si l'ID du quiz est spécifié dans l'URL
-if (!isset($_GET['id_quizz'])) {
-    echo "ID de quiz non spécifié.";
+
+// Vérifier si l'ID du quiz est spécifié dans l'URL et est un entier valide
+if (!isset($_GET['id_quizz']) || !is_numeric($_GET['id_quizz'])) {
+    echo "ID de quiz non spécifié ou non valide.";
     exit();
 }
 
-$idQuizz = $_GET['id_quizz'];
+$idQuizz = (int)$_GET['id_quizz'];
 
 // Récupérer les informations sur le quiz
 $sql = "SELECT * FROM QUIZZ WHERE id_QUIZZ = ?";
@@ -62,17 +63,18 @@ if (empty($choices)) {
 
 // Si une réponse est soumise
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $answers = $_POST['answers'];
+    if (!isset($_POST['answers'][$currentQuestionData['id_question']])) {
+        echo "Veuillez sélectionner au moins une réponse.";
+        exit();
+    }
+
+    $answerIds = $_POST['answers'][$currentQuestionData['id_question']];
 
     // Valider et enregistrer les réponses
-    foreach ($answers as $questionId => $answerIds) {
-        if (!empty($answerIds)) {
-            foreach ($answerIds as $answerId) {
-                $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
-                $stmt = $dbh->prepare($sql);
-                $stmt->execute([$_SESSION['id_user'], $questionId, $idQuizz, $answerId]);
-            }
-        }
+    foreach ($answerIds as $answerId) {
+        $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
+        $stmt = $dbh->prepare($sql);
+        $stmt->execute([$_SESSION['id_user'], $currentQuestionData['id_question'], $idQuizz, $answerId]);
     }
 
     // Déterminer la prochaine question à afficher
@@ -128,14 +130,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div id="choices-container">
                 <?php foreach ($choices as $choice) : ?>
                     <div>
-                        <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
-                        <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-
-            <button type="submit">Suivant</button>
-        </form>
-    </div>
-</body>
-</html>
+                        <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php e
