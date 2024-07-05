@@ -130,4 +130,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div id="choices-container">
                 <?php foreach ($choices as $choice) : ?>
                     <div>
-                        <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php e
+                        <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
+                        <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+
+            <button type="submit">Suivant</button>
+        </form>
+    </div>
+</body>
+</html>
