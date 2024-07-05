@@ -1,8 +1,5 @@
 <?php
 include 'common.php';
-// createQuizz.php
-
-
 ?>
 
 <!DOCTYPE html>
