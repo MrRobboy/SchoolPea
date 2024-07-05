@@ -76,7 +76,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
         <div class="fenetre">
             <div class="courses" id="course_list">
                 <?php if (!empty($courses)) : ?>
-                    <?php $courses = array_slice($courses, 0, 5); ?>
+                    <?php $courses = array_slice($courses, 0, 9); // Maximum 9 cours ?>
                     <?php foreach ($courses as $course) : ?>
                         <div class="course_item">
                             <h3 style="margin: 0;"><?php echo htmlspecialchars($course['nom']); ?></h3>
@@ -110,7 +110,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
                 <div class="fenetre">
                     <div class="quizzes" id="quiz_list">
                         <?php if (!empty($quizzes)) : ?>
-                            <?php $quizzes = array_slice($quizzes, 0, 5); ?>
+                            <?php $quizzes = array_slice($quizzes, 0, 9); // Maximum 9 quizz ?>
                             <?php foreach ($quizzes as $quiz) : ?>
                                 <div class="course_item"> <!-- Utilisation de la même classe CSS que pour les cours -->
                                     <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
