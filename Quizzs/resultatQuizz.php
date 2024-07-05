@@ -1,18 +1,24 @@
 <?php
 require_once('common.php');
 
-// Démarrer la session si ce n'est pas déjà fait
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier si l'ID du quiz est spécifié dans l'URL et est un entier valide
-if (!isset($_GET['id_quizz']) || !is_numeric($_GET['id_quizz'])) {
-    echo "ID de quiz non spécifié ou non valide.";
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI']; // Stocker l'URL actuelle
+    header("Location: login.php");
     exit();
 }
 
-$idQuizz = (int)$_GET['id_quizz'];
+// Vérifier si l'ID du quiz est spécifié dans l'URL
+if (!isset($_GET['id_quizz'])) {
+    echo "ID de quiz non spécifié.";
+    exit();
+}
+
+$idQuizz = $_GET['id_quizz'];
 
 // Récupérer les informations sur le quiz
 $sql = "SELECT * FROM QUIZZ WHERE id_QUIZZ = ?";
@@ -37,99 +43,108 @@ if (empty($questions)) {
     exit();
 }
 
-// Calculer le nombre total de questions dans le quiz
+// Compter le nombre total de questions
 $totalQuestions = count($questions);
 
-// Si une réponse est soumise
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Initialiser le compteur de bonnes réponses
-    $bonnesReponses = 0;
+// Vérifier si l'utilisateur est connecté et récupérer son ID utilisateur
+$idUser = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-    // Valider et enregistrer les réponses
-    foreach ($questions as $question) {
-        $questionId = $question['id_question'];
-        if (isset($_POST['answers'][$questionId])) {
-            $answerIds = $_POST['answers'][$questionId];
-            foreach ($answerIds as $answerId) {
-                // Vérifier si cette réponse est correcte
-                $sql = "SELECT is_correct FROM CHOIX WHERE id_CHOIX = ?";
-                $stmt = $dbh->prepare($sql);
-                $stmt->execute([$answerId]);
-                $choice = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($choice && $choice['is_correct'] == 1) {
-                    $bonnesReponses++;
-                    break; // Sortir de la boucle dès qu'une réponse correcte est trouvée
-                }
+if (!$idUser) {
+    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI'];
+    header("Location: login.php");
+    exit();
+}
+
+// Récupérer les réponses du participant connecté pour ce quiz
+$sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$idQuizz, $idUser]);
+$userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Initialiser le score Elo du participant
+$sql = "SELECT elo FROM USER WHERE id_USER = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$idUser]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+$scoreParticipant = $user['elo'];
+
+// Coefficient de gain, ajustable selon la sensibilité souhaitée
+$K = 32;
+
+// Calculer le nouveau score Elo du participant après chaque question
+foreach ($questions as $question) {
+    $bonnesReponses = 0;
+    $mauvaisesReponses = 0;
+
+    // Vérifier les réponses du participant pour cette question
+    foreach ($userResponses as $response) {
+        if ($response['id_question'] == $question['id_question']) {
+            // Vérifier si la réponse est correcte
+            $sql = "SELECT is_correct FROM CHOIX WHERE id_CHOIX = ?";
+            $stmt = $dbh->prepare($sql);
+            $stmt->execute([$response['id_choice']]);
+            $choice = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($choice && $choice['is_correct'] == 1) {
+                $bonnesReponses++;
+            } else {
+                $mauvaisesReponses++;
             }
         }
     }
 
-    // Calculer le pourcentage de bonnes réponses
-    $pourcentageBonnesReponses = ($bonnesReponses / $totalQuestions) * 100;
+    // Déterminer si la réponse à la question est valide
+    $reponseValide = isReponseValide($question['id_question'], $userResponses, $dbh);
 
-    // Rediriger vers la page de résultats du quiz avec les informations mises à jour
-    header("Location: resultatQuizz.php?id_quizz=$idQuizz&bonnes_reponses=$bonnesReponses&total_questions=$totalQuestions&pourcentage_bonnes_reponses=$pourcentageBonnesReponses");
-    exit();
+    // Calculer l'espérance de gain
+    $E = $reponseValide ? 1 : 0;
+
+    // Calculer R en fonction de la validité de la réponse
+    $R = ($bonnesReponses > 0 && $mauvaisesReponses == 0) ? 1 : 0;
+
+    // Calcul du nouveau score Elo
+    if ($bonnesReponses > $mauvaisesReponses) {
+        // Gain d'Elo proportionnel aux bonnes réponses
+        $gainElo = $K * ($bonnesReponses / $totalQuestions);
+        $scoreParticipant += $gainElo * ($R - $E);
+    } elseif ($mauvaisesReponses > $bonnesReponses) {
+        // Perte d'Elo proportionnelle aux mauvaises réponses
+        $perteElo = $K * ($mauvaisesReponses / $totalQuestions);
+        $scoreParticipant -= $perteElo * ($E - $R);
+    }
+
+    // Mettre à jour les réponses du participant dans la table RESULTATS_QUIZZ
+    // Note: Cela doit être adapté selon votre structure de base de données pour mettre à jour les réponses du participant après chaque question.
 }
-?>
 
+// Mettre à jour le score Elo de l'utilisateur dans la table USER
+$sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$scoreParticipant, $idUser]);
+
+// Affichage des résultats (exemple simplifié pour un seul participant)
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Participer au Quiz</title>
+    <title>Résultat du Quiz</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-        function validateQuestion() {
-            var form = document.getElementById('quiz-form');
-            var checkboxes = form.elements['answers[]'];
-            var answered = false;
-
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    answered = true;
-                    break;
-                }
-            }
-
-            if (!answered) {
-                alert('Veuillez sélectionner au moins une réponse.');
-                return false;
-            }
-
-            return true;
-        }
-    </script>
 </head>
 <body>
     <div class="container">
-        <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
-        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post" id="quiz-form" onsubmit="return validateQuestion()">
-            <?php foreach ($questions as $question) : ?>
-                <h3>Question <?php echo $question['id_question']; ?>:</h3>
-                <p><?php echo htmlspecialchars($question['question_text']); ?></p>
+        <h2>Résultat du Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
+        
+        <?php
+        // Afficher le nombre de bonnes réponses et le pourcentage
+        echo "<p>Nombre de bonnes réponses : $bonnesReponses / $totalQuestions</p>";
+        $pourcentageCorrect = ($totalQuestions > 0) ? round(($bonnesReponses / $totalQuestions) * 100, 2) : 0;
+        echo "<p>Pourcentage de bonnes réponses : $pourcentageCorrect%</p>";
+        ?>
+        
+        <h3>Votre score Elo: <?php echo $scoreParticipant; ?></h3>
 
-                <?php
-                // Récupérer les choix pour cette question
-                $sql = "SELECT * FROM CHOIX WHERE id_question = ?";
-                $stmt = $dbh->prepare($sql);
-                $stmt->execute([$question['id_question']]);
-                $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                ?>
-
-                <div id="choices-container">
-                    <?php foreach ($choices as $choice) : ?>
-                        <div>
-                            <input type="checkbox" name="answers[<?php echo $question['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
-                            <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            <?php endforeach; ?>
-
-            <button type="submit">Soumettre</button>
-        </form>
     </div>
 </body>
 </html>
