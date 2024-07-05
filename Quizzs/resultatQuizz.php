@@ -121,7 +121,14 @@ $K = 32;
 
 // Calcul du nouveau score Elo
 if ($bonnesReponses > 0) {
-    $scoreParticipant = $scoreParticipant + $K * ($bonnesReponses / $totalQuestions);
+    // Récupérer le score Elo actuel de l'utilisateur
+    $sql = "SELECT elo FROM USER WHERE id_USER = ?";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([$idUser]);
+    $currentElo = $stmt->fetchColumn();
+
+    // Calculer le nouveau score Elo en ajoutant les nouveaux points calculés
+    $scoreParticipant = $currentElo + $K * ($bonnesReponses / $totalQuestions);
 }
 
 // Mettre à jour le score Elo de l'utilisateur dans la base de données
