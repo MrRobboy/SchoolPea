@@ -24,11 +24,11 @@ try {
 
     $dbh->commit();
 
-    header('Location: https://schoolpea.com/BackOffice/Quizzs/index.php?success=1');
+    header('Location: https://schoolpea.com/BackOffice/Quizz/index.php?success=1');
     exit();
 } catch (PDOException $e) {
     $dbh->rollBack();
-    header('Location: https://schoolpea.com/BackOffice/Quizzs?error=1');
+    header('Location: https://schoolpea.com/BackOffice/Quizz?error=1');
     exit();
 }
 ?>
