@@ -1,11 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    let questionIndex = 1;
+    let questionIndex = 0; // Commence à 0 pour correspondre à l'index du premier élément ajouté
 
     document.getElementById('add-question').addEventListener('click', () => {
         addQuestion();
     });
 
     function addQuestion() {
+        questionIndex++; // Incrémente l'index pour la nouvelle question
         const questionContainer = document.createElement('div');
         questionContainer.classList.add('question');
         questionContainer.setAttribute('data-question-index', questionIndex);
@@ -26,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="add-choice">Add Choice</button>
         `;
 
-        document.getElementById('questions-container').appendChild(questionContainer);
-
         // Attachement de l'événement add-choice à la nouvelle question
         questionContainer.querySelector('.add-choice').addEventListener('click', function() {
             addChoice(this.closest('.question'), questionIndex);
@@ -38,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
             this.closest('.question').remove();
         });
 
-        questionIndex++;
+        document.getElementById('questions-container').appendChild(questionContainer);
     }
 
     function addChoice(questionElement, questionIndex) {
