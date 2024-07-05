@@ -78,7 +78,7 @@ function isReponseValide($idQuestion, $userResponses, $dbh) {
     $correctChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     // Récupérer les choix sélectionnés par l'utilisateur pour cette question
-    $sql = "SELECT id_CHOIX FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
+    $sql = "SELECT id_choice FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuestion, $_SESSION['user_id']]);
     $userChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
