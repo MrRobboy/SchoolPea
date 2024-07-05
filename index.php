@@ -4,13 +4,13 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 require($path);
 
-// Récupération des cours
-$sql_courses = "SELECT * FROM COURS LIMIT 6"; // Limite à 6 cours
+
+$sql_courses = "SELECT * FROM COURS LIMIT 6"; 
 $result_courses = $dbh->query($sql_courses);
 $courses = $result_courses->fetchAll(PDO::FETCH_ASSOC);
 
-// Récupération des quizz
-$sql_quizzes = "SELECT * FROM QUIZZ LIMIT 6"; // Limite à 6 quizz
+
+$sql_quizzes = "SELECT * FROM QUIZZ LIMIT 6"; 
 $result_quizzes = $dbh->query($sql_quizzes);
 $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -67,72 +67,71 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
 
     <!-- Titre et listes de cours -->
     <span class="trait" id="Explorer_les_cours"></span>
-    <div id="Cours_section">
-        <span>
-            <p id="titre_cours">Nos Cours les plus populaires</p>
-        </span>
+<div id="Cours_section">
+    <span>
+        <p id="titre_cours">Nos Cours les plus populaires</p>
+    </span>
+    <div class="fenetre">
+        <div class="courses" id="course_list">
+            <?php if (!empty($courses)) : ?>
+                <?php foreach ($courses as $course) : ?>
+                    <div class="course_item">
+                        <h3><?php echo htmlspecialchars($course['nom']); ?></h3>
+                        <?php if (!empty($course['path_image_pres'])) : ?>
+                            <img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" class="img_pres" alt="Image de présentation">
+                        <?php else : ?>
+                            <img src="default-image.jpg" alt="Image par défaut">
+                        <?php endif; ?>
+                        <a href="https://schoolpea.com/Cours/voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>" class="But_voir">Voir le cours</a>
+                    </div>
+                <?php endforeach; ?>
+            <?php else : ?>
+                <p>Aucun cours disponible.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+    <span>
+        <a class="voir_plus" href="https://schoolpea.com/Cours/">Voir plus ></a>
+    </span>
+</div>
+
+
+
+    <span class="trait" id="2"></span>
+  
+    <div id="Quizz_section">
+    <span>
+        <p id="titre_quizz">Nos Quizzs les plus sollicités !</p>
+    </span>
+    <div id="div_quizz">
         <div class="fenetre">
-            <div class="courses" id="course_list">
-                <?php if (!empty($courses)) : ?>
-                    <?php foreach ($courses as $course) : ?>
+            <div class="quizzes" id="quiz_list">
+                <?php if (!empty($quizzes)) : ?>
+                    <?php foreach ($quizzes as $quiz) : ?>
                         <div class="course_item">
-                            <h3 style="margin: 0;"><?php echo htmlspecialchars($course['nom']); ?></h3>
-                            <?php if (!empty($course['path_image_pres'])) : ?>
-                                <img src="<?php echo htmlspecialchars($course['path_image_pres']); ?>" class="img_pres" alt="Image de présentation">
+                            <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
+                            <?php if (!empty($quiz['path_img_pres'])) : ?>
+                                <img src="<?php echo htmlspecialchars($quiz['path_img_pres']); ?>" class="img_pres" alt="Image de présentation">
                             <?php else : ?>
                                 <img src="default-image.jpg" alt="Image par défaut">
                             <?php endif; ?>
-                            <a href="/Cours/voirCours.php?id_cours=<?php echo htmlspecialchars($course['id_COURS']); ?>" class="But_voir">Voir le cours</a>
+                            <a href="https://schoolpea.com/Quizzs/participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" class="But_voir">Voir le quizz</a>
                         </div>
                     <?php endforeach; ?>
                 <?php else : ?>
-                    <p>Aucun cours disponible.</p>
+                    <p>Aucun quizz disponible.</p>
                 <?php endif; ?>
             </div>
         </div>
-        <span>
-            <a class="voir_plus" href="https://schoolpea.com/Connexion/">
-                Voir plus >
-            </a>
-        </span>
     </div>
+    <span>
+        <a class="voir_plus" href="https://schoolpea.com/Quizzs/">Voir plus ></a>
+    </span>
+</div>
 
-    <!-- Titre et listes de quizz -->
-    <span class="trait" id="2"></span>
-    <div id="Quizz_section">
-        <span>
-            <p id="titre_quizz">Nos Quizzs les plus sollicités !</p>
-        </span>
-        <div id="div_quizz">
-            <div class="fenetre">
-                <div class="quizzes" id="quiz_list">
-                    <?php if (!empty($quizzes)) : ?>
-                        <?php foreach ($quizzes as $quiz) : ?>
-                            <div class="quiz">
-                                <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
-                                <?php if (!empty($quiz['path_img_pres'])) : ?>
-                                    <img src="<?php echo htmlspecialchars($quiz['path_img_pres']); ?>" class="img_pres" alt="Image de présentation">
-                                <?php else : ?>
-                                    <img src="default-image.jpg" alt="Image par défaut">
-                                <?php endif; ?>
-                                <a href="participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" style="text-decoration: none;">Voir le quizz</a>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else : ?>
-                        <p>Aucun quizz disponible.</p>
-                    <?php endif; ?>
-                </div>
-            </div>
-        </div>
-        <span>
-            <a class="voir_plus" href="https://schoolpea.com/Connexion/">Voir plus ></a>
-        </span>
-    </div>
 
-    <!-- Trait de séparation -->
     <span class="trait" id="3"></span>
 
-    <!-- Pied de page -->
     <footer>
         <div class="footer">
             <span class="col1">
