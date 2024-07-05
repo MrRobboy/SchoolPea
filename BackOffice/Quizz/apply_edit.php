@@ -25,10 +25,9 @@ if ($quiz && $_POST['nom'] == $quiz[0]['nom'] && $_POST['niveau'] == $quiz[0]['n
     exit();
 } else {
 
-        $stmt2 = $dbh->prepare("UPDATE QUIZZ SET nom = :nom, niveau = :niveau, description = :description WHERE id_QUIZZ = :id");
+        $stmt2 = $dbh->prepare("UPDATE QUIZZ SET nom = :nom, description = :description WHERE id_QUIZZ = :id");
     $stmt2->bindValue(':id', $_POST['id']);
     $stmt2->bindValue(':nom', $_POST['nom']);
-    $stmt2->bindValue(':niveau', $_POST['niveau']);
     $stmt2->bindValue(':description', $_POST['description']);
     $result2 = $stmt2->execute();
 
