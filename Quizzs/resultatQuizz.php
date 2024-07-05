@@ -138,11 +138,11 @@ $userelo = getUserelo($dbh, $idUser);
         
         <!-- Boutons pour rejouer, accueil et classement -->
         <div class="buttons">
-            <form action="quiz.php?id_quizz=<?php echo $idQuizz; ?>" method="post">
+            <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post">
                 <button type="submit">Rejouer le Quiz</button>
             </form>
-            <a href="./index.php" class="button">Retour à l'accueil</a>
-            <a href="./Classement/index.php" class="button">Voir le Classement</a>
+            <a href="../index.php" class="button">Retour à l'accueil</a>
+            <a href="../../Classement/index.php" class="button">Voir le Classement</a>
         </div>
         
         <!-- Afficher le classement de l'utilisateur -->
