@@ -80,7 +80,7 @@ function isReponseValide($idQuestion, $userResponses, $dbh) {
 
 // Calculer le score du participant et mettre à jour les résultats du quiz
 foreach ($questions as $question) {
-    $bonnesReponsesQuestion = 0;
+    $correctlyAnswered = true; // Flag to track if question is correctly answered
 
     // Vérifier les réponses du participant pour cette question
     foreach ($userResponses as $response) {
@@ -92,28 +92,24 @@ foreach ($questions as $question) {
             $choice = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($choice) {
-                if ($choice['is_correct'] == 1) {
-                    // Ajouter des points pour une réponse correcte
-                    $scoreParticipant += 10; // Exemple de points pour une réponse correcte
-                    $bonnesReponses++;
-                } else {
-                    // Déduire des points pour une réponse incorrecte (exemple)
-                    $scoreParticipant -= 5; // Exemple de pénalité pour une réponse incorrecte
+                if ($choice['is_correct'] == 1 && $response['is_selected'] != 1) {
+                    $correctlyAnswered = false; // Incorrect choice selected
+                    break; // No need to check further
+                } elseif ($choice['is_correct'] == 0 && $response['is_selected'] == 1) {
+                    $correctlyAnswered = false; // Incorrect choice selected
+                    break; // No need to check further
                 }
             }
         }
     }
 
-    // Vérifier si la réponse à la question est valide
-    $reponseValide = isReponseValide($question['id_question'], $userResponses, $dbh);
-
-    if ($reponseValide) {
-        $bonnesReponses += 1;
+    if ($correctlyAnswered) {
+        $bonnesReponses++;
     }
 }
 
-// Calculer le pourcentage de bonnes réponses
-$pourcentageCorrect = ($totalQuestions > 0) ? round(($bonnesReponses / $totalQuestions) * 100, 2) : 0;
+// Calculer le pourcentage de bonnes réponses (limité à 100%)
+$pourcentageCorrect = ($totalQuestions > 0) ? min(round(($bonnesReponses / $totalQuestions) * 100, 2), 100) : 0;
 
 // Calculer le score Elo
 // Coefficient de gain, ajustable selon la sensibilité souhaitée
