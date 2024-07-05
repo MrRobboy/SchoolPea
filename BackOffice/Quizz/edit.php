@@ -53,10 +53,6 @@ $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
                 <input type="text" name="nom" value="<?php echo htmlspecialchars($quiz['nom']); ?>" class="Input_edit value" required>
             </div>
 
-            <div class="edit">
-                <span class="title_edit">Niveau</span>
-                <input type="text" name="niveau" value="<?php echo htmlspecialchars($quiz['niveau']); ?>" class="Input_edit value" required>
-            </div>
 
             <div class="edit">
                 <span class="title_edit">Description</span>

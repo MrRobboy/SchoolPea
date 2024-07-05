@@ -25,15 +25,14 @@ $quizzes = $stmt->fetchAll();
     <?php if (!empty($_GET['success']) && $_GET['success'] == 2) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">REUSSITE AJOUT QUIZ</p>'; ?>
 
     <div id="content" style="width: 95%;">
-        <h1 style="margin-bottom: 0.5em;">Gestion des Quiz</h1>
-        <a href="https://schoolpea.com/Quizz/creerQuizz.php" class="btn add">Ajouter un Quiz</a>
+        <h1 style="margin-bottom: 0.5em;">Gestion des Quizzs</h1>
+        <a href="https://schoolpea.com/Quizz/creerQuizz.php" class="btn add">Ajouter un Quizz</a>
         <div id="table-classement" style="margin-top: 3em;">
             <table id="classement">
                 <thead>
                     <tr>
                         <th style="padding: 0 0.5rem;border-right: solid 0.3rem white;">ID</th>
                         <th style="padding: 0 3.5rem;border-right: solid 0.3rem white;">Titre</th>
-                        <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Difficulté</th>
                         <th style="padding: 0 0.7rem;border-right: solid 0.3rem white;">Description</th>
                         <th style="padding: 0 6rem;border-right: none;">Actions</th>
                     </tr>
@@ -43,7 +42,6 @@ $quizzes = $stmt->fetchAll();
                         <tr>
                             <td class="not_right"><?php echo $quiz['id_QUIZZ']; ?></td>
                             <td class="not_right"><?php echo $quiz['nom']; ?></td>
-                            <td class="not_right"><?php echo $quiz['niveau']; ?></td>
                             <td class="not_right"><?php echo $quiz['description']; ?></td>
 
                             <td>
