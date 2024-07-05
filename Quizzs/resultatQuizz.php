@@ -66,7 +66,7 @@ function isReponseValide($idQuestion, $userResponses, $dbh) {
     $correctChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     // Récupérer les choix sélectionnés par l'utilisateur pour cette question
-    $sql = "SELECT id_choice FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
+    $sql = "SELECT id_CHOIX FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuestion, $_SESSION['user_id']]);
     $userChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -106,7 +106,20 @@ $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$newElo, $idUser]);
 
+// Fonction pour obtenir le classement de l'utilisateur
+function getUserelo($dbh, $idUser) {
+    $sql = "SELECT COUNT(*) AS elo FROM USER WHERE elo > (SELECT elo FROM USER WHERE id_USER = ?)";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([$idUser]);
+    $elo = $stmt->fetchColumn();
+    return $elo + 1; // Ajouter 1 car le classement commence à 1 et non à 0
+}
+
+// Obtenir le classement de l'utilisateur
+$userelo = getUserelo($dbh, $idUser);
+
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -122,6 +135,18 @@ $stmt->execute([$newElo, $idUser]);
         <p>Nombre de bonnes réponses : <?php echo $bonnesReponses; ?> / <?php echo $totalQuestions; ?></p>
         <p>Pourcentage de bonnes réponses : <?php echo $pourcentageCorrect; ?>%</p>
         <h3>Votre score Elo: <?php echo round($newElo, 2); ?></h3>
+        
+        <!-- Boutons pour rejouer, accueil et classement -->
+        <div class="buttons">
+            <form action="quiz.php?id_quizz=<?php echo $idQuizz; ?>" method="post">
+                <button type="submit">Rejouer le Quiz</button>
+            </form>
+            <a href="./index.php" class="button">Retour à l'accueil</a>
+            <a href="./Classement/index.php" class="button">Voir le Classement</a>
+        </div>
+        
+        <!-- Afficher le classement de l'utilisateur -->
+        <p>Votre classement : <?php echo $userelo; ?></p>
     </div>
 </body>
 </html>
