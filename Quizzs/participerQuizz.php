@@ -55,12 +55,6 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute([$currentQuestionData['id_question']]);
 $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Vérifier si des choix sont trouvés
-if (empty($choices)) {
-    echo "Aucun choix trouvé pour cette question.";
-    exit();
-}
-
 // Si une réponse est soumise
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_POST['answers'][$currentQuestionData['id_question']])) {
@@ -128,12 +122,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
 
             <div id="choices-container">
-                <?php foreach ($choices as $choice) : ?>
-                    <div>
-                        <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
-                        <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
-                    </div>
-                <?php endforeach; ?>
+                <?php if (!empty($choices)) : ?>
+                    <?php foreach ($choices as $choice) : ?>
+                        <div>
+                            <input type="checkbox" name="answers[<?php echo $currentQuestionData['id_question']; ?>][]" value="<?php echo $choice['id_CHOIX']; ?>" id="choice-<?php echo $choice['id_CHOIX']; ?>">
+                            <label for="choice-<?php echo $choice['id_CHOIX']; ?>"><?php echo htmlspecialchars($choice['choix_text']); ?></label>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p>Aucun choix trouvé pour cette question.</p>
+                <?php endif; ?>
             </div>
 
             <button type="submit">Suivant</button>
