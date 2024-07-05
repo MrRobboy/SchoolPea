@@ -1,33 +1,72 @@
 <?php
-include '../includes/auth.php';
-include '../includes/functions.php';
-include '../templates/header.php';
+session_start();
+$_GET;
+$auth = $_SERVER['DOCUMENT_ROOT'];
+$auth .= '/BackEnd/Includes/auth.php';
+include($auth);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
 
-$id = $_GET['id'];
-$quizz = getById('quizzes', $id);
+$dbh->exec('USE PA');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $title = $_POST['title'];
-    $description = $_POST['description'];
+// Récupérer les informations du quiz
+$stmt = $dbh->prepare("SELECT nom, niveau, description FROM QUIZZ WHERE id_QUIZZ = :id");
+$stmt->bindValue(':id', $_GET['id']);
+$stmt->execute();
+$quiz = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (update('quizzes', $id, ['title' => $title, 'description' => $description])) {
-        header('Location: index.php');
-        exit();
-    } else {
-        echo 'Erreur lors de la modification du quizz';
-    }
-}
+$_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
 ?>
 
-<div class="container">
-    <h1>Modifier le Quizz</h1>
-    <form method="post">
-        <label>Titre:</label>
-        <input type="text" name="title" value="<?= $quizz['title'] ?>" required>
-        <label>Description:</label>
-        <textarea name="description" required><?= $quizz['description'] ?></textarea>
-        <button type="submit">Modifier</button>
-    </form>
-</div>
+<!DOCTYPE html>
+<html lang="fr">
 
-<?php include '../templates/footer.php'; ?>
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT - QUIZ</title>
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/Compte/compte.css">
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/BackOffice/User/edit.css">
+</head>
+
+<body style="padding: 7em 0 7em 10em;">
+    <?php
+    $header = $_SERVER['DOCUMENT_ROOT'];
+    $header .= '/BackOffice/Includes/headerBackOffice.php';
+    include($header);
+    ?>
+
+    <?php if (!empty($_GET['error'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">ERREUR VALEURS ENTREES!</p>'; ?>
+    <?php if (!empty($_GET['success'])) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">REUSSITE CHANGEMENT</p>'; ?>
+
+    <div id="div1" style="width: 40%;">
+        <form method="post" id="Info_gen" style="text-align: left;" action="apply_edit.php">
+            <h1 style="text-align: center;">Modifier les infos du Quizz</h1>
+
+            <div class="edit">
+                <span class="title_edit">ID</span>
+                <input type="text" name="id" style="cursor: not-allowed;" class="Input_edit value" value="<?php echo htmlspecialchars($_GET['id']); ?>" readonly>
+            </div>
+
+            <div class="edit">
+                <span class="title_edit">Titre</span>
+                <input type="text" name="nom" value="<?php echo htmlspecialchars($quiz['nom']); ?>" class="Input_edit value" required>
+            </div>
+
+            <div class="edit">
+                <span class="title_edit">Niveau</span>
+                <input type="text" name="niveau" value="<?php echo htmlspecialchars($quiz['niveau']); ?>" class="Input_edit value" required>
+            </div>
+
+            <div class="edit">
+                <span class="title_edit">Description</span>
+                <textarea name="description" style="resize: none; min-height: 5em;" class="Input_edit value" required><?php echo htmlspecialchars($quiz['description']); ?></textarea>
+            </div>
+
+            <input type="submit" value="Valider les modifications" id="submit">
+        </form>
+    </div>
+
+</body>
+
+</html>
