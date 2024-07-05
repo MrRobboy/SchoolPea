@@ -55,6 +55,32 @@ if (!$idUser) {
     exit();
 }
 
+// Récupérer les réponses du participant connecté pour ce quiz
+$sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$idQuizz, $idUser]);
+$userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Fonction pour vérifier si une réponse est valide
+function isReponseValide($idQuestion, $idUser, $dbh) {
+    // Compter le nombre de choix corrects pour cette question
+    $sql_correct = "SELECT COUNT(*) AS nb_correct_choices FROM CHOIX WHERE id_question = ? AND is_correct = 1";
+    $stmt_correct = $dbh->prepare($sql_correct);
+    $stmt_correct->execute([$idQuestion]);
+    $result_correct = $stmt_correct->fetch(PDO::FETCH_ASSOC);
+    $nb_correct_choices = $result_correct['nb_correct_choices'];
+
+    // Compter le nombre de choix corrects sélectionnés par l'utilisateur
+    $sql_user = "SELECT COUNT(*) AS nb_user_correct_choices FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ? AND is_selected = 1";
+    $stmt_user = $dbh->prepare($sql_user);
+    $stmt_user->execute([$idQuestion, $idUser]);
+    $result_user = $stmt_user->fetch(PDO::FETCH_ASSOC);
+    $nb_user_correct_choices = $result_user['nb_user_correct_choices'];
+
+    // La réponse est valide si tous les choix corrects ont été sélectionnés
+    return ($nb_user_correct_choices == $nb_correct_choices);
+}
+
 // Initialiser le score Elo du participant
 $sql_elo = "SELECT elo FROM USER WHERE id_USER = ?";
 $stmt_elo = $dbh->prepare($sql_elo);
@@ -71,12 +97,12 @@ foreach ($questions as $question) {
     $mauvaisesReponses = 0;
 
     // Vérifier les réponses du participant pour cette question
-    foreach ($_POST['reponse'] as $reponse) {
-        if ($reponse['id_question'] == $question['id_question']) {
+    foreach ($userResponses as $response) {
+        if ($response['id_question'] == $question['id_question']) {
             // Vérifier si la réponse est correcte
             $sql_choice = "SELECT is_correct FROM CHOIX WHERE id_CHOIX = ?";
             $stmt_choice = $dbh->prepare($sql_choice);
-            $stmt_choice->execute([$reponse['id_choice']]);
+            $stmt_choice->execute([$response['id_choice']]);
             $choice = $stmt_choice->fetch(PDO::FETCH_ASSOC);
 
             if ($choice && $choice['is_correct'] == 1) {
@@ -84,12 +110,6 @@ foreach ($questions as $question) {
             } else {
                 $mauvaisesReponses++;
             }
-
-            // Insérer ou mettre à jour le résultat dans RESULTATS_QUIZZ
-            $sql_insert = "INSERT INTO RESULTATS_QUIZZ (id_user, id_quizz, score, elo_avant, elo_apres, id_question, id_choice)
-                           VALUES (?, ?, ?, ?, ?, ?, ?)";
-            $stmt_insert = $dbh->prepare($sql_insert);
-            $stmt_insert->execute([$idUser, $idQuizz, $scoreParticipant, $scoreParticipant, $scoreParticipant, $reponse['id_question'], $reponse['id_choice']]);
         }
     }
 
@@ -97,7 +117,7 @@ foreach ($questions as $question) {
     $reponseValide = ($bonnesReponses > 0 && $mauvaisesReponses == 0) ? 1 : 0;
 
     // Calculer l'espérance de gain
-    $E = isReponseValide($question['id_question'], $userResponses, $dbh);
+    $E = isReponseValide($question['id_question'], $idUser, $dbh);
 
     // Calculer R en fonction de la validité de la réponse
     $R = $reponseValide;
@@ -113,13 +133,17 @@ foreach ($questions as $question) {
         $scoreParticipant -= $perteElo * ($E - $R);
     }
 
-    // Mettre à jour le score Elo de l'utilisateur dans la table USER
-    $sql_update_elo = "UPDATE USER SET elo = ? WHERE id_USER = ?";
-    $stmt_update_elo = $dbh->prepare($sql_update_elo);
-    $stmt_update_elo->execute([$scoreParticipant, $idUser]);
+    // Mettre à jour les réponses du participant dans la table RESULTATS_QUIZZ
+    // Note: Cela doit être adapté selon votre structure de base de données pour mettre à jour les réponses du participant après chaque question.
 }
-?>
 
+// Mettre à jour le score Elo de l'utilisateur dans la table USER
+$sql_update_elo = "UPDATE USER SET elo = ? WHERE id_USER = ?";
+$stmt_update_elo = $dbh->prepare($sql_update_elo);
+$stmt_update_elo->execute([$scoreParticipant, $idUser]);
+
+// Affichage des résultats (exemple simplifié pour un seul participant)
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -140,6 +164,7 @@ foreach ($questions as $question) {
         ?>
         
         <h3>Votre score Elo: <?php echo $scoreParticipant; ?></h3>
+
 
     </div>
 </body>
