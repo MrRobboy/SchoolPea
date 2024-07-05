@@ -57,7 +57,7 @@ $userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $bonnesReponses = 0;
 $totalQuestions = count($questions);
 
-// Fonction pour vérifier si une réponse est valide
+
 function isReponseValide($idQuestion, $userResponses, $dbh) {
     // Récupérer les choix corrects pour cette question
     $sql = "SELECT id_CHOIX FROM CHOIX WHERE id_question = ? AND is_correct = 1";
@@ -66,14 +66,18 @@ function isReponseValide($idQuestion, $userResponses, $dbh) {
     $correctChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     // Récupérer les choix sélectionnés par l'utilisateur pour cette question
-    $sql = "SELECT id_choice FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
+    $sql = "SELECT id_CHOIX FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuestion, $_SESSION['user_id']]);
     $userChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-    // La réponse est valide si tous les choix corrects ont été sélectionnés et uniquement ceux-là
-    return (!array_diff($correctChoices, $userChoices) && !array_diff($userChoices, $correctChoices));
+    // Vérifier si tous les choix corrects sont présents et aucun autre choix n'est sélectionné
+    sort($correctChoices);
+    sort($userChoices);
+
+    return ($correctChoices === $userChoices);
 }
+
 
 // Calculer le nombre de questions correctement répondues
 foreach ($questions as $question) {
