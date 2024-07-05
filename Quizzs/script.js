@@ -63,6 +63,11 @@ document.addEventListener('DOMContentLoaded', () => {
         choicesContainer.appendChild(choiceElement);
     }
 
+    // Attachement initial de l'événement add-choice pour le premier set de choix
+    document.querySelector('.add-choice').addEventListener('click', function() {
+        addChoice(this.closest('.question'));
+    });
+
     // Suppression dynamique des questions et des choix
     document.addEventListener('click', (event) => {
         if (event.target && event.target.classList.contains('delete-question')) {
