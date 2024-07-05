@@ -55,96 +55,69 @@ if (!$idUser) {
     exit();
 }
 
-// Récupérer les réponses du participant connecté pour ce quiz
-$sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$idQuizz, $idUser]);
-$userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
+// Initialiser le score Elo du participant
+$sql_elo = "SELECT elo FROM USER WHERE id_USER = ?";
+$stmt_elo = $dbh->prepare($sql_elo);
+$stmt_elo->execute([$idUser]);
+$user = $stmt_elo->fetch(PDO::FETCH_ASSOC);
+$scoreParticipant = $user['elo'];
 
-// Compter le nombre de bonnes réponses
-$correctAnswers = 0;
-foreach ($userResponses as $response) {
-    $sql = "SELECT is_correct FROM CHOIX WHERE id_CHOIX = ?";
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute([$response['id_choice']]);
-    $choice = $stmt->fetch(PDO::FETCH_ASSOC);
+// Coefficient de gain, ajustable selon la sensibilité souhaitée
+$K = 32;
 
-    if ($choice && $choice['is_correct'] == 1) {
-        $correctAnswers++;
-    }
-}
-
-// Calculer le pourcentage de bonnes réponses
-$percentageCorrect = ($totalQuestions > 0) ? round(($correctAnswers / $totalQuestions) * 100, 2) : 0;
-
-// Récupérer l'Elo initial de l'utilisateur
-$sql = "SELECT elo FROM USER WHERE id_USER = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$idUser]);
-$user = $stmt->fetch(PDO::FETCH_ASSOC);
-$initialElo = $user['elo'];
-
-// Calculer l'élo du participant
-$K = 32; // Coefficient de gain, ajustable selon la sensibilité souhaitée
-
-// Fonction pour calculer l'espérance de gain (simplifiée pour cet exemple)
-function calculerEsperanceDeGain($participant, $question)
-{
-    // Ici, vous pouvez implémenter votre propre logique pour calculer l'espérance de gain
-    // en fonction de la difficulté de la question, du score actuel du participant, etc.
-    // Pour cet exemple simplifié, on suppose un calcul basique.
-    return 0.5; // Exemple: 50% de chance de gain
-}
-
-// Initialiser le score du participant
-$scoreParticipant = $initialElo;
-
-// Liste des participants (pour cet exemple, un seul participant)
-$listeDesParticipants = [
-    [
-        'id' => $idUser,
-        'score' => $scoreParticipant,
-    ]
-];
-
-// Calculer le nouveau score du participant après chaque question
+// Calculer le nouveau score Elo du participant après chaque question
 foreach ($questions as $question) {
-    foreach ($listeDesParticipants as &$participant) {
-        $E = calculerEsperanceDeGain($participant, $question);
+    $bonnesReponses = 0;
+    $mauvaisesReponses = 0;
 
-        // Supposons que l'utilisateur a toujours répondu correctement (pour cet exemple simplifié)
-        $R = 1; // Réponse correcte
+    // Vérifier les réponses du participant pour cette question
+    foreach ($_POST['reponse'] as $reponse) {
+        if ($reponse['id_question'] == $question['id_question']) {
+            // Vérifier si la réponse est correcte
+            $sql_choice = "SELECT is_correct FROM CHOIX WHERE id_CHOIX = ?";
+            $stmt_choice = $dbh->prepare($sql_choice);
+            $stmt_choice->execute([$reponse['id_choice']]);
+            $choice = $stmt_choice->fetch(PDO::FETCH_ASSOC);
 
-        // Calcul du nouveau score
-        $nouveauScore = $participant['score'] + $K * ($R - $E);
+            if ($choice && $choice['is_correct'] == 1) {
+                $bonnesReponses++;
+            } else {
+                $mauvaisesReponses++;
+            }
 
-        // Mettre à jour le score du participant
-        $participant['score'] = $nouveauScore;
+            // Insérer ou mettre à jour le résultat dans RESULTATS_QUIZZ
+            $sql_insert = "INSERT INTO RESULTATS_QUIZZ (id_user, id_quizz, score, elo_avant, elo_apres, id_question, id_choice)
+                           VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $stmt_insert = $dbh->prepare($sql_insert);
+            $stmt_insert->execute([$idUser, $idQuizz, $scoreParticipant, $scoreParticipant, $scoreParticipant, $reponse['id_question'], $reponse['id_choice']]);
+        }
     }
 
-    // Trier la liste des participants par ordre décroissant des scores après chaque question
-    usort($listeDesParticipants, function ($a, $b) {
-        return $b['score'] - $a['score'];
-    });
+    // Déterminer si la réponse à la question est valide
+    $reponseValide = ($bonnesReponses > 0 && $mauvaisesReponses == 0) ? 1 : 0;
+
+    // Calculer l'espérance de gain
+    $E = isReponseValide($question['id_question'], $userResponses, $dbh);
+
+    // Calculer R en fonction de la validité de la réponse
+    $R = $reponseValide;
+
+    // Calcul du nouveau score Elo
+    if ($bonnesReponses > $mauvaisesReponses) {
+        // Gain d'Elo proportionnel aux bonnes réponses
+        $gainElo = $K * ($bonnesReponses / $totalQuestions);
+        $scoreParticipant += $gainElo * ($R - $E);
+    } elseif ($mauvaisesReponses > $bonnesReponses) {
+        // Perte d'Elo proportionnelle aux mauvaises réponses
+        $perteElo = $K * ($mauvaisesReponses / $totalQuestions);
+        $scoreParticipant -= $perteElo * ($E - $R);
+    }
+
+    // Mettre à jour le score Elo de l'utilisateur dans la table USER
+    $sql_update_elo = "UPDATE USER SET elo = ? WHERE id_USER = ?";
+    $stmt_update_elo = $dbh->prepare($sql_update_elo);
+    $stmt_update_elo->execute([$scoreParticipant, $idUser]);
 }
-
-// Affichage du classement général des participants (ici, un seul participant)
-$classementGeneralDesParticipants = $listeDesParticipants;
-
-// Déterminer la couleur basée sur le gain/perte d'élo
-$eloDiff = $classementGeneralDesParticipants[0]['score'] - $initialElo;
-if ($eloDiff > 0) {
-    $eloColor = 'green'; // Gain d'élo (positif)
-} elseif ($eloDiff < 0) {
-    $eloColor = 'red'; // Perte d'élo (négatif)
-} else {
-    $eloColor = 'orange'; // Aucun changement d'élo (nul)
-}
-
-// Mettre à jour l'Elo de l'utilisateur dans la table USER
-$sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->execute([$classementGeneralDesParticipants[0]['score'], $idUser]);
 ?>
 
 <!DOCTYPE html>
@@ -158,16 +131,16 @@ $stmt->execute([$classementGeneralDesParticipants[0]['score'], $idUser]);
 <body>
     <div class="container">
         <h2>Résultat du Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
-        <p>Nombre de questions réussies: <?php echo $correctAnswers; ?> / <?php echo $totalQuestions; ?> (<?php echo $percentageCorrect; ?>%)</p>
         
-        <h3>Votre score Elo: <span style="color: <?php echo $eloColor; ?>"><?php echo $classementGeneralDesParticipants[0]['score']; ?></span></h3>
+        <?php
+        // Afficher le nombre de bonnes réponses et le pourcentage
+        echo "<p>Nombre de bonnes réponses : $bonnesReponses / $totalQuestions</p>";
+        $percentageCorrect = ($totalQuestions > 0) ? round(($bonnesReponses / $totalQuestions) * 100, 2) : 0;
+        echo "<p>Pourcentage de bonnes réponses : $percentageCorrect%</p>";
+        ?>
+        
+        <h3>Votre score Elo: <?php echo $scoreParticipant; ?></h3>
 
-        <h3>Classement général</h3>
-        <ol>
-            <?php foreach ($classementGeneralDesParticipants as $participant) : ?>
-                <li>Participant <?php echo $participant['id']; ?> - Score: <?php echo $participant['score']; ?></li>
-            <?php endforeach; ?>
-        </ol>
     </div>
 </body>
 </html>
