@@ -25,7 +25,7 @@ session_start();
     <span class="trait" id="SchoolPea"></span>
 
     <div id="div1">
-        <form method="post" id="Info_gen">
+        <form method="post" id="Info_gen" action="apply_edit.php">
             <span id="Titre_Info_gen">
                 <img src="https://schoolpea.com/Images/reglage.svg" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
@@ -33,24 +33,25 @@ session_start();
 
             <span id="Modif_Photo">
                 <img src="https://schoolpea.com/<?php echo $_SESSION['path_pp']; ?>" id="PP">
-                <button id="But_Photo">Charger une photo</button>
+                <input type="hidden" name="max_size" value="1048576">
+                <input id="But_Photo" type="file" name="img_pp" placeholder="Charger une photo">
             </span>
 
             <span id="Modif_Nom_Prenom">
                 <span id="Nom">
                     <span class="Text_Nom_Prenom_Email">Nom</span>
-                    <input type="text" value="<?php echo ($_SESSION['lastname']); ?>" class="Input_Nom_Prenom_Email">
+                    <input type="text" name="lastname" value="<?php echo ($_SESSION['lastname']); ?>" class="Input_Nom_Prenom_Email">
                 </span>
 
                 <span id="Prenom">
                     <span class="Text_Nom_Prenom_Email">Prénom</span>
-                    <input type="text" value="<?php echo ($_SESSION['firstname']); ?>" class="Input_Nom_Prenom_Email">
+                    <input type="text" name="firstname" value="<?php echo ($_SESSION['firstname']); ?>" class="Input_Nom_Prenom_Email">
                 </span>
             </span>
 
             <span id="Email">
-                <span class="Text_Nom_Prenom_Email">Email adresse</span>
-                <input type=" text" value="<?php echo ($_SESSION['email']); ?>" class="Input_Nom_Prenom_Email">
+                <span class="Text_Nom_Prenom_Email">Adresse Email</span>
+                <input type=" text" name="email" value="<?php echo ($_SESSION['email']); ?>" class="Input_Nom_Prenom_Email">
             </span>
 
             <span style="margin: 1em 0;">
