@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Attachement de l'événement add-choice à la nouvelle question
         questionContainer.querySelector('.add-choice').addEventListener('click', function() {
-            addChoice(this.closest('.question'), questionIndex);
+            addChoice(this.closest('.question'));
         });
 
         // Attacher l'événement delete-question à la nouvelle question
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('questions-container').appendChild(questionContainer);
     }
 
-    function addChoice(questionElement, questionIndex) {
+    function addChoice(questionElement) {
         const choicesContainer = questionElement.querySelector('.choices');
         const choiceCount = choicesContainer.querySelectorAll('.choice').length;
 
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         choiceElement.innerHTML = `
             <label>Choice:</label>
-            <input type="text" name="questions[${questionIndex}][choices][${choiceCount}][text]" required>
+            <input type="text" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][text]" required>
             <label>Correct:</label>
-            <input type="checkbox" name="questions[${questionIndex}][choices][${choiceCount}][is_correct]">
+            <input type="checkbox" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][is_correct]">
             <button type="button" class="delete-choice">Delete Choice</button>
         `;
 
