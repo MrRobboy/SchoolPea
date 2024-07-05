@@ -9,37 +9,26 @@ $path .= '/BackEnd/db.php';
 include($path);
 
 $dbh->exec('USE PA');
+$dbh->beginTransaction();
 
-$idQuiz = $_GET['id'];
+try {
+    // Supprimer les questions associées au quiz
+    $stmt_delete_questions = $dbh->prepare("DELETE FROM QUESTIONS WHERE id_quizz = :id");
+    $stmt_delete_questions->bindValue(':id', $_GET['id']);
+    $stmt_delete_questions->execute();
 
-// Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI']; // Stocker l'URL actuelle
-    header("Location: login.php");
+    // Supprimer le quiz
+    $stmt_delete_quiz = $dbh->prepare("DELETE FROM QUIZZ WHERE id_QUIZZ = :id");
+    $stmt_delete_quiz->bindValue(':id', $_GET['id']);
+    $stmt_delete_quiz->execute();
+
+    $dbh->commit();
+
+    header('Location: https://schoolpea.com/BackOffice/Quizz/index.php?success=1');
+    exit();
+} catch (PDOException $e) {
+    $dbh->rollBack();
+    header('Location: https://schoolpea.com/BackOffice/Quizz?error=1');
     exit();
 }
-
-// Récupérer le chemin de l'image associée au quiz
-$stmt = $dbh->prepare("SELECT path_img_pres FROM QUIZZ WHERE id_QUIZZ = :id");
-$stmt->bindValue(':id', $idQuiz);
-$result = $stmt->execute();
-$imagePath = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// Supprimer le quiz de la base de données
-$stmt1 = $dbh->prepare("DELETE FROM QUIZZ WHERE id_QUIZZ = :id");
-$stmt1->bindValue(':id', $idQuiz);
-$result1 = $stmt1->execute();
-
-// Supprimer l'image associée au quiz, si elle existe
-if ($imagePath && file_exists($imagePath['path_image_pres'])) {
-    unlink($imagePath['path_image_pres']);
-}
-
-// Redirection en fonction du résultat de la suppression
-if ($result1) {
-    header('Location: https://schoolpea.com/BackOffice/Quizz/index.php?success=1');
-} else {
-    header('Location: https://schoolpea.com/BackOffice/Quizz');
-}
-exit();
 ?>
