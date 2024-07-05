@@ -26,15 +26,18 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="add-choice">Add Choice</button>
         `;
 
+        document.getElementById('questions-container').appendChild(questionContainer);
+
+        // Attachement de l'événement add-choice à la nouvelle question
         questionContainer.querySelector('.add-choice').addEventListener('click', function() {
             addChoice(this.closest('.question'), questionIndex);
         });
 
+        // Attacher l'événement delete-question à la nouvelle question
         questionContainer.querySelector('.delete-question').addEventListener('click', function() {
             this.closest('.question').remove();
         });
 
-        document.getElementById('questions-container').appendChild(questionContainer);
         questionIndex++;
     }
 
@@ -61,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         choicesContainer.appendChild(choiceElement);
     }
 
+    // Suppression dynamique des questions et des choix
     document.addEventListener('click', (event) => {
         if (event.target && event.target.classList.contains('delete-question')) {
             event.target.closest('.question').remove();
