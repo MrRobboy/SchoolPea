@@ -33,15 +33,27 @@ if (!$quiz) {
     exit();
 }
 
-// Récupérer les questions du quiz
+// Vérifier s'il y a des questions
 $sql = "SELECT * FROM QUESTIONS WHERE id_quizz = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$idQuizz]);
 $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Vérifier s'il y a des questions
 if (empty($questions)) {
     echo "Aucune question trouvée pour ce quiz.";
+    exit();
+}
+
+// Si le formulaire de rejouer le quiz est soumis
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rejouer_quiz'])) {
+    // Supprimer les réponses du quiz précédent pour l'utilisateur actuel
+    $idUser = $_SESSION['user_id'];
+    $sql = "DELETE FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
+    $stmt = $dbh->prepare($sql);
+    $stmt->execute([$idQuizz, $idUser]);
+    
+    // Rediriger vers la première question du quiz pour recommencer
+    header("Location: question.php?id_quizz=$idQuizz&num_question=1");
     exit();
 }
 
@@ -66,7 +78,7 @@ function isReponseValide($idQuestion, $userResponses, $dbh) {
     $correctChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     // Récupérer les choix sélectionnés par l'utilisateur pour cette question
-    $sql = "SELECT id_choice FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
+    $sql = "SELECT id_CHOIX FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuestion, $_SESSION['user_id']]);
     $userChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
@@ -105,18 +117,6 @@ $newElo = $currentElo + $K * ($bonnesReponses / $totalQuestions);
 $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$newElo, $idUser]);
-
-// Fonction pour obtenir le classement de l'utilisateur
-function getUserelo($dbh, $idUser) {
-    $sql = "SELECT COUNT(*) AS elo FROM USER WHERE elo > (SELECT elo FROM USER WHERE id_USER = ?)";
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute([$idUser]);
-    $elo = $stmt->fetchColumn();
-    return $elo + 1; // Ajouter 1 car le classement commence à 1 et non à 0
-}
-
-// Obtenir le classement de l'utilisateur
-$userelo = getUserelo($dbh, $idUser);
 
 ?>
 
