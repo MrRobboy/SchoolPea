@@ -91,8 +91,15 @@ foreach ($questions as $question) {
             $stmt->execute([$response['id_choice']]);
             $choice = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($choice && $choice['is_correct'] == 1) {
-                $bonnesReponsesQuestion++;
+            if ($choice) {
+                if ($choice['is_correct'] == 1) {
+                    // Ajouter des points pour une réponse correcte
+                    $scoreParticipant += 10; // Exemple de points pour une réponse correcte
+                    $bonnesReponses++;
+                } else {
+                    // Déduire des points pour une réponse incorrecte (exemple)
+                    $scoreParticipant -= 5; // Exemple de pénalité pour une réponse incorrecte
+                }
             }
         }
     }
