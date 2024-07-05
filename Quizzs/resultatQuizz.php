@@ -129,6 +129,14 @@ if ($bonnesReponses > 0) {
     $stmt->execute([$idUser]);
     $currentElo = $stmt->fetchColumn();
 
+    // Vérifier si le score Elo actuel est défini
+    if ($currentElo === false) {
+        // Gérer le cas où le score Elo actuel n'est pas récupéré correctement
+        // Vous pouvez choisir de définir une valeur par défaut ou de gérer l'erreur
+        // ici selon les besoins de votre application.
+        $currentElo = 1000; // Exemple : Définir une valeur par défaut
+    }
+
     // Calculer le nouveau score Elo en ajoutant les nouveaux points calculés
     $scoreParticipant = $currentElo + $K * ($bonnesReponses / $totalQuestions);
 }
@@ -137,6 +145,7 @@ if ($bonnesReponses > 0) {
 $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$scoreParticipant, $idUser]);
+
 
 // Marquer le quiz comme terminé pour cet utilisateur dans la session
 $_SESSION['quiz_score_updated'] = true;
