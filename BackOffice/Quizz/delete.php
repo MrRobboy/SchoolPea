@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 // Récupérer le chemin de l'image associée au quiz
-$stmt = $dbh->prepare("SELECT path_image_pres FROM QUIZZ WHERE id_QUIZZ = :id");
+$stmt = $dbh->prepare("SELECT path_img_pres FROM QUIZZ WHERE id_QUIZZ = :id");
 $stmt->bindValue(':id', $idQuiz);
 $result = $stmt->execute();
 $imagePath = $stmt->fetch(PDO::FETCH_ASSOC);
