@@ -173,8 +173,8 @@ body div {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(calc(33.33% - 20px), 1fr));
     /* Maximum 3 cours par ligne */
-    gap: 20px;
-    /* Espacement entre les éléments */
+    gap: 30px;
+    /* Augmente l'espace entre les éléments */
     padding: 1.5em;
     border: solid 0.3em #28326e;
     background-color: #6b7ad2;
@@ -253,8 +253,8 @@ body div {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(calc(33.33% - 20px), 1fr));
     /* Maximum 3 quizz par ligne */
-    gap: 20px;
-    /* Espacement entre les éléments */
+    gap: 30px;
+    /* Augmente l'espace entre les éléments */
     padding: 1.5em;
     border: solid 0.3em #28326e;
     background-color: #6b7ad2;

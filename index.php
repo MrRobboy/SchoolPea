@@ -4,27 +4,26 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 require($path);
 
-// Fetching courses
-$sql = "SELECT * FROM COURS";
-$result = $dbh->query($sql);
-$courses = $result->fetchAll(PDO::FETCH_ASSOC);
+// Récupération des cours
+$sql_courses = "SELECT * FROM COURS LIMIT 6"; // Limite à 6 cours
+$result_courses = $dbh->query($sql_courses);
+$courses = $result_courses->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetching quizzes
-$sql = "SELECT * FROM QUIZZ";
-$result = $dbh->query($sql);
-$quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
+// Récupération des quizz
+$sql_quizzes = "SELECT * FROM QUIZZ LIMIT 6"; // Limite à 6 quizz
+$result_quizzes = $dbh->query($sql_quizzes);
+$quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Schoolpéa</title>
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/accueil.css">
 </head>
-
 <body>
+    <!-- Entête -->
     <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
     if (isset($_SESSION['mail_valide'])) {
@@ -35,8 +34,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
     include($path);
     ?>
 
-    <span class="trait" id="SchoolPea"></span>
-
+    <!-- Section de recherche -->
     <div id="shadow_search">
         <div id="Search_section">
             <div class="aff">
@@ -67,16 +65,15 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </div>
 
+    <!-- Titre et listes de cours -->
     <span class="trait" id="Explorer_les_cours"></span>
-
     <div id="Cours_section">
-        <span style="margin-bottom: -2em;">
+        <span>
             <p id="titre_cours">Nos Cours les plus populaires</p>
         </span>
         <div class="fenetre">
             <div class="courses" id="course_list">
                 <?php if (!empty($courses)) : ?>
-                    <?php $courses = array_slice($courses, 0, 9); // Maximum 9 cours ?>
                     <?php foreach ($courses as $course) : ?>
                         <div class="course_item">
                             <h3 style="margin: 0;"><?php echo htmlspecialchars($course['nom']); ?></h3>
@@ -93,95 +90,96 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
             </div>
         </div>
-
         <span>
             <a class="voir_plus" href="https://schoolpea.com/Connexion/">
                 Voir plus >
             </a>
         </span>
+    </div>
 
-        <span class="trait" id="2"></span>
-
-        <div id="Quizz_section">
-            <span>
-                <p id="titre_quizz">Nos Quizzs les plus sollicités !</p>
-            </span>
-            <div id="div_quizz">
-                <div class="fenetre">
-                    <div class="quizzes" id="quiz_list">
-                        <?php if (!empty($quizzes)) : ?>
-                            <?php $quizzes = array_slice($quizzes, 0, 9); // Maximum 9 quizz ?>
-                            <?php foreach ($quizzes as $quiz) : ?>
-                                <div class="course_item"> <!-- Utilisation de la même classe CSS que pour les cours -->
-                                    <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
-                                    <?php if (!empty($quiz['path_img_pres'])) : ?>
-                                        <img src="<?php echo htmlspecialchars($quiz['path_img_pres']); ?>" class="img_pres" alt="Image de présentation">
-                                    <?php else : ?>
-                                        <img src="default-image.jpg" alt="Image par défaut">
-                                    <?php endif; ?>
-                                    <a href="participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" class="But_voir">Voir le quizz</a>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php else : ?>
-                            <p>Aucun quizz disponible.</p>
-                        <?php endif; ?>
-                    </div>
+    <!-- Titre et listes de quizz -->
+    <span class="trait" id="2"></span>
+    <div id="Quizz_section">
+        <span>
+            <p id="titre_quizz">Nos Quizzs les plus sollicités !</p>
+        </span>
+        <div id="div_quizz">
+            <div class="fenetre">
+                <div class="quizzes" id="quiz_list">
+                    <?php if (!empty($quizzes)) : ?>
+                        <?php foreach ($quizzes as $quiz) : ?>
+                            <div class="quiz">
+                                <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
+                                <?php if (!empty($quiz['path_img_pres'])) : ?>
+                                    <img src="<?php echo htmlspecialchars($quiz['path_img_pres']); ?>" class="img_pres" alt="Image de présentation">
+                                <?php else : ?>
+                                    <img src="default-image.jpg" alt="Image par défaut">
+                                <?php endif; ?>
+                                <a href="participerQuizz.php?id_quizz=<?php echo htmlspecialchars($quiz['id_QUIZZ']); ?>" style="text-decoration: none;">Voir le quizz</a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php else : ?>
+                        <p>Aucun quizz disponible.</p>
+                    <?php endif; ?>
                 </div>
             </div>
-            <span>
-                <a class="voir_plus" href="https://schoolpea.com/Connexion/">Voir plus ></a>
+        </div>
+        <span>
+            <a class="voir_plus" href="https://schoolpea.com/Connexion/">Voir plus ></a>
+        </span>
+    </div>
+
+    <!-- Trait de séparation -->
+    <span class="trait" id="3"></span>
+
+    <!-- Pied de page -->
+    <footer>
+        <div class="footer">
+            <span class="col1">
+                <h3>
+                    <a href="#SchoolPea" style="color: white; text-decoration: none; font-weight: bolder; font-size: 30px;">SchoolPéa</a>
+                </h3>
+            </span>
+
+            <span class="col2">
+                <h4>Schoolpéa</h4>
+                <a href="index.php">Accueil</a>
+                <a href="about.php">A propos</a>
+            </span>
+
+            <span class="col3">
+                <h4>Contact</h4>
+                <a href="mailto:schoolpea@outlook.com">E-mail</a>
+                <a href="https://schoolpea.com/EasterEgg/">LinkedIn</a>
             </span>
         </div>
+    </footer>
 
-        <span class="trait" id="3"></span>
+    <!-- Script pour la recherche -->
+    <script>
+        function searchCoursesAndQuizzs() {
+            let input = document.getElementById('coursenquizz-search').value.toLowerCase();
+            let courseItems = document.querySelectorAll('#course_list .course_item');
+            let quizItems = document.querySelectorAll('#quiz_list .quiz');
 
-        <footer>
-            <div class="footer">
-                <span class="col1">
-                    <h3>
-                        <a href="#SchoolPea" style="color: white; text-decoration: none; font-weight: bolder; font-size: 30px;">SchoolPéa</a>
-                    </h3>
-                </span>
+            courseItems.forEach(item => {
+                let courseName = item.querySelector('h3').textContent.toLowerCase();
+                if (courseName.includes(input)) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+            });
 
-                <span class="col2">
-                    <h4>Schoolpéa</h4>
-                    <a href="index.php">Accueil</a>
-                    <a href="about.php">A propos</a>
-                </span>
-
-                <span class="col3">
-                    <h4>Contact</h4>
-                    <a href="mailto:schoolpea@outlook.com">E-mail</a>
-                    <a href="https://schoolpea.com/EasterEgg/">LinkedIn</a>
-                </span>
-            </div>
-        </footer>
-
-        <script>
-            function searchCoursesAndQuizzs() {
-                let input = document.getElementById('coursenquizz-search').value.toLowerCase();
-                let courseItems = document.querySelectorAll('#course_list .course_item');
-                let quizzItems = document.querySelectorAll('#quiz_list .course_item'); // Correction ici pour l'ID
-
-                courseItems.forEach(item => {
-                    let courseName = item.querySelector('h3').textContent.toLowerCase();
-                    if (courseName.includes(input)) {
-                        item.style.display = "";
-                    } else {
-                        item.style.display = "none";
-                    }
-                });
-
-                quizzItems.forEach(item => {
-                    let quizzName = item.querySelector('h3').textContent.toLowerCase();
-                    if (quizzName.includes(input)) {
-                        item.style.display = "";
-                    } else {
-                        item.style.display = "none";
-                    }
-                });
-            }
-        </script>
+            quizItems.forEach(item => {
+                let quizName = item.querySelector('h3').textContent.toLowerCase();
+                if (quizName.includes(input)) {
+                    item.style.display = "";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        }
+    </script>
 </body>
-
 </html>
