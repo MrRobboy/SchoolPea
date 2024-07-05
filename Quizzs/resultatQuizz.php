@@ -14,12 +14,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Vérifier si le score Elo a déjà été mis à jour pour ce quiz
-if (isset($_SESSION['quiz_score_updated']) && $_SESSION['quiz_score_updated'] === true) {
-    // Rediriger ou afficher un message pour éviter la manipulation par actualisation de page
-    exit();
-}
-
 // Vérifier si l'ID du quiz est spécifié dans l'URL
 if (!isset($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié.";
@@ -64,6 +58,20 @@ $bonnesReponses = 0;
 $totalQuestions = count($questions);
 $scoreParticipant = 0;
 
+// Récupérer le score Elo actuel de l'utilisateur
+$sql = "SELECT elo FROM USER WHERE id_USER = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$idUser]);
+$currentElo = $stmt->fetchColumn();
+
+// Vérifier si le score Elo actuel est défini
+if ($currentElo === false) {
+    // Gérer le cas où le score Elo actuel n'est pas récupéré correctement
+    // Vous pouvez choisir de définir une valeur par défaut ou de gérer l'erreur
+    // ici selon les besoins de votre application.
+    $currentElo = 0; // Exemple : Définir une valeur par défaut
+}
+
 // Fonction pour vérifier si une réponse est valide
 function isReponseValide($idQuestion, $userResponses, $dbh) {
     // Récupérer les choix corrects pour cette question
@@ -86,8 +94,6 @@ function isReponseValide($idQuestion, $userResponses, $dbh) {
 
 // Calculer le score du participant et mettre à jour les résultats du quiz
 foreach ($questions as $question) {
-    $correctlyAnswered = true; // Flag to track if question is correctly answered
-
     // Vérifier les réponses du participant pour cette question
     foreach ($userResponses as $response) {
         if ($response['id_question'] == $question['id_question']) {
@@ -98,46 +104,35 @@ foreach ($questions as $question) {
             $choice = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($choice) {
-                if ($choice['is_correct'] == 1 && $response['is_selected'] != 1) {
-                    $correctlyAnswered = false; // Incorrect choice selected
-                    break; // No need to check further
-                } elseif ($choice['is_correct'] == 0 && $response['is_selected'] == 1) {
-                    $correctlyAnswered = false; // Incorrect choice selected
-                    break; // No need to check further
+                if ($choice['is_correct'] == 1) {
+                    // Ajouter des points pour une réponse correcte
+                    $scoreParticipant += 10; // Exemple de points pour une réponse correcte
+                    $bonnesReponses++;
+                } else {
+                    // Déduire des points pour une réponse incorrecte (exemple)
+                    $scoreParticipant -= 5; // Exemple de pénalité pour une réponse incorrecte
                 }
             }
         }
     }
 
-    if ($correctlyAnswered) {
-        $bonnesReponses++;
+    // Vérifier si la réponse à la question est valide
+    $reponseValide = isReponseValide($question['id_question'], $userResponses, $dbh);
+
+    if ($reponseValide) {
+        $bonnesReponses += 1;
     }
 }
 
-// Calculer le pourcentage de bonnes réponses (limité à 100%)
-$pourcentageCorrect = ($totalQuestions > 0) ? min(round(($bonnesReponses / $totalQuestions) * 100, 2), 100) : 0;
+// Calculer le pourcentage de bonnes réponses
+$pourcentageCorrect = ($totalQuestions > 0) ? round(($bonnesReponses / $totalQuestions) * 100, 2) : 0;
 
 // Calculer le score Elo
 // Coefficient de gain, ajustable selon la sensibilité souhaitée
-$K = 42;
+$K = 32;
 
 // Calcul du nouveau score Elo
-if ($bonnesReponses > 0) {
-    // Récupérer le score Elo actuel de l'utilisateur
-    $sql = "SELECT elo FROM USER WHERE id_USER = ?";
-    $stmt = $dbh->prepare($sql);
-    $stmt->execute([$idUser]);
-    $currentElo = $stmt->fetchColumn();
-
-    // Vérifier si le score Elo actuel est défini
-    if ($currentElo === false) {
-        // Gérer le cas où le score Elo actuel n'est pas récupéré correctement
-        // Vous pouvez choisir de définir une valeur par défaut ou de gérer l'erreur
-        // ici selon les besoins de votre application.
-        $currentElo = 1000; // Exemple : Définir une valeur par défaut
-    }
-
-    // Calculer le nouveau score Elo en ajoutant les nouveaux points calculés
+if ($totalQuestions > 0) {
     $scoreParticipant = $currentElo + $K * ($bonnesReponses / $totalQuestions);
 }
 
@@ -145,13 +140,6 @@ if ($bonnesReponses > 0) {
 $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$scoreParticipant, $idUser]);
-
-
-// Marquer le quiz comme terminé pour cet utilisateur dans la session
-$_SESSION['quiz_score_updated'] = true;
-
-// Nettoyer le drapeau après la mise à jour du score Elo
-unset($_SESSION['quiz_score_updated']);
 
 ?>
 <!DOCTYPE html>
@@ -168,17 +156,7 @@ unset($_SESSION['quiz_score_updated']);
         
         <p>Nombre de bonnes réponses : <?php echo $bonnesReponses; ?> / <?php echo $totalQuestions; ?></p>
         <p>Pourcentage de bonnes réponses : <?php echo $pourcentageCorrect; ?>%</p>
-        
-        <?php
-        // Affichage du score Elo avec couleur selon l'augmentation ou la diminution
-        if ($scoreParticipant > $currentElo) {
-            echo '<h3>Votre score Elo: <span style="color: green;">' . round($scoreParticipant, 2) . '</span></h3>';
-        } elseif ($scoreParticipant < $currentElo) {
-            echo '<h3>Votre score Elo: <span style="color: red;">' . round($scoreParticipant, 2) . '</span></h3>';
-        } else {
-            echo '<h3>Votre score Elo: ' . round($scoreParticipant, 2) . '</h3>';
-        }
-        ?>
+        <h3>Votre score Elo: <?php echo round($scoreParticipant, 2); ?></h3>
     </div>
 </body>
 </html>
