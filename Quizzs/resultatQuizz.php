@@ -14,6 +14,12 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+// Vérifier si le score Elo a déjà été mis à jour pour ce quiz
+if (isset($_SESSION['quiz_score_updated']) && $_SESSION['quiz_score_updated'] === true) {
+    // Rediriger ou afficher un message pour éviter la manipulation par actualisation de page
+    exit();
+}
+
 // Vérifier si l'ID du quiz est spécifié dans l'URL
 if (!isset($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié.";
@@ -113,7 +119,7 @@ $pourcentageCorrect = ($totalQuestions > 0) ? min(round(($bonnesReponses / $tota
 
 // Calculer le score Elo
 // Coefficient de gain, ajustable selon la sensibilité souhaitée
-$K = 32;
+$K = 42;
 
 // Calcul du nouveau score Elo
 if ($bonnesReponses > 0) {
@@ -132,6 +138,12 @@ $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$scoreParticipant, $idUser]);
 
+// Marquer le quiz comme terminé pour cet utilisateur dans la session
+$_SESSION['quiz_score_updated'] = true;
+
+// Nettoyer le drapeau après la mise à jour du score Elo
+unset($_SESSION['quiz_score_updated']);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -147,7 +159,17 @@ $stmt->execute([$scoreParticipant, $idUser]);
         
         <p>Nombre de bonnes réponses : <?php echo $bonnesReponses; ?> / <?php echo $totalQuestions; ?></p>
         <p>Pourcentage de bonnes réponses : <?php echo $pourcentageCorrect; ?>%</p>
-        <h3>Votre score Elo: <?php echo round($scoreParticipant, 2); ?></h3>
+        
+        <?php
+        // Affichage du score Elo avec couleur selon l'augmentation ou la diminution
+        if ($scoreParticipant > $currentElo) {
+            echo '<h3>Votre score Elo: <span style="color: green;">' . round($scoreParticipant, 2) . '</span></h3>';
+        } elseif ($scoreParticipant < $currentElo) {
+            echo '<h3>Votre score Elo: <span style="color: red;">' . round($scoreParticipant, 2) . '</span></h3>';
+        } else {
+            echo '<h3>Votre score Elo: ' . round($scoreParticipant, 2) . '</h3>';
+        }
+        ?>
     </div>
 </body>
 </html>
