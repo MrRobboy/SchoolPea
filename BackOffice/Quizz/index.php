@@ -26,7 +26,7 @@ $quizzes = $stmt->fetchAll();
 
     <div id="content" style="width: 95%;">
         <h1 style="margin-bottom: 0.5em;">Gestion des Quizzs</h1>
-        <a href="https://schoolpea.com/Quizz/creerQuizz.php" class="btn add">Ajouter un Quizz</a>
+        <a href="https://schoolpea.com/Quizzs/createrQuizz.php" class="btn add">Ajouter un Quizz</a>
         <div id="table-classement" style="margin-top: 3em;">
             <table id="classement">
                 <thead>
