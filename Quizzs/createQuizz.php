@@ -3,7 +3,7 @@ include 'common.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,20 +24,9 @@ include 'common.php';
             <input type="file" name="quiz_image" id="quiz-image" accept="image/*">
 
             <div id="questions-container">
-                <div class="question" data-question-index="0">
-                    <label>Question:</label>
-                    <textarea name="questions[0][text]" required></textarea>
-                    <div class="choices">
-                        <div class="choice" data-choice-index="0">
-                            <label>Choice:</label>
-                            <input type="text" name="questions[0][choices][0][text]" required>
-                            <label>Correct:</label>
-                            <input type="checkbox" name="questions[0][choices][0][is_correct]">
-                        </div>
-                    </div>
-                    <button type="button" class="add-choice">Add Choice</button>
-                </div>
+                <!-- Placeholder for dynamic questions and choices -->
             </div>
+            
             <button type="button" id="add-question">Add Question</button>
             <button type="submit">Submit Quiz</button>
         </form>

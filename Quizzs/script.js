@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     let questionIndex = 0;
 
+    // Add initial question and choice elements
+    addQuestion();
+
     document.getElementById('add-question').addEventListener('click', () => {
         addQuestion();
     });
@@ -27,12 +30,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <button type="button" class="add-choice">Add Choice</button>
         `;
 
-        questionContainer.querySelector('.add-choice').addEventListener('click', function() {
-            addChoice(this.closest('.question'));
-        });
-
+        // Attach events for deleting questions and choices
         questionContainer.querySelector('.delete-question').addEventListener('click', function() {
             this.closest('.question').remove();
+        });
+
+        questionContainer.querySelector('.add-choice').addEventListener('click', function() {
+            addChoice(this.closest('.question'));
         });
 
         document.getElementById('questions-container').appendChild(questionContainer);
@@ -60,10 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         choicesContainer.appendChild(choiceElement);
     }
-
-    document.querySelector('.add-choice').addEventListener('click', function() {
-        addChoice(this.closest('.question'));
-    });
 
     document.addEventListener('click', (event) => {
         if (event.target && event.target.classList.contains('delete-question')) {
