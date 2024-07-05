@@ -57,7 +57,7 @@ $userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $bonnesReponses = 0;
 $totalQuestions = count($questions);
 
-
+// Fonction pour vérifier si une réponse est valide
 function isReponseValide($idQuestion, $userResponses, $dbh) {
     // Récupérer les choix corrects pour cette question
     $sql = "SELECT id_CHOIX FROM CHOIX WHERE id_question = ? AND is_correct = 1";
@@ -78,7 +78,6 @@ function isReponseValide($idQuestion, $userResponses, $dbh) {
     return ($correctChoices === $userChoices);
 }
 
-
 // Calculer le nombre de questions correctement répondues
 foreach ($questions as $question) {
     if (isReponseValide($question['id_question'], $userResponses, $dbh)) {
@@ -97,7 +96,7 @@ $currentElo = $stmt->fetchColumn();
 
 // Calculer le nouveau score Elo
 // Coefficient de gain, ajustable selon la sensibilité souhaitée
-$K = 32;
+$K = 42;
 
 // Calcul du nouveau score Elo
 $newElo = $currentElo + $K * ($bonnesReponses / $totalQuestions);
