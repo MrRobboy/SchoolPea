@@ -4,13 +4,15 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 require($path);
 
-$sql_courses = "SELECT * FROM COURS";
-$result_courses = $dbh->query($sql_courses);
-$courses = $result_courses->fetchAll(PDO::FETCH_ASSOC);
+// Fetching courses
+$sql = "SELECT * FROM COURS";
+$result = $dbh->query($sql);
+$courses = $result->fetchAll(PDO::FETCH_ASSOC);
 
-$sql_quizzes = "SELECT * FROM QUIZZ";
-$result_quizzes = $dbh->query($sql_quizzes);
-$quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
+// Fetching quizzes
+$sql = "SELECT * FROM QUIZZ";
+$result = $dbh->query($sql);
+$quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -74,6 +76,7 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
         <div class="fenetre">
             <div class="courses" id="course_list">
                 <?php if (!empty($courses)) : ?>
+                    <?php $courses = array_slice($courses, 0, 5); ?>
                     <?php foreach ($courses as $course) : ?>
                         <div class="course_item">
                             <h3 style="margin: 0;"><?php echo htmlspecialchars($course['nom']); ?></h3>
@@ -105,10 +108,11 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
             </span>
             <div id="div_quizz">
                 <div class="fenetre">
-                    <div class="courses" id="quiz_list">
+                    <div class="quizzes" id="quiz_list">
                         <?php if (!empty($quizzes)) : ?>
+                            <?php $quizzes = array_slice($quizzes, 0, 5); ?>
                             <?php foreach ($quizzes as $quiz) : ?>
-                                <div class="course_item">
+                                <div class="course_item"> <!-- Utilisation de la même classe CSS que pour les cours -->
                                     <h3><?php echo htmlspecialchars($quiz['nom']); ?></h3>
                                     <?php if (!empty($quiz['path_img_pres'])) : ?>
                                         <img src="<?php echo htmlspecialchars($quiz['path_img_pres']); ?>" class="img_pres" alt="Image de présentation">
@@ -157,7 +161,7 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
             function searchCoursesAndQuizzs() {
                 let input = document.getElementById('coursenquizz-search').value.toLowerCase();
                 let courseItems = document.querySelectorAll('#course_list .course_item');
-                let quizzItems = document.querySelectorAll('#quiz_list .course_item');
+                let quizzItems = document.querySelectorAll('#quiz_list .course_item'); // Correction ici pour l'ID
 
                 courseItems.forEach(item => {
                     let courseName = item.querySelector('h3').textContent.toLowerCase();
