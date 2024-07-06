@@ -39,16 +39,16 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
 
                         if ($resultPass) {
                                 echo 'MDP CHANGEE AVEC SUCCES';
-                                // header('Location: https://schoolpea.com/Compte/index.php?success=1');
+                                header('Location: https://schoolpea.com/Compte/index.php?success=1');
                         }
                 } else {
                         echo ('<br>Les nouveau mot de passes ne sont pas bons !');
-                        // header('Location: https://schoolpea.com/Compte/index.php?error_mdp=1');
+                        header('Location: https://schoolpea.com/Compte/index.php?error_mdp=1');
                 }
         } else {
                 $badCredentials = true;
                 echo '<br>triche';
-                // header('Location: https://schoolpea.com/Compte/index.php?error_mdp=1');
+                header('Location: https://schoolpea.com/Compte/index.php?error_mdp=1');
         }
 } else echo ('Mail non validé !!!!');
 
