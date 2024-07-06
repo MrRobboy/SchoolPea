@@ -33,19 +33,17 @@ p {
     font-size: 1.2rem;
     margin-bottom: 15px;
     line-height: 1.8;
+    color: #555;
 }
 
 .buttons {
     display: flex;
     justify-content: center;
-    /* Centre les boutons horizontalement */
     margin-top: 20px;
-    /* Espacement en haut des boutons */
 }
 
 .button-form {
     margin-right: 10px;
-    /* Espacement entre le bouton "Rejouer le Quiz" et les autres boutons */
 }
 
 .button {
@@ -132,4 +130,46 @@ h3 {
     h3 {
         font-size: 1.8rem;
     }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #121212;
+    /* Dark background color */
+    color: #e0e0e0;
+    /* Light text color */
+}
+
+.container.dark-mode {
+    background-color: #333;
+    /* Dark container background color */
+    color: #e0e0e0;
+    /* Light text color */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    /* Adjusted shadow for dark mode */
+}
+
+p.dark-mode {
+    color: #ccc;
+    /* Lighter text color for dark mode */
+}
+
+.button.dark-mode {
+    background-color: #673ab7;
+    /* Darker purple button color */
+}
+
+.button.dark-mode:hover {
+    background-color: #512da8;
+    /* Darker hover color */
+}
+
+.answer button.dark-mode {
+    background-color: #673ab7;
+    /* Darker purple button color */
+}
+
+.answer button.dark-mode:hover {
+    background-color: #512da8;
+    /* Darker hover color */
 }
