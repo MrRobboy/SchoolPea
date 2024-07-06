@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rejouer_quiz'])) {
     $stmt->execute([$idQuizz, $idUser]);
     
     // Rediriger vers la première question du quiz pour recommencer
-    header("Location: question.php?id_quizz=$idQuizz&num_question=1");
+    header("Location: participerQuizz.php?id_quizz=$idQuizz");
     exit();
 }
 
@@ -118,6 +118,11 @@ $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$newElo, $idUser]);
 
+// Récupérer le classement de l'utilisateur
+$sql = "SELECT FIND_IN_SET(elo, (SELECT GROUP_CONCAT(elo ORDER BY elo DESC) FROM USER)) AS rank FROM USER WHERE id_USER = ?";
+$stmt = $dbh->prepare($sql);
+$stmt->execute([$idUser]);
+$userelo = $stmt->fetchColumn();
 ?>
 
 <!DOCTYPE html>
@@ -138,7 +143,8 @@ $stmt->execute([$newElo, $idUser]);
         
         <!-- Boutons pour rejouer, accueil et classement -->
         <div class="buttons">
-            <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>" method="post">
+            <form action="" method="post">
+                <input type="hidden" name="rejouer_quiz" value="1">
                 <button type="submit">Rejouer le Quiz</button>
             </form>
             <a href="../index.php" class="button">Retour à l'accueil</a>
