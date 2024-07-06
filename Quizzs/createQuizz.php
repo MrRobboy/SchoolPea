@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crée ton Quizz</title>
-        <link rel="stylesheet" href="style.css">
+  
     <style>
         body {
             font-family: "Montserrat", sans-serif;
@@ -108,6 +108,113 @@
         .effacer-btn:hover {
             background-color: #d32f2f;
         }
+
+        .container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.8;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    /* Centre les boutons horizontalement */
+    margin-top: 20px;
+    /* Espacement en haut des boutons */
+}
+
+.button-form {
+    margin-right: 10px;
+    /* Espacement entre le bouton "Rejouer le Quiz" et les autres boutons */
+}
+
+.button {
+    display: inline-block;
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #3f51b5;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Styles spécifiques pour le quiz */
+.quiz-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.question-number {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #555;
+    font-weight: bold;
+}
+
+.question {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answer {
+    margin-bottom: 20px;
+}
+
+.answer button {
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    text-align: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.answer button:hover {
+    background-color: #3f51b5;
+}
+
     </style>
 </head>
 <body>
