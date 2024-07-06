@@ -41,6 +41,7 @@
 </head>
 
 <body>
+    <span class="trait"></span>
     <?php
     session_start(); // Démarrage de la session
 
