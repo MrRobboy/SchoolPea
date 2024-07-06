@@ -5,7 +5,11 @@ $badCredentials = false;
 $pass = htmlspecialchars($_POST['old_pass']);
 $email = htmlspecialchars($_SESSION['email']);
 
-include('db.php');
+$_POST;
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
+
 $dbh->exec('USE PA');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
