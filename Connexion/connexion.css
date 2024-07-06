@@ -6,7 +6,6 @@
 	box-sizing: border-box;
 }
 
-/* Variables pour les thèmes clair et sombre */
 :root {
 	--bg-color-light: #ffffff;
 	--text-color-light: #333333;
@@ -36,11 +35,13 @@ body {
 	justify-content: center;
 	flex-direction: column;
 	height: 100vh;
-	font-family: "Montserrat";
+	font-family: "Montserrat", sans-serif;
+	transition: background 0.3s, color 0.3s;
 }
 
 .container {
 	background-color: var(--bg-color);
+	color: var(--text-color);
 	border-radius: 30px;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 	position: relative;
@@ -48,12 +49,13 @@ body {
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
+	transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .container a {
-	color: var(--text-color);
-	font-size: 13px;
+	color: var(--accent-color);
 	text-decoration: none;
+	font-size: 13px;
 	margin: 15px 0 10px 0;
 }
 
@@ -69,11 +71,12 @@ body {
 	text-transform: uppercase;
 	margin-top: 10px;
 	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .container button.hidden {
 	background-color: transparent;
-	border-color: #fff;
+	border-color: var(--text-color);
 }
 
 .container form {
@@ -187,4 +190,35 @@ body {
 
 .container.Inscription .toggle-right {
 	transform: translateX(-200%);
+}
+
+/* Styles spécifiques pour le mode sombre */
+body.dark-mode {
+	--bg-color: var(--bg-color-dark);
+	--text-color: var(--text-color-dark);
+	--accent-color: var(--accent-color-dark);
+}
+
+.container.dark-mode {
+	background-color: var(--bg-color-dark);
+	color: var(--text-color-dark);
+	box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+.container.dark-mode a {
+	color: var(--accent-color-dark);
+}
+
+.container.dark-mode button {
+	background-color: var(--accent-color-dark);
+	border-color: transparent;
+}
+
+.container.dark-mode button.hidden {
+	border-color: var(--text-color-dark);
+}
+
+.container.dark-mode input {
+	background-color: #444;
+	color: #fff;
 }
