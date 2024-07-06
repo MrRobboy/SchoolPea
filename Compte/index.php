@@ -40,7 +40,7 @@ session_start();
 
                 <input type="hidden" name="max_size" value="1048576">
                 <label for="image_pp" id="But_Photo" class="btn">Charger une photo</label>
-                <input id="image_pp" type="file" name="img_pp">
+                <input id="image_pp" type="file" name="img_pp" hidden>q
             </span>
 
             <span id="Modif_Nom_Prenom">
