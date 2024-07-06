@@ -7,21 +7,17 @@
 }
 
 body {
-    background-color: #1a1a1a;
-    /* Dark background color */
-    color: #fff;
-    /* Light text color */
+    font-family: "Montserrat", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
-    font-family: "Montserrat", sans-serif;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+/* Styles communs pour les deux modes */
 .container {
-    background-color: #333;
-    /* Dark container background color */
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -34,12 +30,10 @@ body {
     justify-content: center;
     padding: 20px;
     text-align: center;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-h2,
-p {
-    color: #fff;
-    /* Light text color */
+h2, p {
     margin-bottom: 20px;
 }
 
@@ -51,37 +45,29 @@ form {
 }
 
 input {
-    background-color: #555;
-    /* Darker input background color */
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
     width: 100%;
-    color: #fff;
-    /* Light text color */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 #card-element {
     padding: 10px;
-    border: 1px solid #777;
-    /* Slightly lighter border color */
     border-radius: 4px;
     width: 100%;
     max-width: 400px;
     margin: 10px auto;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 #card-errors {
-    color: red;
     margin-top: 10px;
 }
 
 button {
-    background-color: #512da8;
-    /* Purple button color */
-    color: #fff;
     font-size: 12px;
     padding: 10px 45px;
     border: 1px solid transparent;
@@ -91,34 +77,58 @@ button {
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Dark mode specific styles */
+/* Mode sombre */
 body.dark-mode {
-    background-color: #121212;
-    /* Darker background color */
-    color: #e0e0e0;
-    /* Light text color */
+    background-color: #1a1a1a;
+    color: #fff;
 }
 
 body.dark-mode .container {
-    background-color: #1f1f1f;
-    /* Darker container background color */
+    background-color: #333;
 }
 
-body.dark-mode h2,
-body.dark-mode p,
-body.dark-mode input,
+body.dark-mode input {
+    background-color: #555;
+    color: #fff;
+}
+
 body.dark-mode #card-element {
     color: #e0e0e0;
-    /* Light text color */
     background-color: #333;
-    /* Darker input background color */
-    border-color: #555;
-    /* Darker border color */
+    border-color: #777;
 }
 
 body.dark-mode button {
-    background-color: #673ab7;
-    /* Darker purple button color */
+    background-color: #512da8;
+    color: #fff;
+}
+
+/* Mode clair */
+body.light-mode {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+body.light-mode .container {
+    background-color: #fff;
+}
+
+body.light-mode input {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+body.light-mode #card-element {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+body.light-mode button {
+    background-color: #007bff;
+    color: #fff;
 }
