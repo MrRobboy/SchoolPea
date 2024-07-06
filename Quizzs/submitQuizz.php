@@ -2,20 +2,33 @@
 include 'common.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $quizName = $_POST['quiz_name'];
-    $quizDescription = $_POST['quiz_description'];
+    // Debugging
+    echo "<pre>";
+    print_r($_POST);
+    print_r($_FILES);
+    echo "</pre>";
 
-    // Handle file upload
-    $target_dir = "/var/www/html/SchoolPea/Quizzs/uploads/";
-    $fileName = uniqid() . "_" . basename($_FILES["quiz_image"]["name"]);
-    $target_storage = "https://schoolpea.com/Quizzs/uploads/" . $fileName;
-    $targetFile = $target_dir . $fileName;
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    $quizName = isset($_POST['quiz_name']) ? $_POST['quiz_name'] : null;
+    $quizDescription = isset($_POST['quiz_description']) ? $_POST['quiz_description'] : null;
+    $quizImage = isset($_FILES['quiz_image']) ? $_FILES['quiz_image'] : null;
 
-    // Check if image file is a actual image or fake image
-    if (isset($_FILES["quiz_image"]) && $_FILES["quiz_image"]["tmp_name"] != "") {
-        $check = getimagesize($_FILES["quiz_image"]["tmp_name"]);
+    // Check required fields
+    if ($quizName === null) {
+        echo "Quiz name is required.";
+        exit;
+    }
+
+    if ($quizDescription === null) {
+        echo "Quiz description is required.";
+        exit;
+    }
+
+    if ($quizImage !== null) {
+        $targetDir = "uploads/";
+        $targetFile = $targetDir . basename($quizImage["name"]);
+        $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+
+        $check = getimagesize($quizImage["tmp_name"]);
         if ($check !== false) {
             $uploadOk = 1;
         } else {
@@ -23,27 +36,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $uploadOk = 0;
         }
 
-        // Check file size
-        if ($_FILES["quiz_image"]["size"] > 500000) {
+        if ($quizImage["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
 
-        // Allow certain file formats
-        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        if (!in_array($imageFileType, ['jpg', 'png', 'jpeg', 'gif'])) {
             echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
             $uploadOk = 0;
         }
 
-        // Check if $uploadOk is set to 0 by an error
-        if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
-        } else {
-            if (move_uploaded_file($_FILES["quiz_image"]["tmp_name"], $targetFile)) {
-                echo "The file " . htmlspecialchars(basename($_FILES["quiz_image"]["name"])) . " has been uploaded.";
+        if ($uploadOk == 1) {
+            if (move_uploaded_file($quizImage["tmp_name"], $targetFile)) {
+                $target_storage = $targetFile;
+                echo "The file " . htmlspecialchars(basename($quizImage["name"])) . " has been uploaded.";
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
+        } else {
+            $target_storage = null;
         }
     } else {
         $target_storage = null;
