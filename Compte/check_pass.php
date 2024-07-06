@@ -33,7 +33,7 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
                         $result = $queryLogs->execute();
 
                         $Change_pass = $dbh->prepare('UPDATE USER SET pass=:pass where email=:email');
-                        $Change_pass->bindvalue(':pass', $_POST['new_pass']);
+                        $Change_pass->bindvalue(':pass', password_hash($_POST['new_pass'], PASSWORD_DEFAULT));
                         $Change_pass->bindvalue(':email', $_SESSION['email']);
                         $resultPass = $Change_pass->execute();
 
