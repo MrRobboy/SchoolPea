@@ -151,7 +151,7 @@ $userelo = $stmt->fetchColumn();
         <div class="buttons">
             <form action="" method="post">
                 <input type="hidden" name="rejouer_quiz" value="1">
-                <button type="submit">Rejouer le Quiz</button>
+                <button type="submit" class="button">Rejouer le Quiz</button>
             </form>
             <a href="../index.php" class="button">Retour à l'accueil</a>
             <a href="../../Classement/index.php" class="button">Voir le Classement</a>
