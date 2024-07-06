@@ -12,7 +12,7 @@
         <input type="file" name="pp_file" id="image" placeholder="Send" hidden>
         <input type="hidden" name="max_size" value="1048576">
 
-        <input type="submit" placeholder="Soumettre">
+        <input type="submit" Value="Soumettre">
     </form>
 </body>
 
