@@ -24,6 +24,8 @@ session_start();
 
     <span class="trait" id="SchoolPea"></span>
 
+    <?php if (!empty($_GET['error_mail'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">MAIL DEJA EXISTANT!</p>'; ?>
+
     <div id="div1">
         <form method="post" id="Info_gen" action="apply_edit.php">
             <span id="Titre_Info_gen">
@@ -33,6 +35,7 @@ session_start();
 
             <span id="Modif_Photo">
                 <img src="<?php echo $_SESSION['path_pp']; ?>" id="PP">
+
                 <input type="hidden" name="max_size" value="1048576">
                 <label for="image_pp" id="But_Photo" class="btn">Charger une photo</label>
                 <input id="image_pp" type="file" name="img_pp" hidden>
