@@ -14,8 +14,10 @@ $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
 $fileName = uniqid();
 $target_file = $target_dir . $fileName;
 
-echo '<br>TARGET DIR : ' . $target_dir;
-echo '<br>TARGET FILE : ' . $target_file;
+echo '<br>';
+echo 'FILES<pre>';
+print_r($_FILES);
+echo '</pre>';
 
 echo 'POST<pre>';
 print_r($_POST);
@@ -36,11 +38,13 @@ echo 'INFO USER<pre>';
 print_r($userInfo);
 echo '</pre>';
 
+$fileUploaded = false;
 
 if (!empty($_FILES['img_pp'])) {
     $fileName .= "_" . basename($_FILES["img_pp"]["name"]);
     echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
+        $fileUploaded = true;
         $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
         if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
     } else {
@@ -54,9 +58,9 @@ echo '<br>TARGET DIR : ' . $target_dir;
 echo '<br>TARGET FILE : ' . $target_file;
 echo '<br>TARGET STORAGE : ' . $target_storage;
 
-if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $target_storage and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
+if ($userInfo[0]['email'] == $_POST['email'] and !$fileUploaded and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
-    header('Location: https://schoolpea.com/Compte/index.php');
+    // header('Location: https://schoolpea.com/Compte/index.php');
 } else {
     /*Ici il y a forcément eu une modification ! */
     if ($userInfo[0]['email'] != $_POST['email']) {
@@ -86,7 +90,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $tar
         echo '<br>' . $result;
         $_GET['success'] = 1;
         echo '<br>success';
-        header('Location: https://schoolpea.com/Compte/index.php?success=1');
+        // header('Location: https://schoolpea.com/Compte/index.php?success=1');
     } else {
         echo $result;
         echo '<br>error wtf';
