@@ -40,7 +40,7 @@
     </style>
 </head>
 
-<body style="padding:10em 0 5em 0;">
+<body>
     <span class="trait"></span>
     <?php
     session_start(); // Démarrage de la session
@@ -70,7 +70,7 @@
         $cours = $stmt->fetch(PDO::FETCH_ASSOC);
     ?>
 
-        <div class="content-container">
+        <div class="content-container" style="margin:10em 0 5em 0;">
             <h2><?php echo htmlspecialchars($cours['nom']); ?></h2>
             <p>Niveau : <?php echo htmlspecialchars($cours['niveau']); ?></p>
             <div class="cours-description"><?php echo htmlspecialchars($cours['description']); ?></div>
