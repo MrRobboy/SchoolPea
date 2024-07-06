@@ -27,12 +27,12 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
                 if ($_POST['new_pass'] == $_POST['confirm_new_pass']) {
                         $message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' A changé son mdp';
 
-                        $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
+                        $queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg)');
                         $queryLogs->bindvalue(':id_USER', $user[0]['id_USER']);
                         $queryLogs->bindvalue(':msg', $message);
                         $result = $queryLogs->execute();
 
-                        $Change_pass = $dbh->prepare('UPDATE USER SET pass:pass where email=:email;');
+                        $Change_pass = $dbh->prepare('UPDATE USER SET pass=:pass where email=:email');
                         $Change_pass->bindvalue(':pass', $_POST['new_pass']);
                         $Change_pass->bindvalue(':email', $_SESSION['email']);
                         $resultPass = $Change_pass->execute();
