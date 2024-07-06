@@ -243,9 +243,6 @@ h3 {
 }
 
 .remove-btn {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
     background-color: red;
     color: white;
     border: none;
@@ -253,7 +250,7 @@ h3 {
     padding: 0.3em 0.6em;
     border-radius: 0.5em;
     font-size: 0.9em;
-    z-index: 1;
+    margin-top: 0.5em;
 }
 
 .section .titre,
@@ -276,6 +273,7 @@ button[type="button"]:hover {
     background-color: #8493e8;
 }
 
+
     </style>
 </head>
 
@@ -296,129 +294,119 @@ button[type="button"]:hover {
         <label for="image_pres">Image de Présentation :</label>
         <input type="file" id="image_pres" name="image_pres" accept="image/*"><br><br>
 
-        <label for="description">Description :</label><br>
-        <textarea id="description" name="description" rows="4"></textarea><br><br>
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
 
-        <h3>Sections</h3>
+        <h3>Contenu des Sections :</h3>
+        <div id="sections"></div>
         <button type="button" id="ajouter_section">Ajouter une Section</button><br><br>
-
-        <div id="sections">
-            <!-- le script sera ici -->
-        </div><br>
 
         <input type="submit" value="Créer le Cours">
     </form>
 
     <script>
-        document.getElementById('ajouter_section').addEventListener('click', function() {
-            var sectionsDiv = document.getElementById('sections');
-            var nextSectionIndex = sectionsDiv.children.length;
+document.getElementById('ajouter_section').addEventListener('click', function() {
+    var sectionsDiv = document.getElementById('sections');
+    var nextSectionIndex = sectionsDiv.children.length;
 
-            var newSection = document.createElement('div');
-            newSection.className = 'section';
+    var newSection = document.createElement('div');
+    newSection.className = 'section';
 
-            var removeSectionButton = document.createElement('button');
-            removeSectionButton.className = 'remove-btn';
-            removeSectionButton.type = 'button';
-            removeSectionButton.textContent = 'Supprimer';
-            removeSectionButton.onclick = function() {
-                sectionsDiv.removeChild(newSection);
-            };
-            newSection.appendChild(removeSectionButton);
+    var sectionTitleInput = document.createElement('input');
+    sectionTitleInput.type = 'text';
+    sectionTitleInput.name = 'sections[' + nextSectionIndex + '][titre]';
+    sectionTitleInput.placeholder = 'Titre de la Section';
+    sectionTitleInput.required = true;
+    newSection.appendChild(sectionTitleInput);
 
-            var sectionTitleInput = document.createElement('input');
-            sectionTitleInput.type = 'text';
-            sectionTitleInput.name = 'sections[' + nextSectionIndex + '][titre]';
-            sectionTitleInput.placeholder = 'Titre de la Section';
-            sectionTitleInput.required = true;
-            newSection.appendChild(sectionTitleInput);
+    var addTitleButton = document.createElement('button');
+    addTitleButton.type = 'button';
+    addTitleButton.textContent = 'Ajouter un Titre';
+    addTitleButton.onclick = function() {
+        addTitle(newSection, nextSectionIndex);
+    };
+    newSection.appendChild(addTitleButton);
 
+    var removeSectionButton = document.createElement('button');
+    removeSectionButton.className = 'remove-btn';
+    removeSectionButton.type = 'button';
+    removeSectionButton.textContent = 'Supprimer';
+    removeSectionButton.onclick = function() {
+        sectionsDiv.removeChild(newSection);
+    };
+    newSection.appendChild(removeSectionButton);
 
-            var addTitleButton = document.createElement('button');
-            addTitleButton.type = 'button';
-            addTitleButton.textContent = 'Ajouter un Titre';
-            addTitleButton.onclick = function() {
-                addTitle(newSection, nextSectionIndex);
-            };
-            newSection.appendChild(addTitleButton);
+    var titlesDiv = document.createElement('div');
+    titlesDiv.className = 'titles';
+    newSection.appendChild(titlesDiv);
 
+    sectionsDiv.appendChild(newSection);
+});
 
-            var titlesDiv = document.createElement('div');
-            titlesDiv.className = 'titles';
-            newSection.appendChild(titlesDiv);
+function addTitle(sectionDiv, sectionIndex) {
+    var titlesDiv = sectionDiv.querySelector('.titles');
+    var nextTitleIndex = titlesDiv.children.length;
 
-            sectionsDiv.appendChild(newSection);
-        });
+    var newTitle = document.createElement('div');
+    newTitle.className = 'titre';
 
-        function addTitle(sectionDiv, sectionIndex) {
-            var titlesDiv = sectionDiv.querySelector('.titles');
-            var nextTitleIndex = titlesDiv.children.length;
+    var titleInput = document.createElement('input');
+    titleInput.type = 'text';
+    titleInput.name = 'sections[' + sectionIndex + '][titres][' + nextTitleIndex + '][titre]';
+    titleInput.placeholder = 'Titre';
+    titleInput.required = false;
+    newTitle.appendChild(titleInput);
 
-            var newTitle = document.createElement('div');
-            newTitle.className = 'titre';
+    var addParagrapheButton = document.createElement('button');
+    addParagrapheButton.type = 'button';
+    addParagrapheButton.textContent = 'Ajouter un Paragraphe';
+    addParagrapheButton.onclick = function() {
+        addParagraphe(newTitle, sectionIndex, nextTitleIndex);
+    };
+    newTitle.appendChild(addParagrapheButton);
 
+    var removeTitleButton = document.createElement('button');
+    removeTitleButton.className = 'remove-btn';
+    removeTitleButton.type = 'button';
+    removeTitleButton.textContent = 'Supprimer';
+    removeTitleButton.onclick = function() {
+        titlesDiv.removeChild(newTitle);
+    };
+    newTitle.appendChild(removeTitleButton);
 
-            var removeTitleButton = document.createElement('button');
-            removeTitleButton.className = 'remove-btn';
-            removeTitleButton.type = 'button';
-            removeTitleButton.textContent = 'Supprimer';
-            removeTitleButton.onclick = function() {
-                titlesDiv.removeChild(newTitle);
-            };
-            newTitle.appendChild(removeTitleButton);
+    var paragraphesDiv = document.createElement('div');
+    paragraphesDiv.className = 'paragraphes';
+    newTitle.appendChild(paragraphesDiv);
 
+    titlesDiv.appendChild(newTitle);
+}
 
-            var titleInput = document.createElement('input');
-            titleInput.type = 'text';
-            titleInput.name = 'sections[' + sectionIndex + '][titres][' + nextTitleIndex + '][titre]';
-            titleInput.placeholder = 'Titre';
-            titleInput.required = false;
-            newTitle.appendChild(titleInput);
+function addParagraphe(titleDiv, sectionIndex, titleIndex) {
+    var paragraphesDiv = titleDiv.querySelector('.paragraphes');
+    var nextParagrapheIndex = paragraphesDiv.children.length;
 
+    var newParagraphe = document.createElement('div');
+    newParagraphe.className = 'paragraphe';
 
-            var addParagrapheButton = document.createElement('button');
-            addParagrapheButton.type = 'button';
-            addParagrapheButton.textContent = 'Ajouter un Paragraphe';
-            addParagrapheButton.onclick = function() {
-                addParagraphe(newTitle, sectionIndex, nextTitleIndex);
-            };
-            newTitle.appendChild(addParagrapheButton);
+    var paragrapheTextarea = document.createElement('textarea');
+    paragrapheTextarea.name = 'sections[' + sectionIndex + '][titres][' + titleIndex + '][paragraphes][' + nextParagrapheIndex + ']';
+    paragrapheTextarea.placeholder = 'Paragraphe';
+    paragrapheTextarea.rows = 4;
+    paragrapheTextarea.required = false;
+    newParagraphe.appendChild(paragrapheTextarea);
 
+    var removeParagrapheButton = document.createElement('button');
+    removeParagrapheButton.className = 'remove-btn';
+    removeParagrapheButton.type = 'button';
+    removeParagrapheButton.textContent = 'Supprimer';
+    removeParagrapheButton.onclick = function() {
+        paragraphesDiv.removeChild(newParagraphe);
+    };
+    newParagraphe.appendChild(removeParagrapheButton);
 
-            var paragraphesDiv = document.createElement('div');
-            paragraphesDiv.className = 'paragraphes';
-            newTitle.appendChild(paragraphesDiv);
+    paragraphesDiv.appendChild(newParagraphe);
+}
 
-            titlesDiv.appendChild(newTitle);
-        }
-
-        function addParagraphe(titleDiv, sectionIndex, titleIndex) {
-            var paragraphesDiv = titleDiv.querySelector('.paragraphes');
-            var nextParagrapheIndex = paragraphesDiv.children.length; // Index du prochain paragraphe à ajouter
-
-            var newParagraphe = document.createElement('div');
-            newParagraphe.className = 'paragraphe';
-
-
-            var removeParagrapheButton = document.createElement('button');
-            removeParagrapheButton.className = 'remove-btn';
-            removeParagrapheButton.type = 'button';
-            removeParagrapheButton.textContent = 'Supprimer';
-            removeParagrapheButton.onclick = function() {
-                paragraphesDiv.removeChild(newParagraphe);
-            };
-            newParagraphe.appendChild(removeParagrapheButton);
-
-
-            var paragrapheTextarea = document.createElement('textarea');
-            paragrapheTextarea.name = 'sections[' + sectionIndex + '][titres][' + titleIndex + '][paragraphes][' + nextParagrapheIndex + ']';
-            paragrapheTextarea.placeholder = 'Paragraphe';
-            paragrapheTextarea.rows = 4;
-            paragrapheTextarea.required = false;
-            newParagraphe.appendChild(paragrapheTextarea);
-
-            paragraphesDiv.appendChild(newParagraphe);
-        }
     </script>
 </body>
 
