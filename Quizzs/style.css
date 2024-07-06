@@ -12,7 +12,6 @@ body {
     height: 100vh;
     font-family: "Montserrat", sans-serif;
     margin: 0;
-    /* Ajout pour assurer aucune marge extérieure */
 }
 
 .trait {
@@ -62,7 +61,6 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     margin: 20px auto 0;
-    /* Ajout de marges top et bottom, auto pour centrer */
 }
 
 .course_item,
@@ -119,11 +117,12 @@ footer {
 .container {
     max-width: 900px;
     margin: 20px auto;
-    /* Ajout de marges top et bottom, auto pour centrer */
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Centre le texte dans le container */
 }
 
 h2 {
@@ -154,7 +153,8 @@ p {
     text-decoration: none;
     font-size: 1rem;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 20px;
+    /* Arrondi le bouton */
     transition: background-color 0.3s;
 }
 
@@ -191,4 +191,55 @@ h4 {
     h4 {
         font-size: 1.3rem;
     }
+}
+
+/* Styles spécifiques pour le quiz */
+.quiz-title {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+}
+
+.question-number {
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.question {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.answers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.answer {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.answer button {
+    background-color: #5c6bc0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 20px;
+    /* Arrondi le bouton */
+    transition: background-color 0.3s;
+}
+
+.answer button:hover {
+    background-color: #3f51b5;
 }
