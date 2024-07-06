@@ -47,7 +47,7 @@
     </style>
 </head>
 
-<body>
+<body style="padding-top: 2em;">
     <div id="Cours_Content">
         <?php
         session_start(); // Démarrage de la session
