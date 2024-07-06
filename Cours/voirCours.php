@@ -40,6 +40,7 @@
 
         #Cours_Content {
             padding: 5em;
+            margin: 5em;
         }
     </style>
 </head>
