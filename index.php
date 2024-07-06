@@ -4,11 +4,9 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 require($path);
 
-
 $sql_courses = "SELECT * FROM COURS LIMIT 6";
 $result_courses = $dbh->query($sql_courses);
 $courses = $result_courses->fetchAll(PDO::FETCH_ASSOC);
-
 
 $sql_quizzes = "SELECT * FROM QUIZZ LIMIT 6";
 $result_quizzes = $dbh->query($sql_quizzes);
@@ -100,8 +98,6 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
         </span>
     </div>
 
-
-
     <span class="trait" id="2"></span>
 
     <div id="Quizz_section">
@@ -134,7 +130,6 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
         </span>
     </div>
 
-
     <span class="trait" id="3"></span>
 
     <footer>
@@ -164,7 +159,7 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
         function searchCoursesAndQuizzs() {
             let input = document.getElementById('coursenquizz-search').value.toLowerCase();
             let courseItems = document.querySelectorAll('#course_list .course_item');
-            let quizItems = document.querySelectorAll('#quiz_list .quiz');
+            let quizItems = document.querySelectorAll('#quiz_list .course_item');
 
             courseItems.forEach(item => {
                 let courseName = item.querySelector('h3').textContent.toLowerCase();
