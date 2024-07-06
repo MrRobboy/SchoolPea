@@ -51,7 +51,7 @@ if (!empty($_FILES['img_pp'])) {
     echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
         $fileUploaded = true;
-        $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
+        $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $CorrectName;
         if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
     } else {
         $target_storage = $userInfo[0]['path_pp'];
