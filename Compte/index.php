@@ -93,7 +93,7 @@ session_start();
                 </span>
             </span>
 
-            <span id="BUT_DEL" style="margin: 1em 0 2em 0;">
+            <span id="BUT_DEL" style="margin: 1em 0 1.5em 0;">
                 <a id="But_Delete_Acc" href="#">Supprimer le compte</a>
             </span>
         </div>
