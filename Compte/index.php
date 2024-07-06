@@ -82,12 +82,12 @@ session_start();
 
     <div id="div2">
         <div style="padding: 2em;">
-            <span style="display: flex; flex-direction: row;">
+            <span style="display: flex; flex-direction: row;margin: 0 0 1.5em 0;">
                 <span>
                     <img src="../../Images/exclamation.svg" id="Exclamation">
                 </span>
 
-                <span id="Delete_Acc" style="margin: 0 0 1.5em 0;">
+                <span id="Delete_Acc">
                     <span id="Titre_Delete_Acc">Supprimer votre compte</span>
                     <span id="Text_Delete_Acc">Si vous supprimez votre compte, vous en perdrez l'accès définitif sans possibilité de le récupérer. Vos données personnelles et vos progrès seront effacés et perdus, de même que tout abonnement en cours.</span>
                 </span>
