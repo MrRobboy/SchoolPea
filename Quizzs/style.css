@@ -108,27 +108,6 @@ textarea {
     margin-bottom: 1em;
 }
 
-
-
-@media (max-width: 576px) {
-    .container {
-        width: 100%;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    h3 {
-        font-size: 1.2em;
-    }
-
-    button {
-        font-size: 0.9em;
-        padding: 0.4em 1.5em;
-    }
-}
-
 /* Section de quiz */
 #quiz-form {
     margin-top: 1em;
@@ -142,7 +121,6 @@ textarea {
     margin-bottom: 1.5em;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    /* Centrer le texte */
 }
 
 .choices {
@@ -155,9 +133,10 @@ textarea {
     margin-bottom: 1em;
 }
 
-.choice input[type="radio"] {
+.choice input[type="radio"],
+.choice input[type="checkbox"] {
     display: none;
-    /* Cacher les boutons radio par défaut */
+    /* Cacher les boutons radio et checkbox par défaut */
 }
 
 .choice label {
@@ -184,9 +163,12 @@ textarea {
     transition: background-color 0.3s ease;
 }
 
-.choice input[type="radio"]:checked+label:before {
+.choice input[type="radio"]:checked+label:before,
+.choice input[type="checkbox"]:checked+label:before {
     background-color: #6b7ad2;
     /* Couleur de pastille cochée */
+    border-color: #6b7ad2;
+    /* Couleur de bordure cochée */
 }
 
 .choice label:hover:before {
