@@ -8,17 +8,15 @@ body {
 }
 
 .trait {
-    padding: 0.2em 20em;
+    padding: 0.2em 5em;
     border-radius: 3em;
-    justify-content: center;
     background-color: transparent;
     margin-bottom: 10em;
-    margin-top: 0em;
 }
 
 #div1 {
     padding: 20px;
-    margin: 4em;
+    margin: 4em auto;
 }
 
 h1 {
@@ -31,7 +29,7 @@ nav ul {
 }
 
 nav ul li {
-    display: inline;
+    display: inline-block;
     margin: 0 10px;
 }
 
@@ -109,7 +107,6 @@ footer {
     font-size: 16px;
 }
 
-
 .container {
     max-width: 900px;
     margin: 0 auto;
@@ -124,6 +121,7 @@ h2 {
 p {
     font-size: 1.2rem;
     margin-bottom: 15px;
+    line-height: 1.8;
 }
 
 .cours-description {
@@ -160,11 +158,6 @@ h4 {
     margin-bottom: 10px;
 }
 
-p {
-    margin-bottom: 15px;
-    line-height: 1.8;
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
@@ -182,15 +175,4 @@ p {
     h4 {
         font-size: 1.3rem;
     }
-}
-
-/* Footer */
-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
 }
