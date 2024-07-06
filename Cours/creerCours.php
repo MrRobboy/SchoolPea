@@ -132,7 +132,7 @@ $dbh = null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Cours</title>
     <style>
- @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 html {
     scroll-behavior: smooth;
@@ -253,6 +253,7 @@ h3 {
     padding: 0.3em 0.6em;
     border-radius: 0.5em;
     font-size: 0.9em;
+    z-index: 1;
 }
 
 .section .titre,
