@@ -10,22 +10,22 @@ if (empty($_SESSION['mail_valide'])) {
     header('Location: https://schoolpea.com/Connexion');
 }
 
-echo '<pre>';
+echo 'POST<pre>';
 print_r($_POST);
 echo '</pre>';
 
-echo '<pre>';
+echo 'SESSION<pre>';
 print_r($_SESSION);
 echo '</pre>';
 
 $dbh->exec('USE PA');
 
 $stmt = $dbh->prepare("SELECT * FROM USER where id_USER=:id");
-$stmt->bindvalue(':id', $_SESSION['id_USER']);
+$stmt->bindvalue(':id', $_SESSION['id_user']);
 $stmt->execute();
 $userInfo = $stmt->fetchAll();
 
-echo '<pre>';
+echo 'INFO USER<pre>';
 print_r($userInfo);
 echo '</pre>';
 
