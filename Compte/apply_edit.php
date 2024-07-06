@@ -40,8 +40,10 @@ echo '</pre>';
 
 
 $fileUploaded = false;
-$CorrectName = str_replace(" ", "_", $_FILES["img_pp"]["name"]);
-$CorrectName = str_replace("'", "_", $_FILES["img_pp"]["name"]);
+$CorrectName = str_replace(" ", "_", $_FILES["img_pp"]["name"], $compteur);
+$CorrectName = str_replace("'", "_", $_FILES["img_pp"]["name"], $compteur2);
+
+echo '<br>' . $compteur . '<br>' . $compteur2;
 
 echo 'CORRECT NAME : ' . $CorrectName;
 
