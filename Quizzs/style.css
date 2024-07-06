@@ -1,216 +1,178 @@
-/* Reset des styles par défaut */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-/* Police principale */
 body {
     font-family: "Montserrat", sans-serif;
-    background-color: #ffffff;
-    /* Couleur de fond principale */
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+.trait {
+    padding: 0.2em 5em;
+    border-radius: 3em;
+    background-color: transparent;
+    margin-bottom: 10em;
+}
+
+#div1 {
+    padding: 20px;
+    margin: 4em auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.courses,
+.quizzes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 0 auto;
+}
+
+.course_item,
+.quiz {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.course_item img,
+.quiz img {
+    max-width: 150px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.course_item h3,
+.quiz h2 {
+    margin: 10px 0;
+}
+
+.course_item a,
+.quiz a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #5c6bc0;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.course_item a:hover,
+.quiz a:hover {
+    background-color: #3f51b5;
+}
+
+#search {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 .container {
-    width: 90%;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 2em 0;
+    padding: 20px;
 }
 
 h2 {
-    text-align: center;
-    font-size: 2em;
-    font-weight: 600;
-    margin-bottom: 1em;
-}
-
-h3 {
-    font-size: 1.5em;
-    font-weight: 500;
-    margin-bottom: 0.5em;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 p {
-    margin-bottom: 1em;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.8;
 }
 
-/* Liens */
-a {
-    text-decoration: none;
-    color: #6b7ad2;
-    /* Couleur des liens */
-    transition: color 0.3s ease;
+.cours-description {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
 }
 
-a:hover {
-    color: #374599;
-    /* Couleur des liens au survol */
-}
-
-/* Boutons */
-button {
-    background-color: #6b7ad2;
-    color: #ffffff;
+.button {
+    display: inline-block;
+    background-color: #5c6bc0;
+    color: white;
     border: none;
-    border-radius: 2em;
-    padding: 0.5em 2em;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #374599;
-}
-
-/* Formulaires */
-form {
-    margin-bottom: 1.5em;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5em;
-    font-weight: 600;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-textarea,
-select {
-    width: 100%;
-    padding: 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
-    margin-bottom: 1em;
-    font-size: 1em;
-}
-
-textarea {
-    resize: vertical;
-    min-height: 100px;
-}
-
-/* Sections spécifiques */
-
-/* Section de connexion */
-#login-section {
-    background-color: #f0f0f0;
-    padding: 2em;
-    border-radius: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#error-message {
-    color: red;
-    margin-bottom: 1em;
-}
-
-/* Section de quiz */
-#quiz-form {
-    margin-top: 1em;
-}
-
-.question {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    border-radius: 1em;
-    padding: 1.5em;
-    margin-bottom: 1.5em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px;
     text-align: center;
-}
-
-.choices {
-    margin-top: 1em;
-}
-
-.choice {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1em;
-}
-
-.choice input[type="radio"],
-.choice input[type="checkbox"] {
-    display: none;
-    /* Cacher les boutons radio et checkbox par défaut */
-}
-
-.choice label {
-    position: relative;
-    padding-left: 2em;
-    /* Marge à gauche pour la pastille */
+    text-decoration: none;
+    font-size: 1rem;
     cursor: pointer;
-    font-size: 1em;
-    user-select: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
 }
 
-.choice label:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 1.2em;
-    height: 1.2em;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    /* Forme de pastille ronde */
-    background-color: #ffffff;
-    /* Couleur de fond */
-    transition: background-color 0.3s ease;
+.button:hover {
+    background-color: #3f51b5;
 }
 
-.choice input[type="radio"]:checked+label:before,
-.choice input[type="checkbox"]:checked+label:before {
-    background-color: #6b7ad2;
-    /* Couleur de pastille cochée */
-    border-color: #6b7ad2;
-    /* Couleur de bordure cochée */
+h3 {
+    font-size: 2rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
 }
 
-.choice label:hover:before {
-    border-color: #6b7ad2;
-    /* Couleur de bordure au survol */
+h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
 }
 
-.add-choice {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 0.5em;
-    padding: 0.3em 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 0.5em;
-}
-
-.add-choice:hover {
-    background-color: #388e3c;
-}
-
-.delete-question,
-.delete-choice {
-    background-color: #9e9e9e;
-    color: white;
-    border: none;
-    border-radius: 0.5em;
-    padding: 0.3em 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 0.5em;
-}
-
-.delete-question:hover,
-.delete-choice:hover {
-    background-color: #757575;
-}
-
-/* Media queries */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .question {
-        padding: 1em;
+    .container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.8rem;
+    }
+
+    h4 {
+        font-size: 1.3rem;
     }
 }
