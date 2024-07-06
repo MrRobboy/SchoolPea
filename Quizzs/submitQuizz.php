@@ -6,9 +6,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quizDescription = $_POST['quiz_description'];
 
     // Handle file upload
-    $targetDir = "uploads/";
+    $target_dir = "/var/www/html/SchoolPea/Quizzs/uploads/";
     $fileName = basename($_FILES["quiz_image"]["name"]);
-    $targetFile = $targetDir . uniqid() . "_" . $fileName;
+    $targetFile = $target_dir . uniqid() . "_" . $fileName;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
@@ -73,4 +73,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "Quiz created successfully!";
 }
-?>
