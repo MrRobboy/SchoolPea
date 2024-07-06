@@ -1,5 +1,7 @@
 <?php
 session_start();
+session_unset();
+session_destroy();
 $_GET;
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
