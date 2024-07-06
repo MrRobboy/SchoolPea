@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
 </head>
 
-<header <?php if ($_SESSION['role'] == 'admin') echo 'class="admin"'; ?>>
+<header <?php if ($_SESSION['role'] == 'admin') echo 'class="admin"';
+        elseif ($_SESSION['role'] == 'prof') echo 'class="prof"'; ?>>
     <div id="accueil">
         <a href="https://schoolpea.com/#SchoolPea">
             <img id="logo_header" src="https://schoolpea.com/Images/SchoolPea.png" />
@@ -48,6 +49,8 @@
                 <a class="lien_header" href="https://schoolpea.com/Compte/">Mon compte</a>
                 <a class="lien_header" href="https://schoolpea.com/Tickets/">Faire un ticket</a>
                 <a class="lien_header" href="https://schoolpea.com/Chat/">Chat</a>
+                <?php if ($_SESSION['role'] == 'prof') echo '<a class="lien_header" href="https://schoolpea.com/Cours/creerCours.php">Créer un Cours</a>'; ?>
+                <?php if ($_SESSION['role'] == 'prof') echo '<a class="lien_header" href="https://schoolpea.com/Quizzs/createQuizz.php">Créer un Quizz</a>'; ?>
                 <a class="lien_header" style="background-color:red; color: white;" href="https://schoolpea.com/BackEnd/logout.php">Déconnexion</a>
             </div>
         </span>
