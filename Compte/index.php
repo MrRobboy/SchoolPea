@@ -56,7 +56,7 @@ session_start();
             </span>
 
             <span style="margin: 1em 0;">
-                <input type="submit" id="Sauvegarde_modif" value="Sauvegarder Les modifications"></input>
+                <input type="submit" id="Sauvegarde_modif" value="Sauvegarder"></input>
             </span>
         </form>
 
@@ -76,7 +76,7 @@ session_start();
                 <span class="Text_Modif_mdp">Confirmer le Mot de Passe</span>
                 <input type="password" class="Input_Mdp_modif_div" placeholder="Confirm Password"></input>
             </div>
-            <input type="submit" value="Changer de mot de passe" id="Sauvegarde_modif_mdp"></input>
+            <input type="submit" value="Sauvegarder" id="Sauvegarde_modif_mdp"></input>
         </form>
     </div>
 
