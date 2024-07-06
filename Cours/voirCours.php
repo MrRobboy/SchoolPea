@@ -42,7 +42,7 @@
 
 <body>
     <?php
-    include 'header.php';
+    include '../headerL.php';
 
     session_start(); // Démarrage de la session si ce n'est pas déjà fait
 
