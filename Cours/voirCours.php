@@ -41,8 +41,15 @@
 </head>
 
 <body>
-    <?php
-    include 'header.php';
+        <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
+        $path .= '/headerL.php';
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+    }
+    include($path);
+    
 
     session_start(); // Démarrage de la session si ce n'est pas déjà fait
 
