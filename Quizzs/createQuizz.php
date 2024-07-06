@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Quiz</title>
-    <link rel="stylesheet" href="style.css"> <!-- Lien vers le fichier style.css commun -->
-
+    <link rel="stylesheet" href="style.css">
     <style>
         /* Styles spécifiques à la page de création de quiz */
         body {
@@ -19,13 +17,11 @@
             margin: 0;
             padding: 2em;
         }
-
         h2 {
             color: #374599;
             font-weight: 700;
             margin-bottom: 1em;
         }
-
         form {
             background-color: #ffffff;
             border-radius: 2em;
@@ -34,14 +30,12 @@
             max-width: 800px;
             width: 100%;
         }
-
         label {
             display: block;
             margin-bottom: 0.5em;
             color: #374599;
             font-weight: 500;
         }
-
         input[type="text"],
         textarea,
         select {
@@ -53,7 +47,6 @@
             box-sizing: border-box;
             font-family: "Montserrat", sans-serif;
         }
-
         input[type="submit"] {
             background-color: #8493e8;
             color: white;
@@ -64,17 +57,14 @@
             font-weight: 600;
             font-size: 1em;
         }
-
         input[type="submit"]:hover {
             background-color: #374599;
         }
-
         h3 {
             color: #374599;
             font-weight: 600;
             margin-bottom: 1em;
         }
-
         .question {
             background-color: #f9f9f9;
             margin-bottom: 1.5em;
@@ -83,7 +73,6 @@
             padding: 1em;
             position: relative;
         }
-
         .question input[type="text"],
         .question textarea {
             width: calc(100% - 2.5em);
@@ -92,7 +81,6 @@
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
-
         .answer {
             background-color: #f0f0f0;
             margin-bottom: 0.5em;
@@ -100,7 +88,6 @@
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
-
         .answer input[type="text"] {
             width: calc(100% - 2.5em);
             padding: 0.3em;
@@ -108,7 +95,6 @@
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
-
         .remove-btn {
             background-color: red;
             color: white;
@@ -119,7 +105,6 @@
             font-size: 0.9em;
             margin-top: 0.5em;
         }
-
         .add-answer-btn {
             background-color: #6b7ad2;
             color: white;
@@ -130,22 +115,22 @@
             font-size: 0.9em;
             margin-top: 0.5em;
         }
-
         .add-answer-btn:hover {
             background-color: #8493e8;
         }
     </style>
 </head>
-
 <body>
     <h2>Création de Quiz</h2>
+    <form action="submitQuizz.php" method="POST" enctype="multipart/form-data">
+        <label for="quiz_name">Nom du Quiz :</label>
+        <input type="text" id="quiz_name" name="quiz_name" required><br><br>
 
-    <form action="submitQuizz.php" method="POST">
-        <label for="nom">Nom du Quiz :</label>
-        <input type="text" id="nom" name="nom" required><br><br>
+        <label for="quiz_description">Description :</label>
+        <textarea id="quiz_description" name="quiz_description" rows="4" required></textarea><br><br>
 
-        <label for="description">Description :</label>
-        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+        <label for="quiz_image">Image du Quiz :</label>
+        <input type="file" id="quiz_image" name="quiz_image" accept="image/jpeg, image/png, image/gif"><br><br>
 
         <h3>Questions :</h3>
         <div id="questions"></div>
@@ -167,7 +152,7 @@
             newQuestion.appendChild(questionLabel);
 
             var questionInput = document.createElement('textarea');
-            questionInput.name = 'questions[' + nextQuestionIndex + '][question]';
+            questionInput.name = 'questions[' + nextQuestionIndex + '][text]';
             questionInput.placeholder = 'Posez votre question ici';
             questionInput.required = true;
             newQuestion.appendChild(questionInput);
@@ -206,14 +191,14 @@
 
             var answerInput = document.createElement('input');
             answerInput.type = 'text';
-            answerInput.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][answer]';
+            answerInput.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][text]';
             answerInput.placeholder = 'Réponse';
             answerInput.required = true;
             newAnswer.appendChild(answerInput);
 
             var correctCheckbox = document.createElement('input');
             correctCheckbox.type = 'checkbox';
-            correctCheckbox.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][correct]';
+            correctCheckbox.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][is_correct]';
             correctCheckbox.id = 'correct_' + questionIndex + '_' + nextAnswerIndex;
             newAnswer.appendChild(correctCheckbox);
 
@@ -235,5 +220,4 @@
         }
     </script>
 </body>
-
 </html>

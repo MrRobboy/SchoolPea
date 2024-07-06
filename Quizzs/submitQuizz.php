@@ -14,35 +14,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
     // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["quiz_image"]["tmp_name"]);
-    if ($check !== false) {
-        $uploadOk = 1;
-    } else {
-        echo "File is not an image.";
-        $uploadOk = 0;
-    }
-
-    // Check file size
-    if ($_FILES["quiz_image"]["size"] > 500000) {
-        echo "Sorry, your file is too large.";
-        $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-        $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    } else {
-        if (move_uploaded_file($_FILES["quiz_image"]["tmp_name"], $targetFile)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["quiz_image"]["name"])) . " has been uploaded.";
+    if (isset($_FILES["quiz_image"]) && $_FILES["quiz_image"]["tmp_name"] != "") {
+        $check = getimagesize($_FILES["quiz_image"]["tmp_name"]);
+        if ($check !== false) {
+            $uploadOk = 1;
         } else {
-            echo "Sorry, there was an error uploading your file.";
+            echo "File is not an image.";
+            $uploadOk = 0;
         }
+
+        // Check file size
+        if ($_FILES["quiz_image"]["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+
+        // Allow certain file formats
+        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+            echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Sorry, your file was not uploaded.";
+        } else {
+            if (move_uploaded_file($_FILES["quiz_image"]["tmp_name"], $targetFile)) {
+                echo "The file " . htmlspecialchars(basename($_FILES["quiz_image"]["name"])) . " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+    } else {
+        $target_storage = null;
     }
 
     // SQL to insert quiz details
@@ -61,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             $questionId = $dbh->lastInsertId();
 
-            foreach ($question['choices'] as $choiceIndex => $choice) {
+            foreach ($question['answers'] as $choiceIndex => $choice) {
                 if (isset($choice['text']) && !empty($choice['text'])) {
                     $isCorrect = isset($choice['is_correct']) ? 1 : 0;
                     $sql = "INSERT INTO CHOIX (id_question, choix_text, is_correct) VALUES (?, ?, ?)";
@@ -74,3 +78,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     echo "Quiz created successfully!";
 }
+?>
