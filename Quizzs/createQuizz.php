@@ -5,6 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Quiz</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Additional style for the form */
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: 500;
+        }
+
+        textarea,
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .choices {
+            margin-top: 10px;
+        }
+
+        .choice {
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .choice input[type="text"],
+        .choice input[type="checkbox"] {
+            margin-right: 6px;
+        }
+
+        .delete-choice {
+            margin-left: auto;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .delete-choice:hover {
+            background-color: #cc0000;
+        }
+
+        .add-choice {
+            margin-top: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .add-choice:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -23,8 +89,8 @@
                 <!-- Placeholder for dynamic questions and choices -->
             </div>
             
-            <button type="button" id="add-question">Add Question</button>
-            <button type="submit">Submit Quiz</button>
+            <button type="button" id="add-question" class="button">Add Question</button>
+            <button type="submit" class="button">Submit Quiz</button>
         </form>
     </div>
 
