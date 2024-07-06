@@ -8,7 +8,8 @@
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
 </head>
 
-<header <?php if ($_SESSION['role'] == 'admin') echo 'class="admin"'; ?><?php if ($_SESSION['role'] == 'prof') echo 'class="prof"'; ?>>
+<header <?php if ($_SESSION['role'] == 'admin') echo 'class="admin"';
+        elseif ($_SESSION['role'] == 'prof') echo 'class="prof"'; ?>>
     <div id="accueil">
         <a href="https://schoolpea.com/#SchoolPea">
             <img id="logo_header" src="https://schoolpea.com/Images/SchoolPea.png" />
