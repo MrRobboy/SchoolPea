@@ -27,6 +27,7 @@ session_start();
     <?php if (!empty($_GET['error_mail'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">MAIL DEJA EXISTANT!</p>'; ?>
     <?php if (!empty($_GET['success'])) echo '<p style="background-color: green; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">MODIFICATIONS EFFECTUÉS</p>'; ?>
     <?php if (!empty($_GET['error'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">ERREUR INSERTION BDD</p>'; ?>
+    <?php if (!empty($_GET['error_mdp'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">LES MOTS DE PASSES NE CORRESPONDENT PAS !</p>'; ?>
 
     <div id="div1">
         <form method="post" id="Info_gen" action="apply_edit.php" enctype="multipart/form-data">
@@ -65,21 +66,21 @@ session_start();
             </span>
         </form>
 
-        <form id="Mdp_modif" method="post">
+        <form id="Mdp_modif" method="post" action="check_pass.php">
             <h2 id="Titre_Mdp_modif"> Changer de <br> Mot de passe </h2>
             <div class="Mdp_modif_div">
                 <span class="Text_Modif_mdp">Ancien Mot de Passe</span>
-                <input type="password" class="Input_Mdp_modif_div" placeholder="Old Password"></input>
+                <input type="password" class="Input_Mdp_modif_div" name="old_pass" placeholder="Old Password" required></input>
             </div>
 
             <div class="Mdp_modif_div">
                 <span class="Text_Modif_mdp">Nouvau Mot de Passe</span>
-                <input type="password" class="Input_Mdp_modif_div" placeholder="New Password"></input>
+                <input type="password" class="Input_Mdp_modif_div" name="new_pass" placeholder="New Password" required></input>
             </div>
 
             <div class="Mdp_modif_div">
                 <span class="Text_Modif_mdp">Confirmer le Mot de Passe</span>
-                <input type="password" class="Input_Mdp_modif_div" placeholder="Confirm Password"></input>
+                <input type="password" class="Input_Mdp_modif_div" name="confirm_new_pass" placeholder="Confirm Password" required></input>
             </div>
             <input type="submit" value="Sauvegarder" id="Sauvegarde_modif_mdp"></input>
         </form>
