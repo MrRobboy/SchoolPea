@@ -16,8 +16,6 @@ $target_file = $target_dir . $fileName;
 
 echo '<br>TARGET DIR : ' . $target_dir;
 echo '<br>TARGET FILE : ' . $target_file;
-echo '<br>TARGET STORAGE : ' . $target_storage;
-
 
 echo 'POST<pre>';
 print_r($_POST);
@@ -51,6 +49,8 @@ if (!empty($_FILES['img_pp'])) {
 } else {
     $target_storage = $userInfo[0]['path_pp'];
 }
+
+echo '<br>TARGET STORAGE : ' . $target_storage;
 
 echo '<br>TARGET DIR : ' . $target_dir;
 echo '<br>TARGET FILE : ' . $target_file;
