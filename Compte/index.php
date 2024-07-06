@@ -81,7 +81,7 @@ session_start();
     </div>
 
     <div id="div2">
-        <div style="padding: 2em;">
+        <div style="padding: 2em 2em 4em 2em;">
             <span style="display: flex; flex-direction: row;margin: 0 0 2.5em 0;">
                 <span>
                     <img src="../../Images/exclamation.svg" id="Exclamation">
