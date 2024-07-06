@@ -202,14 +202,17 @@ h4 {
 }
 
 .question-number {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     text-align: left;
     margin-bottom: 10px;
     color: #555;
+    font-weight: bold;
+    /* Met en gras le numéro de la question */
 }
 
 .question {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    /* Augmente la taille de la question */
     text-align: left;
     margin-bottom: 20px;
     color: #333;
@@ -223,17 +226,19 @@ h4 {
 
 .answer {
     display: inline-block;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .answer button {
     background-color: #5c6bc0;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 15px 30px;
+    /* Augmente la taille du bouton */
     text-align: center;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
+    /* Augmente la taille du texte */
     cursor: pointer;
     border-radius: 20px;
     /* Arrondi le bouton */
