@@ -35,7 +35,7 @@ if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_nam
 
 if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
-    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    // header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
     /*Ici il y a forcément eu une modification ! */
     if ($userInfo[0]['email'] != $_POST['email']) {
@@ -48,7 +48,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_PO
         if ($userExist[0]['email'] == $_POST['email']) {
             $_GET['error_mail'] = 1;
             echo '<br>email error';
-            header('Location: https://schoolpea.com/Compte/index.php?error_mail=1');
+            // header('Location: https://schoolpea.com/Compte/index.php?error_mail=1');
         }
     }
 
@@ -66,11 +66,11 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_PO
         echo '<br>' . $result;
         $_GET['success'] = 1;
         echo '<br>success';
-        header('Location: https://schoolpea.com/Compte/index.php?success=1');
+        // header('Location: https://schoolpea.com/Compte/index.php?success=1');
     } else {
         echo $result;
         echo '<br>error wtf';
         $_GET['error'] = 1;
-        header('Location: https://schoolpea.com/Compte/index.php?error=1');
+        // header('Location: https://schoolpea.com/Compte/index.php?error=1');
     }
 }
