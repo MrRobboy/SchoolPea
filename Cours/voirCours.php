@@ -46,7 +46,6 @@
 </head>
 
 <body>
-    <span class="trait"></span>
     <div id="Cours_Content">
         <?php
         session_start(); // Démarrage de la session
