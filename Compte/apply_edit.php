@@ -70,7 +70,7 @@ echo '<br>TARGET STORAGE : ' . $target_storage;
 
 if ($userInfo[0]['email'] == $_POST['email'] and !$fileUploaded and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
-    // header('Location: https://schoolpea.com/Compte/index.php');
+    header('Location: https://schoolpea.com/Compte/index.php');
 } else {
     /*Ici il y a forcément eu une modification ! */
     if ($userInfo[0]['email'] != $_POST['email']) {
@@ -100,7 +100,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and !$fileUploaded and $userInfo[0]
         echo '<br>' . $result;
         $_GET['success'] = 1;
         echo '<br>success';
-        // header('Location: https://schoolpea.com/Compte/index.php?success=1');
+        header('Location: https://schoolpea.com/Compte/index.php?success=1');
     } else {
         echo $result;
         echo '<br>error wtf';
