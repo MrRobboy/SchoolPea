@@ -86,7 +86,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $tar
         echo '<br>' . $result;
         $_GET['success'] = 1;
         echo '<br>success';
-        // header('Location: https://schoolpea.com/Compte/index.php?success=1');
+        header('Location: https://schoolpea.com/Compte/index.php?success=1');
     } else {
         echo $result;
         echo '<br>error wtf';
