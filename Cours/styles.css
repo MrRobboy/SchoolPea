@@ -1,17 +1,37 @@
-/* style.css */
-
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
+/* Variables pour les thèmes clair et sombre */
+:root {
+    --bg-color-light: #ffffff;
+    --text-color-light: #333333;
+    --accent-color-light: #512da8;
+    --bg-color-dark: #333333;
+    --text-color-dark: #ffffff;
+    --accent-color-dark: #5c6bc0;
+}
+
+[data-theme="light"] {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --accent-color: var(--accent-color-light);
+}
+
+[data-theme="dark"] {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --accent-color: var(--accent-color-dark);
+}
+
 body {
-    background-color: var(--bg-color-light);
-    background: linear-gradient(to right, #e2e2e2, var(--bg-color-light));
+    background-color: var(--bg-color);
+    background: linear-gradient(to right, #e2e2e2, var(--bg-color));
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
     margin: 0;
-    color: var(--text-color-light);
+    color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
 }
 
@@ -42,7 +62,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: var(--text-color-light);
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -66,7 +86,7 @@ footer {
 
 .course_item,
 .quiz {
-    background-color: var(--bg-color-light);
+    background-color: var(--bg-color);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -94,7 +114,7 @@ footer {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: var(--accent-color-light);
+    background-color: var(--accent-color);
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -139,7 +159,7 @@ p {
 
 .button {
     display: inline-block;
-    background-color: var(--accent-color-light);
+    background-color: var(--accent-color);
     color: white;
     border: none;
     padding: 10px 20px;
