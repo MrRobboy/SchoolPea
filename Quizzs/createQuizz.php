@@ -122,7 +122,7 @@
 </head>
 <body>
     <h2>Création de Quiz</h2>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
+    <form action="submitQuizz.php" method="POST" enctype="multipart/form-data">
         <label for="quiz_name">Nom du Quiz :</label>
         <input type="text" id="quiz_name" name="quiz_name" required><br><br>
         <label for="quiz_description">Description :</label>
