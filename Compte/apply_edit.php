@@ -14,10 +14,6 @@ echo 'POST<pre>';
 print_r($_POST);
 echo '</pre>';
 
-echo 'FILES<pre>';
-print_r($_FILES);
-echo '</pre>';
-
 echo 'SESSION<pre>';
 print_r($_SESSION);
 echo '</pre>';
