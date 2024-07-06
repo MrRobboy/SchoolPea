@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Quiz</title>
-    
-</head>
-<style>       /* Styles spécifiques à la page de création de quiz */
+    <style>
+        /* Styles spécifiques à la page de création de quiz */
         body {
             font-family: "Montserrat", sans-serif;
             display: flex;
@@ -47,7 +46,7 @@
             box-sizing: border-box;
             font-family: "Montserrat", sans-serif;
         }
-        input[type="submit"] {
+        input[type="submit"], button {
             background-color: #1e90ff; /* Couleur bleue */
             color: white;
             padding: 0.7em 2.5em;
@@ -56,8 +55,9 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 1em;
+            margin-right: 1em;
         }
-        input[type="submit"]:hover {
+        input[type="submit"]:hover, button:hover {
             background-color: #374599;
         }
         h3 {
@@ -81,22 +81,22 @@
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
-        .answer {
+        .choice {
             background-color: #f0f0f0;
             margin-bottom: 0.5em;
             padding: 0.5em;
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
-        .answer input[type="text"] {
+        .choice input[type="text"] {
             width: calc(100% - 2.5em);
             padding: 0.3em;
             margin-bottom: 0.5em;
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
-        .remove-btn {
-            background-color: #1e90ff; /* Couleur bleue */
+        .delete-btn {
+            background-color: #ff4d4d; /* Couleur rouge */
             color: white;
             border: none;
             cursor: pointer;
@@ -105,20 +105,11 @@
             font-size: 0.9em;
             margin-top: 0.5em;
         }
-        .add-answer-btn {
-            background-color: #1e90ff; /* Couleur bleue */
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 0.3em 1em;
-            border-radius: 1em; /* Bords arrondis */
-            font-size: 0.9em;
-            margin-top: 0.5em;
+        .delete-btn:hover {
+            background-color: #d32f2f;
         }
-        .add-answer-btn:hover {
-            background-color: #8493e8;
-        }
-        </style>
+    </style>
+</head>
 <body>
     <div class="container">
         <h2>Create a New Quiz</h2>
@@ -137,7 +128,7 @@
             </div>
             
             <button type="button" id="add-question">Add Question</button>
-            <button type="submit">Submit Quiz</button>
+            <input type="submit" value="Submit Quiz">
         </form>
     </div>
 
@@ -145,7 +136,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             let questionIndex = 0;
 
-            // Add initial question and choice elements
+            // Add initial question
             addQuestion();
 
             document.getElementById('add-question').addEventListener('click', () => {
@@ -161,13 +152,13 @@
                 questionContainer.innerHTML = `
                     <label>Question:</label>
                     <textarea name="questions[${questionIndex}][text]" required></textarea>
-                    <button type="button" class="delete-question">Delete Question</button>
+                    <button type="button" class="delete-btn delete-question">Delete Question</button>
                     <div class="choices">
                         <div class="choice">
                             <input type="text" name="questions[${questionIndex}][choices][0][text]" required>
                             <label>Correct:</label>
                             <input type="checkbox" name="questions[${questionIndex}][choices][0][is_correct]">
-                            <button type="button" class="delete-choice">Delete Choice</button>
+                            <button type="button" class="delete-btn delete-choice">Delete Choice</button>
                         </div>
                     </div>
                     <button type="button" class="add-choice">Add Choice</button>
@@ -195,7 +186,7 @@
                     <input type="text" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][text]" required>
                     <label>Correct:</label>
                     <input type="checkbox" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][is_correct]">
-                    <button type="button" class="delete-choice">Delete Choice</button>
+                    <button type="button" class="delete-btn delete-choice">Delete Choice</button>
                 `;
 
                 choiceElement.querySelector('.delete-choice').addEventListener('click', function() {
