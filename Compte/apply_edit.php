@@ -47,6 +47,9 @@ if (!empty($_FILES['img_pp'])) {
     $target_storage = $userInfo[0]['path_pp'];
 }
 
+echo '<br>TARGET DIR : ' . $target_dir;
+echo '<br>TARGET FILE : ' . $target_file;
+echo '<br>TARGET FILE NAME : ' . $fileName;
 
 if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
