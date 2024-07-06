@@ -1,373 +1,226 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
-
-body {
-    font-family: "Montserrat", sans-serif;
+/* Reset des styles par défaut */
+* {
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Police principale */
+body {
+    font-family: "Montserrat", sans-serif;
+    background-color: #ffffff;
+    /* Couleur de fond principale */
 }
 
 .container {
-    background-color: #ffffff;
-    border-radius: 2em;
-    box-shadow: 0 0 90px rgba(200, 200, 255, 0.75);
-    padding: 2em 4em;
-    max-width: 800px;
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
+    padding: 2em 0;
 }
 
 h2 {
-    color: #374599;
-    font-weight: 700;
-    margin-bottom: 1em;
     text-align: center;
+    font-size: 2em;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+h3 {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+/* Liens */
+a {
+    text-decoration: none;
+    color: #6b7ad2;
+    /* Couleur des liens */
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #374599;
+    /* Couleur des liens au survol */
+}
+
+/* Boutons */
+button {
+    background-color: #6b7ad2;
+    color: #ffffff;
+    border: none;
+    border-radius: 2em;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #374599;
+}
+
+/* Formulaires */
+form {
+    margin-bottom: 1.5em;
 }
 
 label {
     display: block;
     margin-bottom: 0.5em;
-    color: #374599;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 input[type="text"],
+input[type="email"],
+input[type="password"],
 textarea,
-input[type="file"] {
+select {
     width: 100%;
-    padding: 0.7em;
-    margin-bottom: 1.5em;
+    padding: 0.5em;
     border: 1px solid #ccc;
-    border-radius: 1em;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-}
-
-button[type="button"],
-button[type="submit"] {
-    background-color: #8493e8;
-    color: white;
-    padding: 0.7em 2.5em;
-    border: none;
-    border-radius: 1.5em;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1em;
-    margin-top: 1em;
-    display: block;
-    width: fit-content;
-}
-
-button[type="button"]:hover,
-button[type="submit"]:hover {
-    background-color: #374599;
-}
-
-.question,
-.choice {
-    background-color: #f9f9f9;
-    margin-bottom: 1.5em;
-    border: 1px solid #ccc;
-    border-radius: 1em;
-    padding: 1em;
-}
-
-.question label,
-.choice label {
-    display: inline-block;
-    margin-bottom: 0.5em;
-}
-
-.choice {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.choice input[type="text"] {
-    flex-grow: 1;
-    margin-right: 1em;
-}
-
-.remove-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 0.5em 1em;
     border-radius: 0.5em;
-    font-size: 0.9em;
-    margin-top: 0.5em;
+    margin-bottom: 1em;
+    font-size: 1em;
 }
 
-.remove-btn:hover {
-    background-color: darkred;
+textarea {
+    resize: vertical;
+    min-height: 100px;
 }
 
-/* Additional CSS for quizzes list */
+/* Sections spécifiques */
 
-.trait {
-    padding: 0.2em 20em;
-    border-radius: 3em;
-    justify-content: center;
-    background-color: transparent;
-    margin-bottom: 10em;
-    margin-top: 0em;
+/* Section de connexion */
+#login-section {
+    background-color: #f0f0f0;
+    padding: 2em;
+    border-radius: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#div1 {
-    padding: 20px;
-    margin: 4em auto;
-    max-width: 1200px;
-}
-
-h1 {
-    text-align: center;
+#error-message {
+    color: red;
     margin-bottom: 1em;
 }
 
-.quizzes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+/* Section de quiz */
+#quiz-form {
+    margin-top: 1em;
 }
 
-.quiz {
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.quiz img {
-    max-width: 150px;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.quiz h3 {
-    margin: 10px 0;
-}
-
-.quiz a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #5c6bc0;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-.quiz a:hover {
-    background-color: #3f51b5;
-}
-
-#search {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+.question {
     border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-/* CSS pour voirCours.php */
-/* CSS pour voirCours.php */
-
-/* Reset des marges et paddings pour le corps et les éléments */
-body,
-html {
-    margin: 0;
-    padding: 0;
+    border-radius: 1em;
+    padding: 1em;
+    margin-bottom: 1em;
 }
 
-/* Police Google Montserrat pour tout le document */
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f2f2f2;
-    /* Couleur de fond de la page */
-    color: #333;
-    /* Couleur de texte principale */
-    line-height: 1.6;
-    /* Hauteur de ligne agréable pour la lisibilité */
+.choices {
+    margin-bottom: 1em;
 }
 
-/* Conteneur principal du contenu */
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    /* Centrage du contenu */
-    background-color: #fff;
-    /* Fond blanc */
-    padding: 20px;
-    border-radius: 10px;
-    /* Coins arrondis */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Ombre légère */
+.choice {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
 }
 
-/* Titre du cours */
-.container h2 {
-    font-size: 2em;
-    margin-bottom: 10px;
-    color: #333;
+.choice input[type="text"] {
+    flex: 1;
+    margin-right: 0.5em;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
 }
 
-/* Niveau du cours */
-.container p {
-    font-size: 1.2em;
-    color: #666;
+.choice label {
+    margin-right: 0.5em;
 }
 
-/* Description du cours */
-.cours-description {
-    margin-top: 15px;
-    line-height: 1.8;
-}
-
-/* Bouton "Liker ce cours" */
-.button-like,
-.button-pdf {
-    display: inline-block;
-    background-color: #6b7ad2;
-    color: #fff;
+.choice button {
+    background-color: #f44336;
+    color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 0.5em;
+    padding: 0.3em 1em;
     cursor: pointer;
-    text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
-.button-like:hover,
-.button-pdf:hover {
-    background-color: #8493e8;
+.choice button:hover {
+    background-color: #d32f2f;
 }
 
-/* Section des sections et titres */
-.container h3,
-.container h4 {
-    margin-top: 20px;
-    color: #333;
+.add-choice {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.3em 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5em;
 }
 
-/* Paragraphe du cours */
-.container p.paragraphe {
-    margin-top: 10px;
-    color: #666;
+.add-choice:hover {
+    background-color: #388e3c;
 }
 
-/* Styling pour le lien PDF */
-.button-pdf {
-    margin-left: 10px;
+.delete-question,
+.delete-choice {
+    background-color: #9e9e9e;
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    padding: 0.3em 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5em;
+}
+
+.delete-question:hover,
+.delete-choice:hover {
+    background-color: #757575;
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: #fff;
+    background-color: #5c6bc0;
+    color: white;
     text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    border-radius: 5px;
+    padding: 1em;
+    margin-top: 2em;
+    border-radius: 1em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Styles spécifiques pour la barre de recherche, si nécessaire */
-.search-bar {
-    /* Ajoutez vos styles ici si vous avez une barre de recherche */
+/* Media queries */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
 }
 
-/* Assurez-vous d'adapter ces styles en fonction de votre structure HTML existante et de vos préférences visuelles. */
-/* Bouton pour liker le cours */
-.button-like {
-    padding: 0.5em 2em;
-    background-color: #6b7ad2;
-    border: none;
-    color: white;
-    border-radius: 2em;
-    cursor: pointer;
-    margin-bottom: 1em;
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 0.4em 1.5em;
+    }
 }
-
-.button-like:hover {
-    background-color: #8493e8;
-}
-
-/* Bouton pour télécharger le PDF */
-.button-pdf {
-    padding: 0.5em 2em;
-    background-color: #6b7ad2;
-    border: none;
-    color: white;
-    border-radius: 2em;
-    text-decoration: none;
-    display: inline-block;
-    margin-left: 1em;
-    cursor: pointer;
-}
-
-.button-pdf:hover {
-    background-color: #8493e8;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.cours-description {
-    margin-top: 20px;
-}
-
-/* Intégration de la partie inspirée du CSS initial */
-/* ... */
-
-/* Ajustement de la position des boutons dans le contenu */
-.but {
-    display: flex;
-    justify-content: center;
-    /* Centre les boutons horizontalement */
-    margin-top: 1em;
-}
-
-.but button,
-.but a {
-    margin: 0 1em;
-    /* Espacement entre les boutons */
-}
-
-.but a {
-    text-decoration: none;
-    color: white;
-}
-
-/* Styles pour le bouton de téléchargement PDF */
-.but a.button-pdf {
-    padding: 0.5em 2em;
-    background-color: #6b7ad2;
-    border: none;
-    color: white;
-    border-radius: 2em;
-    text-decoration: none;
-    display: inline-block;
-    margin-left: 1em;
-    cursor: pointer;
-}
-
-.but a.button-pdf:hover {
-    background-color: #8493e8;
-}
-
-/* Assurez-vous d'adapter ces styles en fonction de votre structure HTML existante et de vos préférences visuelles. */
