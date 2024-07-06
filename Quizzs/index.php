@@ -19,7 +19,15 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
+        $path .= '/headerL.php';
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+    }
+    include($path);
+    ?>
 
     <span class="trait" id="SchoolPea"></span>
 
