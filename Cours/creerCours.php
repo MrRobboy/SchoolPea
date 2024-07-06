@@ -1,9 +1,11 @@
 <?php
 session_start();
-if (str_contains($_SESSION['referer'], '?')) {
-    $concat = '&';
-} else {
-    $concat = '?';
+if (!empty($_SESSION['referer'])) {
+    if (str_contains($_SESSION['referer'], '?')) {
+        $concat = '&';
+    } else {
+        $concat = '?';
+    }
 }
 
 if (!isset($_SESSION['id_user'])) {
@@ -132,148 +134,146 @@ $dbh = null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Cours</title>
     <style>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-html {
-    scroll-behavior: smooth;
-}
+        html {
+            scroll-behavior: smooth;
+        }
 
-body {
-    font-family: "Montserrat", sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #f4f5fa;
-    margin: 0;
-    padding: 2em;
-}
+        body {
+            font-family: "Montserrat", sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background-color: #f4f5fa;
+            margin: 0;
+            padding: 2em;
+        }
 
-h2 {
-    color: #374599;
-    font-weight: 700;
-    margin-bottom: 1em;
-}
+        h2 {
+            color: #374599;
+            font-weight: 700;
+            margin-bottom: 1em;
+        }
 
-form {
-    background-color: #ffffff;
-    border-radius: 2em;
-    box-shadow: 0 0 90px rgba(200, 200, 255, 0.75);
-    padding: 2em 4em;
-    max-width: 800px;
-    width: 100%;
-}
+        form {
+            background-color: #ffffff;
+            border-radius: 2em;
+            box-shadow: 0 0 90px rgba(200, 200, 255, 0.75);
+            padding: 2em 4em;
+            max-width: 800px;
+            width: 100%;
+        }
 
-label {
-    display: block;
-    margin-bottom: 0.5em;
-    color: #374599;
-    font-weight: 500;
-}
+        label {
+            display: block;
+            margin-bottom: 0.5em;
+            color: #374599;
+            font-weight: 500;
+        }
 
-input[type="text"],
-select,
-textarea,
-input[type="file"] {
-    width: 100%;
-    padding: 0.7em;
-    margin-bottom: 1.5em;
-    border: 1px solid #ccc;
-    border-radius: 1em;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-}
+        input[type="text"],
+        select,
+        textarea,
+        input[type="file"] {
+            width: 100%;
+            padding: 0.7em;
+            margin-bottom: 1.5em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+            box-sizing: border-box;
+            font-family: "Montserrat", sans-serif;
+        }
 
-input[type="submit"] {
-    background-color: #8493e8;
-    color: white;
-    padding: 0.7em 2.5em;
-    border: none;
-    border-radius: 1.5em;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1em;
-}
+        input[type="submit"] {
+            background-color: #8493e8;
+            color: white;
+            padding: 0.7em 2.5em;
+            border: none;
+            border-radius: 1.5em;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+        }
 
-input[type="submit"]:hover {
-    background-color: #374599;
-}
+        input[type="submit"]:hover {
+            background-color: #374599;
+        }
 
-h3 {
-    color: #374599;
-    font-weight: 600;
-    margin-bottom: 1em;
-}
+        h3 {
+            color: #374599;
+            font-weight: 600;
+            margin-bottom: 1em;
+        }
 
-#ajouter_section {
-    background-color: #6b7ad2;
-    color: white;
-    padding: 0.5em 1.5em;
-    border: none;
-    border-radius: 1em;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1em;
-    margin-bottom: 1em;
-}
+        #ajouter_section {
+            background-color: #6b7ad2;
+            color: white;
+            padding: 0.5em 1.5em;
+            border: none;
+            border-radius: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1em;
+            margin-bottom: 1em;
+        }
 
-#ajouter_section:hover {
-    background-color: #8493e8;
-}
+        #ajouter_section:hover {
+            background-color: #8493e8;
+        }
 
-.section,
-.titre,
-.paragraphe {
-    background-color: #f9f9f9;
-    margin-bottom: 1.5em;
-    border: 1px solid #ccc;
-    border-radius: 1em;
-    padding: 1em;
-    position: relative;
-}
+        .section,
+        .titre,
+        .paragraphe {
+            background-color: #f9f9f9;
+            margin-bottom: 1.5em;
+            border: 1px solid #ccc;
+            border-radius: 1em;
+            padding: 1em;
+            position: relative;
+        }
 
-.section input[type="text"],
-.titre input[type="text"],
-.paragraphe textarea {
-    width: calc(100% - 2.5em);
-    padding: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
-}
+        .section input[type="text"],
+        .titre input[type="text"],
+        .paragraphe textarea {
+            width: calc(100% - 2.5em);
+            padding: 0.5em;
+            margin-bottom: 1em;
+            border: 1px solid #ccc;
+            border-radius: 0.5em;
+        }
 
-.remove-btn {
-    background-color: red;
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 0.3em 0.6em;
-    border-radius: 0.5em;
-    font-size: 0.9em;
-    margin-top: 0.5em;
-}
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 0.3em 0.6em;
+            border-radius: 0.5em;
+            font-size: 0.9em;
+            margin-top: 0.5em;
+        }
 
-.section .titre,
-.titre .paragraphe {
-    margin-top: 1em;
-}
+        .section .titre,
+        .titre .paragraphe {
+            margin-top: 1em;
+        }
 
-button[type="button"] {
-    background-color: #6b7ad2;
-    color: white;
-    padding: 0.3em 1em;
-    border: none;
-    border-radius: 1em;
-    cursor: pointer;
-    font-weight: 600;
-    margin-top: 0.5em;
-}
+        button[type="button"] {
+            background-color: #6b7ad2;
+            color: white;
+            padding: 0.3em 1em;
+            border: none;
+            border-radius: 1em;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 0.5em;
+        }
 
-button[type="button"]:hover {
-    background-color: #8493e8;
-}
-
-
+        button[type="button"]:hover {
+            background-color: #8493e8;
+        }
     </style>
 </head>
 
@@ -305,108 +305,107 @@ button[type="button"]:hover {
     </form>
 
     <script>
-document.getElementById('ajouter_section').addEventListener('click', function() {
-    var sectionsDiv = document.getElementById('sections');
-    var nextSectionIndex = sectionsDiv.children.length;
+        document.getElementById('ajouter_section').addEventListener('click', function() {
+            var sectionsDiv = document.getElementById('sections');
+            var nextSectionIndex = sectionsDiv.children.length;
 
-    var newSection = document.createElement('div');
-    newSection.className = 'section';
+            var newSection = document.createElement('div');
+            newSection.className = 'section';
 
-    var sectionTitleInput = document.createElement('input');
-    sectionTitleInput.type = 'text';
-    sectionTitleInput.name = 'sections[' + nextSectionIndex + '][titre]';
-    sectionTitleInput.placeholder = 'Titre de la Section';
-    sectionTitleInput.required = true;
-    newSection.appendChild(sectionTitleInput);
+            var sectionTitleInput = document.createElement('input');
+            sectionTitleInput.type = 'text';
+            sectionTitleInput.name = 'sections[' + nextSectionIndex + '][titre]';
+            sectionTitleInput.placeholder = 'Titre de la Section';
+            sectionTitleInput.required = true;
+            newSection.appendChild(sectionTitleInput);
 
-    var addTitleButton = document.createElement('button');
-    addTitleButton.type = 'button';
-    addTitleButton.textContent = 'Ajouter un Titre';
-    addTitleButton.onclick = function() {
-        addTitle(newSection, nextSectionIndex);
-    };
-    newSection.appendChild(addTitleButton);
+            var addTitleButton = document.createElement('button');
+            addTitleButton.type = 'button';
+            addTitleButton.textContent = 'Ajouter un Titre';
+            addTitleButton.onclick = function() {
+                addTitle(newSection, nextSectionIndex);
+            };
+            newSection.appendChild(addTitleButton);
 
-    var removeSectionButton = document.createElement('button');
-    removeSectionButton.className = 'remove-btn';
-    removeSectionButton.type = 'button';
-    removeSectionButton.textContent = 'Supprimer';
-    removeSectionButton.onclick = function() {
-        sectionsDiv.removeChild(newSection);
-    };
-    newSection.appendChild(removeSectionButton);
+            var removeSectionButton = document.createElement('button');
+            removeSectionButton.className = 'remove-btn';
+            removeSectionButton.type = 'button';
+            removeSectionButton.textContent = 'Supprimer';
+            removeSectionButton.onclick = function() {
+                sectionsDiv.removeChild(newSection);
+            };
+            newSection.appendChild(removeSectionButton);
 
-    var titlesDiv = document.createElement('div');
-    titlesDiv.className = 'titles';
-    newSection.appendChild(titlesDiv);
+            var titlesDiv = document.createElement('div');
+            titlesDiv.className = 'titles';
+            newSection.appendChild(titlesDiv);
 
-    sectionsDiv.appendChild(newSection);
-});
+            sectionsDiv.appendChild(newSection);
+        });
 
-function addTitle(sectionDiv, sectionIndex) {
-    var titlesDiv = sectionDiv.querySelector('.titles');
-    var nextTitleIndex = titlesDiv.children.length;
+        function addTitle(sectionDiv, sectionIndex) {
+            var titlesDiv = sectionDiv.querySelector('.titles');
+            var nextTitleIndex = titlesDiv.children.length;
 
-    var newTitle = document.createElement('div');
-    newTitle.className = 'titre';
+            var newTitle = document.createElement('div');
+            newTitle.className = 'titre';
 
-    var titleInput = document.createElement('input');
-    titleInput.type = 'text';
-    titleInput.name = 'sections[' + sectionIndex + '][titres][' + nextTitleIndex + '][titre]';
-    titleInput.placeholder = 'Titre';
-    titleInput.required = false;
-    newTitle.appendChild(titleInput);
+            var titleInput = document.createElement('input');
+            titleInput.type = 'text';
+            titleInput.name = 'sections[' + sectionIndex + '][titres][' + nextTitleIndex + '][titre]';
+            titleInput.placeholder = 'Titre';
+            titleInput.required = false;
+            newTitle.appendChild(titleInput);
 
-    var addParagrapheButton = document.createElement('button');
-    addParagrapheButton.type = 'button';
-    addParagrapheButton.textContent = 'Ajouter un Paragraphe';
-    addParagrapheButton.onclick = function() {
-        addParagraphe(newTitle, sectionIndex, nextTitleIndex);
-    };
-    newTitle.appendChild(addParagrapheButton);
+            var addParagrapheButton = document.createElement('button');
+            addParagrapheButton.type = 'button';
+            addParagrapheButton.textContent = 'Ajouter un Paragraphe';
+            addParagrapheButton.onclick = function() {
+                addParagraphe(newTitle, sectionIndex, nextTitleIndex);
+            };
+            newTitle.appendChild(addParagrapheButton);
 
-    var removeTitleButton = document.createElement('button');
-    removeTitleButton.className = 'remove-btn';
-    removeTitleButton.type = 'button';
-    removeTitleButton.textContent = 'Supprimer';
-    removeTitleButton.onclick = function() {
-        titlesDiv.removeChild(newTitle);
-    };
-    newTitle.appendChild(removeTitleButton);
+            var removeTitleButton = document.createElement('button');
+            removeTitleButton.className = 'remove-btn';
+            removeTitleButton.type = 'button';
+            removeTitleButton.textContent = 'Supprimer';
+            removeTitleButton.onclick = function() {
+                titlesDiv.removeChild(newTitle);
+            };
+            newTitle.appendChild(removeTitleButton);
 
-    var paragraphesDiv = document.createElement('div');
-    paragraphesDiv.className = 'paragraphes';
-    newTitle.appendChild(paragraphesDiv);
+            var paragraphesDiv = document.createElement('div');
+            paragraphesDiv.className = 'paragraphes';
+            newTitle.appendChild(paragraphesDiv);
 
-    titlesDiv.appendChild(newTitle);
-}
+            titlesDiv.appendChild(newTitle);
+        }
 
-function addParagraphe(titleDiv, sectionIndex, titleIndex) {
-    var paragraphesDiv = titleDiv.querySelector('.paragraphes');
-    var nextParagrapheIndex = paragraphesDiv.children.length;
+        function addParagraphe(titleDiv, sectionIndex, titleIndex) {
+            var paragraphesDiv = titleDiv.querySelector('.paragraphes');
+            var nextParagrapheIndex = paragraphesDiv.children.length;
 
-    var newParagraphe = document.createElement('div');
-    newParagraphe.className = 'paragraphe';
+            var newParagraphe = document.createElement('div');
+            newParagraphe.className = 'paragraphe';
 
-    var paragrapheTextarea = document.createElement('textarea');
-    paragrapheTextarea.name = 'sections[' + sectionIndex + '][titres][' + titleIndex + '][paragraphes][' + nextParagrapheIndex + ']';
-    paragrapheTextarea.placeholder = 'Paragraphe';
-    paragrapheTextarea.rows = 4;
-    paragrapheTextarea.required = false;
-    newParagraphe.appendChild(paragrapheTextarea);
+            var paragrapheTextarea = document.createElement('textarea');
+            paragrapheTextarea.name = 'sections[' + sectionIndex + '][titres][' + titleIndex + '][paragraphes][' + nextParagrapheIndex + ']';
+            paragrapheTextarea.placeholder = 'Paragraphe';
+            paragrapheTextarea.rows = 4;
+            paragrapheTextarea.required = false;
+            newParagraphe.appendChild(paragrapheTextarea);
 
-    var removeParagrapheButton = document.createElement('button');
-    removeParagrapheButton.className = 'remove-btn';
-    removeParagrapheButton.type = 'button';
-    removeParagrapheButton.textContent = 'Supprimer';
-    removeParagrapheButton.onclick = function() {
-        paragraphesDiv.removeChild(newParagraphe);
-    };
-    newParagraphe.appendChild(removeParagrapheButton);
+            var removeParagrapheButton = document.createElement('button');
+            removeParagrapheButton.className = 'remove-btn';
+            removeParagrapheButton.type = 'button';
+            removeParagrapheButton.textContent = 'Supprimer';
+            removeParagrapheButton.onclick = function() {
+                paragraphesDiv.removeChild(newParagraphe);
+            };
+            newParagraphe.appendChild(removeParagrapheButton);
 
-    paragraphesDiv.appendChild(newParagraphe);
-}
-
+            paragraphesDiv.appendChild(newParagraphe);
+        }
     </script>
 </body>
 
