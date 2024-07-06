@@ -41,19 +41,19 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
                                 // header('Location: https://schoolpea.com/Compte/index.php?success=1');
                         }
                 } else {
-                        echo ('Les nouveau mot de passes ne sont pas bons !');
+                        echo ('<br>Les nouveau mot de passes ne sont pas bons !');
                         // header('Location: https://schoolpea.com/Compte/index.php?error_mdp=1');
                 }
                 echo ('ERREUR');
         } else {
                 $badCredentials = true;
-                echo 'triche';
+                echo '<br>triche';
                 // header('Location: https://schoolpea.com/Compte/index.php?error_mdp=1');
         }
 } else echo ('Mail non validé !!!!');
 
 if ($badCredentials == true) {
-        echo "Invalid email or password.";
+        echo "<br>Invalid email or password.";
         $message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' A tenté de changer le mdp';
 
         $queryLogs2 = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
