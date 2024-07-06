@@ -44,7 +44,6 @@ if (!empty($user) && $user[0]['validation_mail'] == 1) {
                         echo ('<br>Les nouveau mot de passes ne sont pas bons !');
                         // header('Location: https://schoolpea.com/Compte/index.php?error_mdp=1');
                 }
-                echo ('ERREUR');
         } else {
                 $badCredentials = true;
                 echo '<br>triche';
