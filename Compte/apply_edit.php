@@ -10,7 +10,6 @@ if (empty($_SESSION['mail_valide'])) {
     header('Location: https://schoolpea.com/Connexion');
 }
 
-
 echo '<pre>';
 print_r($_POST);
 echo '</pre>';
@@ -21,6 +20,18 @@ $stmt = $dbh->prepare("SELECT * FROM USER where id_USER=:id");
 $stmt->bindvalue(':id', $_SESSION['id_USER']);
 $stmt->execute();
 $userInfo = $stmt->fetchAll();
+
+
+if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
+    $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
+    $fileName = uniqid() . "_" . basename($_FILES["img_pp"]["name"]);
+    $target_file = $target_dir . $fileName;
+    $targer_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
+    if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
+} else {
+    $targer_storage = $userInfo[0]['path_pp'];
+}
+
 
 if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
