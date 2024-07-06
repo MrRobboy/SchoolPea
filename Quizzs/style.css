@@ -108,52 +108,90 @@ textarea {
     margin-bottom: 1em;
 }
 
+
+
+@media (max-width: 576px) {
+    .container {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    h3 {
+        font-size: 1.2em;
+    }
+
+    button {
+        font-size: 0.9em;
+        padding: 0.4em 1.5em;
+    }
+}
+
 /* Section de quiz */
 #quiz-form {
     margin-top: 1em;
 }
 
 .question {
+    background-color: #f0f0f0;
     border: 1px solid #ccc;
     border-radius: 1em;
-    padding: 1em;
-    margin-bottom: 1em;
+    padding: 1.5em;
+    margin-bottom: 1.5em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    /* Centrer le texte */
 }
 
 .choices {
-    margin-bottom: 1em;
+    margin-top: 1em;
 }
 
 .choice {
     display: flex;
     align-items: center;
-    margin-bottom: 0.5em;
+    margin-bottom: 1em;
 }
 
-.choice input[type="text"] {
-    flex: 1;
-    margin-right: 0.5em;
-    padding: 0.5em;
-    border: 1px solid #ccc;
-    border-radius: 0.5em;
+.choice input[type="radio"] {
+    display: none;
+    /* Cacher les boutons radio par défaut */
 }
 
 .choice label {
-    margin-right: 0.5em;
+    position: relative;
+    padding-left: 2em;
+    /* Marge à gauche pour la pastille */
+    cursor: pointer;
+    font-size: 1em;
+    user-select: none;
 }
 
-.choice button {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    border-radius: 0.5em;
-    padding: 0.3em 1em;
-    cursor: pointer;
+.choice label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.2em;
+    height: 1.2em;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    /* Forme de pastille ronde */
+    background-color: #ffffff;
+    /* Couleur de fond */
     transition: background-color 0.3s ease;
 }
 
-.choice button:hover {
-    background-color: #d32f2f;
+.choice input[type="radio"]:checked+label:before {
+    background-color: #6b7ad2;
+    /* Couleur de pastille cochée */
+}
+
+.choice label:hover:before {
+    border-color: #6b7ad2;
+    /* Couleur de bordure au survol */
 }
 
 .add-choice {
@@ -188,39 +226,9 @@ textarea {
     background-color: #757575;
 }
 
-/* Footer */
-footer {
-    background-color: #5c6bc0;
-    color: white;
-    text-align: center;
-    padding: 1em;
-    margin-top: 2em;
-    border-radius: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Media queries */
 @media (max-width: 768px) {
-    .container {
-        width: 95%;
-    }
-}
-
-@media (max-width: 576px) {
-    .container {
-        width: 100%;
-    }
-
-    h2 {
-        font-size: 1.5em;
-    }
-
-    h3 {
-        font-size: 1.2em;
-    }
-
-    button {
-        font-size: 0.9em;
-        padding: 0.4em 1.5em;
+    .question {
+        padding: 1em;
     }
 }
