@@ -1,9 +1,27 @@
 /* Import de la police Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-/* Styles généraux */
+/* Variables CSS pour les couleurs */
+:root {
+    --bg-color-light: #c9d6ff;
+    --container-bg-light: #fff;
+    --text-color-light: #333;
+    --subtext-color-light: #555;
+    --button-bg-light: #5c6bc0;
+    --button-hover-light: #3f51b5;
+
+    --bg-color-dark: #121212;
+    --container-bg-dark: #333;
+    --text-color-dark: #e0e0e0;
+    --subtext-color-dark: #ccc;
+    --button-bg-dark: #673ab7;
+    --button-hover-dark: #512da8;
+}
+
+/* Appliquer les couleurs en fonction du thème */
 body {
-    background-color: #c9d6ff;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,29 +29,31 @@ body {
     height: 100vh;
     font-family: "Montserrat", sans-serif;
     margin: 0;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
     max-width: 900px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: var(--container-bg-light);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 h2 {
     font-size: 2.5rem;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-color-light);
 }
 
 p {
     font-size: 1.2rem;
     margin-bottom: 15px;
     line-height: 1.8;
-    color: #555;
+    color: var(--subtext-color-light);
 }
 
 .buttons {
@@ -48,7 +68,7 @@ p {
 
 .button {
     display: inline-block;
-    background-color: #5c6bc0;
+    background-color: var(--button-bg-light);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -61,34 +81,34 @@ p {
 }
 
 .button:hover {
-    background-color: #3f51b5;
+    background-color: var(--button-hover-light);
 }
 
 h3 {
     font-size: 2rem;
     margin-top: 30px;
     margin-bottom: 15px;
-    color: #555;
+    color: var(--subtext-color-light);
 }
 
 /* Styles spécifiques pour le quiz */
 .quiz-title {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--text-color-light);
 }
 
 .question-number {
     font-size: 1.5rem;
     margin-bottom: 10px;
-    color: #555;
+    color: var(--subtext-color-light);
     font-weight: bold;
 }
 
 .question {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #333;
+    color: var(--text-color-light);
 }
 
 .answers {
@@ -102,7 +122,7 @@ h3 {
 }
 
 .answer button {
-    background-color: #5c6bc0;
+    background-color: var(--button-bg-light);
     color: white;
     border: none;
     padding: 15px 30px;
@@ -114,7 +134,7 @@ h3 {
 }
 
 .answer button:hover {
-    background-color: #3f51b5;
+    background-color: var(--button-hover-light);
 }
 
 /* Responsive adjustments */
@@ -132,44 +152,35 @@ h3 {
     }
 }
 
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #121212;
-    /* Dark background color */
-    color: #e0e0e0;
-    /* Light text color */
+/* Styles pour le mode sombre */
+body[data-theme="dark"] {
+    background-color: var(--bg-color-dark);
+    color: var(--text-color-dark);
 }
 
-.container.dark-mode {
-    background-color: #333;
-    /* Dark container background color */
-    color: #e0e0e0;
-    /* Light text color */
+.container[data-theme="dark"] {
+    background-color: var(--container-bg-dark);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-    /* Adjusted shadow for dark mode */
 }
 
-p.dark-mode {
-    color: #ccc;
-    /* Lighter text color for dark mode */
+h2[data-theme="dark"],
+h3[data-theme="dark"],
+.quiz-title[data-theme="dark"],
+.question[data-theme="dark"] {
+    color: var(--text-color-dark);
 }
 
-.button.dark-mode {
-    background-color: #673ab7;
-    /* Darker purple button color */
+p[data-theme="dark"],
+.question-number[data-theme="dark"] {
+    color: var(--subtext-color-dark);
 }
 
-.button.dark-mode:hover {
-    background-color: #512da8;
-    /* Darker hover color */
+.button[data-theme="dark"],
+.answer button[data-theme="dark"] {
+    background-color: var(--button-bg-dark);
 }
 
-.answer button.dark-mode {
-    background-color: #673ab7;
-    /* Darker purple button color */
-}
-
-.answer button.dark-mode:hover {
-    background-color: #512da8;
-    /* Darker hover color */
+.button[data-theme="dark"]:hover,
+.answer button[data-theme="dark"]:hover {
+    background-color: var(--button-hover-dark);
 }

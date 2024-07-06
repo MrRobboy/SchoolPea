@@ -6,43 +6,85 @@
     <meta charset="UTF-8">
     <title>Voir le Cours</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <style>
-        /* Additional styling specific to this page */
-        .content-container {
-            margin: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-        }
+   <style>
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-        .section {
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #f0f0f0;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .section-title {
-            font-size: 20px;
-            margin-bottom: 10px;
-        }
+body {
+    font-family: "Montserrat", sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        .title {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
+/* Styles communs pour les deux modes */
+.content-container {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        .paragraph {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
+.section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        #Cours_Content {
-            padding: 5em;
-            margin: 5em;
-        }
-    </style>
+.section-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.paragraph {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+#Cours_Content {
+    padding: 5em;
+    margin: 5em;
+}
+
+/* Mode clair */
+body[data-theme='light'] {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+body[data-theme='light'] .content-container {
+    background-color: #fff;
+}
+
+body[data-theme='light'] .section {
+    background-color: #f0f0f0;
+}
+
+/* Mode sombre */
+body[data-theme='dark'] {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+body[data-theme='dark'] .content-container {
+    background-color: #333;
+}
+
+body[data-theme='dark'] .section {
+    background-color: #444;
+}
+</style>
+
 </head>
 
 <body>

@@ -16,11 +16,33 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
     <meta charset="UTF-8">
     <title>Explorer les Quizz</title>
     <style>/* style.css */
+/* style.css */
+
+:root {
+    --bg-color-light: #ffffff;
+    --text-color-light: #333333;
+    --accent-color-light: #512da8;
+    --bg-color-dark: #333333;
+    --text-color-dark: #ffffff;
+    --accent-color-dark: #5c6bc0;
+}
+
+[data-theme="light"] {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --accent-color: var(--accent-color-light);
+}
+
+[data-theme="dark"] {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --accent-color: var(--accent-color-dark);
+}
 
 body {
-    background-color: var(--bg-color-light);
-    background: linear-gradient(to right, #e2e2e2, var(--bg-color-light));
-    color: var(--text-color-light);
+    background-color: var(--bg-color);
+    background: linear-gradient(to right, #e2e2e2, var(--bg-color));
+    color: var(--text-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -64,7 +86,7 @@ h1 {
 }
 
 .quiz {
-    background-color: var(--bg-color-light);
+    background-color: var(--bg-color);
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 15px;
@@ -85,7 +107,7 @@ h1 {
     display: inline-block;
     margin-top: 10px;
     padding: 10px 20px;
-    background-color: var(--accent-color-light);
+    background-color: var(--accent-color);
     color: white;
     text-decoration: none;
     border-radius: 5px;

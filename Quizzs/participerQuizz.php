@@ -94,73 +94,102 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background-color: #c9d6ff;
-            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
-            font-family: "Montserrat", sans-serif;
-            margin: 0;
-        }
+        /* style.css */
 
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+:root {
+    --bg-color-light: #ffffff;
+    --text-color-light: #333333;
+    --accent-color-light: #5c6bc0;
+    --bg-color-dark: #333333;
+    --text-color-dark: #ffffff;
+    --accent-color-dark: #3f51b5;
+}
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #333;
-        }
+[data-theme="light"] {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --accent-color: var(--accent-color-light);
+}
 
-        h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #555;
-        }
+[data-theme="dark"] {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --accent-color: var(--accent-color-dark);
+}
 
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
+body {
+    background-color: var(--bg-color);
+    background: linear-gradient(to right, #e2e2e2, var(--bg-color));
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-        #choices-container {
-            text-align: left;
-            margin-bottom: 20px;
-        }
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background-color 0.3s;
+}
 
-        #choices-container div {
-            margin-bottom: 10px;
-        }
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
 
-        #choices-container label {
-            margin-left: 10px;
-        }
+h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--text-color);
+}
 
-        button {
-            background-color: #5c6bc0;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 20px;
-            transition: background-color 0.3s;
-        }
+p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--text-color);
+}
 
-        button:hover {
-            background-color: #3f51b5;
-        }
+#choices-container {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+#choices-container div {
+    margin-bottom: 10px;
+}
+
+#choices-container label {
+    margin-left: 10px;
+    color: var(--text-color);
+}
+
+button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3f51b5;
+}
+
     </style>
 </head>
 <body>
