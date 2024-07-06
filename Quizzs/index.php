@@ -15,7 +15,84 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Explorer les Quizz</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        body {
+            background-color: #c9d6ff;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+        }
+
+        .trait {
+            padding: 0.2em 5em;
+            border-radius: 3em;
+            background-color: transparent;
+            margin-bottom: 10em;
+        }
+
+        #div1 {
+            padding: 20px;
+            margin: 4em auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #search {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .quizzes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px auto 0;
+        }
+
+        .quiz {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .quiz img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .quiz a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #5c6bc0;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .quiz a:hover {
+            background-color: #3f51b5;
+        }
+    </style>
 </head>
 
 <body>
