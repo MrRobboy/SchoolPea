@@ -6,6 +6,38 @@
     <meta charset="UTF-8">
     <title>Voir le Cours</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        /* Additional styling specific to this page */
+        .content-container {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .paragraph {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+    </style>
 </head>
 
 <body>
@@ -29,30 +61,30 @@
 
     if ($stmt->rowCount() > 0) {
         $cours = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo "<div class='container'>";
-        echo "<h2>" . htmlspecialchars($cours['nom']) . "</h2>";
-        echo "<p>Niveau : " . htmlspecialchars($cours['niveau']) . "</p>";
-        echo "<div class='cours-description'>" . htmlspecialchars($cours['description']) . "</div>";
+    ?>
+        <div class="content-container">
+            <h2><?php echo htmlspecialchars($cours['nom']); ?></h2>
+            <p>Niveau : <?php echo htmlspecialchars($cours['niveau']); ?></p>
+            <div class="cours-description"><?php echo htmlspecialchars($cours['description']); ?></div>
 
-        // Formulaire pour liker le cours
-        ?>
-        <form action="voirCours.php?id_cours=<?php echo htmlspecialchars($id_cours); ?>" method="POST">
-            <input type="hidden" name="action" value="like">
-            <button type="submit" class="button">Liker ce cours </button>
-        </form>
-        <?php
+            <!-- Formulaire pour liker le cours -->
+            <form action="voirCours.php?id_cours=<?php echo htmlspecialchars($id_cours); ?>" method="POST">
+                <input type="hidden" name="action" value="like">
+                <button type="submit" class="button">Liker ce cours</button>
+            </form>
 
-        // Bouton pour générer le PDF du cours
-        echo '<a href="downloadPdf.php?id_cours=' . $id_cours . '" class="button">Télécharger le PDF</a>';
+            <!-- Bouton pour générer le PDF du cours -->
+            <a href="downloadPdf.php?id_cours=<?php echo $id_cours; ?>" class="button">Télécharger le PDF</a>
 
-        // Récupérer les sections liées au cours
-        $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
-        $stmt_section = $dbh->prepare($sql_section);
-        $stmt_section->execute([$id_cours]);
+            <!-- Récupérer les sections liées au cours -->
+            <?php
+            $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
+            $stmt_section = $dbh->prepare($sql_section);
+            $stmt_section->execute([$id_cours]);
 
-        if ($stmt_section->rowCount() > 0) {
             while ($section = $stmt_section->fetch(PDO::FETCH_ASSOC)) {
-                echo "<h3>" . htmlspecialchars($section['titre']) . "</h3>";
+                echo '<div class="section">';
+                echo '<h3 class="section-title">' . htmlspecialchars($section['titre']) . '</h3>';
 
                 // Récupérer les titres liés à la section
                 $id_section = $section['id_section'];
@@ -60,26 +92,25 @@
                 $stmt_titre = $dbh->prepare($sql_titre);
                 $stmt_titre->execute([$id_section]);
 
-                if ($stmt_titre->rowCount() > 0) {
-                    while ($titre = $stmt_titre->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<h4>" . htmlspecialchars($titre['titre']) . "</h4>";
+                while ($titre = $stmt_titre->fetch(PDO::FETCH_ASSOC)) {
+                    echo '<h4 class="title">' . htmlspecialchars($titre['titre']) . '</h4>';
 
-                        // Récupérer les paragraphes liés au titre
-                        $id_titre = $titre['id_titre'];
-                        $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_titre = ?";
-                        $stmt_paragraphe = $dbh->prepare($sql_paragraphe);
-                        $stmt_paragraphe->execute([$id_titre]);
+                    // Récupérer les paragraphes liés au titre
+                    $id_titre = $titre['id_titre'];
+                    $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_titre = ?";
+                    $stmt_paragraphe = $dbh->prepare($sql_paragraphe);
+                    $stmt_paragraphe->execute([$id_titre]);
 
-                        if ($stmt_paragraphe->rowCount() > 0) {
-                            while ($paragraphe = $stmt_paragraphe->fetch(PDO::FETCH_ASSOC)) {
-                                echo "<p>" . htmlspecialchars($paragraphe['contenu']) . "</p>";
-                            }
-                        }
+                    while ($paragraphe = $stmt_paragraphe->fetch(PDO::FETCH_ASSOC)) {
+                        echo '<p class="paragraph">' . htmlspecialchars($paragraphe['contenu']) . '</p>';
                     }
                 }
+
+                echo '</div>'; // Fermeture de la section
             }
-        }
-        echo "</div>"; // Fermeture de la div container
+            ?>
+        </div>
+    <?php
     } else {
         echo "Cours non trouvé.";
     }
@@ -101,8 +132,6 @@
             exit();
         }
     }
-
-    
     ?>
 </body>
 
