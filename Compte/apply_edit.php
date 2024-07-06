@@ -33,10 +33,10 @@ echo 'INFO USER<pre>';
 print_r($userInfo);
 echo '</pre>';
 $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
-
+$fileName = uniqid();
 $target_file = $target_dir . $fileName;
 if (!empty($_FILES['img_pp'])) {
-    $fileName = uniqid() . "_" . basename($_FILES["img_pp"]["name"]);
+    $fileName .= "_" . basename($_FILES["img_pp"]["name"]);
     echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
         $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
