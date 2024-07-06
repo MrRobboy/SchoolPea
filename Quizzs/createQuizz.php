@@ -140,7 +140,7 @@
 <body>
     <h2>Création de Quiz</h2>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+    <form action="submitQuizz.php" method="POST">
         <label for="nom">Nom du Quiz :</label>
         <input type="text" id="nom" name="nom" required><br><br>
 
