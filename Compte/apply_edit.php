@@ -50,13 +50,11 @@ if (!empty($_FILES['img_pp'])) {
     $target_storage = $userInfo[0]['path_pp'];
 }
 
-echo '<br>TARGET STORAGE : ' . $target_storage;
-
 echo '<br>TARGET DIR : ' . $target_dir;
 echo '<br>TARGET FILE : ' . $target_file;
 echo '<br>TARGET STORAGE : ' . $target_storage;
 
-if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['img_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
+if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $target_storage and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
     header('Location: https://schoolpea.com/Compte/index.php');
 } else {
