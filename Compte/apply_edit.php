@@ -26,10 +26,10 @@ if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_nam
     $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
     $fileName = uniqid() . "_" . basename($_FILES["img_pp"]["name"]);
     $target_file = $target_dir . $fileName;
-    $targer_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
+    $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
     if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
 } else {
-    $targer_storage = $userInfo[0]['path_pp'];
+    $target_storage = $userInfo[0]['path_pp'];
 }
 
 
@@ -57,7 +57,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_PO
     $stmt2->bindvalue(':lastname', $_POST['lastname']);
     $stmt2->bindvalue(':firstname', $_POST['firstname']);
     $stmt2->bindvalue(':email', $_POST['email']);
-    $stmt2->bindvalue(':path_pp', $_POST['path_pp']);
+    $stmt2->bindvalue(':path_pp', $target_storage);
     $stmt2->bindvalue(':role', $_POST['role']);
     $result = $stmt2->execute();
 
