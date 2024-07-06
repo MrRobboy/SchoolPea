@@ -120,3 +120,48 @@ header.prof {
     object-fit: cover;
     border-radius: 50%;
 }
+
+/* Styles pour le mode sombre */
+body.dark-mode {
+    background-color: #0d1b2a;
+    color: #cbd4e0;
+}
+
+body.dark-mode header {
+    background-color: #1a2b48;
+    box-shadow: 0 0.5em 0.5em rgba(13, 27, 42, 1);
+}
+
+body.dark-mode header.admin {
+    box-shadow: 0 0.5em 0.5em rgba(55, 156, 68, 0.8);
+}
+
+body.dark-mode header.prof {
+    box-shadow: 0 0.5em 0.5em rgba(156, 55, 68, 0.8);
+}
+
+body.dark-mode #accueil a {
+    color: #cbd4e0;
+}
+
+body.dark-mode #Pages a {
+    color: #cbd4e0;
+    border: solid 0.1em #1a2b48;
+}
+
+body.dark-mode #Pages a:hover {
+    color: #91a1d6;
+    background-color: rgba(132, 147, 232, 10%);
+    border-radius: 2em;
+    padding: 0.2em 1em;
+    border: solid 0.1em #cbd4e0;
+}
+
+body.dark-mode #dropdown {
+    background-color: #1a2b48;
+    border: #cbd4e0 solid 0.1em;
+}
+
+body.dark-mode #dropdown a {
+    color: #cbd4e0;
+}

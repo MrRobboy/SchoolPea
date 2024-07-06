@@ -1,0 +1,15 @@
+
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #3f51b5;
+    --button-bg: #5c6bc0;
+    --button-text: #ffffff;
+
+    /* Dark Mode */
+    --bg-color-dark: #333333;
+    --text-color-dark: #ffffff;
+    --link-color-dark: #9fa8da;
+    --button-bg-dark: #5c6bc0;
+    --button-text-dark: #ffffff;
+}
