@@ -87,7 +87,7 @@ session_start();
                     <img src="../../Images/exclamation.svg" id="Exclamation">
                 </span>
 
-                <span id="Delete_Acc" style="margin: 0 1.5em 0;">
+                <span id="Delete_Acc" style="margin: 0 0 1.5em 0;">
                     <span id="Titre_Delete_Acc">Supprimer votre compte</span>
                     <span id="Text_Delete_Acc">Si vous supprimez votre compte, vous en perdrez l'accès définitif sans possibilité de le récupérer. Vos données personnelles et vos progrès seront effacés et perdus, de même que tout abonnement en cours.</span>
                 </span>
