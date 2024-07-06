@@ -42,9 +42,15 @@
 
 <body>
     <?php
-    include '../headerL.php';
+    session_start(); // Démarrage de la session
 
-    session_start(); // Démarrage de la session si ce n'est pas déjà fait
+    // Vérification de la session et inclusion de l'en-tête
+    if (isset($_SESSION['mail_valide'])) {
+        include($_SERVER['DOCUMENT_ROOT'] . '/headerL.php');
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+        exit();
+    }
 
     // Vérification de l'ID du cours dans l'URL
     if (!isset($_GET['id_cours'])) {
@@ -119,6 +125,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'like') {
         if (!isset($_SESSION['id_user'])) {
             echo "Vous devez être connecté pour aimer un cours.";
+            exit(); // Arrêt de l'exécution si l'utilisateur n'est pas connecté
         } else {
             $id_user = $_SESSION['id_user'];
 
@@ -127,8 +134,8 @@
             $stmt_like = $dbh->prepare($sql_like);
             $stmt_like->execute([$id_user, $id_cours]);
 
-            // Rafraîchir la page pour refléter le nouveau like
-            header("Refresh:0");
+            // Redirection vers la page de cours après avoir aimé
+            header("Location: voirCours.php?id_cours=$id_cours");
             exit();
         }
     }
