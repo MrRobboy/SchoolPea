@@ -43,6 +43,7 @@ echo '</pre>';
 $fileUploaded = false;
 $CorrectName = str_replace(' ', '_', $_FILES["img_pp"]["name"]);
 $CorrectName = str_replace('\'', '_', $_FILES["img_pp"]["name"]);
+$CorrectName = "TEST";
 
 echo 'CORRECT NAME : ' . $CorrectName;
 
@@ -51,7 +52,7 @@ if (!empty($_FILES['img_pp'])) {
     echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
         $fileUploaded = true;
-        $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $CorrectName;
+        $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
         if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
     } else {
         $target_storage = $userInfo[0]['path_pp'];
