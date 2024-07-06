@@ -52,7 +52,7 @@ echo '<br>TARGET DIR : ' . $target_dir;
 echo '<br>TARGET FILE : ' . $target_file;
 echo '<br>TARGET STORAGE : ' . $target_storage;
 
-if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
+if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['img_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
     // header('Location: ' . $_SERVER['HTTP_REFERER']);
 } else {
@@ -71,13 +71,12 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_PO
         }
     }
 
-    $stmt2 = $dbh->prepare("UPDATE USER SET lastname=:lastname, firstname=:firstname, email=:email, path_pp=:path_pp, role=:role where id_USER = :id_user");
-    $stmt2->bindvalue(':id_user', $_POST['id_USER']);
+    $stmt2 = $dbh->prepare("UPDATE USER SET lastname=:lastname, firstname=:firstname, email=:email, path_pp=:path_pp where id_USER = :id_user");
+    $stmt2->bindvalue(':id_user', $_POST['id_user']);
     $stmt2->bindvalue(':lastname', $_POST['lastname']);
     $stmt2->bindvalue(':firstname', $_POST['firstname']);
     $stmt2->bindvalue(':email', $_POST['email']);
     $stmt2->bindvalue(':path_pp', $target_storage);
-    $stmt2->bindvalue(':role', $_POST['role']);
     $result = $stmt2->execute();
 
 
