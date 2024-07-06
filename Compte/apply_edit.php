@@ -72,7 +72,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_PO
     }
 
     $stmt2 = $dbh->prepare("UPDATE USER SET lastname=:lastname, firstname=:firstname, email=:email, path_pp=:path_pp where id_USER = :id_user");
-    $stmt2->bindvalue(':id_user', $_POST['id_user']);
+    $stmt2->bindvalue(':id_user', $_SESSION['id_user']);
     $stmt2->bindvalue(':lastname', $_POST['lastname']);
     $stmt2->bindvalue(':firstname', $_POST['firstname']);
     $stmt2->bindvalue(':email', $_POST['email']);
