@@ -37,6 +37,15 @@
             margin-bottom: 15px;
             line-height: 1.6;
         }
+
+        .trait {
+            padding: 0.2em 20em;
+            border-radius: 3em;
+            justify-content: center;
+            background-color: transparent;
+            margin-bottom: 10em;
+            margin-top: 0em;
+        }
     </style>
 </head>
 
@@ -68,6 +77,9 @@
     if ($stmt->rowCount() > 0) {
         $cours = $stmt->fetch(PDO::FETCH_ASSOC);
     ?>
+
+        <span class="trait"></span>
+
         <div class="content-container">
             <h2><?php echo htmlspecialchars($cours['nom']); ?></h2>
             <p>Niveau : <?php echo htmlspecialchars($cours['niveau']); ?></p>
