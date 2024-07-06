@@ -1,3 +1,4 @@
+
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 * {
@@ -7,19 +8,19 @@
 }
 
 body {
-	background-color: #c9d6ff;
-	background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+	background-color: var(--bg-color-light);
+	background: linear-gradient(to right, #e2e2e2, var(--bg-color-light));
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	height: 100vh;
-	font-family: "Montserrat";
+	font-family: "Montserrat", sans-serif;
+	color: var(--text-color-light);
 }
 
 .container {
-	/*body -> container*/
-	background-color: #fff;
+	background-color: var(--bg-color-light);
 	border-radius: 30px;
 	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
 	position: relative;
@@ -30,16 +31,14 @@ body {
 }
 
 .container a {
-	/*body -> Connexion -> mot de passe oublié*/
-	color: #333;
+	color: var(--text-color-light);
 	font-size: 13px;
 	text-decoration: none;
 	margin: 15px 0 10px 0;
 }
 
 .container button {
-	/*Body -> container -> button connexion/inscription (hors toggle)*/
-	background-color: #512da8;
+	background-color: var(--accent-color-light);
 	color: #fff;
 	font-size: 12px;
 	padding: 10px 45px;
@@ -53,14 +52,12 @@ body {
 }
 
 .container button.hidden {
-	/*Body -> container -> toggle ! (outrepasse le css de container button !)*/
 	background-color: transparent;
 	border-color: #fff;
 }
 
 .container form {
-	/*body -> container -> connexion/ inscription -> form*/
-	background-color: #fff;
+	background-color: var(--bg-color-light);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -70,7 +67,6 @@ body {
 }
 
 .container input {
-	/*body -> container -> connexion/inscription -> form -> input*/
 	background-color: #eee;
 	border: none;
 	margin: 8px 0;
@@ -80,47 +76,38 @@ body {
 	width: 100%;
 }
 
-/*-----------------------------------------------  TRANSITIONS/ANIMATIONS  ------------------------------------------------------------*/
 .form-container {
-	/*Transition Connexion/Inscription*/
 	position: absolute;
 	top: 0;
 	height: 100%;
 	transition: all 1s ease-in-out, opacity 0.05s ease-out 0.3s;
-	/* all c'est pour tout, opacity c'est pour le texte qu'il delay sa disparition*/
 }
 
 .sign-in {
-	/*Situation de base de connexion*/
 	width: 50%;
 	opacity: 1;
 	z-index: 1;
-	/* opacity 1 == visible; opacity 0 == caché*/
 }
 
 .container.Inscription .sign-in {
-	/*Transition Connexion*/
 	transform: translateX(100%);
 	opacity: 0;
 	z-index: 0;
 }
 
 .sign-up {
-	/*Situation de base d'inscription*/
 	width: 50%;
 	opacity: 0;
 	z-index: 0;
 }
 
 .container.Inscription .sign-up {
-	/*Transition inscription*/
 	transform: translateX(100%);
 	opacity: 1;
 	z-index: 1;
 }
 
 .toggle-container {
-	/* body -> container -> toggle droite*/
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -130,18 +117,15 @@ body {
 	transition: all 0.4s ease-in-out;
 	border-radius: 75px 0 0 75px;
 	z-index: 2;
-	/* haut gauche, haut droit, bas droit, bas gauche*/
 }
 
 .container.Inscription .toggle-container {
-	/*Transition toggle Droite vers gauche*/
 	transform: translateX(-100%);
 	border-radius: 0 75px 75px 0;
 }
 
 .toggle {
-	/*body -> container -> toggle (contient le texte et le boutton)*/
-	background: linear-gradient(to right, #5c6bc0, #512da8);
+	background: linear-gradient(to right, var(--accent-color-dark), var(--bg-color-dark));
 	color: #fff;
 	position: relative;
 	left: -100%;
@@ -152,12 +136,10 @@ body {
 }
 
 .container.Inscription .toggle {
-	/*Transition toggle*/
 	transform: translateX(50%);
 }
 
 .toggle-panel {
-	/*body -> container -> toggle -> toggle-panel (texte et boutton)*/
 	position: absolute;
 	width: 50%;
 	height: 100%;
