@@ -234,8 +234,7 @@ body {
     border: transparent 0.2em solid;
     font-size: 1em;
     font-weight: 600;
-    width: 1em;
-    height: 2em;
+    padding: 1em 2em;
     transition: all 0.3s ease-in-out;
     text-decoration: none;
 }
