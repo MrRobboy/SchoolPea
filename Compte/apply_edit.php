@@ -10,6 +10,15 @@ if (empty($_SESSION['mail_valide'])) {
     header('Location: https://schoolpea.com/Connexion');
 }
 
+$target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
+$fileName = uniqid();
+$target_file = $target_dir . $fileName;
+
+echo '<br>TARGET DIR : ' . $target_dir;
+echo '<br>TARGET FILE : ' . $target_file;
+echo '<br>TARGET STORAGE : ' . $target_storage;
+
+
 echo 'POST<pre>';
 print_r($_POST);
 echo '</pre>';
@@ -28,13 +37,7 @@ $userInfo = $stmt->fetchAll();
 echo 'INFO USER<pre>';
 print_r($userInfo);
 echo '</pre>';
-$target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
-$fileName = uniqid();
-$target_file = $target_dir . $fileName;
 
-echo '<br>TARGET DIR : ' . $target_dir;
-echo '<br>TARGET FILE : ' . $target_file;
-echo '<br>TARGET STORAGE : ' . $target_storage;
 
 if (!empty($_FILES['img_pp'])) {
     $fileName .= "_" . basename($_FILES["img_pp"]["name"]);
