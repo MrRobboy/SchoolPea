@@ -152,7 +152,7 @@
             newQuestion.appendChild(questionLabel);
 
             var questionInput = document.createElement('textarea');
-            questionInput.name = 'questions[' + nextQuestionIndex + '][text]';
+            questionInput.name = 'questions[' + nextQuestionIndex + '][question]';
             questionInput.placeholder = 'Posez votre question ici';
             questionInput.required = true;
             newQuestion.appendChild(questionInput);
@@ -191,14 +191,14 @@
 
             var answerInput = document.createElement('input');
             answerInput.type = 'text';
-            answerInput.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][text]';
+            answerInput.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][answer]';
             answerInput.placeholder = 'Réponse';
             answerInput.required = true;
             newAnswer.appendChild(answerInput);
 
             var correctCheckbox = document.createElement('input');
             correctCheckbox.type = 'checkbox';
-            correctCheckbox.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][is_correct]';
+            correctCheckbox.name = 'questions[' + questionIndex + '][answers][' + nextAnswerIndex + '][correct]';
             correctCheckbox.id = 'correct_' + questionIndex + '_' + nextAnswerIndex;
             newAnswer.appendChild(correctCheckbox);
 
