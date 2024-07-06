@@ -14,6 +14,10 @@ echo '<pre>';
 print_r($_POST);
 echo '</pre>';
 
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+
 $dbh->exec('USE PA');
 
 $stmt = $dbh->prepare("SELECT * FROM USER where id_USER=:id");
@@ -21,6 +25,9 @@ $stmt->bindvalue(':id', $_SESSION['id_USER']);
 $stmt->execute();
 $userInfo = $stmt->fetchAll();
 
+echo '<pre>';
+print_r($userInfo);
+echo '</pre>';
 
 if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
     $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
