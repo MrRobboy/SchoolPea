@@ -10,11 +10,11 @@ if (empty($_SESSION['mail_valide'])) {
     header('Location: https://schoolpea.com/Connexion');
 }
 
-echo 'FILES<pre>';
+echo 'POST<pre>';
 print_r($_POST);
 echo '</pre>';
 
-echo 'POST<pre>';
+echo 'FILES<pre>';
 print_r($_FILES);
 echo '</pre>';
 
