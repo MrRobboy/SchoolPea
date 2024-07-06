@@ -17,7 +17,6 @@
     // Vérification de l'ID du cours dans l'URL
     if (!isset($_GET['id_cours'])) {
         echo "Erreur: ID de cours non spécifié.";
-        include 'footer.php';
         exit();
     }
 
@@ -103,7 +102,7 @@
         }
     }
 
-    include 'footer.php';
+    
     ?>
 </body>
 
