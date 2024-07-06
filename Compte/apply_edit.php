@@ -12,7 +12,7 @@ if (empty($_SESSION['mail_valide'])) {
 
 $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
 $fileName = uniqid();
-$target_file = $target_dir . $fileName;
+
 
 echo '<br>';
 echo 'FILES<pre>';
@@ -39,16 +39,17 @@ print_r($userInfo);
 echo '</pre>';
 
 
-
 $fileUploaded = false;
-$CorrectName = str_replace(' ', '_', $_FILES["img_pp"]["name"]);
-$CorrectName = str_replace('\'', '_', $_FILES["img_pp"]["name"]);
-$CorrectName = "TEST";
+$CorrectName = str_replace(" ", "_", $_FILES["img_pp"]["name"]);
+$CorrectName = str_replace("'", "_", $_FILES["img_pp"]["name"]);
 
 echo 'CORRECT NAME : ' . $CorrectName;
 
+echo '<br><br>';
+
 if (!empty($_FILES['img_pp'])) {
     $fileName .= "_" . $CorrectName;
+    $target_file = $target_dir . $fileName;
     echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
         $fileUploaded = true;
