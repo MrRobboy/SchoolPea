@@ -14,8 +14,10 @@ $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
 $fileName = uniqid();
 $target_file = $target_dir . $fileName;
 
-echo '<br>TARGET DIR : ' . $target_dir;
-echo '<br>TARGET FILE : ' . $target_file;
+echo '<br>';
+echo 'FILES<pre>';
+print_r($_FILES);
+echo '</pre>';
 
 echo 'POST<pre>';
 print_r($_POST);
