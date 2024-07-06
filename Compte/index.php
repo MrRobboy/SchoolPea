@@ -32,7 +32,7 @@ session_start();
             </span>
 
             <span id="Modif_Photo">
-                <img src="https://schoolpea.com/<?php echo $_SESSION['path_pp']; ?>" id="PP">
+                <img src="<?php echo $_SESSION['path_pp']; ?>" id="PP">
                 <input type="hidden" name="max_size" value="1048576">
                 <label for="image_pp" id="But_Photo" class="btn" style="cursor: pointer; margin: 1em; position: relative; padding: 0.5em 1em 0 1em; z-index: 0;">Charger une photo</label>
                 <input id="image_pp" type="file" name="img_pp" hidden>
