@@ -8,40 +8,12 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style>
         /* Additional styling specific to this page */
-        body {
-            background-color: #c9d6ff;
-            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            height: 100vh;
-            font-family: "Montserrat", sans-serif;
-        }
-
-        .header {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            width: 100%;
-        }
-
         .content-container {
-            background-color: #fff;
-            border-radius: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-            position: relative;
-            overflow: hidden;
-            width: 30em;
-            min-height: 20em;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            margin: 20px;
             padding: 20px;
-            text-align: center;
-            margin-top: 20px; /* Ajout d'un espacement entre le header et le contenu */
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
         }
 
         .section {
@@ -65,32 +37,20 @@
             margin-bottom: 15px;
             line-height: 1.6;
         }
-
-        button {
-            background-color: #512da8;
-            color: #fff;
-            font-size: 12px;
-            padding: 10px 45px;
-            border: 1px solid transparent;
-            border-radius: 8px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-top: 10px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #311b92;
-        }
     </style>
 </head>
 
 <body>
     <?php
-    include 'header.php';
+    session_start(); // Démarrage de la session
 
-    session_start(); // Démarrage de la session si ce n'est pas déjà fait
+    // Vérification de la session et inclusion de l'en-tête
+    if (isset($_SESSION['mail_valide'])) {
+        include($_SERVER['DOCUMENT_ROOT'] . '/headerL.php');
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+        exit();
+    }
 
     // Vérification de l'ID du cours dans l'URL
     if (!isset($_GET['id_cours'])) {
@@ -165,6 +125,7 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'like') {
         if (!isset($_SESSION['id_user'])) {
             echo "Vous devez être connecté pour aimer un cours.";
+            exit(); // Arrêt de l'exécution si l'utilisateur n'est pas connecté
         } else {
             $id_user = $_SESSION['id_user'];
 
@@ -173,8 +134,8 @@
             $stmt_like = $dbh->prepare($sql_like);
             $stmt_like->execute([$id_user, $id_cours]);
 
-            // Rafraîchir la page pour refléter le nouveau like
-            header("Refresh:0");
+            // Redirection vers la page de cours après avoir aimé
+            header("Location: voirCours.php?id_cours=$id_cours");
             exit();
         }
     }
