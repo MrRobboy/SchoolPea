@@ -125,7 +125,7 @@ body {
     background-color: rgba(92, 107, 192, 0.75);
     color: white;
     border: transparent 0.2em solid;
-    font-size: 90%;
+    font-size: 100%;
     font-weight: 700;
     transition: all 0.3s ease-in-out;
 }
@@ -183,7 +183,7 @@ body {
     background-color: rgba(92, 107, 192, 0.75);
     color: white;
     border: transparent 0.2em solid;
-    font-size: 90%;
+    font-size: 100%;
     font-weight: 700;
     transition: all 0.3s ease-in-out;
 }
