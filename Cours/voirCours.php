@@ -37,15 +37,6 @@
             margin-bottom: 15px;
             line-height: 1.6;
         }
-
-        .trait {
-            padding: 0.2em 20em;
-            border-radius: 3em;
-            justify-content: center;
-            background-color: transparent;
-            margin-bottom: 10em;
-            margin-top: 0em;
-        }
     </style>
 </head>
 
