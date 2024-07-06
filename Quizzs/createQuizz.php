@@ -27,7 +27,7 @@
             border-radius: 2em;
             box-shadow: 0 0 90px rgba(200, 200, 255, 0.75);
             padding: 2em 4em;
-            max-width: 800px;
+            max-width: 1200px; /* Augmentez la largeur maximale du formulaire */
             width: 100%;
         }
         label {
@@ -48,11 +48,11 @@
             font-family: "Montserrat", sans-serif;
         }
         input[type="submit"] {
-            background-color: #8493e8;
+            background-color: #1e90ff; /* Couleur bleue */
             color: white;
             padding: 0.7em 2.5em;
             border: none;
-            border-radius: 1.5em;
+            border-radius: 1.5em; /* Bords arrondis */
             cursor: pointer;
             font-weight: 600;
             font-size: 1em;
@@ -96,22 +96,22 @@
             border-radius: 0.5em;
         }
         .remove-btn {
-            background-color: red;
+            background-color: #1e90ff; /* Couleur bleue */
             color: white;
             border: none;
             cursor: pointer;
             padding: 0.3em 0.6em;
-            border-radius: 0.5em;
+            border-radius: 0.5em; /* Bords arrondis */
             font-size: 0.9em;
             margin-top: 0.5em;
         }
         .add-answer-btn {
-            background-color: #6b7ad2;
+            background-color: #1e90ff; /* Couleur bleue */
             color: white;
             border: none;
             cursor: pointer;
             padding: 0.3em 1em;
-            border-radius: 1em;
+            border-radius: 1em; /* Bords arrondis */
             font-size: 0.9em;
             margin-top: 0.5em;
         }
