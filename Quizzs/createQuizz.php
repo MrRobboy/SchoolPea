@@ -46,7 +46,7 @@
             font-family: "Montserrat", sans-serif;
         }
         input[type="submit"], button {
-            background-color: #1e90ff;
+            background-color: #374599;
             color: white;
             padding: 0.5em 1.5em;
             border: none;
@@ -88,7 +88,7 @@
             background-color: #d32f2f;
         }
         .add-choice {
-            background-color: #1e90ff;
+            background-color: #374599;
             color: white;
             border: none;
             cursor: pointer;
@@ -98,7 +98,7 @@
             margin-top: 0.5em;
         }
         .add-choice:hover {
-            background-color: #8493e8;
+            background-color: #374599;
         }
     </style>
 </head>
