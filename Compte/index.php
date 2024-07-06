@@ -81,8 +81,8 @@ session_start();
     </div>
 
     <div id="div2">
-        <div style="padding: 2em;">
-            <span style="display: flex; flex-direction: row;margin: 0 0 1.5em 0;">
+        <div style="padding: 2em 2em 4em 2em;">
+            <span style="display: flex; flex-direction: row;margin: 0 0 2.5em 0;">
                 <span>
                     <img src="../../Images/exclamation.svg" id="Exclamation">
                 </span>
@@ -93,7 +93,7 @@ session_start();
                 </span>
             </span>
 
-            <span id="BUT_DEL" style="padding: 3em 2em;">
+            <span style="padding: 2em;">
                 <a id="But_Delete_Acc" href="#">Supprimer le compte</a>
             </span>
         </div>
