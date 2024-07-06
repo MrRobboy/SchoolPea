@@ -21,6 +21,10 @@ header.admin {
     box-shadow: 0 0.5em 0.5em rgb(55, 156, 68);
 }
 
+header.prof {
+    box-shadow: 0 0.5em 0.5em rgb(156, 55, 68);
+}
+
 #accueil {
     margin: 0 1em;
     display: flex;
