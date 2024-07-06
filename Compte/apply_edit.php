@@ -33,9 +33,11 @@ echo 'INFO USER<pre>';
 print_r($userInfo);
 echo '</pre>';
 $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
-$fileName = uniqid() . "_" . basename($_FILES["img_pp"]["name"]);
+
 $target_file = $target_dir . $fileName;
 if (!empty($_FILES['img_pp'])) {
+    $fileName = uniqid() . "_" . basename($_FILES["img_pp"]["name"]);
+    echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
         $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
         if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
@@ -48,7 +50,6 @@ if (!empty($_FILES['img_pp'])) {
 
 echo '<br>TARGET DIR : ' . $target_dir;
 echo '<br>TARGET FILE : ' . $target_file;
-echo '<br>TARGET FILE NAME : ' . $fileName;
 echo '<br>TARGET STORAGE : ' . $target_storage;
 
 if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_POST['path_pp'] and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
