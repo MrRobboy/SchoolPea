@@ -182,3 +182,192 @@ h1 {
     border-radius: 5px;
     font-size: 16px;
 }
+/* CSS pour voirCours.php */
+/* CSS pour voirCours.php */
+
+/* Reset des marges et paddings pour le corps et les éléments */
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+/* Police Google Montserrat pour tout le document */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f2f2f2;
+    /* Couleur de fond de la page */
+    color: #333;
+    /* Couleur de texte principale */
+    line-height: 1.6;
+    /* Hauteur de ligne agréable pour la lisibilité */
+}
+
+/* Conteneur principal du contenu */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    /* Centrage du contenu */
+    background-color: #fff;
+    /* Fond blanc */
+    padding: 20px;
+    border-radius: 10px;
+    /* Coins arrondis */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Ombre légère */
+}
+
+/* Titre du cours */
+.container h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Niveau du cours */
+.container p {
+    font-size: 1.2em;
+    color: #666;
+}
+
+/* Description du cours */
+.cours-description {
+    margin-top: 15px;
+    line-height: 1.8;
+}
+
+/* Bouton "Liker ce cours" */
+.button-like,
+.button-pdf {
+    display: inline-block;
+    background-color: #6b7ad2;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button-like:hover,
+.button-pdf:hover {
+    background-color: #8493e8;
+}
+
+/* Section des sections et titres */
+.container h3,
+.container h4 {
+    margin-top: 20px;
+    color: #333;
+}
+
+/* Paragraphe du cours */
+.container p.paragraphe {
+    margin-top: 10px;
+    color: #666;
+}
+
+/* Styling pour le lien PDF */
+.button-pdf {
+    margin-left: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Styles spécifiques pour la barre de recherche, si nécessaire */
+.search-bar {
+    /* Ajoutez vos styles ici si vous avez une barre de recherche */
+}
+
+/* Assurez-vous d'adapter ces styles en fonction de votre structure HTML existante et de vos préférences visuelles. */
+/* Bouton pour liker le cours */
+.button-like {
+    padding: 0.5em 2em;
+    background-color: #6b7ad2;
+    border: none;
+    color: white;
+    border-radius: 2em;
+    cursor: pointer;
+    margin-bottom: 1em;
+}
+
+.button-like:hover {
+    background-color: #8493e8;
+}
+
+/* Bouton pour télécharger le PDF */
+.button-pdf {
+    padding: 0.5em 2em;
+    background-color: #6b7ad2;
+    border: none;
+    color: white;
+    border-radius: 2em;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.button-pdf:hover {
+    background-color: #8493e8;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.cours-description {
+    margin-top: 20px;
+}
+
+/* Intégration de la partie inspirée du CSS initial */
+/* ... */
+
+/* Ajustement de la position des boutons dans le contenu */
+.but {
+    display: flex;
+    justify-content: center;
+    /* Centre les boutons horizontalement */
+    margin-top: 1em;
+}
+
+.but button,
+.but a {
+    margin: 0 1em;
+    /* Espacement entre les boutons */
+}
+
+.but a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Styles pour le bouton de téléchargement PDF */
+.but a.button-pdf {
+    padding: 0.5em 2em;
+    background-color: #6b7ad2;
+    border: none;
+    color: white;
+    border-radius: 2em;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.but a.button-pdf:hover {
+    background-color: #8493e8;
+}
+
+/* Assurez-vous d'adapter ces styles en fonction de votre structure HTML existante et de vos préférences visuelles. */
