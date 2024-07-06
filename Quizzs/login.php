@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Validate credentials and fetch user details from database
     $sql = "SELECT id_USER, pass FROM USER WHERE email = :email";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(':email', $email);
@@ -30,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user && password_verify($password, $user['pass'])) {
-        $_SESSION['user_id'] = $user['id_USER']; // Set session variable upon successful login
+        $_SESSION['user_id'] = $user['id_USER']; 
         $redirectUrl = isset($_SESSION['redirect_url']) ? $_SESSION['redirect_url'] : 'index.php';
-        unset($_SESSION['redirect_url']); // Clear the redirect URL after using it
+        unset($_SESSION['redirect_url']); 
         header("Location: $redirectUrl");
         exit();
     } else {
