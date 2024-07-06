@@ -91,33 +91,82 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Participer au Quiz</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="style.css">
-    <script>
-        function validateQuestion() {
-            var form = document.getElementById('quiz-form');
-            var checkboxes = form.elements['answers[<?php echo $currentQuestionData['id_question']; ?>][]'];
-            var answered = false;
-
-            for (var i = 0; i < checkboxes.length; i++) {
-                if (checkboxes[i].checked) {
-                    answered = true;
-                    break;
-                }
-            }
-
-            if (!answered) {
-                alert('Veuillez sélectionner au moins une réponse.');
-                return false;
-            }
-
-            return true;
+    <style>
+        body {
+            background-color: #c9d6ff;
+            background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
         }
-    </script>
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        #choices-container {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        #choices-container div {
+            margin-bottom: 10px;
+        }
+
+        #choices-container label {
+            margin-left: 10px;
+        }
+
+        button {
+            background-color: #5c6bc0;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #3f51b5;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
-        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>&question=<?php echo $currentQuestion; ?>" method="post" id="quiz-form" onsubmit="return validateQuestion()">
+        <form action="participerQuizz.php?id_quizz=<?php echo $idQuizz; ?>&question=<?php echo $currentQuestion; ?>" method="post">
             <h3>Question <?php echo $currentQuestion; ?>:</h3>
             <p><?php echo htmlspecialchars($currentQuestionData['question_text']); ?></p>
 
