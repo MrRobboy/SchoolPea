@@ -77,35 +77,17 @@
         }
     </style>
     <script>
-       // dark-mode.js
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggleSwitch = document.getElementById('dark-mode-toggle');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
-    
-    // Fonction pour activer/désactiver le mode sombre
-    function switchTheme(e) {
-        if (e.target.checked) {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.documentElement.setAttribute('data-theme', 'light');
-            localStorage.setItem('theme', 'light');
-        }
-    }
-    
-    // Ajoute un écouteur d'événement pour le changement d'état du bouton
-    toggleSwitch.addEventListener('change', switchTheme, false);
-    
-    // Vérifie le thème actuel au chargement de la page
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme) {
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        if (currentTheme === 'dark') {
-            toggleSwitch.checked = true;
-        }
-    }
-});
-
+            toggleSwitch.addEventListener('change', function () {
+                if (toggleSwitch.checked) {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+            });
+        });
     </script>
 </head>
 
