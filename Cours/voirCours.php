@@ -41,13 +41,12 @@
         #Cours_Content {
             padding: 5em;
             margin: 5em;
-            position: relative;
-            top: 5em;
         }
     </style>
 </head>
 
-<body style="padding-top: 2em;">
+<body>
+    <span class="trait"></span>
     <div id="Cours_Content">
         <?php
         session_start(); // Démarrage de la session
