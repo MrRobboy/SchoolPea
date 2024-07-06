@@ -29,7 +29,7 @@ session_start();
     <?php if (!empty($_GET['error'])) echo '<p style="background-color: red; color: white; font-size: 40px; font-weight: 700; padding: 0.5em 1em; border-radius: 3em; text-align: center;">ERREUR INSERTION BDD</p>'; ?>
 
     <div id="div1">
-        <form method="post" id="Info_gen" action="apply_edit.php">
+        <form method="post" id="Info_gen" action="apply_edit.php" enctype="multipart/form-data">
             <span id="Titre_Info_gen">
                 <img src="https://schoolpea.com/Images/reglage.svg" style="width: 45px;">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
