@@ -11,13 +11,77 @@
         header {
             /* Vos styles pour l'en-tête ici */
         }
+
+        /* Styles pour le toggle switch */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #3f51b5;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Styles spécifiques pour le mode sombre */
+        body.dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const checkbox = document.getElementById('dark-mode-checkbox');
+            const toggleSwitch = document.getElementById('dark-mode-toggle');
 
-            checkbox.addEventListener('change', function () {
-                if (checkbox.checked) {
+            toggleSwitch.addEventListener('change', function () {
+                if (toggleSwitch.checked) {
                     document.body.classList.add('dark-mode');
                 } else {
                     document.body.classList.remove('dark-mode');
@@ -78,10 +142,13 @@
                 <img src="<?php echo $_SESSION['path_pp']; ?>" id="Photo_profile" onclick="location.replace('/Compte');" />
             </span>
 
-            <!-- Ajout du bouton pour activer le mode sombre -->
-            <div id="dark-mode-toggle">
-                <input type="checkbox" id="dark-mode-checkbox">
-                <label for="dark-mode-checkbox">Mode sombre</label>
+            <!-- Toggle switch pour le mode sombre -->
+            <div class="toggle-container">
+                <label class="toggle-label">Mode sombre</label>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="dark-mode-toggle">
+                    <span class="toggle-slider"></span>
+                </label>
             </div>
         </div>
     </header>
