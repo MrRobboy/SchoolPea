@@ -45,11 +45,8 @@ $CorrectName = str_replace(' ', '_', $_FILES["img_pp"]["name"]);
 
 echo 'CORRECT NAME :' . $CorrectName;
 
-if (str_contains(" ", basename($_FILES["img_pp"]["name"]))) {
-}
-
 if (!empty($_FILES['img_pp'])) {
-    $fileName .= "_" . basename($_FILES["img_pp"]["name"]);
+    $fileName .= "_" . $CorrectName;
     echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
         $fileUploaded = true;
