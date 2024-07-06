@@ -33,12 +33,16 @@ echo 'INFO USER<pre>';
 print_r($userInfo);
 echo '</pre>';
 
-if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
-    $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
-    $fileName = uniqid() . "_" . basename($_FILES["img_pp"]["name"]);
-    $target_file = $target_dir . $fileName;
-    $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
-    if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
+if (!empty($_FILES['img_pp'])) {
+    if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
+        $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
+        $fileName = uniqid() . "_" . basename($_FILES["img_pp"]["name"]);
+        $target_file = $target_dir . $fileName;
+        $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
+        if (!move_uploaded_file($_FILES["img_pp"]["tmp_name"], $target_file)) echo 'Erreur téléchargement !';
+    } else {
+        $target_storage = $userInfo[0]['path_pp'];
+    }
 } else {
     $target_storage = $userInfo[0]['path_pp'];
 }
