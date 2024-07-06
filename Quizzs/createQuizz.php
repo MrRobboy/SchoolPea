@@ -48,15 +48,15 @@
                 questionContainer.innerHTML = `
                     <label>Question:</label>
                     <textarea name="questions[${questionIndex}][text]" required></textarea>
-                    <button type="button" class="delete-question">Delete Question</button>
                     <div class="choices">
                         <div class="choice">
                             <input type="text" name="questions[${questionIndex}][choices][0][text]" required>
                             <label>Correct:</label>
                             <input type="checkbox" name="questions[${questionIndex}][choices][0][is_correct]">
-                            <button type="button" class="delete-choice">Delete Choice</button>
+                            <button type="button" class="remove-btn delete-choice">Delete Choice</button>
                         </div>
                     </div>
+                    <button type="button" class="remove-btn delete-question">Delete Question</button>
                     <button type="button" class="add-choice">Add Choice</button>
                 `;
 
@@ -82,7 +82,7 @@
                     <input type="text" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][text]" required>
                     <label>Correct:</label>
                     <input type="checkbox" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][is_correct]">
-                    <button type="button" class="delete-choice">Delete Choice</button>
+                    <button type="button" class="remove-btn delete-choice">Delete Choice</button>
                 `;
 
                 choiceElement.querySelector('.delete-choice').addEventListener('click', function() {
