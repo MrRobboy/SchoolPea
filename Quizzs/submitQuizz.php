@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    if ($quizImage !== null) {
+    if ($quizImage !== null && $quizImage['error'] == UPLOAD_ERR_OK) {
         $targetDir = "uploads/";
         $targetFile = $targetDir . basename($quizImage["name"]);
         $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
@@ -69,19 +69,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Insert questions and choices
     foreach ($_POST['questions'] as $questionIndex => $question) {
-        if (isset($question['text']) && !empty($question['text'])) {
+        if (isset($question['question']) && !empty($question['question'])) {
             $sql = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)";
             $stmt = $dbh->prepare($sql);
-            $stmt->execute([$quizId, $question['text']]);
+            $stmt->execute([$quizId, $question['question']]);
 
             $questionId = $dbh->lastInsertId();
 
             foreach ($question['answers'] as $choiceIndex => $choice) {
-                if (isset($choice['text']) && !empty($choice['text'])) {
-                    $isCorrect = isset($choice['is_correct']) ? 1 : 0;
+                if (isset($choice['answer']) && !empty($choice['answer'])) {
+                    $isCorrect = isset($choice['correct']) ? 1 : 0;
                     $sql = "INSERT INTO CHOIX (id_question, choix_text, is_correct) VALUES (?, ?, ?)";
                     $stmt = $dbh->prepare($sql);
-                    $stmt->execute([$questionId, $choice['text'], $isCorrect]);
+                    $stmt->execute([$questionId, $choice['answer'], $isCorrect]);
                 }
             }
         }
