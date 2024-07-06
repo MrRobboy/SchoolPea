@@ -25,7 +25,8 @@ function sendWelcomeEmail($recipientEmail) {
         // Content
         $mail->isHTML(true);
         $mail->Subject = 'Bienvenu dans SchoolPea + !';
-        $mail->Body    = 'Merci pour votre adhésion. A préésent vous pouvez pleinement profiter de toutes les fonctionnalités de schoolPea !';
+        $mail->Body    = 'Merci pour votre adhésion. A préésent vous pouvez pleinement profiter de toutes les fonctionnalités de schoolPea !
+                            Apprend et fais apprendre sans limite car tu viens de débloquer la possibilité de crée autant de Cours et de Quizz que tu le souhaite ! ';
 
         $mail->send();
     } catch (Exception $e) {
