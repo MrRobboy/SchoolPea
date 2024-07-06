@@ -40,7 +40,7 @@
     </style>
 </head>
 
-<body>
+<body style="padding:10em 0 5em 0;">
     <span class="trait"></span>
     <?php
     session_start(); // Démarrage de la session
@@ -69,8 +69,6 @@
     if ($stmt->rowCount() > 0) {
         $cours = $stmt->fetch(PDO::FETCH_ASSOC);
     ?>
-
-        <span class="trait"></span>
 
         <div class="content-container">
             <h2><?php echo htmlspecialchars($cours['nom']); ?></h2>
