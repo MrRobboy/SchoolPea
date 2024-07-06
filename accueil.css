@@ -125,6 +125,7 @@ body div {
 
 #Cours_section {
     justify-content: space-around;
+    min-width: 50em;
 }
 
 #Cours_section span {
