@@ -19,7 +19,6 @@ body {
     justify-content: center;
     align-items: center;
     display: flex;
-    margin: 0;
     flex-direction: column;
     background: rgb(255, 255, 255);
     background: linear-gradient(90deg,
