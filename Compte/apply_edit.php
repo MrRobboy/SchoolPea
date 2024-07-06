@@ -48,7 +48,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_PO
         if ($userExist[0]['email'] == $_POST['email']) {
             $_GET['error_mail'] = 1;
             echo '<br>email error';
-            header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error_mail=1');
+            header('Location: https://schoolpea.com/Compte/index.php?error_mail=1');
         }
     }
 
