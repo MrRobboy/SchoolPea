@@ -3,6 +3,9 @@
 
 body {
     font-family: "Montserrat";
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 .container {
@@ -19,6 +22,8 @@ body {
     border: 1px solid #ccc;
     border-radius: 10px;
     text-align: center;
+    background-color: #ffffff;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .login-container h2 {
@@ -41,6 +46,8 @@ body {
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #ffffff;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .login-container button {
@@ -50,6 +57,7 @@ body {
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 /* Chat Styles */
@@ -59,6 +67,8 @@ body {
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    background-color: #ffffff;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 .messages {
@@ -85,6 +95,7 @@ body {
     background: #f1f1f1;
     padding: 10px;
     border-radius: 10px;
+    transition: background-color 0.3s;
 }
 
 .message-content p {
@@ -108,6 +119,10 @@ form textarea {
     width: 80%;
     height: 50px;
     resize: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 form button {
@@ -118,4 +133,37 @@ form button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Styles pour le mode sombre */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+body.dark-mode .login-container,
+body.dark-mode .chat-container {
+    background-color: #1e1e1e;
+    border-color: #444;
+}
+
+body.dark-mode .login-container input,
+body.dark-mode form textarea {
+    background-color: #333;
+    border-color: #555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .message-content {
+    background-color: #333;
+}
+
+body.dark-mode form button,
+body.dark-mode .login-container button {
+    background-color: #5c6bc0;
+}
+
+body.dark-mode .login-container .error {
+    color: #ff6b6b;
 }

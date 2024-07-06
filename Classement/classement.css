@@ -9,9 +9,7 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background: linear-gradient(180deg,
-            rgba(92, 107, 192, 1) 0%,
-            rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(180deg, rgba(92, 107, 192, 1) 0%, rgba(255, 255, 255, 1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,12 +19,14 @@ body {
     margin: 2em;
     min-height: 100vh;
     /* Hauteur minimum de la page pour assurer le dégradé complet */
+    transition: background 0.3s, color 0.3s;
 }
 
 h1 {
     margin-bottom: 1em;
     font-size: 3em;
     font-weight: 600;
+    transition: color 0.3s;
 }
 
 /* Style du contenu principal */
@@ -47,6 +47,7 @@ h1 {
     /* Ombre douce pour l'effet de profondeur */
     text-align: center;
     align-items: center;
+    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
 /* Style du tableau de classement */
@@ -71,6 +72,7 @@ table th {
     padding: 0 1rem;
     background-color: #6b7ad2;
     color: white;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 table td {
@@ -82,6 +84,7 @@ table td {
     /* Centrage du contenu */
     border-bottom: 0.3rem solid #6b7ad2;
     /* Bordure basse des lignes */
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 table td.not_right {
@@ -172,4 +175,60 @@ tbody tr:hover {
 
 .btn.add:hover {
     background-color: #00cf79;
+}
+
+/* Styles pour le mode sombre */
+body.dark-mode {
+    background: linear-gradient(180deg, rgba(30, 30, 30, 1) 0%, rgba(55, 55, 55, 1) 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode h1 {
+    color: #ffffff;
+}
+
+body.dark-mode #content {
+    background-color: rgba(50, 50, 50, 0.9);
+    box-shadow: -1rem 1rem 1px #444;
+}
+
+body.dark-mode table th {
+    background-color: #444;
+    color: #ffffff;
+}
+
+body.dark-mode table td {
+    border-bottom: 0.3rem solid #444;
+    border-right: 0.3rem solid #444;
+}
+
+body.dark-mode tbody tr:nth-child(even) {
+    background-color: #3a3a3a;
+}
+
+body.dark-mode tbody tr:hover {
+    background-color: #555;
+}
+
+body.dark-mode .btn.modify {
+    background-color: #3700cf;
+}
+
+body.dark-mode .btn.ban {
+    background-color: #cf9f00;
+    color: black;
+}
+
+body.dark-mode .btn.unban {
+    background-color: #00cf2d;
+    color: black;
+}
+
+body.dark-mode .btn.del {
+    background-color: #cf0000;
+}
+
+body.dark-mode .btn.add {
+    background-color: #00cf79;
+    color: black;
 }
