@@ -77,6 +77,19 @@ body {
     z-index: 0;
 }
 
+#Sub_Photo {
+    background-color: lightgray;
+    border-radius: 0.5em;
+    border: 0.1em black solid;
+    height: 2em;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 1em;
+    position: relative;
+    padding: 0.5em 1em 0 1em;
+    z-index: 0;
+}
+
 .Text_Nom_Prenom_Email {
     margin: 0.3em 1em;
     font-weight: 600;
