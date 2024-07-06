@@ -100,7 +100,7 @@ session_start();
             </span>
 
             <span style="padding: 2em;">
-                <a id="But_Delete_Acc" href="confirm_delete.php">Supprimer le compte</a>
+                <a id="But_Delete_Acc" href="confirm_delete.php?<?php echo $_SESSION['id_user']; ?>">Supprimer le compte</a>
             </span>
         </div>
     </div>
