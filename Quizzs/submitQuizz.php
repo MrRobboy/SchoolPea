@@ -7,8 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Handle file upload
     $target_dir = "/var/www/html/SchoolPea/Quizzs/uploads/";
-    $fileName = basename($_FILES["quiz_image"]["name"]);
-    $targetFile = $target_dir . uniqid() . "_" . $fileName;
+    $fileName = uniqid() . "_" . basename($_FILES["quiz_image"]["name"]);
+    $target_storage = "https://schoolpea.com/Quizzs/uploads/" . $fileName;
+    $targetFile = $target_dir . $fileName;
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
@@ -47,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // SQL to insert quiz details
     $sql = "INSERT INTO QUIZZ (nom, description, path_img_pres, date_creation) VALUES (?, ?, ?, NOW())";
     $stmt = $dbh->prepare($sql);
-    $stmt->execute([$quizName, $quizDescription, $targetFile]);
+    $stmt->execute([$quizName, $quizDescription, $target_storage]);
 
     $quizId = $dbh->lastInsertId();
 
