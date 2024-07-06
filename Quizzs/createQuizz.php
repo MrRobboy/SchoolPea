@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Quiz</title>
+    <title>Crée ton Quizz</title>
+        <link rel="stylesheet" href="style.css">
     <style>
-        /* Styles spécifiques à la page de création de quiz */
         body {
             font-family: "Montserrat", sans-serif;
             display: flex;
@@ -26,7 +26,7 @@
             border-radius: 2em;
             box-shadow: 0 0 90px rgba(200, 200, 255, 0.75);
             padding: 2em 4em;
-            max-width: 1200px; /* Augmentez la largeur maximale du formulaire */
+            max-width: 1200px;
             width: 100%;
         }
         label {
@@ -47,11 +47,11 @@
             font-family: "Montserrat", sans-serif;
         }
         input[type="submit"], button {
-            background-color: #1e90ff; /* Couleur bleue */
+            background-color: #1e90ff; 
             color: white;
             padding: 0.7em 2.5em;
             border: none;
-            border-radius: 1.5em; /* Bords arrondis */
+            border-radius: 1.5em; 
             cursor: pointer;
             font-weight: 600;
             font-size: 1em;
@@ -95,26 +95,26 @@
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
-        .delete-btn {
-            background-color: #ff4d4d; /* Couleur rouge */
+        .effacer-btn {
+            background-color: #ff4d4d;
             color: white;
             border: none;
             cursor: pointer;
             padding: 0.3em 0.6em;
-            border-radius: 0.5em; /* Bords arrondis */
+            border-radius: 0.5em; 
             font-size: 0.9em;
             margin-top: 0.5em;
         }
-        .delete-btn:hover {
+        .effacer-btn:hover {
             background-color: #d32f2f;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Create a New Quiz</h2>
+        <h2>Crée un nouveau Quiz</h2>
         <form action="submitQuizz.php" method="post" enctype="multipart/form-data" id="quiz-form">
-            <label for="quiz-name">Quiz Name:</label>
+            <label for="quiz-name">Nom du Quiz:</label>
             <input type="text" name="quiz_name" id="quiz-name" required>
 
             <label for="quiz-description">Description:</label>
@@ -124,10 +124,9 @@
             <input type="file" name="quiz_image" id="quiz-image" accept="image/*">
 
             <div id="questions-container">
-                <!-- Placeholder for dynamic questions and choices -->
             </div>
             
-            <button type="button" id="add-question">Add Question</button>
+            <button type="button" id="add-question">Ajouter une  Question</button>
             <input type="submit" value="Submit Quiz">
         </form>
     </div>
@@ -136,7 +135,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             let questionIndex = 0;
 
-            // Add initial question
             addQuestion();
 
             document.getElementById('add-question').addEventListener('click', () => {
@@ -152,20 +150,20 @@
                 questionContainer.innerHTML = `
                     <label>Question:</label>
                     <textarea name="questions[${questionIndex}][text]" required></textarea>
-                    <button type="button" class="delete-btn delete-question">Delete Question</button>
+                    <button type="button" class="effacer-btn effacer-question">effacer Question</button>
                     <div class="choices">
                         <div class="choice">
                             <input type="text" name="questions[${questionIndex}][choices][0][text]" required>
                             <label>Correct:</label>
                             <input type="checkbox" name="questions[${questionIndex}][choices][0][is_correct]">
-                            <button type="button" class="delete-btn delete-choice">Delete Choice</button>
+                            <button type="button" class="effacer-btn effacer-choice">effacer Choice</button>
                         </div>
                     </div>
                     <button type="button" class="add-choice">Add Choice</button>
                 `;
 
                 // Attach events for deleting questions and choices
-                questionContainer.querySelector('.delete-question').addEventListener('click', function() {
+                questionContainer.querySelector('.effacer-question').addEventListener('click', function() {
                     this.closest('.question').remove();
                 });
 
@@ -186,10 +184,10 @@
                     <input type="text" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][text]" required>
                     <label>Correct:</label>
                     <input type="checkbox" name="questions[${questionElement.dataset.questionIndex}][choices][${choiceCount}][is_correct]">
-                    <button type="button" class="delete-btn delete-choice">Delete Choice</button>
+                    <button type="button" class="effacer-btn effacer-choice">effacer Choice</button>
                 `;
 
-                choiceElement.querySelector('.delete-choice').addEventListener('click', function() {
+                choiceElement.querySelector('.effacer-choice').addEventListener('click', function() {
                     this.closest('.choice').remove();
                 });
 
@@ -197,11 +195,11 @@
             }
 
             document.addEventListener('click', (event) => {
-                if (event.target && event.target.classList.contains('delete-question')) {
+                if (event.target && event.target.classList.contains('effacer-question')) {
                     event.target.closest('.question').remove();
                 }
 
-                if (event.target && event.target.classList.contains('delete-choice')) {
+                if (event.target && event.target.classList.contains('effacer-choice')) {
                     event.target.closest('.choice').remove();
                 }
             });
