@@ -38,7 +38,15 @@ echo 'INFO USER<pre>';
 print_r($userInfo);
 echo '</pre>';
 
+
+
 $fileUploaded = false;
+$CorrectName = str_replace(' ', '_', $_FILES["img_pp['name"]);
+
+echo $CorrectName;
+
+if (str_contains(" ", basename($_FILES["img_pp"]["name"]))) {
+}
 
 if (!empty($_FILES['img_pp'])) {
     $fileName .= "_" . basename($_FILES["img_pp"]["name"]);
