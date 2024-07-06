@@ -66,11 +66,11 @@ if ($userInfo[0]['email'] == $_POST['email'] and $userInfo[0]['path_pp'] == $_PO
         echo '<br>' . $result;
         $_GET['success'] = 1;
         echo '<br>success';
-        header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
+        header('Location: https://schoolpea.com/Compte/index.php?success=1');
     } else {
         echo $result;
         echo '<br>error wtf';
         $_GET['error'] = 1;
-        header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
+        header('Location: https://schoolpea.com/Compte/index.php?error=1');
     }
 }
