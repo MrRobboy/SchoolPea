@@ -111,7 +111,13 @@ $currentElo = $stmt->fetchColumn();
 $K = 42;
 
 // Calcul du nouveau score Elo
-$newElo = $currentElo + $K * ($bonnesReponses / $totalQuestions);
+if ($bonnesReponses < ($totalQuestions - $bonnesReponses)) {
+    // Si les mauvaises réponses sont plus nombreuses que les bonnes, l'utilisateur perd des points
+    $newElo = $currentElo - $K * (($totalQuestions - $bonnesReponses) / $totalQuestions);
+} else {
+    // Sinon, l'utilisateur gagne des points
+    $newElo = $currentElo + $K * ($bonnesReponses / $totalQuestions);
+}
 
 // Mettre à jour le score Elo de l'utilisateur dans la base de données
 $sql = "UPDATE USER SET elo = ? WHERE id_USER = ?";
