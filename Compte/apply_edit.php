@@ -41,9 +41,9 @@ echo '</pre>';
 
 $fileUploaded = false;
 $CorrectName = str_replace(" ", "_", $_FILES["img_pp"]["name"], $compteur);
-$CorrectName = str_replace("'", "_", $_FILES["img_pp"]["name"], $compteur2);
+$CorrectName = str_replace('\'', "_", $_FILES["img_pp"]["name"], $compteur2);
 
-echo '<br>' . $compteur . '<br>' . $compteur2;
+echo '<br> compteur 1: ' . $compteur . '<br>compteur 2: ' . $compteur2 . '<br>';
 
 echo 'CORRECT NAME : ' . $CorrectName;
 
