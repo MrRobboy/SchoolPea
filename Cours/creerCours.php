@@ -132,29 +132,149 @@ $dbh = null;
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Création de Cours</title>
     <style>
-        .section,
-        .titre,
-        .paragraphe {
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            position: relative;
-        }
+ @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-        .remove-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: red;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        .section .titre,
-        .titre .paragraphe {
-            margin-top: 10px;
-        }
+body {
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #f4f5fa;
+    margin: 0;
+    padding: 2em;
+}
+
+h2 {
+    color: #374599;
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+form {
+    background-color: #ffffff;
+    border-radius: 2em;
+    box-shadow: 0 0 90px rgba(200, 200, 255, 0.75);
+    padding: 2em 4em;
+    max-width: 800px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5em;
+    color: #374599;
+    font-weight: 500;
+}
+
+input[type="text"],
+select,
+textarea,
+input[type="file"] {
+    width: 100%;
+    padding: 0.7em;
+    margin-bottom: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+input[type="submit"] {
+    background-color: #8493e8;
+    color: white;
+    padding: 0.7em 2.5em;
+    border: none;
+    border-radius: 1.5em;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+input[type="submit"]:hover {
+    background-color: #374599;
+}
+
+h3 {
+    color: #374599;
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+#ajouter_section {
+    background-color: #6b7ad2;
+    color: white;
+    padding: 0.5em 1.5em;
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    margin-bottom: 1em;
+}
+
+#ajouter_section:hover {
+    background-color: #8493e8;
+}
+
+.section,
+.titre,
+.paragraphe {
+    background-color: #f9f9f9;
+    margin-bottom: 1.5em;
+    border: 1px solid #ccc;
+    border-radius: 1em;
+    padding: 1em;
+    position: relative;
+}
+
+.section input[type="text"],
+.titre input[type="text"],
+.paragraphe textarea {
+    width: calc(100% - 2.5em);
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+}
+
+.remove-btn {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 0.3em 0.6em;
+    border-radius: 0.5em;
+    font-size: 0.9em;
+}
+
+.section .titre,
+.titre .paragraphe {
+    margin-top: 1em;
+}
+
+button[type="button"] {
+    background-color: #6b7ad2;
+    color: white;
+    padding: 0.3em 1em;
+    border: none;
+    border-radius: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 0.5em;
+}
+
+button[type="button"]:hover {
+    background-color: #8493e8;
+}
+
     </style>
 </head>
 
