@@ -42,8 +42,9 @@ echo '</pre>';
 
 $fileUploaded = false;
 $CorrectName = str_replace(' ', '_', $_FILES["img_pp"]["name"]);
+$CorrectName = str_replace('\'', '_', $_FILES["img_pp"]["name"]);
 
-echo 'CORRECT NAME :' . $CorrectName;
+echo 'CORRECT NAME : ' . $CorrectName;
 
 if (!empty($_FILES['img_pp'])) {
     $fileName .= "_" . $CorrectName;
