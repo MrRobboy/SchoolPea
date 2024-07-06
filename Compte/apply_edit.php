@@ -31,6 +31,11 @@ echo '</pre>';
 $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
 $fileName = uniqid();
 $target_file = $target_dir . $fileName;
+
+echo '<br>TARGET DIR : ' . $target_dir;
+echo '<br>TARGET FILE : ' . $target_file;
+echo '<br>TARGET STORAGE : ' . $target_storage;
+
 if (!empty($_FILES['img_pp'])) {
     $fileName .= "_" . basename($_FILES["img_pp"]["name"]);
     echo '<br>TARGET FILE NAME : ' . $fileName;
