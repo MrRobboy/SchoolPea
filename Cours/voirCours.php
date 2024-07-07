@@ -1,4 +1,9 @@
-<?php require_once('db.php'); ?>
+<?php
+session_start();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,83 +11,83 @@
     <meta charset="UTF-8">
     <title>Voir le Cours</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
-   <style>
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: "Montserrat", sans-serif;
-    transition: background-color 0.3s, color 0.3s;
-}
+        body {
+            font-family: "Montserrat", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.content-container {
-    margin: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    transition: background-color 0.3s, color 0.3s;
-}
+        .content-container {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.section {
-    margin-bottom: 20px;
-    padding: 20px;
-    border-radius: 10px;
-    transition: background-color 0.3s, color 0.3s;
-}
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.section-title {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
 
-.title {
-    font-size: 18px;
-    margin-bottom: 5px;
-}
+        .title {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
 
-.paragraph {
-    margin-bottom: 15px;
-    line-height: 1.6;
-}
+        .paragraph {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
 
-#Cours_Content {
-    padding: 5em;
-    margin: 5em;
-}
+        #Cours_Content {
+            padding: 5em;
+            margin: 5em;
+        }
 
-/* Mode clair */
-body[data-theme='light'] {
-    background-color: #f0f0f0;
-    color: #333;
-}
+        /* Mode clair */
+        body[data-theme='light'] {
+            background-color: #f0f0f0;
+            color: #333;
+        }
 
-body[data-theme='light'] .content-container {
-    background-color: #fff;
-}
+        body[data-theme='light'] .content-container {
+            background-color: #fff;
+        }
 
-body[data-theme='light'] .section {
-    background-color: #f0f0f0;
-}
+        body[data-theme='light'] .section {
+            background-color: #f0f0f0;
+        }
 
-/* Mode sombre */
-body[data-theme='dark'] {
-    background-color: #1a1a1a;
-    color: #fff;
-}
+        /* Mode sombre */
+        body[data-theme='dark'] {
+            background-color: #1a1a1a;
+            color: #fff;
+        }
 
-body[data-theme='dark'] .content-container {
-    background-color: #333;
-}
+        body[data-theme='dark'] .content-container {
+            background-color: #333;
+        }
 
-body[data-theme='dark'] .section {
-    background-color: #444;
-}
-</style>
+        body[data-theme='dark'] .section {
+            background-color: #444;
+        }
+    </style>
 
 </head>
 
@@ -90,7 +95,7 @@ body[data-theme='dark'] .section {
     <span class="trait"></span>
     <div id="Cours_Content">
         <?php
-        session_start(); 
+
 
         if (isset($_SESSION['mail_valide'])) {
             include($_SERVER['DOCUMENT_ROOT'] . '/headerL.php');
@@ -99,7 +104,7 @@ body[data-theme='dark'] .section {
             exit();
         }
 
-       
+
         if (!isset($_GET['id_cours'])) {
             echo "Erreur: ID de cours non spécifié.";
             exit();
@@ -154,7 +159,7 @@ body[data-theme='dark'] .section {
                         }
                     }
 
-                    echo '</div>'; 
+                    echo '</div>';
                 }
                 ?>
             </div>
@@ -166,7 +171,7 @@ body[data-theme='dark'] .section {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'like') {
             if (!isset($_SESSION['id_user'])) {
                 echo "Vous devez être connecté pour aimer un cours.";
-                exit(); 
+                exit();
             } else {
                 $id_user = $_SESSION['id_user'];
 
