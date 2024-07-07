@@ -147,7 +147,7 @@ $dbh = null;
             color: white;
         }
 
-        body.dark-mode .class {
+        body.dark-mode .section {
             background-color: #374599;
             color: white;
         }
