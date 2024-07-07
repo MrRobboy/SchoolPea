@@ -28,7 +28,7 @@ session_start();
 
         body.dark-mode form,
         body.dark-mode form .question,
-        body.dark-mode form .question .choices {
+        body.dark-mode form .question .choice {
             background-color: #374599;
             color: white;
         }
