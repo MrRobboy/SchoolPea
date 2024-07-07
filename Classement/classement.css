@@ -19,7 +19,7 @@ body {
     margin: 2em;
     min-height: 100vh;
     /* Hauteur minimum de la page pour assurer le dégradé complet */
-    transition: background 0.3s, color 0.3s;
+    transition: all 0.3s;
 }
 
 h1 {
@@ -47,7 +47,7 @@ h1 {
     /* Ombre douce pour l'effet de profondeur */
     text-align: center;
     align-items: center;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    transition: all 0.3s;
 }
 
 /* Style du tableau de classement */
@@ -72,7 +72,7 @@ table th {
     padding: 0 1rem;
     background-color: #6b7ad2;
     color: white;
-    transition: background-color 0.3s, color 0.3s;
+    transition: all 0.3s;
 }
 
 table td {
@@ -84,7 +84,7 @@ table td {
     /* Centrage du contenu */
     border-bottom: 0.3rem solid #6b7ad2;
     /* Bordure basse des lignes */
-    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    transition: all 0.3s;
 }
 
 table td.not_right {
@@ -118,7 +118,7 @@ tbody tr:hover {
 @media (max-width: 600px) {
     #content {
         width: 90%;
-       
+
     }
 }
 
