@@ -92,6 +92,7 @@ body.dark-mode #dropbtn {
     align-items: center;
     margin-right: 1.5em;
     margin-left: 0.5em;
+    content: url(https://schoolpea.com/Images/liste.svg);
 }
 
 #dropdown {
@@ -111,7 +112,6 @@ body.dark-mode #dropbtn {
 #dropbtn {
     position: relative;
     margin: 65% 0;
-    content: url(https://schoolpea.com/Images/liste.svg);
 }
 
 #slide_down:hover #dropdown {
