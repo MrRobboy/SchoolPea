@@ -1,0 +1,16 @@
+DOSSIER UTILISATION
+
+Utilisateur Classique :
+•    Un utilisateur classique, par défaut sur schoolpea.com, peut :
+o    Consulter, liker et télécharger des cours au format PDF.
+o    Participer à des quizz et interagir via le chat intégré.
+o    Modifier ses informations personnelles et consulter son classement.
+o    Activer le mode sombre pour une meilleure expérience visuelle.
+Professeur :
+•    En plus des droits d'un utilisateur classique, un professeur peut également :
+o    Créer des nouveaux cours et des quizz.
+o    Gérer les contenus éducatifs qu'il publie.
+Administrateur :
+•    Un administrateur dispose de tous les droits d'un professeur, avec en plus les privilèges suivants :
+o    Gérer tous les cours, quizz et utilisateurs en modifiant, ajoutant ou supprimant des éléments selon les besoins.
+o    Ajuster les rôles des utilisateurs, y compris la promotion ou la rétrogradation de statut.
