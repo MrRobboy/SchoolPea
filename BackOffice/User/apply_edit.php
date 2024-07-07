@@ -1,16 +1,15 @@
 <?php
 session_start();
+
 $_POST;
+
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
-
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
 
 $dbh->exec('USE PA');
 
@@ -25,7 +24,6 @@ if ($userInfo[0]['id_USER'] == $_POST['id_USER'] and $userInfo[0]['email'] == $_
 } else {
     /*Ici il y a forcément eu une modification ! */
     if ($userInfo[0]['email'] != $_POST['email']) {
-        $dbh->exec('USE PA');
         $stmt1 = $dbh->prepare("SELECT * FROM USER where email=:email");
         $stmt1->bindvalue(':email', $_POST['email']);
         $stmt1->execute();

@@ -33,17 +33,17 @@ include($auth);
 
             <div class="edit">
                 <span class="title_edit">Nom</span>
-                <input type="text" name="lastname" class="Input_edit" class="value" placeholder="Nom de l'utilisateur">
+                <input type="text" name="lastname" class="Input_edit value" placeholder="Nom de l'utilisateur">
             </div>
 
             <div class="edit">
                 <span class="title_edit">Prenom</span>
-                <input type="text" name="firstname" class="Input_edit" class="value" placeholder="Prénom de l'utilisateur">
+                <input type="text" name="firstname" class="Input_edit value" placeholder="Prénom de l'utilisateur">
             </div>
 
             <div class="edit">
                 <span class="title_edit">Email</span>
-                <input type="email" name="email" class="Input_edit" class="value" placeholder="Email de l'utilisateur">
+                <input type="email" name="email" class="Input_edit value" placeholder="Email de l'utilisateur">
             </div>
 
             <div class="edit">
