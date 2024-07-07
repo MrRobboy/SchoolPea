@@ -61,6 +61,11 @@ body div {
     width: 7em;
     align-items: center;
     margin: 4em 2em;
+    content: url(https://schoolpea.com/Images/SchoolPea.png);
+}
+
+body.dark-mode #logo_aff {
+    content: url(https://schoolpea.com/Images/SchoolPea_Dark.png);
 }
 
 .but {
