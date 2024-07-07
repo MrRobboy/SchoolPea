@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,11 +16,13 @@
             margin: 0;
             padding: 2em;
         }
+
         h2 {
             color: #374599;
             font-weight: 700;
             margin-bottom: 1em;
         }
+
         form {
             background-color: #ffffff;
             border-radius: 2em;
@@ -28,12 +31,14 @@
             max-width: 1200px;
             width: 100%;
         }
+
         label {
             display: block;
             margin-bottom: 0.5em;
             color: #374599;
             font-weight: 500;
         }
+
         input[type="text"],
         textarea,
         input[type="file"] {
@@ -45,7 +50,9 @@
             box-sizing: border-box;
             font-family: "Montserrat", sans-serif;
         }
-        input[type="submit"], button {
+
+        input[type="submit"],
+        button {
             background-color: #374599;
             color: white;
             padding: 0.5em 1.5em;
@@ -56,9 +63,12 @@
             font-size: 0.9em;
             margin-right: 1em;
         }
-        input[type="submit"]:hover, button:hover {
+
+        input[type="submit"]:hover,
+        button:hover {
             background-color: #374599;
         }
+
         .question {
             background-color: #f9f9f9;
             margin-bottom: 1.5em;
@@ -67,6 +77,7 @@
             padding: 1em;
             position: relative;
         }
+
         .choice {
             background-color: #f0f0f0;
             margin-bottom: 0.5em;
@@ -74,6 +85,7 @@
             border: 1px solid #ccc;
             border-radius: 0.5em;
         }
+
         .effacer-btn {
             background-color: #ff4d4d;
             color: white;
@@ -84,9 +96,11 @@
             font-size: 0.8em;
             margin-top: 0.5em;
         }
+
         .effacer-btn:hover {
             background-color: #d32f2f;
         }
+
         .add-choice {
             background-color: #374599;
             color: white;
@@ -97,12 +111,23 @@
             font-size: 0.8em;
             margin-top: 0.5em;
         }
+
         .add-choice:hover {
             background-color: #374599;
         }
     </style>
 </head>
+
 <body>
+    <?php
+    $path = $_SERVER['DOCUMENT_ROOT'];
+    if (isset($_SESSION['mail_valide'])) {
+        $path .= '/headerL.php';
+    } else {
+        header('Location: https://schoolpea.com/Connexion');
+    }
+    include($path);
+    ?>
     <div class="container">
         <h2>Crée un nouveau Quiz</h2>
         <form action="submitQuizz.php" method="post" enctype="multipart/form-data" id="quiz-form">
@@ -116,7 +141,7 @@
             <input type="file" name="quiz_image" id="quiz-image" accept="image/*">
 
             <div id="questions-container"></div>
-            
+
             <button type="button" id="add-question">Ajouter une Question</button>
             <input type="submit" value="Submit Quiz">
         </form>
@@ -196,4 +221,5 @@
         });
     </script>
 </body>
+
 </html>
