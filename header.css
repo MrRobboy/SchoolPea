@@ -52,7 +52,7 @@ body.dark-mode #logo_header {
 }
 
 body.dark-mode #dropbtn {
-    content: url(https://schoolpea.com/Images/liste_Dark.png);
+    content: url(https://schoolpea.com/Images/liste_Dark.svg);
 }
 
 #Pages {
@@ -92,7 +92,6 @@ body.dark-mode #dropbtn {
     align-items: center;
     margin-right: 1.5em;
     margin-left: 0.5em;
-    content: url(https://schoolpea.com/Images/liste.svg);
 }
 
 #dropdown {
@@ -112,6 +111,7 @@ body.dark-mode #dropbtn {
 #dropbtn {
     position: relative;
     margin: 65% 0;
+    content: url(https://schoolpea.com/Images/liste.svg);
 }
 
 #slide_down:hover #dropdown {
