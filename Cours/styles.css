@@ -134,6 +134,11 @@ footer {
     background-color: #2c4afc;
 }
 
+body.dark-mode .course_item a:hover,
+body.dark-mode .quiz a:hover {
+    color: white;
+}
+
 #search {
     width: 100%;
     padding: 10px;
