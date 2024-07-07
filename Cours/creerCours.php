@@ -8,13 +8,18 @@ if (!empty($_SESSION['referer'])) {
     }
 }
 
-if (!isset($_SESSION['id_user'])) {
-    header("Location: login.php");
-    exit();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
+
+
+$path = $_SERVER['DOCUMENT_ROOT'];
+if (isset($_SESSION['mail_valide'])) {
+    $path .= '/headerL.php';
+} else {
+    header('Location: https://schoolpea.com/Connexion');
 }
-
-include 'db.php';
-
+include($path);
 
 $id_user = $_SESSION['id_user'];
 
@@ -49,8 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             try {
                 $pathImg = 'https://schoolpea.com/Cours/uploads/' . basename($_FILES["image_pres"]["name"]);
-                $sql_insert_cours = "INSERT INTO COURS (nom, niveau, description, id_USER, path_image_pres)
-                                    VALUES (:nom, :niveau, :description, :id_user, :path_image_pres)";
+                $sql_insert_cours = "INSERT INTO COURS (nom, niveau, description, id_USER, path_image_pres) VALUES (:nom, :niveau, :description, :id_user, :path_image_pres)";
                 $stmt_insert_cours = $dbh->prepare($sql_insert_cours);
                 $stmt_insert_cours->bindValue(':nom', $nom, PDO::PARAM_STR);
                 $stmt_insert_cours->bindValue(':niveau', $niveau, PDO::PARAM_STR);
@@ -108,9 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 $dbh->commit();
 
-echo "Cours créé avec succès !";
-header('Location: index.php');
-
+                echo "Cours créé avec succès !";
+                header('Location: index.php');
             } catch (PDOException $e) {
 
                 $dbh->rollBack();

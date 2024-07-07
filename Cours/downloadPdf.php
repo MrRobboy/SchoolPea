@@ -1,6 +1,10 @@
 <?php
+
+session_start();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
 require_once '../BackEnd/vendor/tecnickcom/tcpdf/tcpdf.php';
-include 'db.php';
 
 $id_cours = $_GET['id_cours'];
 $sql = "SELECT * FROM COURS WHERE id_cours = ?";
@@ -40,7 +44,7 @@ if ($stmt->rowCount() > 0) {
                     $pdf->SetFont('helvetica', 'I', 14);
                     $pdf->Cell(0, 10, $titre['titre'], 0, 1);
                     $pdf->SetFont('helvetica', '', 12);
-                    
+
                     $id_titre = $titre['id_titre'];
                     $sql_paragraphe = "SELECT * FROM PARAGRAPHE WHERE id_titre = ?";
                     $stmt_paragraphe = $dbh->prepare($sql_paragraphe);
@@ -61,4 +65,3 @@ if ($stmt->rowCount() > 0) {
 } else {
     echo "Cours non trouvé.";
 }
-?>

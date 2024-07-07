@@ -35,21 +35,9 @@ include($auth);
                 </a>
             </div>
             <div class="dashboard-item">
-                <a href="https://schoolpea.com/BackOffice/Newsletter">
-                    <h2>Newsletter</h2>
-                    <p>Envoyer des newsletters et consulter l'historique</p>
-                </a>
-            </div>
-            <div class="dashboard-item">
                 <a href="https://schoolpea.com/BackOffice/Logs">
                     <h2>Visualisation des Logs</h2>
                     <p>Consulter les logs des activités</p>
-                </a>
-            </div>
-            <div class="dashboard-item">
-                <a href="https://schoolpea.com/BackOffice/Tickets">
-                    <h2>Gestion des Tickets</h2>
-                    <p>Gérer les tickets utilisateur</p>
                 </a>
             </div>
             <div class="dashboard-item">

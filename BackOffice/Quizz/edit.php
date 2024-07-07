@@ -1,15 +1,17 @@
 <?php
 session_start();
+
 $_GET;
+
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
 
 $dbh->exec('USE PA');
-
 
 $stmt = $dbh->prepare("SELECT nom, description FROM QUIZZ WHERE id_QUIZZ = :id");
 $stmt->bindValue(':id', $_GET['id']);
@@ -52,7 +54,6 @@ $_SESSION['referer'] = $_SERVER['HTTP_REFERER'];
                 <span class="title_edit">Titre</span>
                 <input type="text" name="nom" value="<?php echo htmlspecialchars($quiz['nom']); ?>" class="Input_edit value" required>
             </div>
-
 
             <div class="edit">
                 <span class="title_edit">Description</span>

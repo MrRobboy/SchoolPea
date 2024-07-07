@@ -1,14 +1,10 @@
 <?php
 session_start();
+
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
 
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI']; 
-    header("Location: login.php");
-    exit();
-}
 ?>
 <script>
     if (confirm("Êtes-vous sûr de vouloir supprimer ce Quiz ?") !== true) {

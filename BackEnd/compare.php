@@ -1,15 +1,21 @@
 <?php
 session_start();
+
 echo $_SESSION['email'] . '<br>';
 include('db.php');
+
 echo (htmlspecialchars($_POST['code']) . '<br>' . $_SESSION['verif']);
+
 if (isset($_POST['submit'])) {
 	if (htmlspecialchars($_POST['code']) == $_SESSION['verif']) {
 		$dbh->exec('USE PA');
+
 		echo ('<br>code reussi !!');
+
 		$queryStatement = $dbh->prepare('UPDATE USER SET validation_mail=1 WHERE email =:email;');
 		$queryStatement->bindvalue(':email', $_SESSION['email']);
 		$result = $queryStatement->execute();
+
 		if ($result) {
 			$queryUser = $dbh->prepare('SELECT id_USER, firstname, lastname FROM USER WHERE email = :email');
 			$queryUser->bindvalue(':email', $_SESSION['email']);

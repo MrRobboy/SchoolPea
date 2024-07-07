@@ -1,7 +1,8 @@
 <?php
-require_once('db.php');
-
-session_start(); 
+session_start();
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+include($path);
 
 if (!isset($_SESSION['id_user'])) {
     echo "Vous devez être connecté pour voir cette page.";
@@ -33,11 +34,13 @@ $liked_courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <title>Cours Aimés</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
+
 <body>
     <header>
         <h1>Cours Aimés</h1>
@@ -67,4 +70,5 @@ $liked_courses = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     </main>
 </body>
+
 </html>

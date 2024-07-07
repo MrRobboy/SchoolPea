@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 $_GET;
+
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
@@ -46,7 +48,7 @@ include($auth);
 
             <div class="edit">
                 <span class="title_edit">Mot de passe</span>
-                <input type="password" name="password" class="Input_edit" class="value" placeholder="Mot de Passe">
+                <input type="password" name="password" class="Input_edit value" placeholder="Mot de Passe">
             </div>
 
             <div class="edit">

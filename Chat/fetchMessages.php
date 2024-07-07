@@ -1,7 +1,9 @@
 <?php
 session_start();
 $temp = $_SESSION['email'];
-require('./db.php');
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
 $sql = "SELECT m.content, u.email, u.path_pp, DATE_FORMAT(m.date_heure,'%e/%m/%Y %H:%i') 
         FROM messages m
