@@ -1,0 +1,46 @@
+
+
+Synthèse du Projet d'Application (PA)
+
+
+                            Synthèse mathis :
+
+                            
+Le projet a débuté en février avec Ahmed et Ryad. J'ai commencé par configurer GitHub sur le serveur OVH
+ et installer un certificat SSL pour faciliter notre collaboration directe. Ces tâches ont pris environ 2-3 semaines.
+Pour le développement web, je me suis concenté principalement sur le backend et le frontend.
+ J'ai codé principalement en JavaScript et HTMLet php , mettant un peu de côté le CSS.
+ J 'ai mis en place la fonction de connexion en une journée, le chat en une semaine,
+  ce qui m'a permis de vraiment comprendre l'utilisation de fetchAll().
+Le développement complet des pages liées aux cours et aux quiz avec toutes leurs fonctionnalités 
+a été mon gros morceau. Cela m'a pris environ un mois, 
+malgré quelques problèmes techniques que j'ai dû résoudre en cours de route.
+J'ai aussi pris en charge l'intégration des API comme TCPDF, PHPMailer et Stripe dans notre code, 
+ce qui a pris environ 2-3 semaines de travail intense. 
+Ahmed m'a beaucoup aidé avec le CSS et en corrigeant des erreurs logiques que je pouvais avoir dans mes codes.
+ Il a également pris en charge des aspects cruciaux comme le classement, le BackOffice complet, le captcha et le compte utilisateur. Il nous a aussi beaucoup aidés, Ryad et moi, à comprendre ce qui ne fonctionnait pas et pourquoi.
+Pour couronner le tout, j'ai ajouté un Easter Egg au projet, grâce à des tutoriels YouTube.
+
+
+
+
+            Synthèse Ryad :
+
+
+Le projet a débuté en février avec Ahmed et Mathis.
+J'ai commencé par configurer Asana, notre système de gestion de projet, en intégrant les tâches,
+les dates, et les documents nécessaires à chacun. Cette étape a pris environ une semaine.
+
+Ensuite, j'ai réalisé une liste exhaustive des fonctionnalités
+que nous souhaitions intégrer à notre projet, ce qui m'a pris quelques jours.
+
+Pour le système de ticketing en PHP, j'ai créé une base de données pour stocker
+les informations des tickets, conçu un formulaire HTML pour permettre aux utilisateurs
+de soumettre des tickets, et développé un script PHP pour traiter les données et les enregistrer 
+dans la base de données. Cette tâche a été particulièrement difficile pour moi et a pris environ deux semaines.
+
+J'ai également contribué à la mise en forme de la page de compte en réalisant une partie du CSS, ce qui m'a pris quelques jours.
+
+Je reconnais que le travail que j'ai fourni sur ce projet n'est pas à la hauteur de celui de mes deux camarades, 
+en raison de mon manque de disponibilité et de compétences comparées aux leurs. Malgré cela, 
+j'ai beaucoup appris grâce à leur accompagnement et à leurs explications.
