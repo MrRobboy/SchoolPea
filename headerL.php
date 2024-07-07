@@ -5,79 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <style>
-        /* Styles spécifiques pour l'en-tête */
-        header {
-            /* Vos styles pour l'en-tête ici */
-        }
-
-        /* Styles pour le toggle switch */
-        .toggle-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 10px;
-        }
-
-        .toggle-label {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .toggle-switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .toggle-slider:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked + .toggle-slider {
-            background-color: #3f51b5;
-        }
-
-        input:checked + .toggle-slider:before {
-            transform: translateX(26px);
-        }
-
-        /* Styles spécifiques pour le mode sombre */
-        body.dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/DarkModeBut.css" />
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const toggleSwitch = document.getElementById('dark-mode-toggle');
 
             // Vérifie le localStorage pour l'état du mode sombre
@@ -86,7 +16,7 @@
                 toggleSwitch.checked = true;
             }
 
-            toggleSwitch.addEventListener('change', function () {
+            toggleSwitch.addEventListener('change', function() {
                 if (toggleSwitch.checked) {
                     document.body.classList.add('dark-mode');
                     localStorage.setItem('dark-mode', 'enabled');
