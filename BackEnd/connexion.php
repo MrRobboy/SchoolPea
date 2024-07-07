@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $badCredentials = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,10 +17,6 @@ $dbh->exec('USE PA');
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
-
-echo '<pre>';
-print_r($user);
-echo '</pre>';
 
 if (!empty($user) && $user[0]['validation_mail'] == 1) {
 	echo 'test1<br>';

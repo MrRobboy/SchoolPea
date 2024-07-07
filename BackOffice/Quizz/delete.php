@@ -1,15 +1,19 @@
 <?php
 session_start();
+
 $_GET;
+
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
 
 $dbh->exec('USE PA');
-$dbh->beginTransaction();
+
+$dbh->beginTransaction(); /*Débute la suppression en cascade */
 
 try {
     // Supprime les réponses associées aux questions du quiz
@@ -41,4 +45,3 @@ try {
     header('Location: https://schoolpea.com/BackOffice/Quizz/index.php?error=1');
     exit();
 }
-?>

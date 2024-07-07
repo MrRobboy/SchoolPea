@@ -1,12 +1,16 @@
 <?php
 session_start();
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackOffice/Includes/headerBackOffice.php';
 include($path);
+
 $dbh->exec('USE PA');
+
 $stmt = $dbh->query("SELECT * FROM LOGS ORDER BY time DESC");
 $logs = $stmt->fetchAll();
 ?>

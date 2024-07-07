@@ -1,9 +1,12 @@
 <?php
 session_start();
+
 $_POST;
+
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
@@ -34,11 +37,11 @@ if ($_POST['nom'] == $Cours[0]['nom'] and $_POST['niveau'] == $Cours[0]['niveau'
         if ($result2 && $result1) {
                 $_GET['success'] = 1;
                 echo '<br>success';
-                header('Location: ' . $_SERVER['HTTP_REFERER'] . '&success=1');
+                header('Location: https://schoolpea.com/BackOffice/Cours/edit.php?success=1');
         } else {
                 echo $result;
                 echo '<br>error wtf';
                 $_GET['error'] = 1;
-                header('Location: ' . $_SERVER['HTTP_REFERER'] . '&error=1');
+                header('Location: https://schoolpea.com/BackOffice/Cours/edit.php?error=1');
         }
 }
