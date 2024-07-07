@@ -1,9 +1,8 @@
 <?php
 require_once('db.php');
 
-session_start(); // Start session if not already started
+session_start(); 
 
-// Assuming you have stored user ID in session
 if (!isset($_SESSION['id_user'])) {
     echo "Vous devez être connecté pour voir cette page.";
     exit();
@@ -11,11 +10,9 @@ if (!isset($_SESSION['id_user'])) {
 
 $id_user = $_SESSION['id_user'];
 
-// Handle course unfollow action
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] === 'unfollow' && isset($_POST['id_cours'])) {
     $id_cours = $_POST['id_cours'];
 
-    // Delete entry from LIKES_COURS table
     $sql_unlike = "DELETE FROM LIKES_COURS WHERE id_user = ? AND id_cours = ?";
     $stmt_unlike = $dbh->prepare($sql_unlike);
 
@@ -26,7 +23,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     }
 }
 
-// Fetch liked courses for the current user
 $sql = "SELECT c.* FROM COURS c
         INNER JOIN LIKES_COURS lc ON c.id_COURS = lc.id_cours
         WHERE lc.id_user = ?";

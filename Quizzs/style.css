@@ -1,7 +1,6 @@
-/* Import de la police Google Fonts */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
-/* Variables CSS pour les couleurs */
+/* Variable CSS pour les couleurs */
 :root {
     --bg-color-light: #c9d6ff;
     --container-bg-light: #fff;
@@ -18,7 +17,7 @@
     --button-hover-dark: #512da8;
 }
 
-/* Appliquer les couleurs en fonction du thème */
+/* Applique les couleurs en fonction du thème */
 body {
     background-color: var(--bg-color-light);
     color: var(--text-color-light);
@@ -91,7 +90,6 @@ h3 {
     color: var(--subtext-color-light);
 }
 
-/* Styles spécifiques pour le quiz */
 .quiz-title {
     font-size: 2.5rem;
     margin-bottom: 20px;
@@ -137,7 +135,6 @@ h3 {
     background-color: var(--button-hover-light);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .container {
         padding: 10px;

@@ -20,24 +20,20 @@ $paymentMethodId = $input['paymentMethodId'];
 header('Content-Type: application/json');
 
 try {
-    // Check if user is logged in
     if (isset($_SESSION['user_id'])) {
         $userId = $_SESSION['user_id'];
     } else {
-        // Check if user already exists
         $stmt = $dbh->prepare("SELECT id_USER FROM USER WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if (!$user) {
-            // Create new user in the database
             $stmt = $dbh->prepare("INSERT INTO USER (email, pass, role) VALUES (?, ?, ?)");
             $passwordHash = password_hash('defaultPassword', PASSWORD_BCRYPT); // Or generate a random password
             $stmt->execute([$email, $passwordHash, 'prof']);
 
             $userId = $dbh->lastInsertId();
 
-            // Log the user in
             $_SESSION['user_id'] = $userId;
             $_SESSION['email'] = $email;
             $_SESSION['role'] = 'prof';
@@ -46,7 +42,6 @@ try {
         }
     }
 
-    // Create a new customer in Stripe
     $customer = \Stripe\Customer::create([
         'email' => $email,
         'payment_method' => $paymentMethodId,
@@ -55,7 +50,6 @@ try {
         ],
     ]);
 
-    // Create a new subscription in Stripe
     $subscription = \Stripe\Subscription::create([
         'customer' => $customer->id,
         'items' => [
@@ -66,10 +60,8 @@ try {
         'expand' => ['latest_invoice.payment_intent'],
     ]);
 
-    // Send welcome email
     sendWelcomeEmail($email);
 
-    // Send back the subscription ID to the client
     echo json_encode(['subscriptionId' => $subscription->id]);
 } catch (Error $e) {
     http_response_code(500);

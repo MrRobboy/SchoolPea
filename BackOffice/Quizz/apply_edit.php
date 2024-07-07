@@ -8,7 +8,6 @@ $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
 
-// Debugging: Afficher le contenu de $_POST
 echo '<pre>';
 print_r($_POST);
 echo '</pre>';

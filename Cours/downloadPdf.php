@@ -19,7 +19,6 @@ if ($stmt->rowCount() > 0) {
     $pdf->MultiCell(0, 10, $cours['description'], 0, 1);
     $pdf->Ln(5);
 
-    // Ajouter les sections, titres et paragraphes comme dans votre exemple précédent
 
     $sql_section = "SELECT * FROM SECTIONS WHERE id_cours = ?";
     $stmt_section = $dbh->prepare($sql_section);

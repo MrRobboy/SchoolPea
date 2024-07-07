@@ -68,6 +68,6 @@ $result = $dbh->query($sql);
 </html>
 
 <?php
-// Fermer la connexion à la base de données
+
 $dbh = null;
 ?>
