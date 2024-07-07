@@ -18,34 +18,39 @@ $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
 
-if (!empty($user) && $user[0]['validation_mail'] == 1) {
-	echo 'test1<br>';
-	echo $pass;
-	echo '<br>' . $user[0]['pass'];
-	if (password_verify($pass, $user[0]['pass'])) {
-		$_SESSION['id_user'] = htmlspecialchars($user[0]['id_USER']);
-		$_SESSION['email'] = htmlspecialchars($user[0]['email']);
-		$_SESSION['firstname'] = htmlspecialchars($user[0]['firstname']);
-		$_SESSION['lastname'] = htmlspecialchars($user[0]['lastname']);
-		$_SESSION['path_pp'] = htmlspecialchars($user[0]['path_pp']);
-		$_SESSION['elo'] = htmlspecialchars($user[0]['elo']);
-		$_SESSION['role'] = htmlspecialchars($user[0]['role']);
-		$_SESSION['mail_valide'] = htmlspecialchars($user[0]['validation_mail']);
+if ($user[0]['banni']) {
+	echo 'VOUS AVEZ ETE BANNI !!!';
+} else {
 
-		$message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
+	if (!empty($user) && $user[0]['validation_mail'] == 1) {
+		echo 'test1<br>';
+		echo $pass;
+		echo '<br>' . $user[0]['pass'];
+		if (password_verify($pass, $user[0]['pass'])) {
+			$_SESSION['id_user'] = htmlspecialchars($user[0]['id_USER']);
+			$_SESSION['email'] = htmlspecialchars($user[0]['email']);
+			$_SESSION['firstname'] = htmlspecialchars($user[0]['firstname']);
+			$_SESSION['lastname'] = htmlspecialchars($user[0]['lastname']);
+			$_SESSION['path_pp'] = htmlspecialchars($user[0]['path_pp']);
+			$_SESSION['elo'] = htmlspecialchars($user[0]['elo']);
+			$_SESSION['role'] = htmlspecialchars($user[0]['role']);
+			$_SESSION['mail_valide'] = htmlspecialchars($user[0]['validation_mail']);
 
-		$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
-		$queryLogs->bindvalue(':id_USER', $user[0]['id_USER']);
-		$queryLogs->bindvalue(':msg', $message);
-		$result = $queryLogs->execute();
+			$message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' s\'est connecté';
 
-		if ($result) {
-			header('Location: https://schoolpea.com');
-		}
-		echo ('ERREUR');
-	} else $badCredentials = true;
-} else echo ('Mail non validé !!!!');
+			$queryLogs = $dbh->prepare('INSERT INTO LOGS(id_user, act) VALUES (:id_USER,:msg);');
+			$queryLogs->bindvalue(':id_USER', $user[0]['id_USER']);
+			$queryLogs->bindvalue(':msg', $message);
+			$result = $queryLogs->execute();
 
-if ($badCredentials == true) {
-	echo "Invalid email or password.";
+			if ($result) {
+				header('Location: https://schoolpea.com');
+			}
+			echo ('ERREUR');
+		} else $badCredentials = true;
+	} else echo ('Mail non validé !!!!');
+
+	if ($badCredentials == true) {
+		echo "Invalid email or password.";
+	}
 }
