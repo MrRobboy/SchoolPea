@@ -11,18 +11,12 @@ $path .= '/BackEnd/db.php';
 include($path);
 
 $dbh->exec('USE PA');
+
 $requestDB = 'SELECT * FROM USER where email ="' . $email . '";';
 $UserInfo = $dbh->query($requestDB);
 $user = $UserInfo->fetchAll();
 
-echo '<pre>';
-print_r($user);
-echo '</pre>';
-
 if (!empty($user) && $user[0]['validation_mail'] == 1) {
-        echo 'test1<br>';
-        echo $pass;
-        echo '<br>' . $user[0]['pass'];
         if (password_verify($pass, $user[0]['pass'])) {
                 if ($_POST['new_pass'] == $_POST['confirm_new_pass']) {
                         $message = $_SESSION['id_user'] . ' - ' . $_SESSION['firstname'] . ' ' . $_SESSION['lastname'] . ' A changé son mdp';
