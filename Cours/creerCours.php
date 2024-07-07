@@ -1,14 +1,6 @@
 <?php
 session_start();
 
-if (!empty($_SESSION['referer'])) {
-    if (str_contains($_SESSION['referer'], '?')) {
-        $concat = '&';
-    } else {
-        $concat = '?';
-    }
-}
-
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
@@ -48,11 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_dir = "/var/www/html/SchoolPea/Cours/uploads/";
         $target_file = $target_dir . basename($_FILES["image_pres"]["name"]);
 
-
         if (move_uploaded_file($_FILES["image_pres"]["tmp_name"], $target_file)) {
-
             $dbh->beginTransaction();
-
             try {
                 $pathImg = 'https://schoolpea.com/Cours/uploads/' . basename($_FILES["image_pres"]["name"]);
                 $sql_insert_cours = "INSERT INTO COURS (nom, niveau, description, id_USER, path_image_pres) VALUES (:nom, :niveau, :description, :id_user, :path_image_pres)";
@@ -68,35 +57,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Insérer les sections, titres et paragraphes
                 if (!empty($_POST['sections']) && is_array($_POST['sections'])) {
                     foreach ($_POST['sections'] as $section) {
-
                         if (isset($section['titre']) && !empty($section['titre'])) {
-                            $sql_insert_section = "INSERT INTO SECTIONS (id_cours, titre)
-                                                VALUES (:id_cours, :titre_section)";
+                            $sql_insert_section = "INSERT INTO SECTIONS (id_cours, titre) VALUES (:id_cours, :titre_section)";
                             $stmt_insert_section = $dbh->prepare($sql_insert_section);
                             $stmt_insert_section->bindValue(':id_cours', $id_cours, PDO::PARAM_INT);
                             $stmt_insert_section->bindValue(':titre_section', $section['titre'], PDO::PARAM_STR);
                             $stmt_insert_section->execute();
                             $id_section = $dbh->lastInsertId();
-
                             if (isset($section['titres']) && is_array($section['titres'])) {
                                 foreach ($section['titres'] as $titre) {
                                     if (isset($titre['titre']) && !empty($titre['titre'])) {
                                         // Insérer le titre dans TITRE
-                                        $sql_insert_titre = "INSERT INTO TITRE (id_section, titre)
-                                                            VALUES (:id_section, :titre_titre)";
+                                        $sql_insert_titre = "INSERT INTO TITRE (id_section, titre) VALUES (:id_section, :titre_titre)";
                                         $stmt_insert_titre = $dbh->prepare($sql_insert_titre);
                                         $stmt_insert_titre->bindValue(':id_section', $id_section, PDO::PARAM_INT);
                                         $stmt_insert_titre->bindValue(':titre_titre', $titre['titre'], PDO::PARAM_STR);
                                         $stmt_insert_titre->execute();
                                         $id_titre = $dbh->lastInsertId();
-
                                         // Pour chaque paragraphe sous le titre
                                         if (isset($titre['paragraphes']) && is_array($titre['paragraphes'])) {
                                             foreach ($titre['paragraphes'] as $paragraphe) {
                                                 if (!empty($paragraphe)) {
-
-                                                    $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu)
-                                                                            VALUES (:id_titre, :contenu_paragraphe)";
+                                                    $sql_insert_paragraphe = "INSERT INTO PARAGRAPHE (id_titre, contenu) VALUES (:id_titre, :contenu_paragraphe)";
                                                     $stmt_insert_paragraphe = $dbh->prepare($sql_insert_paragraphe);
                                                     $stmt_insert_paragraphe->bindValue(':id_titre', $id_titre, PDO::PARAM_INT);
                                                     $stmt_insert_paragraphe->bindValue(':contenu_paragraphe', $paragraphe, PDO::PARAM_STR);
@@ -112,7 +94,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 }
 
                 $dbh->commit();
-
                 echo "Cours créé avec succès !";
                 header('Location: index.php');
             } catch (PDOException $e) {
