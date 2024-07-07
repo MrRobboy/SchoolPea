@@ -35,6 +35,10 @@ body {
     transition: background-color 0.3s, color 0.3s;
 }
 
+body a {
+    color: black;
+}
+
 body.dark-mode a {
     color: white;
 }
