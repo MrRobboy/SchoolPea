@@ -133,7 +133,7 @@ $dbh = null;
             flex-direction: column;
             background-color: #f4f5fa;
             margin: 0;
-            padding: 2em;
+            padding: 5em;
         }
 
         h2 {
