@@ -90,6 +90,11 @@ session_start();
             background-color: #374599;
         }
 
+        body.dark-mode input[type="submit"]:hover,
+        body.dark-mode button:hover {
+            background-color: #374599;
+        }
+
         .question {
             background-color: #f9f9f9;
             margin-bottom: 1.5em;
