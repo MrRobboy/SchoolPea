@@ -1,8 +1,10 @@
 <?php
 session_start();
+
 $auth = $_SERVER['DOCUMENT_ROOT'];
 $auth .= '/BackEnd/Includes/auth.php';
 include($auth);
+
 ?>
 <script>
     if (confirm("Êtes-vous sûr de vouloir Bannir cet utilisateur ?") !== true) {
