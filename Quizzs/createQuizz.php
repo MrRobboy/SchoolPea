@@ -21,6 +21,11 @@ session_start();
             padding: 7em;
         }
 
+        body.dark-mode h3,
+        body.dark-mode h2 {
+            color: white;
+        }
+
         h2 {
             color: #374599;
             font-weight: 700;
