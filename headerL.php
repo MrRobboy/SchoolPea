@@ -68,7 +68,7 @@
                 <div id="dropdown">
                     <?php if ($_SESSION['role'] == 'admin') echo '<a class="lien_header" href="https://schoolpea.com/BackOffice/">Back Office</a>'; ?>
                     <a class="lien_header" href="https://schoolpea.com/Compte/">Mon compte</a>
-                    <a class="lien_header" href="https://schoolpea.com/Cours/mesCours.php">Voir mes cours</a>
+                    <?php if ($_SESSION['role'] == 'classique') echo '<a class="lien_header" href="https://schoolpea.com/Cours/mesCours.php">Voir mes Cours</a>'; ?>
                     <a class="lien_header" href="https://schoolpea.com/Chat/">Chat</a>
                     <?php if ($_SESSION['role'] == 'prof') echo '<a class="lien_header" href="https://schoolpea.com/Cours/creerCours.php">Créer un Cours</a>'; ?>
                     <?php if ($_SESSION['role'] == 'prof') echo '<a class="lien_header" href="https://schoolpea.com/Quizzs/createQuizz.php">Créer un Quizz</a>'; ?>

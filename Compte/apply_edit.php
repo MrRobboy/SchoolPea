@@ -13,20 +13,6 @@ if (empty($_SESSION['mail_valide'])) {
 $target_dir = "/var/www/html/SchoolPea/Images/PP_IMAGES/";
 $fileName = uniqid();
 
-
-echo '<br>';
-echo 'FILES<pre>';
-print_r($_FILES);
-echo '</pre>';
-
-echo 'POST<pre>';
-print_r($_POST);
-echo '</pre>';
-
-echo 'SESSION<pre>';
-print_r($_SESSION);
-echo '</pre>';
-
 $dbh->exec('USE PA');
 
 $stmt = $dbh->prepare("SELECT * FROM USER where id_USER=:id");
@@ -34,25 +20,13 @@ $stmt->bindvalue(':id', $_SESSION['id_user']);
 $stmt->execute();
 $userInfo = $stmt->fetchAll();
 
-echo 'INFO USER<pre>';
-print_r($userInfo);
-echo '</pre>';
-
-
 $fileUploaded = false;
 $CorrectName = str_replace(" ", "_", $_FILES["img_pp"]["name"], $compteur);
 $CorrectName = str_replace('’', "_", $CorrectName, $compteur2);
 
-echo '<br> compteur 1: ' . $compteur . '<br>compteur 2: ' . $compteur2 . '<br>';
-
-echo 'CORRECT NAME : ' . $CorrectName;
-
-echo '<br><br>';
-
 if (!empty($_FILES['img_pp'])) {
     $fileName .= "_" . $CorrectName;
     $target_file = $target_dir . $fileName;
-    echo '<br>TARGET FILE NAME : ' . $fileName;
     if ($_FILES["img_pp"]["size"] > 0 && is_uploaded_file($_FILES["img_pp"]["tmp_name"])) {
         $fileUploaded = true;
         $target_storage = "https://schoolpea.com/Images/PP_IMAGES/" . $fileName;
@@ -63,10 +37,6 @@ if (!empty($_FILES['img_pp'])) {
 } else {
     $target_storage = $userInfo[0]['path_pp'];
 }
-
-echo '<br>TARGET DIR : ' . $target_dir;
-echo '<br>TARGET FILE : ' . $target_file;
-echo '<br>TARGET STORAGE : ' . $target_storage;
 
 if ($userInfo[0]['email'] == $_POST['email'] and !$fileUploaded and $userInfo[0]['firstname'] == $_POST['firstname'] and $userInfo[0]['lastname'] == $_POST['lastname']) {
     echo '<br>valeurs similaires';
@@ -98,13 +68,9 @@ if ($userInfo[0]['email'] == $_POST['email'] and !$fileUploaded and $userInfo[0]
     $_SESSION['path_pp'] = $target_storage;
 
     if ($result) {
-        echo '<br>' . $result;
         $_GET['success'] = 1;
-        echo '<br>success';
         header('Location: https://schoolpea.com/Compte/index.php?success=1');
     } else {
-        echo $result;
-        echo '<br>error wtf';
         $_GET['error'] = 1;
         header('Location: https://schoolpea.com/Compte/index.php?error=1');
     }

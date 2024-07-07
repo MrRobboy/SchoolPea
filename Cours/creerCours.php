@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (!empty($_SESSION['referer'])) {
     if (str_contains($_SESSION['referer'], '?')) {
         $concat = '&';
