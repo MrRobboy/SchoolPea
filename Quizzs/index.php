@@ -15,8 +15,8 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Explorer les Quizz</title>
-    <style>/* style.css */
-/* style.css */
+    <style>
+
 
 :root {
     --bg-color-light: #ffffff;

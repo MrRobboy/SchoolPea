@@ -94,7 +94,7 @@ var Jeu = {
     },
  
     menu: function () {
-        // crée tous les objets Pong dans leur état actuel
+        // crée tous les objets Pong 
         Pong.crée();
  
         // change la taille de police du canvas et la couleur

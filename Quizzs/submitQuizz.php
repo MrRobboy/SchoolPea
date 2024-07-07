@@ -5,7 +5,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $quizName = $_POST['quiz_name'];
     $quizDescription = $_POST['quiz_description'];
 
-    // Handle file upload
     $target_dir = "/var/www/html/SchoolPea/Quizzs/uploads/";
     $fileName = uniqid() . "_" . basename($_FILES["quiz_image"]["name"]);
     $target_storage = "https://schoolpea.com/Quizzs/uploads/" . $fileName;
@@ -13,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
-    // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["quiz_image"]["tmp_name"]);
     if ($check !== false) {
         $uploadOk = 1;
@@ -22,19 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $uploadOk = 0;
     }
 
-    // Check file size
     if ($_FILES["quiz_image"]["size"] > 500000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
 
-    // Allow certain file formats
     if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
     }
 
-    // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
     } else {
@@ -45,14 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    // SQL to insert quiz details
     $sql = "INSERT INTO QUIZZ (nom, description, path_img_pres, date_creation) VALUES (?, ?, ?, NOW())";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$quizName, $quizDescription, $target_storage]);
 
     $quizId = $dbh->lastInsertId();
 
-    // Insert questions and choices
     foreach ($_POST['questions'] as $questionIndex => $question) {
         if (isset($question['text']) && !empty($question['text'])) {
             $sql = "INSERT INTO QUESTIONS (id_quizz, question_text) VALUES (?, ?)";

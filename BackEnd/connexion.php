@@ -3,7 +3,6 @@ session_start();
 $badCredentials = false;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	// Check if the password and email keys exist in the $_POST array
 	if (!isset($_POST['password_connexion']) || !isset($_POST['email_connexion'])) {
 		header('Location: ' . $_SERVER['HTTP_REFERER']);
 	}

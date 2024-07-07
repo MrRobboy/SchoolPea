@@ -12,7 +12,7 @@
     placeholder="Rechercher..."
     onkeyup="rechercherCoursEtQuizz(this.value)"
   >
-  <!-- Ici, vous pouvez afficher les résultats de la recherche -->
+  
   <div id="resultats"></div>
 
   <script src="../Scripts/script.js"></script>

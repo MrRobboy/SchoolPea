@@ -3,13 +3,13 @@ session_start();
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-// Inclure les dépendances de PHPMailer
+
 require 'vendor/autoload.php';
 require 'vendor/phpmailer/phpmailer/src/Exception.php';
 require 'vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require 'vendor/phpmailer/phpmailer/src/SMTP.php';
 
-// Fonction pour générer un code de vérification aléatoire
+
 function generateRandomCode($length = 6)
 {
     $characters = '0123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNOPQRSTUVWXYZ';
@@ -21,37 +21,37 @@ function generateRandomCode($length = 6)
     return $code;
 }
 
-// Fonction pour envoyer un e-mail de vérification d'inscription
+
 function sendVerificationEmail($email, $verificationCode)
 {
-    // Configurer PHPMailer
+
     $mail = new PHPMailer(true);
     $mail->SMTPDebug = 2;
     $mail->isSMTP();
-    $mail->Host = 'smtp.office365.com'; // Serveur SMTP (exemple avec Outlook)
+    $mail->Host = 'smtp.office365.com'; 
     $mail->SMTPAuth = true;
-    $mail->Username = 'schoolpea@outlook.fr'; // Adresse e-mail
+    $mail->Username = 'schoolpea@outlook.fr';
     $mail->Password = 'BienvenueEnLangageCLuffyNikaAroufGangstaXavierDupontDeLigones.exe'; // Mot de passe
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
-    // Expéditeur
+
     $mail->setFrom('schoolpea@outlook.fr', 'SchoolPea');
 
-    // Destinataire
+
     $mail->addAddress($email);
 
-    // Contenu du message
+
     $mail->isHTML(true);
     $mail->Subject = 'Verification d\'inscription';
     $mail->Body = 'Votre code de verification est : ' . $verificationCode;
 
-    // Envoyer l'e-mail
+   
     if ($mail->send()) {
-        // Succès
+     
         return true;
     } else {
-        // Échec
+       
         return false;
     }
 }

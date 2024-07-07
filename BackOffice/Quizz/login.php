@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Validate credentials and fetch user details from database
     $sql = "SELECT id_USER, pass FROM USER WHERE email = :email";
     $stmt = $dbh->prepare($sql);
     $stmt->bindParam(':email', $email);

@@ -7,12 +7,12 @@
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <style>
-        /* Styles spécifiques pour l'en-tête */
+    
         header {
-            /* Vos styles pour l'en-tête ici */
+           
         }
 
-        /* Styles pour le toggle switch */
+        
         .toggle-container {
             display: flex;
             align-items: center;
@@ -70,7 +70,6 @@
             transform: translateX(26px);
         }
 
-        /* Styles spécifiques pour le mode sombre */
         body.dark-mode {
             background-color: #333;
             color: #fff;
@@ -80,7 +79,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const toggleSwitch = document.getElementById('dark-mode-toggle');
 
-            // Vérifie le localStorage pour l'état du mode sombre
+         
             if (localStorage.getItem('dark-mode') === 'enabled') {
                 document.body.classList.add('dark-mode');
                 toggleSwitch.checked = true;
