@@ -225,7 +225,7 @@ body.dark-mode #Mdp_modif {
 body.dark-mode .Input_Mdp_modif_div {
     background-color: #666;
     border-color: #999;
-    color: #e0e0e0;
+    color: white;
 }
 
 .Input_Mdp_modif_div:focus {
