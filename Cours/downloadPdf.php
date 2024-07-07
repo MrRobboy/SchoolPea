@@ -1,10 +1,13 @@
 <?php
-
 session_start();
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
-require_once '../BackEnd/vendor/tecnickcom/tcpdf/tcpdf.php';
+
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/vendor/tecnickcom/tcpdf/tcpdf.php';
+require_once($path);
 
 $id_cours = $_GET['id_cours'];
 $sql = "SELECT * FROM COURS WHERE id_cours = ?";

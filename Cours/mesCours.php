@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 include($path);
