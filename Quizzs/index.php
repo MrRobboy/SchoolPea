@@ -120,7 +120,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .quiz a:hover {
-            background-color: var(--bg-color-light);
+            background-color: #5c6bc0;
         }
     </style>
 </head>
