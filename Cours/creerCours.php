@@ -155,7 +155,7 @@ $dbh = null;
             background-color: #232323;
         }
 
-        body.dark-mode {
+        body.dark-mode label {
             color: white;
         }
 
