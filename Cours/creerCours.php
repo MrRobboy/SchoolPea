@@ -147,6 +147,11 @@ $dbh = null;
             color: white;
         }
 
+        body.dark-mode .class {
+            background-color: #374599;
+            color: white;
+        }
+
         form {
             background-color: #ffffff;
             border-radius: 2em;
