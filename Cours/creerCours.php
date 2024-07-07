@@ -151,6 +151,14 @@ $dbh = null;
             width: 100%;
         }
 
+        body.dark-mode form {
+            background-color: #ffffff;
+        }
+
+        body.dark-mode {
+            color: white;
+        }
+
         label {
             display: block;
             margin-bottom: 0.5em;
