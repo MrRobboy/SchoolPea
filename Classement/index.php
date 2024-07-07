@@ -67,8 +67,3 @@ $result = $dbh->query($sql);
 </body>
 
 </html>
-
-<?php
-
-$dbh = null;
-?>
