@@ -10,7 +10,7 @@ include($path);
 
 $dbh->exec('USE PA');
 
-// Récupérer les informations du quiz
+
 $stmt = $dbh->prepare("SELECT nom, description FROM QUIZZ WHERE id_QUIZZ = :id");
 $stmt->bindValue(':id', $_GET['id']);
 $stmt->execute();

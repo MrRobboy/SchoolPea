@@ -19,7 +19,6 @@ include 'db.php';
 $id_user = $_SESSION['id_user'];
 
 try {
-    // ici on vérification de si l'utilisateur existe dans la table USER
     $stmt = $dbh->prepare("SELECT id_USER FROM USER WHERE id_USER = :id_user");
     $stmt->bindValue(':id_user', $id_user, PDO::PARAM_INT);
     $stmt->execute();

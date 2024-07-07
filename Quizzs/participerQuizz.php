@@ -1,12 +1,20 @@
 <?php
-require_once('common.php');
 
-// Démarrer la session si ce n'est pas déjà fait
+$path = $_SERVER['DOCUMENT_ROOT'];
+if (isset($_SESSION['mail_valide'])) {
+    $path .= '/headerL.php';
+} else {
+    header('Location: https://schoolpea.com/Connexion');
+}
+include($path);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Vérifier si l'ID du quiz est spécifié dans l'URL et est un entier valide
 if (!isset($_GET['id_quizz']) || !is_numeric($_GET['id_quizz'])) {
     echo "ID de quiz non spécifié ou non valide.";
     exit();
@@ -14,7 +22,6 @@ if (!isset($_GET['id_quizz']) || !is_numeric($_GET['id_quizz'])) {
 
 $idQuizz = (int)$_GET['id_quizz'];
 
-// Récupérer les informations sur le quiz
 $sql = "SELECT * FROM QUIZZ WHERE id_QUIZZ = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$idQuizz]);
@@ -24,38 +31,30 @@ if (!$quiz) {
     echo "Quiz non trouvé.";
     exit();
 }
-
-// Récupérer les questions du quiz
 $sql = "SELECT * FROM QUESTIONS WHERE id_quizz = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$idQuizz]);
 $questions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Vérifier s'il y a des questions
 if (empty($questions)) {
     echo "Aucune question trouvée pour ce quiz.";
     exit();
 }
 
-// Déterminer la question actuelle
 $currentQuestion = isset($_GET['question']) ? (int)$_GET['question'] : 1;
 
-// Vérifier si la question actuelle est valide
 if ($currentQuestion < 1 || $currentQuestion > count($questions)) {
     echo "Numéro de question invalide.";
     exit();
 }
 
-// Récupérer les données de la question actuelle
 $currentQuestionData = $questions[$currentQuestion - 1];
 
-// Récupérer les choix de la question actuelle
 $sql = "SELECT * FROM CHOIX WHERE id_question = ?";
 $stmt = $dbh->prepare($sql);
 $stmt->execute([$currentQuestionData['id_question']]);
 $choices = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Si une réponse est soumise
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_POST['answers'][$currentQuestionData['id_question']])) {
         echo "Veuillez sélectionner au moins une réponse.";
@@ -64,21 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $answerIds = $_POST['answers'][$currentQuestionData['id_question']];
 
-    // Valider et enregistrer les réponses
     foreach ($answerIds as $answerId) {
         $sql = "INSERT INTO RESULTATS_QUIZZ (id_user, id_question, id_quizz, id_choice) VALUES (?, ?, ?, ?)";
         $stmt = $dbh->prepare($sql);
         $stmt->execute([$_SESSION['id_user'], $currentQuestionData['id_question'], $idQuizz, $answerId]);
     }
 
-    // Déterminer la prochaine question à afficher
     $nextQuestion = $currentQuestion + 1;
 
     if ($nextQuestion > count($questions)) {
-        // Rediriger vers la page de résultats du quiz
         header("Location: resultatQuizz.php?id_quizz=$idQuizz");
     } else {
-        // Rediriger vers la prochaine question
         header("Location: participerQuizz.php?id_quizz=$idQuizz&question=$nextQuestion");
     }
     exit();
@@ -87,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,102 +92,102 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         /* style.css */
 
-:root {
-    --bg-color-light: #ffffff;
-    --text-color-light: #333333;
-    --accent-color-light: #5c6bc0;
-    --bg-color-dark: #333333;
-    --text-color-dark: #ffffff;
-    --accent-color-dark: #3f51b5;
-}
+        :root {
+            --bg-color-light: #ffffff;
+            --text-color-light: #333333;
+            --accent-color-light: #5c6bc0;
+            --bg-color-dark: #333333;
+            --text-color-dark: #ffffff;
+            --accent-color-dark: #3f51b5;
+        }
 
-[data-theme="light"] {
-    --bg-color: var(--bg-color-light);
-    --text-color: var(--text-color-light);
-    --accent-color: var(--accent-color-light);
-}
+        [data-theme="light"] {
+            --bg-color: var(--bg-color-light);
+            --text-color: var(--text-color-light);
+            --accent-color: var(--accent-color-light);
+        }
 
-[data-theme="dark"] {
-    --bg-color: var(--bg-color-dark);
-    --text-color: var(--text-color-dark);
-    --accent-color: var(--accent-color-dark);
-}
+        [data-theme="dark"] {
+            --bg-color: var(--bg-color-dark);
+            --text-color: var(--text-color-dark);
+            --accent-color: var(--accent-color-dark);
+        }
 
-body {
-    background-color: var(--bg-color);
-    background: linear-gradient(to right, #e2e2e2, var(--bg-color));
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-    font-family: "Montserrat", sans-serif;
-    margin: 0;
-    transition: background-color 0.3s, color 0.3s;
-}
+        body {
+            background-color: var(--bg-color);
+            background: linear-gradient(to right, #e2e2e2, var(--bg-color));
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: var(--bg-color);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: background-color 0.3s;
-}
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background-color 0.3s;
+        }
 
-h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: var(--text-color);
-}
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
 
-h3 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--text-color);
-}
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
 
-p {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    line-height: 1.8;
-    color: var(--text-color);
-}
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
 
-#choices-container {
-    text-align: left;
-    margin-bottom: 20px;
-}
+        #choices-container {
+            text-align: left;
+            margin-bottom: 20px;
+        }
 
-#choices-container div {
-    margin-bottom: 10px;
-}
+        #choices-container div {
+            margin-bottom: 10px;
+        }
 
-#choices-container label {
-    margin-left: 10px;
-    color: var(--text-color);
-}
+        #choices-container label {
+            margin-left: 10px;
+            color: var(--text-color);
+        }
 
-button {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-}
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
 
-button:hover {
-    background-color: #3f51b5;
-}
-
+        button:hover {
+            background-color: #3f51b5;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
@@ -216,4 +212,5 @@ button:hover {
         </form>
     </div>
 </body>
+
 </html>

@@ -114,11 +114,11 @@ tbody tr:hover {
     /* Couleur de fond au survol */
 }
 
-/* Media query pour ajuster le style sur les petits écrans */
+
 @media (max-width: 600px) {
     #content {
         width: 90%;
-        /* Réduire la largeur du contenu sur les petits écrans */
+       
     }
 }
 
