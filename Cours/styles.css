@@ -39,10 +39,6 @@ body a {
     color: white;
 }
 
-body.dark-mode a {
-    color: white;
-}
-
 .trait {
     padding: 0.2em 5em;
     border-radius: 3em;
