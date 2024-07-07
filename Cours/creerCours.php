@@ -152,7 +152,7 @@ $dbh = null;
         }
 
         body.dark-mode form {
-            background-color: #ffffff;
+            background-color: #232323;
         }
 
         body.dark-mode {
