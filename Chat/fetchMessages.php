@@ -6,7 +6,7 @@ require('./db.php');
 $sql = "SELECT m.content, u.email, u.path_pp, DATE_FORMAT(m.date_heure,'%e/%m/%Y %H:%i') 
         FROM messages m
         JOIN USER u ON m.author = u.email
-        ORDER BY m.date_heure DESC";
+        ORDER BY m.date_heure ASC";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
