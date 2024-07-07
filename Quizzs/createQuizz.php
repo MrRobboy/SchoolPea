@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -121,7 +125,7 @@
 <body>
     <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
-    if (isset($_SESSION['role'])) {
+    if (isset($_SESSION['mail_valide'])) {
         $path .= '/headerL.php';
     } else {
         header('Location: https://schoolpea.com/Connexion');
