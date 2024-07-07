@@ -135,7 +135,7 @@ body.dark-mode #dropbtn {
 /*DARK MODE*/
 
 body.dark-mode {
-    background-color: #0d1b2a;
+    background-color: #000;
     color: #cbd4e0;
 }
 
