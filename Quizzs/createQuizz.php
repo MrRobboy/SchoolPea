@@ -121,7 +121,7 @@
 <body>
     <?php
     $path = $_SERVER['DOCUMENT_ROOT'];
-    if (isset($_SESSION['mail_valide'])) {
+    if (isset($_SESSION['role'])) {
         $path .= '/headerL.php';
     } else {
         header('Location: https://schoolpea.com/Connexion');
