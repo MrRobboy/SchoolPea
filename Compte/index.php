@@ -32,7 +32,7 @@ session_start();
     <div id="div1">
         <form method="post" id="Info_gen" action="apply_edit.php" enctype="multipart/form-data">
             <span id="Titre_Info_gen">
-                <img id="reglage" style="width: 45px;">
+                <img id="reglage">
                 <h1 style="margin-left: 0.5em;">Informations Générales</h1>
             </span>
 

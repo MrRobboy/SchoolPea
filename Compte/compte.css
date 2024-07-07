@@ -56,6 +56,7 @@ body.dark-mode #Info_gen {
 
 #reglage {
     content: url(https://schoolpea.com/Images/reglage.svg);
+    width: 45px;
 }
 
 body.dark-mode #reglage {
