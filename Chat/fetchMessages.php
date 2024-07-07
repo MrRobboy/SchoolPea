@@ -1,12 +1,14 @@
 <?php
 session_start();
 $temp = $_SESSION['email'];
-require('./db.php');
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
-$sql = "SELECT m.content, m.created_at, u.email, u.path_pp, DATE_FORMAT(m.date_heure,'%e/%m/%Y %H:%i') 
+$sql = "SELECT m.content, u.email, u.path_pp, DATE_FORMAT(m.date_heure,'%e/%m/%Y %H:%i') 
         FROM messages m
         JOIN USER u ON m.author = u.email
-        ORDER BY m.created_at DESC";
+        ORDER BY m.date_heure ASC";
 $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
