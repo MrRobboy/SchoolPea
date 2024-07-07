@@ -8,10 +8,6 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <style>
         /* Styles spécifiques pour l'en-tête */
-        header {
-            /* Vos styles pour l'en-tête ici */
-        }
-
         /* Styles pour le toggle switch */
         .toggle-container {
             display: flex;
@@ -62,11 +58,11 @@
             border-radius: 50%;
         }
 
-        input:checked + .toggle-slider {
+        input:checked+.toggle-slider {
             background-color: #3f51b5;
         }
 
-        input:checked + .toggle-slider:before {
+        input:checked+.toggle-slider:before {
             transform: translateX(26px);
         }
 
@@ -77,7 +73,7 @@
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const toggleSwitch = document.getElementById('dark-mode-toggle');
 
             // Vérifie le localStorage pour l'état du mode sombre
@@ -86,7 +82,7 @@
                 toggleSwitch.checked = true;
             }
 
-            toggleSwitch.addEventListener('change', function () {
+            toggleSwitch.addEventListener('change', function() {
                 if (toggleSwitch.checked) {
                     document.body.classList.add('dark-mode');
                     localStorage.setItem('dark-mode', 'enabled');
