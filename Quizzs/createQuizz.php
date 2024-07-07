@@ -73,7 +73,7 @@ session_start();
 
         input[type="submit"],
         button {
-            background-color: #374599;
+            background-color: #6372c7;
             color: white;
             padding: 0.5em 1.5em;
             border: none;
