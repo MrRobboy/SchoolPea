@@ -112,10 +112,14 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
             margin-top: 10px;
             padding: 10px 20px;
             background-color: var(--accent-color);
-            color: white;
+            color: black;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+        }
+
+        .quiz a {
+            color: white;
         }
 
         .quiz a:hover {
