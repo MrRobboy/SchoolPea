@@ -92,7 +92,7 @@ session_start();
 
         body.dark-mode input[type="submit"]:hover,
         body.dark-mode button:hover {
-            background-color: #6372c7;
+            background-color: #7a87cf;
         }
 
         .question {
