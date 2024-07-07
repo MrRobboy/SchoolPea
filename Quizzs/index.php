@@ -15,109 +15,109 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <title>Explorer les Quizz</title>
-    <style>/* style.css */
-/* style.css */
+    <style>
+        /* style.css */
+        /* style.css */
 
-:root {
-    --bg-color-light: #ffffff;
-    --text-color-light: #333333;
-    --accent-color-light: #512da8;
-    --bg-color-dark: #333333;
-    --text-color-dark: #ffffff;
-    --accent-color-dark: #5c6bc0;
-}
+        :root {
+            --bg-color-light: #ffffff;
+            --text-color-light: #333333;
+            --accent-color-light: #512da8;
+            --bg-color-dark: #333333;
+            --text-color-dark: #ffffff;
+            --accent-color-dark: #5c6bc0;
+        }
 
-[data-theme="light"] {
-    --bg-color: var(--bg-color-light);
-    --text-color: var(--text-color-light);
-    --accent-color: var(--accent-color-light);
-}
+        [data-theme="light"] {
+            --bg-color: var(--bg-color-light);
+            --text-color: var(--text-color-light);
+            --accent-color: var(--accent-color-light);
+        }
 
-[data-theme="dark"] {
-    --bg-color: var(--bg-color-dark);
-    --text-color: var(--text-color-dark);
-    --accent-color: var(--accent-color-dark);
-}
+        [data-theme="dark"] {
+            --bg-color: var(--bg-color-dark);
+            --text-color: var(--text-color-dark);
+            --accent-color: var(--accent-color-dark);
+        }
 
-body {
-    background-color: var(--bg-color);
-    background: linear-gradient(to right, #e2e2e2, var(--bg-color));
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-    font-family: "Montserrat", sans-serif;
-    margin: 0;
-    transition: background-color 0.3s, color 0.3s;
-}
+        body {
+            background-color: var(--bg-color);
+            background: linear-gradient(to right, #e2e2e2, var(--bg-color));
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.trait {
-    padding: 0.2em 5em;
-    border-radius: 3em;
-    background-color: transparent;
-    margin-bottom: 10em;
-}
+        .trait {
+            padding: 0.2em 5em;
+            border-radius: 3em;
+            background-color: transparent;
+            margin-bottom: 10em;
+        }
 
-#div1 {
-    padding: 20px;
-    margin: 4em auto;
-}
+        #div1 {
+            padding: 20px;
+            margin: 4em auto;
+        }
 
-h1 {
-    text-align: center;
-}
+        h1 {
+            text-align: center;
+        }
 
-#search {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
+        #search {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
 
-.quizzes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin: 20px auto 0;
-}
+        .quizzes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px auto 0;
+        }
 
-.quiz {
-    background-color: var(--bg-color);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 15px;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-}
+        .quiz {
+            background-color: var(--bg-color);
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
 
-.quiz img {
-    max-width: 150px;
-    height: auto;
-    border-radius: 5px;
-}
+        .quiz img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 5px;
+        }
 
-.quiz a {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
+        .quiz a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
 
-.quiz a:hover {
-    background-color: #3f51b5;
-}
-
+        .quiz a:hover {
+            background-color: #3f51b5;
+        }
     </style>
 </head>
 
