@@ -48,7 +48,7 @@ header.prof {
 
 body.dark-mode #logo_header {
     width: 45px;
-    content: url(https://schoolpea.com/Images/SchoolPea_test.png);
+    content: url(https://schoolpea.com/Images/SchoolPea_Dark.svg);
 }
 
 body.dark-mode #dropbtn {
