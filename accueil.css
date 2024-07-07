@@ -64,6 +64,10 @@ body div {
     content: url(https://schoolpea.com/Images/SchoolPea.png);
 }
 
+body.dark-mode #logo_aff {
+    content: url(https://schoolpea.com/Images/SchoolPea_Dark.png);
+}
+
 .but {
     display: flex;
     justify-content: space-around;
