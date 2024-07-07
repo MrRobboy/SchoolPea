@@ -1,5 +1,14 @@
 <?php
-require_once('common.php');
+$path = $_SERVER['DOCUMENT_ROOT'];
+if (isset($_SESSION['mail_valide'])) {
+    $path .= '/headerL.php';
+} else {
+    header('Location: https://schoolpea.com/Connexion');
+}
+include($path);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -43,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rejouer_quiz'])) {
     $sql = "DELETE FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuizz, $idUser]);
-    
+
     header("Location: participerQuizz.php?id_quizz=$idQuizz");
     exit();
 }
@@ -58,13 +67,14 @@ $userResponses = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $bonnesReponses = 0;
 $totalQuestions = count($questions);
 
-function isReponseValide($idQuestion, $userResponses, $dbh) {
+function isReponseValide($idQuestion, $userResponses, $dbh)
+{
     //recupere les chois is correct d'un question
     $sql = "SELECT id_CHOIX FROM CHOIX WHERE id_question = ? AND is_correct = 1";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuestion]);
     $correctChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
-// recupere ce que le user a selzectionner
+    // recupere ce que le user a selzectionner
     $sql = "SELECT id_choice FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuestion, $_SESSION['user_id']]);
@@ -118,20 +128,22 @@ $userelo = $stmt->fetchColumn();
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Résultat du Quiz</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <h2>Résultat du Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
-        
+
         <p>Nombre de bonnes réponses : <?php echo $bonnesReponses; ?> / <?php echo $totalQuestions; ?></p>
         <p>Pourcentage de bonnes réponses : <?php echo $pourcentageCorrect; ?>%</p>
         <h3>Votre score Elo: <?php echo round($newElo, 2); ?></h3>
-        
+
         <div class="buttons">
             <form action="" method="post">
                 <input type="hidden" name="rejouer_quiz" value="1">
@@ -140,8 +152,9 @@ $userelo = $stmt->fetchColumn();
             <a href="../index.php" class="button">Retour à l'accueil</a>
             <a href="../../Classement/index.php" class="button">Voir le Classement</a>
         </div>
-        
+
         <p>Votre classement : <?php echo $userelo; ?></p>
     </div>
 </body>
+
 </html>
