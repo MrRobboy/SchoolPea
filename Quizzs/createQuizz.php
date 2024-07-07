@@ -26,8 +26,12 @@ session_start();
             color: white;
         }
 
-        body.dark-mode form label {
+        body.dark-mode form {
             background-color: #374599;
+            color: white;
+        }
+
+        body.dark-mode form label {
             color: white;
         }
 
