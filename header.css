@@ -46,6 +46,11 @@ header.prof {
     content: url(https://schoolpea.com/Images/SchoolPea.png);
 }
 
+body.dark-mode #logo_header {
+    width: 45px;
+    content: url(https://schoolpea.com/Images/SchoolPea_Dark.png);
+}
+
 #Pages {
     align-items: center;
     display: flex;
