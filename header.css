@@ -47,7 +47,7 @@ header.prof {
 }
 
 body.dark-mode #logo_header {
-    width: 45px;
+    width: 100px;
     content: url(https://schoolpea.com/Images/SchoolPea_Dark.svg);
 }
 
