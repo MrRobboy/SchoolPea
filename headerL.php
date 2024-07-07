@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="https://schoolpea.com/header.css" />
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <style>
     
@@ -75,8 +76,11 @@
             color: #fff;
         }
     </style>
+=======
+    <link rel="stylesheet" type="text/css" href="https://schoolpea.com/DarkModeBut.css" />
+>>>>>>> 9116b10ece6666029c68723143de37ab42ecfa88
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const toggleSwitch = document.getElementById('dark-mode-toggle');
 
          
@@ -85,7 +89,7 @@
                 toggleSwitch.checked = true;
             }
 
-            toggleSwitch.addEventListener('change', function () {
+            toggleSwitch.addEventListener('change', function() {
                 if (toggleSwitch.checked) {
                     document.body.classList.add('dark-mode');
                     localStorage.setItem('dark-mode', 'enabled');

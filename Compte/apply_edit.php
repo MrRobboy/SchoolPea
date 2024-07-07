@@ -95,6 +95,7 @@ if ($userInfo[0]['email'] == $_POST['email'] and !$fileUploaded and $userInfo[0]
     $stmt2->bindvalue(':path_pp', $target_storage);
     $result = $stmt2->execute();
 
+    $_SESSION['path_pp'] = $target_storage;
 
     if ($result) {
         echo '<br>' . $result;

@@ -15,7 +15,7 @@ body {
     flex-direction: column;
     height: 100vh;
     font-family: "Montserrat", sans-serif;
-    transition: background 0.3s, color 0.3s;
+    transition: all 0.3s, color 0.3s;
 }
 
 body.dark-mode {

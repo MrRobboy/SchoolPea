@@ -26,7 +26,12 @@ document.querySelector('#subscriptionForm').addEventListener('submit', function(
                 if (subscription.error) {
                     document.getElementById('card-errors').textContent = subscription.error;
                 } else {
+<<<<<<< HEAD
                     window.location.href = 'https://schoolpea.com/SchoolPea+/subscription-success.html';
+=======
+                    // Redirect to confirmation page with subscriptionId
+                    window.location.href = 'https://schoolpea.com/SchoolPea+/subscription-success.php';
+>>>>>>> 9116b10ece6666029c68723143de37ab42ecfa88
                 }
             });
         }
