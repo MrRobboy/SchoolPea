@@ -133,13 +133,18 @@ $dbh = null;
             flex-direction: column;
             background-color: #f4f5fa;
             margin: 0;
-            padding: 5em;
+            padding: 7em;
         }
 
         h2 {
             color: #374599;
             font-weight: 700;
             margin-bottom: 1em;
+        }
+
+        body.dark-mode h3,
+        body.dark-mode h2 {
+            color: white;
         }
 
         form {
@@ -271,7 +276,7 @@ $dbh = null;
 </head>
 
 <body>
-    <h2>Création de Cours</h2>
+    <h1>Création de Cours</h1>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" enctype="multipart/form-data">
         <label for="nom">Nom du Cours :</label>
