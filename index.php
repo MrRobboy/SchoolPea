@@ -50,7 +50,7 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
                         Gagnons pour réussir !
                     </h6>
                 </span>
-                <img id="logo_aff" src="https://schoolpea.com/Images/SchoolPea.png" alt="Logo" />
+                <img id="logo_aff" alt="Logo" />
             </div>
 
             <div class="but">

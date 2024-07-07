@@ -61,6 +61,7 @@ body div {
     width: 7em;
     align-items: center;
     margin: 4em 2em;
+    content: url(https://schoolpea.com/Images/SchoolPea.png);
 }
 
 .but {
