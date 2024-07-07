@@ -147,7 +147,10 @@ $dbh = null;
             color: white;
         }
 
-        body.dark-mode .section {
+        body.dark-mode .section,
+        body.dark-mode #nom,
+        body.dark-mode #niveau,
+        body.dark-mode #description {
             background-color: #374599;
             color: white;
         }
