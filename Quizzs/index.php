@@ -94,7 +94,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .quiz {
-            background-color: var(--bg-color);
+            background-color: #6279fd;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 15px;
