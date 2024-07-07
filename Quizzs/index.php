@@ -57,6 +57,10 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
             transition: background-color 0.3s, color 0.3s;
         }
 
+        body.dark-mode {
+            color: white;
+        }
+
         .trait {
             padding: 0.2em 5em;
             border-radius: 3em;
@@ -116,10 +120,6 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
-        }
-
-        .quiz a {
-            color: white;
         }
 
         .quiz a:hover {
