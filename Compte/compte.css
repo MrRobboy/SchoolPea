@@ -12,7 +12,7 @@ body {
     flex-direction: column;
     background: rgb(255, 255, 255);
     background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(146, 189, 249, 1) 100%);
-    transition: background 0.3s, color 0.3s;
+    transition: all 0.3s;
 }
 
 body.dark-mode {
@@ -28,7 +28,7 @@ body.dark-mode {
     background-color: transparent;
     margin-bottom: 10em;
     margin-top: 0em;
-    transition: background-color 0.3s;
+    transition: all 0.3s;
 }
 
 #div1 {
@@ -80,7 +80,7 @@ body.dark-mode #reglage {
     border-radius: 50%;
     margin: 1em;
     border: solid 0.2em black;
-    transition: border-color 0.3s;
+    transition: all 0.3s;
 }
 
 body.dark-mode #PP {
@@ -99,7 +99,7 @@ body.dark-mode #PP {
     position: relative;
     padding: 0.5em 1em 0 1em;
     z-index: 0;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: all 0.3s;
 }
 
 body.dark-mode #But_Photo,
@@ -121,7 +121,7 @@ body.dark-mode #Sub_Photo {
     padding: 0 1em;
     background-color: lightgray;
     font-weight: 400;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: all 0.3s;
 }
 
 body.dark-mode .Input_Nom_Prenom_Email {
@@ -219,7 +219,7 @@ body.dark-mode #Mdp_modif {
     border: 0.1em black solid;
     background-color: lightgray;
     padding: 0 1em;
-    transition: background-color 0.3s, border-color 0.3s;
+    transition: all 0.3s;
 }
 
 body.dark-mode .Input_Mdp_modif_div {
