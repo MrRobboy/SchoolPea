@@ -3,6 +3,9 @@ session_start();
 $path = $_SERVER['DOCUMENT_ROOT'];
 $path .= '/BackEnd/db.php';
 require($path);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
 $sql = "SELECT * FROM QUIZZ";
 $result = $dbh->query($sql);

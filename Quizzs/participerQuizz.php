@@ -1,5 +1,15 @@
 <?php
-require_once('common.php');
+
+$path = $_SERVER['DOCUMENT_ROOT'];
+if (isset($_SESSION['mail_valide'])) {
+    $path .= '/headerL.php';
+} else {
+    header('Location: https://schoolpea.com/Connexion');
+}
+include($path);
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -72,6 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -81,102 +92,102 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         /* style.css */
 
-:root {
-    --bg-color-light: #ffffff;
-    --text-color-light: #333333;
-    --accent-color-light: #5c6bc0;
-    --bg-color-dark: #333333;
-    --text-color-dark: #ffffff;
-    --accent-color-dark: #3f51b5;
-}
+        :root {
+            --bg-color-light: #ffffff;
+            --text-color-light: #333333;
+            --accent-color-light: #5c6bc0;
+            --bg-color-dark: #333333;
+            --text-color-dark: #ffffff;
+            --accent-color-dark: #3f51b5;
+        }
 
-[data-theme="light"] {
-    --bg-color: var(--bg-color-light);
-    --text-color: var(--text-color-light);
-    --accent-color: var(--accent-color-light);
-}
+        [data-theme="light"] {
+            --bg-color: var(--bg-color-light);
+            --text-color: var(--text-color-light);
+            --accent-color: var(--accent-color-light);
+        }
 
-[data-theme="dark"] {
-    --bg-color: var(--bg-color-dark);
-    --text-color: var(--text-color-dark);
-    --accent-color: var(--accent-color-dark);
-}
+        [data-theme="dark"] {
+            --bg-color: var(--bg-color-dark);
+            --text-color: var(--text-color-dark);
+            --accent-color: var(--accent-color-dark);
+        }
 
-body {
-    background-color: var(--bg-color);
-    background: linear-gradient(to right, #e2e2e2, var(--bg-color));
-    color: var(--text-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-    font-family: "Montserrat", sans-serif;
-    margin: 0;
-    transition: background-color 0.3s, color 0.3s;
-}
+        body {
+            background-color: var(--bg-color);
+            background: linear-gradient(to right, #e2e2e2, var(--bg-color));
+            color: var(--text-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            height: 100vh;
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-.container {
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: var(--bg-color);
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: background-color 0.3s;
-}
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: var(--bg-color);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: background-color 0.3s;
+        }
 
-h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: var(--text-color);
-}
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
 
-h3 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: var(--text-color);
-}
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
 
-p {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    line-height: 1.8;
-    color: var(--text-color);
-}
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: var(--text-color);
+        }
 
-#choices-container {
-    text-align: left;
-    margin-bottom: 20px;
-}
+        #choices-container {
+            text-align: left;
+            margin-bottom: 20px;
+        }
 
-#choices-container div {
-    margin-bottom: 10px;
-}
+        #choices-container div {
+            margin-bottom: 10px;
+        }
 
-#choices-container label {
-    margin-left: 10px;
-    color: var(--text-color);
-}
+        #choices-container label {
+            margin-left: 10px;
+            color: var(--text-color);
+        }
 
-button {
-    background-color: var(--accent-color);
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    border-radius: 20px;
-    transition: background-color 0.3s;
-}
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 20px;
+            transition: background-color 0.3s;
+        }
 
-button:hover {
-    background-color: #3f51b5;
-}
-
+        button:hover {
+            background-color: #3f51b5;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Quiz: <?php echo htmlspecialchars($quiz['nom']); ?></h2>
@@ -201,4 +212,5 @@ button:hover {
         </form>
     </div>
 </body>
+
 </html>
