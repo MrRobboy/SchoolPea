@@ -148,6 +148,7 @@ $dbh = null;
         }
 
         body.dark-mode .section,
+        body.dark-mode .section .titre,
         body.dark-mode #nom,
         body.dark-mode #niveau,
         body.dark-mode #description {
