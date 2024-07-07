@@ -27,7 +27,7 @@ session_start();
         }
 
         body.dark-mode form,
-        body.dark-mode form.question {
+        body.dark-mode form .question {
             background-color: #374599;
             color: white;
         }
