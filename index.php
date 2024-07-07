@@ -143,7 +143,7 @@ $quizzes = $result_quizzes->fetchAll(PDO::FETCH_ASSOC);
             <span class="col2">
                 <h4>Schoolpéa</h4>
                 <a href="index.php">Accueil</a>
-                <a href="about.php">A propos</a>
+                <a href="https://youtu.be/dQw4w9WgXcQ?feature=shared">A propos</a>
             </span>
 
             <span class="col3">
