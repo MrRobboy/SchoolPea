@@ -301,11 +301,6 @@ body.dark-mode {
     color: #cbd4e0;
 }
 
-body.dark-mode header {
-    background-color: #1a2b48;
-    box-shadow: 0 0.5em 0.5em rgba(13, 27, 42, 1);
-}
-
 body.dark-mode #SchoolPea {
     background-color: #0d1b2a;
 }
