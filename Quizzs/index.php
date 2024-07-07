@@ -57,6 +57,10 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
             transition: background-color 0.3s, color 0.3s;
         }
 
+        body.dark-mode a {
+            color: white;
+        }
+
         .trait {
             padding: 0.2em 5em;
             border-radius: 3em;
