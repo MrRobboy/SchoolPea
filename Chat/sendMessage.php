@@ -1,6 +1,8 @@
 <?php
 session_start();
-require('db.php');
+$path = $_SERVER['DOCUMENT_ROOT'];
+$path .= '/BackEnd/db.php';
+require($path);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $content = nl2br($_POST['content']);
