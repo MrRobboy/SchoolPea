@@ -81,7 +81,7 @@
             </span>
 
             <!-- Toggle switch pour le mode sombre -->
-            <div class="toggle-container">
+            <div class="toggle-container" style="margin: 0 1em;">
                 <label class="toggle-label">Mode sombre</label>
                 <label class="toggle-switch">
                     <input type="checkbox" id="dark-mode-toggle">
