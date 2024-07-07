@@ -123,7 +123,7 @@ session_start();
             margin-top: 0.5em;
         }
 
-        .effacer-btn:hover {
+        body.dark-mode .effacer-btn:hover {
             background-color: #d32f2f;
         }
 
