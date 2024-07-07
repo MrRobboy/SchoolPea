@@ -36,10 +36,6 @@ body {
 }
 
 body a {
-    color: black;
-}
-
-body.dark-mode a {
     color: white;
 }
 
