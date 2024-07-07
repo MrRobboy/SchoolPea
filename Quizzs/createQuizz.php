@@ -18,7 +18,7 @@ session_start();
             flex-direction: column;
             background-color: #f4f5fa;
             margin: 0;
-            padding: 2em;
+            padding: 7em;
         }
 
         h2 {
