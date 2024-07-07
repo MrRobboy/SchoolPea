@@ -72,7 +72,8 @@ session_start();
         }
 
         input[type="submit"],
-        button {
+        button,
+        body.dark-mode button {
             background-color: #6372c7;
             color: white;
             padding: 0.5em 1.5em;
