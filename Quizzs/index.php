@@ -50,15 +50,12 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--text-color-light);
             flex-direction: column;
             height: 100vh;
             font-family: "Montserrat", sans-serif;
             margin: 0;
             transition: background-color 0.3s, color 0.3s;
-        }
-
-        body.dark-mode a {
-            color: white;
         }
 
         .trait {
