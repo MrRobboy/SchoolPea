@@ -54,6 +54,14 @@ body.dark-mode #Info_gen {
     box-shadow: -1em 1em 1px rgba(55, 70, 153, 0.5);
 }
 
+#reglage {
+    content: url(https://schoolpea.com/Images/reglage.svg);
+}
+
+body.dark-mode #reglage {
+    content: url(https://schoolpea.com/Images/reglage_Dark.svg);
+}
+
 #Titre_Info_gen {
     display: flex;
     flex-direction: row;
