@@ -26,7 +26,7 @@ session_start();
             color: white;
         }
 
-        body.dark-mode form {
+        body.dark-mode form label {
             background-color: #374599;
             color: white;
         }
