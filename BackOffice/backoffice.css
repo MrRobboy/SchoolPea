@@ -9,7 +9,7 @@ body {
 }
 
 .container {
-    width: 80%;
+    width: 60%;
     margin: 20px auto;
     background-color: #fff;
     padding: 20px;
@@ -50,6 +50,7 @@ h1 {
     text-decoration: none;
     color: white;
 }
+
 .front-office {
     background-color: red;
     border-radius: 2em;
