@@ -181,7 +181,3 @@ p[data-theme="dark"],
 .answer button[data-theme="dark"]:hover {
     background-color: var(--button-hover-dark);
 }
-
-body.dark-mode .quiz {
-    background-color: #6279fd;
-}

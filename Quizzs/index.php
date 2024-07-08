@@ -94,7 +94,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .quiz {
-            background-color: var(--bg-color);
+            background-color: #6279fd;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             padding: 15px;
@@ -115,7 +115,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
             display: inline-block;
             margin-top: 10px;
             padding: 10px 20px;
-            background-color: var(--accent-color);
+            background-color: #3f51b5;
             color: black;
             text-decoration: none;
             border-radius: 5px;
@@ -123,7 +123,7 @@ $quizzes = $result->fetchAll(PDO::FETCH_ASSOC);
         }
 
         .quiz a:hover {
-            background-color: #5c6bc0;
+            background-color: #2c4afc;
         }
     </style>
 </head>
