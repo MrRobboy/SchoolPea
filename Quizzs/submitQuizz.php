@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 if (isset($_SESSION['mail_valide'])) {
     $path .= '/headerL.php';

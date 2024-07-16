@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $path = $_SERVER['DOCUMENT_ROOT'];
 if (isset($_SESSION['mail_valide'])) {
     $path .= '/headerL.php';
@@ -12,12 +14,6 @@ require($path);
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['redirect_url'] = $_SERVER['REQUEST_URI']; // Stocker l'URL actuelle
-    header("Location: login.php");
-    exit();
 }
 
 if (!isset($_GET['id_quizz'])) {
@@ -48,7 +44,7 @@ if (empty($questions)) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rejouer_quiz'])) {
-    $idUser = $_SESSION['user_id'];
+    $idUser = $_SESSION['id_user'];
     $sql = "DELETE FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
     $stmt->execute([$idQuizz, $idUser]);
@@ -57,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['rejouer_quiz'])) {
     exit();
 }
 
-$idUser = $_SESSION['user_id'];
+$idUser = $_SESSION['id_user'];
 
 $sql = "SELECT * FROM RESULTATS_QUIZZ WHERE id_quizz = ? AND id_user = ?";
 $stmt = $dbh->prepare($sql);
@@ -77,7 +73,7 @@ function isReponseValide($idQuestion, $userResponses, $dbh)
     // recupere ce que le user a selzectionner
     $sql = "SELECT id_choice FROM RESULTATS_QUIZZ WHERE id_question = ? AND id_user = ?";
     $stmt = $dbh->prepare($sql);
-    $stmt->execute([$idQuestion, $_SESSION['user_id']]);
+    $stmt->execute([$idQuestion, $_SESSION['id_user']]);
     $userChoices = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
     sort($correctChoices);
