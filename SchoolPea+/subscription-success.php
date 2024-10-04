@@ -1,7 +1,7 @@
 <?php
 session_start();
 $path = $_SERVER['DOCUMENT_ROOT'];
-$path .= 'BackEnd/db.php';
+$path .= '/BackEnd/db.php';
 include($path);
 
 $dbh->exec('USE PA');

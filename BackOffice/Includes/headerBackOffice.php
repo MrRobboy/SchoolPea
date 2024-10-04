@@ -32,20 +32,8 @@ include($auth);
         </span>
 
         <span class="link">
-            <a href="https://schoolpea.com/BackOffice/Newsletter" class="lien_header">
-                Newsletter
-            </a>
-        </span>
-
-        <span class="link">
             <a href="https://schoolpea.com/BackOffice/Logs" class="lien_header">
                 Logs
-            </a>
-        </span>
-
-        <span class="link">
-            <a href="https://schoolpea.com/BackOffice/Tickets" class="lien_header">
-                Tickets
             </a>
         </span>
 
